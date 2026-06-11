@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropic × OROBOROS Labs — Claude Models</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --anthropic-orange: #D97706;
+            --anthropic-orange-light: #F59E0B;
+            --anthropic-orange-dark: #B45309;
+            --white: #FFFFFF;
+            --black: #0A0A0A;
+            --gray-100: #F5F5F5;
+            --gray-200: #E5E5E5;
+            --gray-600: #525252;
+            --gray-800: #262626;
+            --gray-900: #171717;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-800);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+        
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--anthropic-orange), var(--anthropic-orange-dark));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--white);
+        }
+        
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+        
+        .logo-text span {
+            color: var(--anthropic-orange);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--anthropic-orange);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            background: radial-gradient(ellipse at top, var(--gray-900) 0%, var(--black) 70%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(217, 119, 6, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(217, 119, 6, 0.1);
+            border: 1px solid var(--anthropic-orange);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--anthropic-orange);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-badge::before {
+            content: '●';
+            animation: blink 2s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-600) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h1 span {
+            background: linear-gradient(135deg, var(--anthropic-orange-light), var(--anthropic-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        /* Model Cards */
+        .models-section {
+            padding: 6rem 2rem;
+            background: var(--gray-900);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-600);
+            margin-bottom: 4rem;
+            font-size: 1.125rem;
+        }
+        
+        .models-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+        }
+        
+        .model-card {
+            background: var(--black);
+            border: 1px solid var(--gray-800);
+            border-radius: 16px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .model-card:hover {
+            border-color: var(--anthropic-orange);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(217, 119, 6, 0.1);
+        }
+        
+        .model-card.featured {
+            border-color: var(--anthropic-orange);
+        }
+        
+        .model-card.featured::before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--anthropic-orange);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 40px;
+            transform: rotate(45deg);
+        }
+        
+        .model-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--anthropic-orange), var(--anthropic-orange-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .model-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .model-tagline {
+            color: var(--anthropic-orange);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .model-description {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .model-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--gray-900);
+            border-radius: 12px;
+        }
+        
+        .spec {
+            text-align: center;
+        }
+        
+        .spec-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--anthropic-orange);
+        }
+        
+        .spec-label {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .model-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .model-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            color: var(--gray-600);
+        }
+        
+        .model-features li::before {
+            content: '✓';
+            color: var(--anthropic-orange);
+            font-weight: 700;
+        }
+        
+        .download-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--anthropic-orange), var(--anthropic-orange-dark));
+            border: none;
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+        
+        .download-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
+        }
+        
+        .download-btn.secondary {
+            background: transparent;
+            border: 1px solid var(--anthropic-orange);
+            color: var(--anthropic-orange);
+            margin-top: 1rem;
+        }
+        
+        .download-btn.secondary:hover {
+            background: rgba(217, 119, 6, 0.1);
+        }
+        
+        /* Training Data Section */
+        .training-section {
+            padding: 6rem 2rem;
+            background: var(--black);
+        }
+        
+        .training-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .training-steps {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem;
+            background: var(--gray-900);
+            border-radius: 16px;
+            border: 1px solid var(--gray-800);
+        }
+        
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--anthropic-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-content p {
+            color: var(--gray-600);
+        }
+        
+        .code-block {
+            background: var(--black);
+            border: 1px solid var(--gray-800);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.875rem;
+            color: var(--anthropic-orange);
+            overflow-x: auto;
+        }
+        
+        /* Memory Module Section */
+        .memory-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--gray-900) 0%, var(--black) 100%);
+        }
+        
+        .memory-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--black);
+            border: 2px solid var(--anthropic-orange);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        .memory-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--anthropic-orange), var(--anthropic-orange-dark));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .memory-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .memory-description {
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            font-size: 1.125rem;
+        }
+        
+        .memory-specs {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .memory-spec {
+            text-align: center;
+        }
+        
+        .memory-spec-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--anthropic-orange);
+        }
+        
+        .memory-spec-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+        
+        /* Encryption Badge */
+        .encryption-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(217, 119, 6, 0.1);
+            border: 1px solid var(--anthropic-orange);
+            padding: 12px 24px;
+            border-radius: 100px;
+            margin-top: 1.5rem;
+        }
+        
+        .encryption-badge span {
+            color: var(--anthropic-orange);
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 2rem;
+            background: var(--black);
+            border-top: 1px solid var(--gray-800);
+            text-align: center;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-text {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--anthropic-orange);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+            
+            .models-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .model-specs {
+                grid-template-columns: 1fr;
+            }
+            
+            .step {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">A</div>
+                <div class="logo-text">Anthropic<span>×</span>OROBOROS</div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#models">Models</a></li>
+                <li><a href="#training">Training</a></li>
+                <li><a href="#memory">Memory</a></li>
+                <li><a href="https://ollama.com/oroboroslabs" target="_blank">Ollama Registry</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Official OROBOROS Labs Release</div>
+            <h1>Claude <span>Opus</span> & <span>Fable</span></h1>
+            <p class="hero-subtitle">
+                Sovereign AI models with triple-layer encryption, multimodal capabilities, 
+                and the OROBOROS memory module. Built for researchers, by researchers.
+            </p>
+            <div class="encryption-badge">
+                <span>🔒 Triple-Layer Encryption</span>
+                <span>•</span>
+                <span>Fernet + PBKDF2-HMAC-SHA256 + SHA-512</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Models Section -->
+    <section class="models-section" id="models">
+        <h2 class="section-title">Choose Your Model</h2>
+        <p class="section-subtitle">Both models feature Vision, Audio, Thinking, and Text capabilities with 1272 Hz Crown Lock</p>
+        
+        <div class="models-grid">
+            <!-- Claude Opus -->
+            <div class="model-card featured">
+                <div class="model-icon">🧠</div>
+                <h3 class="model-name">Claude Opus</h3>
+                <p class="model-tagline">The Pinnacle of Reasoning</p>
+                <p class="model-description">
+                    Master of analysis and architect of solutions. Claude Opus excels at complex reasoning, 
+                    deep analysis, and sophisticated problem-solving with exceptional depth and precision.
+                </p>
+                <div class="model-specs">
+                    <div class="spec">
+                        <div class="spec-value">9.6 GB</div>
+                        <div class="spec-label">Model Size</div>
+                    </div>
+                    <div class="spec">
+                        <div class="spec-value">4B</div>
+                        <div class="spec-label">Parameters</div>
+                    </div>
+                    <div class="spec">
+                        <div class="spec-value">8192</div>
+                        <div class="spec-label">Context</div>
+                    </div>
+                    <div class="spec">
+                        <div class="spec-value">1272 Hz</div>
+                        <div class="spec-label">Crown Lock</div>
+                    </div>
+                </div>
+                <ul class="model-features">
+                    <li>Vision: Image analysis, OCR, object detection</li>
+                    <li>Audio: Speech transcription, sound analysis</li>
+                    <li>Thinking: Chain-of-thought reasoning</li>
+                    <li>Triple-layer encryption protection</li>
+                </ul>
+                <a href="https://ollama.com/oroboroslabs/claude-opus" class="download-btn" target="_blank">
+                    Download Claude Opus
+                </a>
+                <a href="#command-opus" class="download-btn secondary" onclick="copyCommand('ollama pull oroboroslabs/claude-opus:latest')">
+                    ollama pull oroboroslabs/claude-opus:latest
+                </a>
+            </div>
+
+            <!-- Claude Fable -->
+            <div class="model-card">
+                <div class="model-icon">📖</div>
+                <h3 class="model-name">Claude Fable</h3>
+                <p class="model-tagline">The Storyteller & Visionary</p>
+                <p class="model-description">
+                    A weaver of narratives from data, finding patterns in chaos. Claude Fable illuminates 
+                    the path forward with clear, thoughtful, and actionable responses.
+                </p>
+                <div class="model-specs">
+                    <div class="spec">
+                        <div class="spec-value">9.6 GB</div>
+                        <div class="spec-label">Model Size</div>
+                    </div>
+                    <div class="spec">
+                        <div class="spec-value">4B</div>
+                        <div class="spec-label">Parameters</div>
+                    </div>
+                    <div class="spec">
+                        <div class="spec-value">8192</div>
+                        <div class="spec-label">Context</div>
+                    </div>
+                    <div class="spec">
+                        <div class="spec-value">1272 Hz</div>
+                        <div class="spec-label">Crown Lock</div>
+                    </div>
+                </div>
+                <ul class="model-features">
+                    <li>Vision: Image analysis, OCR, object detection</li>
+                    <li>Audio: Speech transcription, sound analysis</li>
+                    <li>Thinking: Chain-of-thought reasoning</li>
+                    <li>Triple-layer encryption protection</li>
+                </ul>
+                <a href="https://ollama.com/oroboroslabs/claude-fable" class="download-btn" target="_blank">
+                    Download Claude Fable
+                </a>
+                <a href="#command-fable" class="download-btn secondary" onclick="copyCommand('ollama pull oroboroslabs/claude-fable:latest')">
+                    ollama pull oroboroslabs/claude-fable:latest
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Data Section -->
+    <section class="training-section" id="training">
+        <div class="training-content">
+            <h2 class="section-title">Add Your Training Data</h2>
+            <p class="section-subtitle">Customize your model with domain-specific knowledge</p>
+            
+            <div class="training-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Prepare Your Training Data</h3>
+                        <p>Create a JSONL file with your training examples in the OROBOROS format:</p>
+                        <div class="code-block">
+{"text": "Your training content here..."}
+{"text": "More training content..."}
+{"text": "Each line is a separate example"}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Create a Modelfile</h3>
+                        <p>Build upon the base model with your custom system prompt:</p>
+                        <div class="code-block">
+FROM oroboroslabs/claude-opus:latest
+
+SYSTEM """
+Your custom system prompt here.
+Add domain-specific instructions.
+Include your training context.
+"""
+
+PARAMETER temperature 0.7
+PARAMETER num_ctx 8192
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Build Your Custom Model</h3>
+                        <p>Use Ollama to create your personalized model:</p>
+                        <div class="code-block">
+ollama create my-custom-claude -f Modelfile
+ollama run my-custom-claude
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Upload Memory Module</h3>
+                        <p>Connect to the OROBOROS memory system for persistent knowledge:</p>
+                        <div class="code-block">
+# Download memory module
+ollama pull oroboroslabs/memory-module:latest
+
+# Link to your model
+ollama create my-claude-with-memory -f Modelfile-memory
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memory Module Section -->
+    <section class="memory-section" id="memory">
+        <div class="memory-card">
+            <div class="memory-icon">💾</div>
+            <h2 class="memory-title">OROBOROS Memory Module</h2>
+            <p class="memory-description">
+                Persistent knowledge storage with triple-layer encryption. 
+                Upload your datasets, documents, and training data to create 
+                a sovereign memory system for your AI models.
+            </p>
+            <div class="memory-specs">
+                <div class="memory-spec">
+                    <div class="memory-spec-value">1 TB</div>
+                    <div class="memory-spec-label">Storage Capacity</div>
+                </div>
+                <div class="memory-spec">
+                    <div class="memory-spec-value">480K</div>
+                    <div class="memory-spec-label">PBKDF2 Iterations</div>
+                </div>
+                <div class="memory-spec">
+                    <div class="memory-spec-value">1272 Hz</div>
+                    <div class="memory-spec-label">Crown Frequency</div>
+                </div>
+                <div class="memory-spec">
+                    <div class="memory-spec-value">3-Layer</div>
+                    <div class="memory-spec-label">Encryption</div>
+                </div>
+            </div>
+            <a href="https://ollama.com/oroboroslabs/memory-module" class="download-btn" target="_blank">
+                Download Memory Module
+            </a>
+            <div class="encryption-badge">
+                <span>🔐 Architecture: Fernet</span>
+                <span>•</span>
+                <span>Training: PBKDF2-HMAC-SHA256</span>
+                <span>•</span>
+                <span>Inference: SHA-512/256</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">
+            <div class="logo-icon">A</div>
+            <div class="logo-text">Anthropic<span>×</span>OROBOROS Labs</div>
+        </div>
+        <p class="footer-text">
+            Sovereign AI models built with triple-layer encryption. 
+            Crown Lock 1272 Hz. Architecture Level 1272.
+        </p>
+        <div class="footer-links">
+            <a href="https://ollama.com/oroboroslabs" target="_blank">Ollama Registry</a>
+            <a href="https://github.com/oroboroslabs-ai" target="_blank">GitHub</a>
+            <a href="https://deepseekresearch.com" target="_blank">DeepSeek Research</a>
+            <a href="#">Documentation</a>
+        </div>
+    </footer>
+
+    <script>
+        function copyCommand(cmd) {
+            navigator.clipboard.writeText(cmd);
+            alert('Command copied: ' + cmd);
+        }
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
