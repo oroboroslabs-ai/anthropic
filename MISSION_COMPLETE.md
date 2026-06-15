@@ -93,15 +93,25 @@ ollama run claude-capybara-48x2-final:latest-encrypted "Verify triple-layer encr
 
 ## 🔗 LIVE LINKS
 
-### GitHub:
+### Vercel Deployment (Primary):
+- **Chat Interface**: https://oroboroslabs-ai-anthropic.vercel.app/claude-ai
+- **Status**: ⏳ Ready for deployment
+- **Configuration**: ✅ Complete
+
+### GitHub Repository:
 - **Repository**: https://github.com/oroboroslabs-ai/anthropic
 - **Status**: ✅ Live
 - **Branch**: main
 
-### Vercel (Pending Deployment):
-- **URL**: https://oroboroslabs-ai-anthropic.vercel.app/claude-ai
-- **Status**: ⏳ Ready for deployment
-- **Configuration**: ✅ Complete
+### GitHub Pages (Alternative):
+- **Chat Interface**: https://oroboroslabs-ai.github.io/anthropic/claude-ai
+- **Status**: ⏳ Can be enabled via GitHub Pages settings
+- **Configuration**: ✅ Ready
+
+### GitHub Pages (Alternative):
+- **URL**: https://oroboroslabs-ai.github.io/anthropic/claude-ai
+- **Status**: ⏳ Can be enabled via GitHub Pages settings
+- **Configuration**: ✅ Ready
 
 ### Local Testing:
 - **File**: [Q:\anthropic-claude-ai-model-chat\chat-anthropic.html](chat-anthropic.html)

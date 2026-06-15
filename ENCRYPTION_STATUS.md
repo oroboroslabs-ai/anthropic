@@ -75,6 +75,12 @@ ollama show claude-capybara-48x2-final:latest-encrypted --modelfile
 - ⏳ **Status**: Ready for deployment
 - ⏳ **Configuration**: vercel.json updated with correct routes
 - ⏳ **Environment Variables**: OLLAMA_HOST configured for Tailscale Funnel
+- 🌐 **URL**: https://oroboroslabs-ai-anthropic.vercel.app/claude-ai
+
+### GitHub Pages (Alternative):
+- ⏳ **Status**: Can be enabled via repository settings
+- ⏳ **Configuration**: Ready for GitHub Pages deployment
+- 🌐 **URL**: https://oroboroslabs-ai.github.io/anthropic/claude-ai
 
 ## 📋 NEXT STEPS
 
@@ -107,7 +113,8 @@ ollama run claude-capybara-48x2-final:latest-encrypted "Verify triple-layer encr
 ```
 
 ### 4. Verify Deployment:
-- Access: https://oroboroslabs-ai-anthropic.vercel.app/claude-ai
+- **Vercel**: Access https://oroboroslabs-ai-anthropic.vercel.app/claude-ai
+- **GitHub Pages**: Access https://oroboroslabs-ai.github.io/anthropic/claude-ai
 - Test all 3 models with encrypted variants
 - Verify streaming responses work correctly
 - Check media settings functionality
