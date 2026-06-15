@@ -3,6 +3,22 @@ const http = require('http');
 
 const OLLAMA_HOST = process.env.OLLAMA_HOST || 'http://127.0.0.1:11434';
 
+// Helper to read request body
+function readBody(req) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        resolve(body ? JSON.parse(body) : {});
+      } catch (e) {
+        reject(new Error('Invalid JSON'));
+      }
+    });
+    req.on('error', reject);
+  });
+}
+
 module.exports = async (req, res) => {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -10,40 +26,54 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   
   if (req.method === 'OPTIONS') {
-    res.status(200).end();
+    res.statusCode = 200;
+    res.end();
     return;
   }
   
   if (req.method !== 'POST') {
-    res.status(405).json({ error: 'Method not allowed' });
+    res.statusCode = 405;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ error: 'Method not allowed' }));
     return;
   }
   
-  const body = JSON.stringify(req.body);
-  const target = OLLAMA_HOST + '/api/chat';
-  const parsed = new URL(target);
-  const client = parsed.protocol === 'https:' ? https : http;
-  
-  const options = {
-    hostname: parsed.hostname,
-    port: parsed.port,
-    path: parsed.pathname + parsed.search,
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Content-Length': Buffer.byteLength(body)
-    }
-  };
-  
-  const proxy = client.request(options, (pres) => {
-    res.setHeader('Content-Type', 'application/x-ndjson');
-    pres.pipe(res);
-  });
-  
-  proxy.on('error', (e) => {
-    res.status(502).json({ error: 'Ollama unreachable', detail: e.message });
-  });
-  
-  proxy.write(body);
-  proxy.end();
+  try {
+    const body = await readBody(req);
+    const bodyStr = JSON.stringify(body);
+    const target = OLLAMA_HOST + '/api/chat';
+    const parsed = new URL(target);
+    const client = parsed.protocol === 'https:' ? https : http;
+    
+    const options = {
+      hostname: parsed.hostname,
+      port: parsed.port || (parsed.protocol === 'https:' ? 443 : 80),
+      path: parsed.pathname + parsed.search,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(bodyStr)
+      },
+      rejectUnauthorized: false
+    };
+    
+    const proxy = client.request(options, (pres) => {
+      res.statusCode = pres.statusCode;
+      res.setHeader('Content-Type', pres.headers['content-type'] || 'application/x-ndjson');
+      pres.pipe(res);
+    });
+    
+    proxy.on('error', (e) => {
+      res.statusCode = 502;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ error: 'Ollama unreachable', detail: e.message }));
+    });
+    
+    proxy.write(bodyStr);
+    proxy.end();
+  } catch (e) {
+    res.statusCode = 400;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ error: 'Bad request', detail: e.message }));
+  }
 };
