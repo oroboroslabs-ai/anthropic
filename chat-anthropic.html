@@ -1634,10 +1634,9 @@
     try {
       // Map model selection to actual model names
       const modelMapping = {
-        'opus': 'claude-opus-9.6gb:latest',
-        'fable': 'claude-fable-9.6gb:latest',
-        'capybara': 'claude-capybara-9.6gb:latest'
-      };
+            'opus': 'claude-opus:latest-encrypted',
+            'fable': 'claude-fable:latest-encrypted',
+            'capybara': 'claude-capybara-48x2-final:latest-encrypted'
       
       const modelName = modelMapping[selectedModel] || 'claude-opus-9.6gb:latest';
       
@@ -1790,7 +1789,7 @@
     showToast('Testing connection to Oroboros-Anthropic...');
     
     try {
-      const response = await fetch(`${chatBase('claude-opus-9.6gb:latest')}/api/tags`, {
+      const response = await fetch(`${chatBase('claude-opus:latest')}/api/tags`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
