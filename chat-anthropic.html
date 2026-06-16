@@ -31,21 +31,21 @@
   }
 
   .dark {
-    --bg-primary: #1A1A1A;
-    --bg-secondary: #2A2A2A;
-    --bg-sidebar: #1F1F1F;
-    --bg-hover: #333333;
-    --bg-input: #2A2A2A;
+    --bg-primary: #1E1F1F;
+    --bg-secondary: #2C2D2B;
+    --bg-sidebar: #1A1B1A;
+    --bg-hover: #363836;
+    --bg-input: #2C2D2B;
     --text-primary: #F0F0F0;
     --text-secondary: #A0A0A0;
     --text-muted: #666666;
     --accent: #D97757;
     --accent-hover: #E08868;
     --accent-light: rgba(217,119,87,0.15);
-    --border: #333333;
-    --border-light: #2A2A2A;
+    --border: #3A3B39;
+    --border-light: #2C2D2B;
     --code-bg: #0D0D0D;
-    --user-bubble: #2A2A2A;
+    --user-bubble: #2C2D2B;
     --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
     --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
     --shadow-lg: 0 8px 24px rgba(0,0,0,0.4);
@@ -231,6 +231,46 @@
   .icon-btn:hover {
     background: var(--bg-hover);
     color: var(--text-primary);
+  }
+
+  /* Network Status Chips */
+  .network-chips {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 8px;
+  }
+
+  .network-chip {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+    background: var(--bg-hover);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .network-chip.active {
+    color: var(--text-primary);
+    background: var(--accent-light);
+  }
+
+  .chip-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ef4444;
+    transition: background 0.3s;
+  }
+
+  .network-chip.active .chip-dot {
+    background: #22c55e;
   }
 
   .chat-area {
@@ -876,6 +916,18 @@
         </div>
       </div>
       <div class="top-bar-actions">
+        <!-- Network Status Chips -->
+        <div class="network-chips" id="networkChips">
+          <span class="network-chip" data-network="q5" title="Q5 Hive Mind">
+            <span class="chip-dot"></span>Q5
+          </span>
+          <span class="network-chip" data-network="worldfeed" title="WorldFeed API">
+            <span class="chip-dot"></span>WF
+          </span>
+          <span class="network-chip" data-network="tor" title="Tor Network">
+            <span class="chip-dot"></span>TOR
+          </span>
+        </div>
         <div class="media-dropdown-container">
           <button class="icon-btn" onclick="toggleMediaDropdown()" title="Media Studio" id="mediaBtn">
             <i data-lucide="video" style="width:18px;height:18px;"></i>
@@ -993,6 +1045,67 @@
   const OLLAMA_HOST = isLocal 
     ? 'http://127.0.0.1:11434' 
     : 'https://anthropic-claude-chat.vercel.app';
+  
+  // ═══════════════ NETWORK INTEGRATION ═══════════════
+  // Q5 Hive Mind: 34³ (300+ models) - query classification & routing
+  // WorldFeed: 6 data sources - live news, research, data
+  // Tor Network: 15 research categories - deep web research
+  const Q5_URL = 'http://localhost:8101';
+  const WORLDFEED_URL = 'http://localhost:8100';
+  let networkStatus = { q5: false, worldfeed: false, tor: false, ollama: true };
+  
+  async function getNetworkContext(query) {
+    const context = [];
+    
+    // Try Q5 Hive Mind for query classification
+    try {
+      const q5Res = await fetch(`${Q5_URL}/classify`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query, model: selectedModel }),
+        signal: AbortSignal.timeout(3000)
+      });
+      if (q5Res.ok) {
+        const q5Data = await q5Res.json();
+        if (q5Data.category) context.push(`[Q5 Classification: ${q5Data.category}]`);
+        if (q5Data.recommendedModel) context.push(`[Q5 Recommends: ${q5Data.recommendedModel}]`);
+        networkStatus.q5 = true;
+      }
+    } catch (e) { networkStatus.q5 = false; }
+    
+    // Try WorldFeed for live data
+    try {
+      const wfRes = await fetch(`${WORLDFEED_URL}/search`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query, limit: 3 }),
+        signal: AbortSignal.timeout(3000)
+      });
+      if (wfRes.ok) {
+        const wfData = await wfRes.json();
+        if (wfData.results && wfData.results.length > 0) {
+          context.push('[WorldFeed Live Data: ' + wfData.results.map(r => r.title || r.snippet).join(' | ') + ']');
+        }
+        networkStatus.worldfeed = true;
+      }
+    } catch (e) { networkStatus.worldfeed = false; }
+    
+    // Tor network status (file-based, active if Q5 is reachable)
+    networkStatus.tor = networkStatus.q5;
+    
+    updateNetworkIndicators();
+    return context.join('\n');
+  }
+  
+  function updateNetworkIndicators() {
+    const indicators = document.querySelectorAll('.network-chip');
+    indicators.forEach(chip => {
+      const net = chip.dataset.network;
+      const active = networkStatus[net];
+      chip.classList.toggle('active', active);
+      chip.querySelector('.chip-dot').style.background = active ? '#22c55e' : '#ef4444';
+    });
+  }
   
   function chatBase(m) { 
     return OLLAMA_HOST; 
@@ -1168,16 +1281,30 @@
         'sonnet': 'claude-sonnet-4.7:latest',
         'opus': 'claude-opus-4.8:latest',
         'fable': 'claude-fable-5:latest',
-        'capybara': 'claude-capybara-5:latest'
+        'capybara': 'claude-capybara-5-5GB:latest'
       };
       
       const modelName = modelMapping[selectedModel] || 'claude-sonnet-4.7:latest';
       
-      // Prepare messages for the API
-      const apiMessages = currentConversation.messages.slice(-10).map(msg => ({
-        role: msg.role,
-        content: msg.content
-      }));
+      // Get Q5/WorldFeed/Tor network context
+      const networkContext = await getNetworkContext(userText);
+      
+      // Prepare messages with network context injected as system prompt
+      const systemPrompt = `You are Claude, an AI assistant by Oroboros-Anthropic. You have access to:
+- Q5 Hive Mind (34\u00b3 architecture, 300+ models) for query classification and routing
+- WorldFeed API (6 live data sources) for real-time information
+- Tor Network (15 research categories) for deep web research
+- Oroboros Video Pipeline for media generation
+
+${networkContext ? 'Current Network Context:\n' + networkContext + '\n\n' : ''}Respond directly without meta-commentary about these systems unless asked.`;
+      
+      const apiMessages = [
+        { role: 'system', content: systemPrompt },
+        ...currentConversation.messages.slice(-10).map(msg => ({
+          role: msg.role,
+          content: msg.content
+        }))
+      ];
       
       const response = await fetch(`${chatBase(modelName)}/api/chat`, {
         method: 'POST',
@@ -1438,7 +1565,7 @@
       'sonnet': 'claude-sonnet-4.7:latest',
       'opus': 'claude-opus-4.8:latest',
       'fable': 'claude-fable-5:latest',
-      'capybara': 'claude-capybara-5:latest'
+      'capybara': 'claude-capybara-5-5GB:latest'
     };
     const modelName = modelMapping[selectedModel] || 'claude-sonnet-4.7:latest';
     
