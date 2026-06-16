@@ -1015,28 +1015,35 @@
         <div style="position:relative;">
           <button class="model-selector" id="modelSelectorBtn" onclick="toggleModelDropdown()">
             <img src="https://z-cdn-media.chatglm.cn/files/a0a2b11d-c12d-4a80-83f9-36af1f358a73.png?auth_key=1881416280-70ffdc9407974459970d4106824e2cd4-0-42075e5b2bd720b91a1e75afe2d5f7fb" style="width:18px;height:18px;" alt="Claude">
-            <span id="currentModelName">Claude Opus 9.6GB</span>
+            <span id="currentModelName">Claude Sonnet 4.7</span>
             <i data-lucide="chevron-down" style="width:14px;height:14px;color:var(--text-muted);"></i>
           </button>
           <div class="model-dropdown" id="modelDropdown">
-            <button class="model-option selected" data-model="opus" onclick="selectModel('opus', 'Claude Opus 9.6GB')">
+            <button class="model-option selected" data-model="sonnet" onclick="selectModel('sonnet', 'Claude Sonnet 4.7')">
               <div class="model-option-info">
-                <span class="model-option-name">Claude Opus 9.6GB</span>
-                <span class="model-option-desc">Latest version - Most capable</span>
+                <span class="model-option-name">Claude Sonnet 4.7</span>
+                <span class="model-option-desc">Balanced intelligence - 48³ + 48⁴ + 10³¹</span>
               </div>
               <i data-lucide="check" class="model-option-check" style="width:16px;height:16px;"></i>
             </button>
-            <button class="model-option" data-model="fable" onclick="selectModel('fable', 'Claude Fable 9.6GB')">
+            <button class="model-option" data-model="opus" onclick="selectModel('opus', 'Claude Opus 4.8')">
               <div class="model-option-info">
-                <span class="model-option-name">Claude Fable 9.6GB</span>
-                <span class="model-option-desc">Latest version - Creative storytelling</span>
+                <span class="model-option-name">Claude Opus 4.8</span>
+                <span class="model-option-desc">Maximum reasoning - 48³ + 48⁴ + 10³¹</span>
               </div>
               <i data-lucide="check" class="model-option-check" style="width:16px;height:16px;"></i>
             </button>
-            <button class="model-option" data-model="capybara" onclick="selectModel('capybara', 'Claude Capybara 9.6GB')">
+            <button class="model-option" data-model="fable" onclick="selectModel('fable', 'Claude Fable 5')">
               <div class="model-option-info">
-                <span class="model-option-name">Claude Capybara 9.6GB</span>
-                <span class="model-option-desc">Latest version - Efficient & fast</span>
+                <span class="model-option-name">Claude Fable 5</span>
+                <span class="model-option-desc">Storytelling & vision - 48³ + 48⁴ + 10³¹</span>
+              </div>
+              <i data-lucide="check" class="model-option-check" style="width:16px;height:16px;"></i>
+            </button>
+            <button class="model-option" data-model="capybara" onclick="selectModel('capybara', 'Claude Capybara 5')">
+              <div class="model-option-info">
+                <span class="model-option-name">Claude Capybara 5</span>
+                <span class="model-option-desc">Double Lattice Sovereign - 48³ × 2</span>
               </div>
               <i data-lucide="check" class="model-option-check" style="width:16px;height:16px;"></i>
             </button>
@@ -1443,12 +1450,19 @@
   let currentConversation = null;
   let isDark = true;
   let isGenerating = false;
-  let selectedModel = 'opus';
+  let selectedModel = 'sonnet';
   let ollamaHost = 'http://127.0.0.1:11434';
   
   // ═══════════════ API ROUTING ═══════════════
-  // Permanently wired to the Vercel router — works from any host
-  const API_ROUTER = 'https://oroboroslabs-ai-anthropic.vercel.app';
+  // Use local Ollama for local file access or localhost, Vercel for production
+  // const API_ROUTER = 'https://oroboroslabs-ai-anthropic.vercel.app';
+  const isLocal = window.location.protocol === 'file:' || 
+                  window.location.hostname === 'localhost' || 
+                  window.location.hostname === '127.0.0.1' ||
+                  window.location.hostname === '';
+  const API_ROUTER = isLocal 
+    ? 'http://127.0.0.1:11434' 
+    : 'https://oroboroslabs-ai-anthropic.vercel.app';
   
   function isCloudModel(m) { 
     m = (m || '').toLowerCase().trim();
@@ -1726,12 +1740,13 @@
     try {
       // Map model selection to actual model names
       const modelMapping = {
-            'opus': 'claude-opus:latest-encrypted',
-            'fable': 'claude-fable:latest-encrypted',
-            'capybara': 'claude-capybara-48x2-final:latest-encrypted'
+            'sonnet': 'claude-sonnet-4.7:latest',
+            'opus': 'claude-opus-4.8:latest',
+            'fable': 'claude-fable-5:latest',
+            'capybara': 'claude-capybara-5:latest'
       };
       
-      const modelName = modelMapping[selectedModel] || 'claude-opus-9.6gb:latest';
+      const modelName = modelMapping[selectedModel] || 'claude-sonnet-4.7:latest';
       
       // Prepare messages for the API
       const apiMessages = currentConversation.messages.slice(-10).map(msg => ({
@@ -1815,7 +1830,11 @@
       currentConversation.messages.push({ role: 'assistant', content: errorMessage });
       container.appendChild(createMessageElement({ role: 'assistant', content: errorMessage }));
       lucide.createIcons(); scrollToBottom();
-      isGenerating = false; renderSidebar(); lucide.createIcons();
+    } finally {
+      // ALWAYS reset the generating flag
+      isGenerating = false;
+      renderSidebar();
+      lucide.createIcons();
     }
   }
 
@@ -1961,6 +1980,61 @@
   });
 
   renderSidebar(); lucide.createIcons();
+  
+  // Start with sidebar closed
+  document.getElementById('sidebar').classList.add('collapsed');
+  
+  // ═══════════════ AGENT STATE MANAGEMENT ═══════════════
+  // Save conversations to localStorage periodically
+  setInterval(function() {
+    try {
+      localStorage.setItem('claude_conversations', JSON.stringify(conversations));
+    } catch(e) {}
+  }, 30000);
+  
+  // Save selected model
+  const originalSelectModel = window.selectModel;
+  window.selectModel = function(model, name) {
+    if (originalSelectModel) originalSelectModel(model, name);
+    try {
+      localStorage.setItem('claude_selected_model', model);
+    } catch(e) {}
+  };
+  
+  // Load saved model on startup
+  try {
+    const savedModel = localStorage.getItem('claude_selected_model');
+    if (savedModel && ['opus', 'fable', 'capybara'].includes(savedModel)) {
+      selectedModel = savedModel;
+      const modelNames = {
+        'opus': 'Claude Opus 4.7',
+        'fable': 'Claude Fable 5',
+        'capybara': 'Claude Capybara 5'
+      };
+      document.getElementById('currentModelName').textContent = modelNames[savedModel];
+      document.querySelectorAll('.model-option').forEach(el => {
+        el.classList.toggle('selected', el.dataset.model === savedModel);
+      });
+    }
+  } catch(e) {}
+  
+  // Save sidebar state
+  const originalToggleSidebar = window.toggleSidebar;
+  window.toggleSidebar = function() {
+    if (originalToggleSidebar) originalToggleSidebar();
+    try {
+      const sidebar = document.getElementById('sidebar');
+      localStorage.setItem('claude_sidebar_state', sidebar.classList.contains('collapsed') ? 'collapsed' : 'expanded');
+    } catch(e) {}
+  };
+  
+  // Load sidebar state
+  try {
+    const sidebarState = localStorage.getItem('claude_sidebar_state');
+    if (sidebarState === 'expanded') {
+      document.getElementById('sidebar').classList.remove('collapsed');
+    }
+  } catch(e) {}
 </script>
 
 </body>
