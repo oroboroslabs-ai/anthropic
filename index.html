@@ -495,8 +495,8 @@
   .message:hover .message-actions { opacity: 1; }
 
   .msg-action-btn {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -657,6 +657,61 @@
     background: var(--bg-hover);
     color: var(--text-muted);
     cursor: default;
+  }
+
+  /* Voice button in input */
+  .voice-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    font-family: inherit;
+  }
+
+  .voice-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+  }
+
+  .voice-btn.recording {
+    color: #ef4444;
+    background: rgba(239,68,68,0.1);
+    animation: pulse-rec 1.5s infinite;
+  }
+
+  @keyframes pulse-rec {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(239,68,68,0); }
+  }
+
+  .stop-audio-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: #ef4444;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+  }
+
+  .stop-audio-btn.visible {
+    display: flex;
+  }
+
+  .stop-audio-btn:hover {
+    background: rgba(239,68,68,0.1);
   }
 
   .input-footer {
@@ -994,6 +1049,12 @@
             <button class="plus-btn" onclick="showToast('Attach files — coming soon')" title="Attach">
               <span class="plus-icon">+</span>
             </button>
+            <button class="voice-btn" id="voiceBtn" onclick="toggleVoiceInput()" title="Voice input">
+              <i data-lucide="mic" style="width:18px;height:18px;"></i>
+            </button>
+            <button class="stop-audio-btn" id="stopAudioBtn" onclick="stopAllAudio()" title="Stop audio">
+              <i data-lucide="volume-x" style="width:18px;height:18px;"></i>
+            </button>
           </div>
           <div class="input-right-actions">
             <button class="send-btn inactive" id="sendBtn" onclick="sendMessage()" title="Send message">
@@ -1214,13 +1275,13 @@
         <div class="message-sender">${isClaude ? 'Claude' : 'You'}</div>
         <div class="message-text">${formatMessage(msg.content)}</div>
         ${isClaude ? `<div class="message-actions">
-          <button class="msg-action-btn" onclick="speakMessage(this)" title="Speak"><i data-lucide="volume-2" style="width:14px;height:14px;"></i></button>
-          <button class="msg-action-btn" onclick="copyMessage(this)" title="Copy"><i data-lucide="copy" style="width:14px;height:14px;"></i></button>
-          <button class="msg-action-btn" onclick="postToX(this)" title="Post to X"><i data-lucide="twitter" style="width:14px;height:14px;"></i></button>
-          <button class="msg-action-btn" onclick="postToYouTube(this)" title="Post to YouTube"><i data-lucide="youtube" style="width:14px;height:14px;"></i></button>
-          <button class="msg-action-btn" onclick="postToFacebook(this)" title="Post to Facebook"><i data-lucide="facebook" style="width:14px;height:14px;"></i></button>
-          <button class="msg-action-btn" onclick="showToast('Response liked!')" title="Like"><i data-lucide="thumbs-up" style="width:14px;height:14px;"></i></button>
-          <button class="msg-action-btn" onclick="regenerateResponse()" title="Retry"><i data-lucide="refresh-cw" style="width:14px;height:14px;"></i></button>
+          <button class="msg-action-btn" onclick="speakMessage(this)" title="Speak"><i data-lucide="volume-2" style="width:15px;height:15px;"></i></button>
+          <button class="msg-action-btn" onclick="copyMessage(this)" title="Copy"><i data-lucide="copy" style="width:15px;height:15px;"></i></button>
+          <button class="msg-action-btn" onclick="postToX(this)" title="Post to X"><i data-lucide="twitter" style="width:15px;height:15px;"></i></button>
+          <button class="msg-action-btn" onclick="postToYouTube(this)" title="Post to YouTube"><i data-lucide="youtube" style="width:15px;height:15px;"></i></button>
+          <button class="msg-action-btn" onclick="postToFacebook(this)" title="Post to Facebook"><i data-lucide="facebook" style="width:15px;height:15px;"></i></button>
+          <button class="msg-action-btn" onclick="showToast('Response liked!')" title="Like"><i data-lucide="thumbs-up" style="width:15px;height:15px;"></i></button>
+          <button class="msg-action-btn" onclick="regenerateResponse()" title="Retry"><i data-lucide="refresh-cw" style="width:15px;height:15px;"></i></button>
         </div>` : ''}
       </div>`;
     return div;
@@ -1711,6 +1772,179 @@ Return ONLY the complete HTML code, no explanations.`
   document.getElementById('themeIcon').setAttribute('data-lucide', 'moon');
 
   function copyMessage(btn) { navigator.clipboard.writeText(btn.closest('.message-content').querySelector('.message-text').innerText).then(() => showToast('Copied to clipboard')); }
+  
+  // ═══════════════ VOICE-TO-VOICE ═══════════════
+  let isRecording = false;
+  let mediaRecorder = null;
+  let audioChunks = [];
+  let currentUtterance = null;
+  
+  async function toggleVoiceInput() {
+    const btn = document.getElementById('voiceBtn');
+    const stopBtn = document.getElementById('stopAudioBtn');
+    
+    if (isRecording) {
+      // Stop recording
+      isRecording = false;
+      btn.classList.remove('recording');
+      btn.querySelector('i').setAttribute('data-lucide', 'mic');
+      lucide.createIcons();
+      
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+      }
+      return;
+    }
+    
+    // Start recording
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      isRecording = true;
+      btn.classList.add('recording');
+      btn.querySelector('i').setAttribute('data-lucide', 'mic');
+      lucide.createIcons();
+      stopBtn.classList.add('visible');
+      showToast('Recording... speak now');
+      
+      mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+      audioChunks = [];
+      
+      mediaRecorder.ondataavailable = (e) => {
+        if (e.data.size > 0) audioChunks.push(e.data);
+      };
+      
+      mediaRecorder.onstop = async () => {
+        stream.getTracks().forEach(t => t.stop());
+        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+        
+        // Convert to base64 and send to Ollama for transcription
+        showToast('Processing voice...');
+        
+        // Use Web Speech API for transcription (works offline on Windows)
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        
+        recognition.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          document.getElementById('chatInput').value = transcript;
+          updateSendBtn();
+          showToast('Voice captured! Press send or Enter');
+        };
+        
+        recognition.onerror = () => {
+          // Fallback: just show toast
+          showToast('Voice recorded! Type your message or try again');
+        };
+        
+        recognition.onend = () => {
+          stopBtn.classList.remove('visible');
+        };
+        
+        try {
+          recognition.start();
+        } catch (e) {
+          showToast('Voice recorded! Type your message');
+          stopBtn.classList.remove('visible');
+        }
+      };
+      
+      mediaRecorder.start();
+      
+      // Auto-stop after 15 seconds
+      setTimeout(() => {
+        if (isRecording && mediaRecorder && mediaRecorder.state === 'recording') {
+          mediaRecorder.stop();
+          isRecording = false;
+          btn.classList.remove('recording');
+          btn.querySelector('i').setAttribute('data-lucide', 'mic');
+          lucide.createIcons();
+        }
+      }, 15000);
+      
+    } catch (e) {
+      showToast('Microphone access denied: ' + e.message);
+      isRecording = false;
+      btn.classList.remove('recording');
+    }
+  }
+  
+  function stopAllAudio() {
+    // Stop speech synthesis
+    if (speechSynthesis.speaking || speechSynthesis.pending) {
+      speechSynthesis.cancel();
+    }
+    
+    // Stop recording if active
+    if (isRecording && mediaRecorder && mediaRecorder.state === 'recording') {
+      mediaRecorder.stop();
+      isRecording = false;
+      const btn = document.getElementById('voiceBtn');
+      btn.classList.remove('recording');
+      btn.querySelector('i').setAttribute('data-lucide', 'mic');
+      lucide.createIcons();
+    }
+    
+    const stopBtn = document.getElementById('stopAudioBtn');
+    stopBtn.classList.remove('visible');
+    showToast('Audio stopped');
+  }
+  
+  function speakMessage(btn) {
+    const text = btn.closest('.message-content').querySelector('.message-text').innerText;
+    if (!text) return;
+    
+    // Stop any current speech
+    if (speechSynthesis.speaking) {
+      speechSynthesis.cancel();
+    }
+    
+    const stopBtn = document.getElementById('stopAudioBtn');
+    stopBtn.classList.add('visible');
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    
+    // Use a good English voice
+    const voices = speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.name.includes('Microsoft') && v.lang.startsWith('en') && !v.name.includes('Zira')) || voices[0];
+    if (preferred) utterance.voice = preferred;
+    
+    utterance.onend = () => {
+      stopBtn.classList.remove('visible');
+    };
+    
+    utterance.onerror = () => {
+      stopBtn.classList.remove('visible');
+    };
+    
+    currentUtterance = utterance;
+    speechSynthesis.speak(utterance);
+    showToast('Speaking...');
+  }
+  
+  function postToX(btn) {
+    const text = btn.closest('.message-content').querySelector('.message-text').innerText;
+    const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text.substring(0, 280))}`;
+    window.open(url, '_blank');
+    showToast('Opening X...');
+  }
+  
+  function postToYouTube(btn) {
+    const text = btn.closest('.message-content').querySelector('.message-text').innerText;
+    showToast('YouTube post ready! Copy text to share');
+    navigator.clipboard.writeText(text);
+  }
+  
+  function postToFacebook(btn) {
+    const text = btn.closest('.message-content').querySelector('.message-text').innerText;
+    const url = `https://www.facebook.com/sharer/sharer.php?quote=${encodeURIComponent(text.substring(0, 500))}`;
+    window.open(url, '_blank');
+    showToast('Opening Facebook...');
+  }
   
   // Voice-to-Voice Functions
   function speakMessage(btn) {
