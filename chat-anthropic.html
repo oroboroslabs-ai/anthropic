@@ -1239,8 +1239,10 @@
   function newChat() {
     currentConversation = null;
     showWelcome();
+    renderSidebar();
     document.getElementById('chatInput').value = '';
     updateSendBtn();
+    lucide.createIcons();
     if (window.innerWidth < 768) toggleSidebar();
   }
 
@@ -1277,9 +1279,9 @@
         ${isClaude ? `<div class="message-actions">
           <button class="msg-action-btn" onclick="speakMessage(this)" title="Speak"><i data-lucide="volume-2" style="width:15px;height:15px;"></i></button>
           <button class="msg-action-btn" onclick="copyMessage(this)" title="Copy"><i data-lucide="copy" style="width:15px;height:15px;"></i></button>
-          <button class="msg-action-btn" onclick="postToX(this)" title="Post to X"><i data-lucide="twitter" style="width:15px;height:15px;"></i></button>
+          <button class="msg-action-btn" onclick="postToX(this)" title="Post to X"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733-16z"/><path d="M4 20l6.768-6.768m2.46-2.46L20 4"/></svg></button>
           <button class="msg-action-btn" onclick="postToYouTube(this)" title="Post to YouTube"><i data-lucide="youtube" style="width:15px;height:15px;"></i></button>
-          <button class="msg-action-btn" onclick="postToFacebook(this)" title="Post to Facebook"><i data-lucide="facebook" style="width:15px;height:15px;"></i></button>
+          <button class="msg-action-btn" onclick="postToFacebook(this)" title="Post to Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></button>
           <button class="msg-action-btn" onclick="showToast('Response liked!')" title="Like"><i data-lucide="thumbs-up" style="width:15px;height:15px;"></i></button>
           <button class="msg-action-btn" onclick="regenerateResponse()" title="Retry"><i data-lucide="refresh-cw" style="width:15px;height:15px;"></i></button>
         </div>` : ''}
@@ -1503,6 +1505,7 @@ Be direct. Be fast. Be useful.`
               if (!botElement) {
                 botElement = createMessageElement({ role: 'assistant', content: fullResponse });
                 container.appendChild(botElement);
+                lucide.createIcons();
               } else {
                 updateMessageContent(botElement, fullResponse);
               }
@@ -1937,43 +1940,6 @@ Return ONLY the complete HTML code, no explanations.`
     const text = btn.closest('.message-content').querySelector('.message-text').innerText;
     showToast('YouTube post ready! Copy text to share');
     navigator.clipboard.writeText(text);
-  }
-  
-  function postToFacebook(btn) {
-    const text = btn.closest('.message-content').querySelector('.message-text').innerText;
-    const url = `https://www.facebook.com/sharer/sharer.php?quote=${encodeURIComponent(text.substring(0, 500))}`;
-    window.open(url, '_blank');
-    showToast('Opening Facebook...');
-  }
-  
-  // Voice-to-Voice Functions
-  function speakMessage(btn) {
-    const text = btn.closest('.message-content').querySelector('.message-text').innerText;
-    if (!text) return showToast('No text to speak');
-    
-    const utterance = new SpeechSynthesisUtterance(text);
-    const voices = speechSynthesis.getVoices();
-    utterance.voice = voices.find(v => v.name.includes('Microsoft') || v.name.includes('Google')) || voices[0];
-    utterance.rate = 1.0;
-    speechSynthesis.speak(utterance);
-    showToast('Speaking response...');
-  }
-  
-  // Social Media Posting Functions
-  function postToX(btn) {
-    const text = btn.closest('.message-content').querySelector('.message-text').innerText;
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text.substring(0, 280))}`;
-    window.open(url, '_blank');
-    showToast('Opening X...');
-  }
-  
-  function postToYouTube(btn) {
-    const text = btn.closest('.message-content').querySelector('.message-text').innerText;
-    // YouTube doesn't have direct post API, open YouTube Studio
-    const url = 'https://studio.youtube.com/';
-    navigator.clipboard.writeText(text);
-    showToast('Copied to clipboard - Open YouTube Studio to post');
-    window.open(url, '_blank');
   }
   
   function postToFacebook(btn) {
