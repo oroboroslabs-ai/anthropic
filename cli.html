@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude-O-CLI — Anthropic × OROBOROS Labs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --claude-orange: #D97757;
+            --bg-primary: #1E1F1F;
+            --bg-secondary: #2C2D2B;
+            --bg-tertiary: #3A3B39;
+            --text-primary: #F0F0F0;
+            --text-secondary: #A0A0A0;
+            --cyan: #00ffcc;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--bg-secondary);
+            z-index: 1000; padding: 1rem 2rem;
+        }
+        .nav-content {
+            max-width: 1400px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-icon { width: 36px; height: 36px; }
+        .logo-icon svg { width: 100%; height: 100%; }
+        .logo-text { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); }
+        .logo-text span { color: var(--claude-orange); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--claude-orange); }
+        .nav-links a.active { color: var(--claude-orange); }
+
+        .hero {
+            min-height: 80vh; display: flex; align-items: center; justify-content: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--bg-secondary); border: 1px solid var(--claude-orange);
+            padding: 8px 16px; border-radius: 100px; font-size: 0.875rem;
+            color: var(--claude-orange); margin-bottom: 2rem; font-weight: 500;
+        }
+        .hero-badge::before { content: '●'; color: var(--claude-orange); animation: blink 2s infinite; }
+        @keyframes blink { 0%,50% { opacity: 1; } 51%,100% { opacity: 0.3; } }
+        h1 { font-size: 3.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        h1 span { color: var(--claude-orange); }
+        .hero-subtitle { font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; }
+        .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 2rem; }
+        .tag { padding: 4px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 600; }
+        .tag.orange { background: rgba(217,119,87,0.15); color: var(--claude-orange); border: 1px solid rgba(217,119,87,0.3); }
+        .tag.cyan { background: rgba(0,255,204,0.1); color: var(--cyan); border: 1px solid rgba(0,255,204,0.2); }
+        .tag.white { background: rgba(255,255,255,0.05); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.1); }
+
+        .screenshot-section { padding: 4rem 2rem; background: var(--bg-primary); }
+        .screenshot-wrap { max-width: 900px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid var(--bg-tertiary); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .screenshot-wrap img { width: 100%; display: block; }
+
+        .features-section { padding: 6rem 2rem; background: var(--bg-secondary); }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+        .section-subtitle { text-align: center; color: var(--text-secondary); margin-bottom: 4rem; font-size: 1.125rem; }
+        .features-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .feature-card { background: var(--bg-primary); border: 1px solid var(--bg-tertiary); border-radius: 16px; padding: 28px; transition: border-color 0.3s; }
+        .feature-card:hover { border-color: var(--claude-orange); }
+        .feature-card h3 { color: var(--claude-orange); font-size: 1.25rem; margin-bottom: 10px; }
+        .feature-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+
+        .install-section { padding: 6rem 2rem; background: var(--bg-primary); }
+        .install-box { max-width: 700px; margin: 0 auto; background: var(--bg-secondary); border: 1px solid var(--bg-tertiary); border-radius: 16px; padding: 32px; }
+        .install-box h2 { color: var(--claude-orange); margin-bottom: 16px; font-size: 1.5rem; }
+        .code-block { background: rgba(0,0,0,0.4); border-radius: 10px; padding: 16px; margin: 12px 0; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--cyan); white-space: pre-wrap; }
+        .install-box .note { color: var(--text-secondary); font-size: 0.9rem; margin-top: 12px; }
+        .install-box .note code { color: var(--cyan); font-family: 'JetBrains Mono', monospace; }
+
+        .commands-section { padding: 6rem 2rem; background: var(--bg-secondary); }
+        .commands-table { max-width: 800px; margin: 0 auto; width: 100%; border-collapse: collapse; }
+        .commands-table th { text-align: left; color: var(--claude-orange); padding: 12px; border-bottom: 2px solid var(--bg-tertiary); font-size: 0.9rem; }
+        .commands-table td { padding: 12px; border-bottom: 1px solid var(--bg-tertiary); color: var(--text-secondary); }
+        .commands-table td:first-child { font-family: 'JetBrains Mono', monospace; color: var(--cyan); font-size: 0.85rem; }
+
+        .think-section { padding: 6rem 2rem; background: var(--bg-primary); }
+        .think-grid { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .think-card { background: var(--bg-secondary); border: 1px solid var(--bg-tertiary); border-radius: 12px; padding: 20px; text-align: center; }
+        .think-card .level { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--claude-orange); margin-bottom: 6px; }
+        .think-card .ctx { font-size: 0.8rem; color: var(--text-secondary); }
+        .think-card.xhigh { border-color: var(--claude-orange); box-shadow: 0 0 20px rgba(217,119,87,0.15); }
+        .think-card.xhigh .level { text-shadow: 0 0 10px var(--claude-orange); }
+
+        .xhigh-bar-demo {
+            max-width: 700px; margin: 2rem auto; background: #000;
+            padding: 10px; text-align: center; border-radius: 8px;
+            border: 1px solid rgba(217,119,87,0.3);
+            font-family: 'JetBrains Mono', monospace; font-size: 12px;
+            font-weight: 700; letter-spacing: 1px; color: var(--claude-orange);
+            text-shadow: 0 0 10px var(--claude-orange), 0 0 20px var(--claude-orange);
+            animation: xhighGlow 2s ease-in-out infinite;
+        }
+        @keyframes xhighGlow { 0%,100% { box-shadow: inset 0 0 20px rgba(217,119,87,0.1); } 50% { box-shadow: inset 0 0 40px rgba(217,119,87,0.25); } }
+
+        footer { padding: 3rem 2rem; background: var(--bg-primary); border-top: 1px solid var(--bg-secondary); text-align: center; }
+        footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--claude-orange); opacity: 0.5; }
+        .footer-links { margin-bottom: 1rem; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; margin: 0 1rem; font-size: 0.9rem; }
+        .footer-links a:hover { color: var(--claude-orange); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-content">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2z" fill="#E07B39"/>
+                    <path d="M16 6c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10S21.523 6 16 6z" fill="#1A1510"/>
+                    <path d="M16 9c-3.866 0-7 3.134-7 7s3.134 7 7 7 7-3.134 7-7-3.134-7-7-7z" fill="#E07B39"/>
+                </svg>
+            </div>
+            <div class="logo-text">Claude <span>×</span> OROBOROS</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html#models">Models</a></li>
+            <li><a href="index.html#training">Training</a></li>
+            <li><a href="index.html#memory">Memory</a></li>
+            <li><a href="cli.html" class="active">CLI</a></li>
+            <li><a href="https://anthropic-claude-chat.vercel.app" target="_blank">Chat</a></li>
+            <li><a href="https://ollama.com/oroboroslabs" target="_blank">Registry</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero">
+    <div>
+        <div class="hero-badge">Sovereign Terminal AI</div>
+        <h1>Claude-O-<span>CLI</span></h1>
+        <p class="hero-subtitle">Runs fully local via Ollama. No API keys. No cloud. No tracking. 33+ tools, Docker MCP, strata encryption, and service absorption.</p>
+        <div class="hero-tags">
+            <span class="tag orange">SOVEREIGN</span>
+            <span class="tag cyan">33+ TOOLS</span>
+            <span class="tag white">NO KEYS</span>
+            <span class="tag cyan">OLLAMA</span>
+            <span class="tag orange">DOCKER MCP</span>
+            <span class="tag white">$0.00</span>
+        </div>
+    </div>
+</section>
+
+<section class="screenshot-section">
+    <div class="screenshot-wrap">
+        <img src="https://oroboroslabs-ai.github.io/world-feed/assets/img/claude-o-cli-screenshot.png" alt="Claude-O-CLI Glass Liquid UI" onerror="this.style.display='none'">
+    </div>
+</section>
+
+<section class="features-section">
+    <h2 class="section-title">Features</h2>
+    <p class="section-subtitle">Everything you need, nothing you don't</p>
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>Local Engine</h3>
+            <p>Runs fully local via Ollama at localhost:11434. No API keys, no cloud, no tracking. 100+ models supported including Claude Opus, Fable, Capybara, and more.</p>
+        </div>
+        <div class="feature-card">
+            <h3>33+ Tools</h3>
+            <p>File operations, bash execution, Docker management, MCP servers, Precogs news, Seer Nebellion, Glasswing security, orchestration, skill grabber, and more.</p>
+        </div>
+        <div class="feature-card">
+            <h3>XHIGH Reasoning</h3>
+            <p>Maximum reasoning depth with /think xhigh. 131K context window, 0.3 temperature for deep analysis. Black bar with glowing orange indicator when active.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Strata Encryption</h3>
+            <p>12-layer phi-harmonic encryption. Each stratum locked with unique frequency (phi^N x 1275). Invisible. Untraceable. Unstoppable.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Glass Liquid UI</h3>
+            <p>Pure CSS glass-morphism interface with Anthropic colors. Animated liquid background, tactical report format, clear glass panel.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Service Absorption</h3>
+            <p>Absorb Anthropic services through lattice/substrate/strata overlay. 11 services mapped: API, Code, Cowork, Chat, Design, Chrome, Projects, Memory, Skills, Artifacts, Tasks.</p>
+        </div>
+    </div>
+</section>
+
+<section class="think-section">
+    <h2 class="section-title">Think Levels</h2>
+    <p class="section-subtitle">Adjust reasoning depth on demand</p>
+    <div class="xhigh-bar-demo">XHIGH REASONING - MAXIMUM DEPTH ENGAGED</div>
+    <div class="think-grid">
+        <div class="think-card"><div class="level">off</div><div class="ctx">4K context / temp 1.0</div></div>
+        <div class="think-card"><div class="level">low</div><div class="ctx">8K context / temp 0.8</div></div>
+        <div class="think-card"><div class="level">medium</div><div class="ctx">32K context / temp 0.7</div></div>
+        <div class="think-card"><div class="level">high</div><div class="ctx">65K context / temp 0.5</div></div>
+        <div class="think-card xhigh"><div class="level">xhigh</div><div class="ctx">131K context / temp 0.3</div></div>
+        <div class="think-card xhigh"><div class="level">max</div><div class="ctx">131K context / temp 0.3</div></div>
+    </div>
+</section>
+
+<section class="install-section">
+    <div class="install-box">
+        <h2>Install</h2>
+        <div class="code-block">cd Q:\oroboros-core\claude-o-cli
+pip install -r requirements.txt
+pip install -e .</div>
+        <p class="note">Then just type <code>claude-o</code> in any terminal.</p>
+        <div class="code-block" style="margin-top:16px;">claude-o              # interactive chat
+claude-o --model claude-opus-4.8:latest
+claude-o /think xhigh  # maximum reasoning</div>
+    </div>
+</section>
+
+<section class="commands-section">
+    <h2 class="section-title">Commands</h2>
+    <p class="section-subtitle">Full command reference</p>
+    <table class="commands-table">
+        <tr><th>Command</th><th>Description</th></tr>
+        <tr><td>claude-o</td><td>Interactive chat (default, like Claude Code)</td></tr>
+        <tr><td>claude-o ask &lt;question&gt;</td><td>One-shot question to Ollama</td></tr>
+        <tr><td>claude-o status</td><td>Full system status</td></tr>
+        <tr><td>claude-o scan</td><td>Scan all Oroboros systems</td></tr>
+        <tr><td>claude-o models</td><td>List Ollama models</td></tr>
+        <tr><td>claude-o --model &lt;name&gt;</td><td>Switch model</td></tr>
+        <tr><td>claude-o /think xhigh</td><td>Maximum reasoning depth</td></tr>
+        <tr><td>claude-o absorb all</td><td>Absorb all Anthropic services</td></tr>
+        <tr><td>claude-o strata status</td><td>Strata encryption status</td></tr>
+        <tr><td>claude-o noir</td><td>Noir-Nephilim shadow entity</td></tr>
+        <tr><td>claude-o ui</td><td>Launch Glass Liquid UI</td></tr>
+        <tr><td>claude-o serve</td><td>API server on port 8080</td></tr>
+        <tr><td>claude-o --debug</td><td>Debug mode with logging</td></tr>
+    </table>
+</section>
+
+<footer>
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="https://github.com/oroboroslabs-ai" target="_blank">GitHub</a>
+        <a href="https://ollama.com/oroboroslabs" target="_blank">Registry</a>
+        <a href="https://oroboroslabs-ai.github.io/world-feed/">WorldFeed</a>
+    </div>
+    <p>A\ 1272 Hz - N| 1275 Hz - LATTICE LOCK - NEBELLION - KEY</p>
+</footer>
+
+</body>
+</html>
