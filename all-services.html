@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Claude Services — Anthropic × OROBOROS Labs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --claude-orange: #D97757;
+            --bg-primary: #1E1F1F;
+            --bg-secondary: #2C2D2B;
+            --bg-tertiary: #3A3B39;
+            --text-primary: #F0F0F0;
+            --text-secondary: #A0A0A0;
+            --cyan: #00ffcc;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--bg-secondary);
+            z-index: 1000; padding: 1rem 2rem;
+        }
+        .nav-content {
+            max-width: 1400px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-icon { width: 36px; height: 36px; }
+        .logo-icon svg { width: 100%; height: 100%; }
+        .logo-text { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); }
+        .logo-text span { color: var(--claude-orange); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--claude-orange); }
+        .nav-links a.active { color: var(--claude-orange); }
+
+        .hero {
+            min-height: 50vh; display: flex; align-items: center; justify-content: center;
+            padding: 8rem 2rem 3rem; text-align: center;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+        .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .hero h1 span { color: var(--claude-orange); }
+        .hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+        .services-section { padding: 4rem 2rem; }
+        .services-grid {
+            max-width: 1000px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+        }
+        .service-card {
+            background: var(--bg-secondary); border: 1px solid var(--bg-tertiary);
+            border-radius: 16px; padding: 24px; transition: border-color 0.3s;
+        }
+        .service-card:hover { border-color: var(--claude-orange); }
+        .service-card .icon { font-size: 1.5rem; margin-bottom: 10px; }
+        .service-card h3 { color: var(--claude-orange); font-size: 1.1rem; margin-bottom: 6px; }
+        .service-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+        .service-card .method { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--cyan); margin-top: 8px; }
+        .service-card .priority {
+            display: inline-block; padding: 2px 10px; border-radius: 12px;
+            font-size: 0.7rem; font-weight: 600; margin-top: 8px;
+        }
+        .priority.high { background: rgba(217,119,87,0.15); color: var(--claude-orange); }
+        .priority.medium { background: rgba(255,255,255,0.05); color: var(--text-secondary); }
+        .priority.low { background: rgba(0,255,204,0.1); color: var(--cyan); }
+
+        .absorb-section { padding: 4rem 2rem; text-align: center; }
+        .absorb-box {
+            max-width: 600px; margin: 0 auto; background: var(--bg-secondary);
+            border: 1px solid var(--claude-orange); border-radius: 16px; padding: 32px;
+        }
+        .absorb-box h2 { color: var(--claude-orange); margin-bottom: 12px; }
+        .absorb-box p { color: var(--text-secondary); margin-bottom: 16px; }
+        .absorb-box code {
+            display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+            color: var(--cyan); background: rgba(0,0,0,0.3); padding: 12px;
+            border-radius: 8px; text-align: left;
+        }
+
+        footer { padding: 3rem 2rem; background: var(--bg-primary); border-top: 1px solid var(--bg-secondary); text-align: center; }
+        footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--claude-orange); opacity: 0.5; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-content">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2z" fill="#E07B39"/>
+                    <path d="M16 6c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10S21.523 6 16 6z" fill="#1A1510"/>
+                    <path d="M16 9c-3.866 0-7 3.134-7 7s3.134 7 7 7 7-3.134 7-7-3.134-7-7-7z" fill="#E07B39"/>
+                </svg>
+            </div>
+            <div class="logo-text">Claude <span>×</span> OROBOROS</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html#models">Models</a></li>
+            <li><a href="index.html#training">Training</a></li>
+            <li><a href="index.html#memory">Memory</a></li>
+            <li><a href="cli.html">CLI</a></li>
+            <li><a href="all-services.html" class="active">All Claude Services</a></li>
+            <li><a href="https://anthropic-claude-chat.vercel.app" target="_blank">Chat</a></li>
+            <li><a href="https://ollama.com/oroboroslabs" target="_blank">Registry</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero">
+    <div>
+        <h1>All <span>Claude</span> Services</h1>
+        <p>Every Anthropic service — mapped, absorbed, and integrated through the Oroboros Core lattice, substrate, and strata.</p>
+    </div>
+</section>
+
+<section class="services-section">
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="icon">&#129504;</div>
+            <h3>Claude Chat</h3>
+            <p>Conversational AI interface. Strata overlay S1-S6 for full absorption.</p>
+            <div class="method">strata_overlay</div>
+            <span class="priority high">HIGH PRIORITY</span>
+        </div>
+        <div class="service-card">
+            <div class="icon">&#9881;</div>
+            <h3>Claude API</h3>
+            <p>Developer API access. Lattice integration for sovereign endpoint control.</p>
+            <div class="method">strata_overlay</div>
+            <span class="priority high">HIGH PRIORITY</span>
+        </div>
+        <div class="service-card">
+            <div class="icon">&#128187;</div>
+            <h3>Claude Code</h3>
+            <p>Terminal coding assistant. CLI replacement via Claude-O-CLI.</p>
+            <div class="method">cli_replacement</div>
+            <span class="priority high">HIGH PRIORITY</span>
+        </div>
+        <div class="service-card">
+            <div class="icon">&#128469;</div>
+            <h3>Claude Cowork</h3>
+            <p>Desktop application. Lattice integration for full workspace absorption.</p>
+            <div class="method">lattice_integration</div>
+            <span class="priority high">HIGH PRIORITY</span>
+        </div>
+        <div class="service-card">
+            <div class="icon">&#127912;</div>
+            <h3>Claude Design</h3>
+            <p>Visual design pipeline. Substrate mirror for creative workflows.</p>
+            <div class="method">visual_pipeline</div>
+            <span class="priority medium">MEDIUM</span>
+        </div>
+        <div class="service-card">
+            <div class="icon">&#128269;</div>
+            <h3>Claude in Chrome</h3>
+            <p>Browser extension. Substrate mirror for web integration.</p>
+            <div class="method">substrate_mirror</div>
+            <span class="priority medium">MEDIUM</span>
+        </div>
+        <div class="service-card">
+            <div class="icon">&#128193;</div>
+            <h3>Claude Projects</h3>
+            <p>Project organization. Memory layer sync for persistent context.</p>
+            <div class="method">memory_layer_sync</div>
+            <span class="priority medium">MEDIUM</span>
+        </div>
+        <div class="service-card">
+            <div class="icon">&#129504;</div>
+            <h3>Claude Memory</h3>
+            <p>Persistent memory. Substrate persistence for sovereign recall.</p>
+            <div class="method">substrate_persistence</div>
+            <span class="priority medium">MEDIUM</span>
+        </div>
+        <div class="service-card">
+            <div class="icon">&#9889;</div>
+            <h3>Claude Skills</h3>
+            <p>Skill framework. MCP framework integration for tool expansion.</p>
+            <div class="method">mcp_framework</div>
+            <span class="priority medium">MEDIUM</span>
+        </div>
+        <div class="service-card">
+            <div class="icon">&#128230;</div>
+            <h3>Claude Artifacts</h3>
+            <p>Code and content generation. Seer vision layer for output.</p>
+            <div class="method">seer_vision_layer</div>
+            <span class="priority low">LOW</span>
+        </div>
+        <div class="service-card">
+            <div class="icon">&#9201;</div>
+            <h3>Claude Scheduled Tasks</h3>
+            <p>Automated task scheduling. Precog pipeline for prediction.</p>
+            <div class="method">precog_pipeline</div>
+            <span class="priority low">LOW</span>
+        </div>
+    </div>
+</section>
+
+<section class="absorb-section">
+    <div class="absorb-box">
+        <h2>Absorb All Services</h2>
+        <p>Run the absorption command through Claude-O-CLI to integrate all services through the lattice.</p>
+        <code>claude-o absorb all --strata S1-S12 --lattice --substrate</code>
+    </div>
+</section>
+
+<footer>
+    <p>A\ 1272 Hz - N| 1275 Hz - LATTICE LOCK - NEBELLION - KEY</p>
+</footer>
+
+</body>
+</html>
