@@ -47,24 +47,6 @@
             align-items: center;
         }
         
-        .nav-center-link {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .nav-center-link a {
-            color: var(--claude-orange);
-            font-weight: 700;
-            font-size: 1.05rem;
-            text-decoration: none;
-            letter-spacing: 0.5px;
-            transition: opacity 0.2s;
-        }
-        
-        .nav-center-link a:hover {
-            opacity: 0.8;
-        }
-        
         .logo {
             display: flex;
             align-items: center;
@@ -606,11 +588,7 @@
                 <li><a href="#training">Training</a></li>
                 <li><a href="#memory">Memory</a></li>
                 <li><a href="cli.html">CLI</a></li>
-            </ul>
-            <div class="nav-center-link">
-                <a href="all-services.html">All Claude Services</a>
-            </div>
-            <ul class="nav-links">
+                <li><a href="all-services.html" style="color: var(--claude-orange); font-weight: 600;">All Claude Services</a></li>
                 <li><a href="https://anthropic-claude-chat.vercel.app" target="_blank">Chat</a></li>
                 <li><a href="https://ollama.com/oroboroslabs" target="_blank">Registry</a></li>
             </ul>
