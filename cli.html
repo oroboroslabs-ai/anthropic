@@ -59,11 +59,10 @@
         h1 { font-size: 3.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
         h1 span { color: var(--claude-orange); }
         .hero-subtitle { font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; }
-        .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 2rem; }
-        .tag { padding: 4px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 600; }
-        .tag.orange { background: rgba(217,119,87,0.15); color: var(--claude-orange); border: 1px solid rgba(217,119,87,0.3); }
-        .tag.cyan { background: rgba(0,255,204,0.1); color: var(--cyan); border: 1px solid rgba(0,255,204,0.2); }
-        .tag.white { background: rgba(255,255,255,0.05); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.1); }
+        .hero-tags { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 2rem; font-size: 0.9rem; font-weight: 600; }
+        .hero-tags .orange { color: var(--claude-orange); }
+        .hero-tags .cyan { color: var(--cyan); }
+        .hero-tags .grey { color: var(--text-secondary); }
 
         .screenshot-section { padding: 4rem 2rem; background: var(--bg-primary); }
         .screenshot-wrap { max-width: 900px; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid var(--bg-tertiary); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
@@ -154,19 +153,30 @@
         <h1>Claude-O-<span>CLI</span></h1>
         <p class="hero-subtitle">Runs fully local via Ollama. No API keys. No cloud. No tracking. 33+ tools, Docker MCP, strata encryption, and service absorption.</p>
         <div class="hero-tags">
-            <span class="tag orange">SOVEREIGN</span>
-            <span class="tag cyan">33+ TOOLS</span>
-            <span class="tag white">NO KEYS</span>
-            <span class="tag cyan">OLLAMA</span>
-            <span class="tag orange">DOCKER MCP</span>
-            <span class="tag white">$0.00</span>
+            <span class="orange">SOVEREIGN</span>
+            <span class="orange">MCP</span>
+            <span class="cyan">OLLAMA</span>
+            <span class="cyan">33+ TOOLS</span>
+            <span class="grey">NO KEYS</span>
+            <span class="grey">$0.00</span>
         </div>
     </div>
 </section>
 
 <section class="screenshot-section">
-    <div class="screenshot-wrap">
-        <img src="https://oroboroslabs-ai.github.io/world-feed/assets/img/claude-o-cli-screenshot.png" alt="Claude-O-CLI Glass Liquid UI" onerror="this.style.display='none'">
+    <div style="max-width:900px;margin:0 auto;">
+        <div style="margin-bottom:32px;">
+            <img src="assets/img/cli-screenshot-1.png" alt="Claude-O-CLI Interface" style="width:100%;border-radius:16px;border:1px solid var(--bg-tertiary);box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+            <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:12px;text-align:center;">Glass Liquid UI — clear glass panel with Anthropic grey background and orange clawd logo</p>
+        </div>
+        <div style="margin-bottom:32px;">
+            <img src="assets/img/cli-screenshot-2.png" alt="Claude-O-CLI Chat" style="width:100%;border-radius:16px;border:1px solid var(--bg-tertiary);box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+            <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:12px;text-align:center;">Tactical report format — direct model responses with command bar and status indicators</p>
+        </div>
+        <div style="margin-bottom:32px;">
+            <img src="assets/img/cli-screenshot-3.png" alt="Claude-O-CLI Features" style="width:100%;border-radius:16px;border:1px solid var(--bg-tertiary);box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+            <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:12px;text-align:center;">XHIGH reasoning bar — black bar with glowing orange indicator when maximum depth is engaged</p>
+        </div>
     </div>
 </section>
 
