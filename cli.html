@@ -212,9 +212,10 @@
 cd claude-cli
 pip install -r requirements.txt
 pip install -e .</div>
-        <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:8px">Then run <code style="color:var(--cyan)">claude-cli</code> — glass UI at <code style="color:var(--cyan)">http://127.0.0.1:5000</code>. Not Anthropic&apos;s <code>claude</code> (Claude Code).</p>
+        <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:8px">Then run <code style="color:var(--cyan)">claude-cli</code> — starts glass UI at <code style="color:var(--cyan)">http://127.0.0.1:5000</code> <em>and</em> terminal coding chat. Not Anthropic&apos;s <code>claude</code> (Claude Code).</p>
         <div class="code-block">claude-cli
-# open http://127.0.0.1:5000
+# Glass UI: http://127.0.0.1:5000
+# Terminal: you &gt; prompt for coding
 /model claude-7:latest
 /think high</div>
     </div>
@@ -225,7 +226,8 @@ pip install -e .</div>
     <p class="section-subtitle">Claude CLI reference</p>
     <table class="commands-table">
         <tr><th>Command</th><th>Description</th></tr>
-        <tr><td>claude-cli</td><td>Start glass terminal server (port 5000)</td></tr>
+        <tr><td>claude-cli</td><td>Glass UI (port 5000) + terminal coding chat</td></tr>
+        <tr><td>claude-cli --ui-only</td><td>Glass UI server only (no terminal chat)</td></tr>
         <tr><td>http://127.0.0.1:5000</td><td>Glass UI — Chat · Files · MCP · Agent</td></tr>
         <tr><td>/model &lt;name&gt;</td><td>Switch Ollama model in session</td></tr>
         <tr><td>/models</td><td>List installed models</td></tr>
