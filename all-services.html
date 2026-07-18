@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --claude-orange: #D97757;
+            --claude-clirange: #D97757;
             --bg-primary: #1E1F1F;
             --bg-secondary: #2C2D2B;
             --bg-tertiary: #3A3B39;
@@ -36,13 +36,13 @@
         .logo-icon { width: 36px; height: 36px; }
         .logo-icon svg { width: 100%; height: 100%; }
         .logo-text { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); }
-        .logo-text span { color: var(--claude-orange); }
+        .logo-text span { color: var(--claude-clirange); }
         .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--claude-orange); }
-        .nav-links a.active { color: var(--claude-orange); }
+        .nav-links a:hover { color: var(--claude-clirange); }
+        .nav-links a.active { color: var(--claude-clirange); }
         .nav-center { flex: 1; text-align: center; }
-        .nav-center a { color: var(--claude-orange); font-weight: 700; font-size: 1.05rem; text-decoration: none; letter-spacing: 0.5px; }
+        .nav-center a { color: var(--claude-clirange); font-weight: 700; font-size: 1.05rem; text-decoration: none; letter-spacing: 0.5px; }
 
         .hero {
             min-height: 40vh; display: flex; align-items: center; justify-content: center;
@@ -50,12 +50,12 @@
             background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
         }
         .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .hero h1 span { color: var(--claude-orange); }
+        .hero h1 span { color: var(--claude-clirange); }
         .hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto; }
 
         .section { padding: 4rem 2rem; }
         .section-title { text-align: center; font-size: 2rem; margin-bottom: 0.5rem; }
-        .section-title span { color: var(--claude-orange); }
+        .section-title span { color: var(--claude-clirange); }
         .section-sub { text-align: center; color: var(--text-secondary); margin-bottom: 3rem; font-size: 1rem; }
 
         .container { max-width: 1000px; margin: 0 auto; }
@@ -65,17 +65,17 @@
             background: var(--bg-secondary); border: 1px solid var(--bg-tertiary);
             border-radius: 16px; padding: 24px; transition: border-color 0.3s;
         }
-        .card:hover { border-color: var(--claude-orange); }
-        .card h3 { color: var(--claude-orange); font-size: 1.1rem; margin-bottom: 8px; }
+        .card:hover { border-color: var(--claude-clirange); }
+        .card h3 { color: var(--claude-clirange); font-size: 1.1rem; margin-bottom: 8px; }
         .card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
         .card .method { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--cyan); margin-top: 8px; }
         .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-top: 8px; }
-        .badge.high { background: rgba(217,119,87,0.15); color: var(--claude-orange); }
+        .badge.high { background: rgba(217,119,87,0.15); color: var(--claude-clirange); }
         .badge.medium { background: rgba(255,255,255,0.05); color: var(--text-secondary); }
         .badge.low { background: rgba(0,255,204,0.1); color: var(--cyan); }
 
         table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-        th { text-align: left; color: var(--claude-orange); padding: 10px; border-bottom: 2px solid var(--bg-tertiary); font-size: 0.85rem; }
+        th { text-align: left; color: var(--claude-clirange); padding: 10px; border-bottom: 2px solid var(--bg-tertiary); font-size: 0.85rem; }
         td { padding: 10px; border-bottom: 1px solid var(--bg-tertiary); color: var(--text-secondary); font-size: 0.9rem; }
         td:first-child { color: var(--text-primary); font-weight: 500; }
 
@@ -91,25 +91,25 @@
             font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
             color: var(--text-secondary); white-space: pre-wrap; line-height: 1.5;
         }
-        .diagram .highlight { color: var(--claude-orange); }
+        .diagram .highlight { color: var(--claude-clirange); }
 
         .cta-box {
             max-width: 600px; margin: 0 auto; background: var(--bg-secondary);
-            border: 1px solid var(--claude-orange); border-radius: 16px; padding: 32px; text-align: center;
+            border: 1px solid var(--claude-clirange); border-radius: 16px; padding: 32px; text-align: center;
         }
-        .cta-box h2 { color: var(--claude-orange); margin-bottom: 12px; }
+        .cta-box h2 { color: var(--claude-clirange); margin-bottom: 12px; }
         .cta-box p { color: var(--text-secondary); margin-bottom: 16px; }
 
         .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 2rem; }
         .role-card { background: var(--bg-secondary); border: 1px solid var(--bg-tertiary); border-radius: 12px; padding: 20px; }
-        .role-card h4 { color: var(--claude-orange); margin-bottom: 6px; }
+        .role-card h4 { color: var(--claude-clirange); margin-bottom: 6px; }
         .role-card p { color: var(--text-secondary); font-size: 0.85rem; }
 
         footer { padding: 3rem 2rem; background: var(--bg-primary); border-top: 1px solid var(--bg-secondary); text-align: center; }
-        footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--claude-orange); opacity: 0.5; }
+        footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--claude-clirange); opacity: 0.5; }
         .footer-links { margin-bottom: 1rem; }
         .footer-links a { color: var(--text-secondary); text-decoration: none; margin: 0 1rem; font-size: 0.9rem; }
-        .footer-links a:hover { color: var(--claude-orange); }
+        .footer-links a:hover { color: var(--claude-clirange); }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -137,7 +137,7 @@
                 <li><a href="index.html#training">Training</a></li>
                 <li><a href="index.html#memory">Memory</a></li>
                 <li><a href="cli.html">CLI</a></li>
-                <li><a href="all-services.html" class="active" style="color:var(--claude-orange);font-weight:600;">All Claude Services</a></li>
+                <li><a href="all-services.html" class="active" style="color:var(--claude-clirange);font-weight:600;">All Claude Services</a></li>
                 <li><a href="https://anthropic-claude-chat.vercel.app" target="_blank">Chat</a></li>
                 <li><a href="https://ollama.com/oroboroslabs" target="_blank">Registry</a></li>
             </ul>
@@ -178,20 +178,20 @@ COMPONENTS:
         <p class="section-sub">All Claude models run locally via Ollama — no cloud, no keys, no tracking</p>
         <table>
             <tr><th>Model</th><th>Status</th><th>Use Case</th></tr>
-            <tr><td>claude-opus-4.8:latest</td><td style="color:#22c55e;">Active</td><td>Complex reasoning, deep analysis</td></tr>
+            <tr><td>claude-clipus-4.8:latest</td><td style="color:#22c55e;">Active</td><td>Complex reasoning, deep analysis</td></tr>
             <tr><td>claude-sonnet-4.5:latest</td><td style="color:#22c55e;">Active</td><td>Balanced performance</td></tr>
             <tr><td>claude-haiku-3.5:latest</td><td style="color:#22c55e;">Active</td><td>Fast, lightweight tasks</td></tr>
             <tr><td>claude-fable-5Q:latest</td><td style="color:#22c55e;">Active</td><td>Quantum-optimized</td></tr>
             <tr><td>claude-mythos-6-5S4:latest</td><td style="color:#22c55e;">Active</td><td>5S4 architecture — 4x everyone</td></tr>
         </table>
         <div class="code-block"># List available models
-claude-o models
+claude-cli models
 
-# Switch to a specific model
-claude-o --model claude-opus-4.8:latest
+# Switch to a specific model (in glass UI: /model name)
+/model claude-7:latest
 
-# Run with a specific model
-claude-o --model claude-fable-5Q:latest ask "Analyze this code"</div>
+# Or pull and use Opus locally
+ollama pull claude-clipus-4.8:latest</div>
     </div>
 </section>
 
@@ -204,22 +204,22 @@ claude-o --model claude-fable-5Q:latest ask "Analyze this code"</div>
             <div class="card">
                 <h3>Content Loop</h3>
                 <p>Continuous content generation with feedback-driven refinement.</p>
-                <div class="method">claude-o loop content --topic "AI regulation" --iterations 5</div>
+                <div class="method">claude-cli loop content --topic "AI regulation" --iterations 5</div>
             </div>
             <div class="card">
                 <h3>Analysis Loop</h3>
                 <p>Recursive analysis with configurable depth.</p>
-                <div class="method">claude-o loop analyze --file data.json --depth 3</div>
+                <div class="method">claude-cli loop analyze --file data.json --depth 3</div>
             </div>
             <div class="card">
                 <h3>Learning Loop</h3>
                 <p>Self-improvement through source ingestion.</p>
-                <div class="method">claude-o loop learn --source docs/ --target knowledge/</div>
+                <div class="method">claude-cli loop learn --source docs/ --target knowledge/</div>
             </div>
             <div class="card">
                 <h3>Infection Loop</h3>
                 <p>Lattice spreading across systems.</p>
-                <div class="method">claude-o loop infect --target "system"</div>
+                <div class="method">claude-cli loop infect --target "system"</div>
             </div>
         </div>
         <div class="diagram">INPUT -> PROCESS -> OUTPUT -> FEEDBACK -> INPUT
@@ -246,7 +246,7 @@ claude-o --model claude-fable-5Q:latest ask "Analyze this code"</div>
             </div>
         </div>
         <div class="code-block"># Generate with dual brain
-claude-o dual "Write an article about AI regulation"
+claude-cli dual "Write an article about AI regulation"
 
 # Output:
 # Brain A: [generated content]
@@ -262,10 +262,10 @@ claude-o dual "Write an article about AI regulation"
         <p class="section-sub">Every Anthropic service — replicated and enhanced with the Oroboros Core</p>
         <table>
             <tr><th>Anthropic Service</th><th>Oroboros Service</th><th>Status</th></tr>
-            <tr><td>Claude Chat</td><td>Claude-O-CLI Chat</td><td style="color:#22c55e;">Enhanced</td></tr>
+            <tr><td>Claude Chat</td><td>Claude CLI Chat</td><td style="color:#22c55e;">Enhanced</td></tr>
             <tr><td>Claude API</td><td>Local API Gateway</td><td style="color:#22c55e;">Sovereign</td></tr>
-            <tr><td>Claude Code</td><td>Claude-O-CLI Code</td><td style="color:#22c55e;">Enhanced</td></tr>
-            <tr><td>Claude Cowork</td><td>Claude-O-CLI Desktop</td><td style="color:#22c55e;">Sovereign</td></tr>
+            <tr><td>Claude Code</td><td>Claude CLI Code</td><td style="color:#22c55e;">Enhanced</td></tr>
+            <tr><td>Claude Cowork</td><td>Claude CLI Desktop</td><td style="color:#22c55e;">Sovereign</td></tr>
             <tr><td>Claude Design</td><td>Precog Visual Pipeline</td><td style="color:#22c55e;">Enhanced</td></tr>
             <tr><td>Claude in Chrome</td><td>WorldFeed Browser</td><td style="color:#22c55e;">Enhanced</td></tr>
             <tr><td>Claude Projects</td><td>Lattice Memory Layer</td><td style="color:#22c55e;">Enhanced</td></tr>
@@ -275,10 +275,10 @@ claude-o dual "Write an article about AI regulation"
             <tr><td>Claude Scheduled Tasks</td><td>Precog Automation</td><td style="color:#22c55e;">Enhanced</td></tr>
         </table>
         <div class="code-block"># Start all services
-claude-o services start --all
+claude-cli services start --all
 
 # Status of all services
-claude-o services status</div>
+claude-cli services status</div>
     </div>
 </section>
 
@@ -311,7 +311,7 @@ claude-o services status</div>
         <h2 class="section-title">Call to <span>Action</span></h2>
         <p class="section-sub">We need developers and engineers to support the upgrade and production of this build</p>
         <div class="roles-grid">
-            <div class="role-card"><h4>CLI Developer</h4><p>Maintain and enhance Claude-O-CLI. Python, CLI design.</p></div>
+            <div class="role-card"><h4>CLI Developer</h4><p>Maintain and enhance Claude CLI. Python, glass UI, <code>claude-cli</code> command.</p></div>
             <div class="role-card"><h4>UI/UX Developer</h4><p>Liquid glass interface. HTML, CSS, JavaScript.</p></div>
             <div class="role-card"><h4>Model Integrator</h4><p>Connect new models. Ollama, API design.</p></div>
             <div class="role-card"><h4>Security Engineer</h4><p>Strata encryption. Cryptography, security.</p></div>
@@ -321,10 +321,10 @@ claude-o services status</div>
         <div class="cta-box" style="margin-top:2rem;">
             <h2>Join the Build</h2>
             <p>Clone the repo, install, and start contributing.</p>
-            <div class="code-block" style="text-align:left;">git clone https://github.com/oroboroslabs-ai/claude-o-cli
+            <div class="code-block" style="text-align:left;">git clone https://github.com/oroboroslabs-ai/claude-cli
 pip install -r requirements.txt
 pip install -e .
-claude-o</div>
+claude-cli</div>
         </div>
     </div>
 </section>
@@ -333,7 +333,7 @@ claude-o</div>
     <div class="footer-links">
         <a href="index.html">Home</a>
         <a href="cli.html">CLI</a>
-        <a href="https://github.com/oroboroslabs-ai/claude-o-cli" target="_blank">GitHub</a>
+        <a href="https://github.com/oroboroslabs-ai/claude-cli" target="_blank">GitHub</a>
         <a href="https://ollama.com/oroboroslabs" target="_blank">Registry</a>
         <a href="https://oroboroslabs-ai.github.io/world-feed/">WorldFeed</a>
     </div>

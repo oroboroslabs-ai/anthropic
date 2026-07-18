@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claude CLI — Anthropic × OROBOROS Labs</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --claude-orange: #D97757;
-            --bg-primary: #1E1F1F;
-            --bg-secondary: #2C2D2B;
+            --bg-primary: #1A1917;
+            --bg-secondary: #1E1F1F;
             --bg-tertiary: #3A3B39;
-            --text-primary: #F0F0F0;
-            --text-secondary: #A0A0A0;
+            --text-primary: #F5F2ED;
+            --text-secondary: #969187;
+            --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+            --font-sans: 'Inter', Helvetica, Arial, sans-serif;
+            --font-mono: 'JetBrains Mono', Consolas, monospace;
             --cyan: #00ffcc;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: var(--font-sans);
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
@@ -34,7 +37,7 @@
         }
         .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .logo-icon { width: 36px; height: 36px; }
-        .logo-text { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); }
+        .logo-text { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 600; color: var(--text-primary); }
         .logo-text span { color: var(--claude-orange); }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; }
@@ -45,16 +48,35 @@
             text-align: center;
             background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
         }
-        .page-hero h1 { font-size: 2.75rem; font-weight: 700; letter-spacing: -0.02em; }
-        .page-hero h1 span { color: var(--claude-orange); }
-        .page-hero p { color: var(--text-secondary); max-width: 640px; margin: 1rem auto 0; }
+        .page-hero h1 {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+        }
+        .page-hero h1 span { color: var(--claude-orange); font-weight: 700; }
+        .page-hero p { color: var(--text-secondary); max-width: 640px; margin: 1rem auto 0; font-size: 1.05rem; }
         .page-hero .mono {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--cyan);
-            font-size: 0.95rem;
-            letter-spacing: 2px;
+            font-family: var(--font-sans);
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
             margin-top: 0.75rem;
         }
+        .page-hero .hero-cta {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 12px 28px;
+            background: var(--claude-orange);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        .page-hero .hero-cta:hover { opacity: 0.92; }
 
         .screenshot-section { padding: 2rem 1.5rem 4rem; background: #1a1a1a; }
         .screenshot-grid {
@@ -156,6 +178,7 @@
     <h1>Claude <span>CLI</span></h1>
     <p>Sovereign terminal AI — local Ollama, ZTA hardened, MCP + agent tools. No API keys. No cloud.</p>
     <p class="mono">CLAUDE-CLI · vA.1272</p>
+    <a class="hero-cta" href="https://github.com/oroboroslabs-ai/claude-cli" target="_blank" rel="noopener">Download Claude CLI on GitHub →</a>
 </section>
 
 <section class="screenshot-section">
@@ -189,11 +212,11 @@
 cd claude-cli
 pip install -r requirements.txt
 pip install -e .</div>
-        <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:8px">Then type <code style="color:var(--cyan)">claude</code> in any terminal — GUI opens automatically.</p>
-        <div class="code-block">claude
-claude --model claude-7:latest
-claude /think high
-claude ui</div>
+        <p style="color:var(--text-secondary);font-size:0.9rem;margin-top:8px">Then run <code style="color:var(--cyan)">claude-cli</code> — glass UI at <code style="color:var(--cyan)">http://127.0.0.1:5000</code>. Not Anthropic&apos;s <code>claude</code> (Claude Code).</p>
+        <div class="code-block">claude-cli
+# open http://127.0.0.1:5000
+/model claude-7:latest
+/think high</div>
     </div>
 </section>
 
@@ -202,15 +225,14 @@ claude ui</div>
     <p class="section-subtitle">Claude CLI reference</p>
     <table class="commands-table">
         <tr><th>Command</th><th>Description</th></tr>
-        <tr><td>claude</td><td>Interactive chat + terminal GUI</td></tr>
-        <tr><td>claude ui</td><td>Launch glass terminal GUI</td></tr>
-        <tr><td>claude serve</td><td>API server (default port 8080)</td></tr>
-        <tr><td>claude ask &lt;question&gt;</td><td>One-shot Ollama query</td></tr>
-        <tr><td>claude models</td><td>List installed models</td></tr>
-        <tr><td>claude /model &lt;name&gt;</td><td>Switch model in session</td></tr>
-        <tr><td>claude /think xhigh</td><td>Maximum reasoning depth</td></tr>
-        <tr><td>claude status</td><td>ZTA · RGE · MCP system status</td></tr>
-        <tr><td>claude --debug</td><td>Debug mode with audit logging</td></tr>
+        <tr><td>claude-cli</td><td>Start glass terminal server (port 5000)</td></tr>
+        <tr><td>http://127.0.0.1:5000</td><td>Glass UI — Chat · Files · MCP · Agent</td></tr>
+        <tr><td>/model &lt;name&gt;</td><td>Switch Ollama model in session</td></tr>
+        <tr><td>/models</td><td>List installed models</td></tr>
+        <tr><td>/think xhigh</td><td>Maximum reasoning depth</td></tr>
+        <tr><td>/status</td><td>ZTA · RGE · MCP system status</td></tr>
+        <tr><td>/help</td><td>Full command reference</td></tr>
+        <tr><td>start_claude_cli.bat</td><td>Windows one-click launcher</td></tr>
     </table>
 </section>
 
@@ -221,7 +243,7 @@ claude ui</div>
 <footer>
     <div class="footer-links">
         <a href="index.html">Home</a>
-        <a href="https://github.com/oroboroslabs-ai/anthropic" target="_blank">GitHub</a>
+        <a href="https://github.com/oroboroslabs-ai/claude-cli" target="_blank" rel="noopener">Claude CLI Repo</a>
         <a href="https://ollama.com/oroboroslabs" target="_blank">Registry</a>
     </div>
     <p>A\ 1272 Hz - N| 1275 Hz - LATTICE LOCK - NEBELLION - KEY</p>
