@@ -173,10 +173,10 @@
                  filter: brightness(0) invert(1); }
     .light .mark { background-image: url('logo-anthropic.png'); }
     .light .mava span { background-image: url('logo-anthropic.png'); }
-    .msender { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .msender { font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--accent); }
     .mtext { font-size: 13.5px; line-height: 1.7; color: var(--text-primary); }
     .mtext ol { margin: 8px 0 0 18px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px; }
-    .mtext ol b { color: var(--text-primary); font-weight: 600; }
+    .mtext ol b { color: var(--accent); font-weight: 600; }
     .mmore { color: var(--text-muted); font-size: 12.5px; margin-top: 6px; }
     .pcomposer { margin: auto 34px 24px; background: var(--bg-composer); border: 1.5px solid var(--composer-border);
                  border-radius: 20px; padding: 14px 18px; box-shadow: 0 0 0 1px var(--line), var(--shadow-md);
@@ -197,6 +197,7 @@
     .card:hover { transform: translateY(-2px); border-color: rgba(217,119,87,.45); box-shadow: var(--shadow-lg); }
     .card .eyebrow2 { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
                       color: var(--text-muted); }
+    .card .eyebrow2.acc2 { color: var(--accent); }
     .card h3 { font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
     .card p { font-size: 13.5px; line-height: 1.7; color: var(--text-secondary); }
     .pills { display: grid; grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); gap: 7px; margin-top: 4px; }
@@ -216,6 +217,7 @@
     .formula { font-family: var(--mono); font-size: clamp(22px, 4.5vw, 34px); letter-spacing: .04em; color: var(--text-primary);
                margin-top: 26px; }
     .formula .op { color: var(--text-muted); }
+    .formula .wo { color: var(--accent); }
     .formula .nv { color: var(--accent); background: var(--accent-light); border: 1px solid rgba(217,119,87,.4);
                    border-radius: 12px; padding: 2px 14px 4px; }
 
@@ -251,7 +253,7 @@
     .frow p, .flinks a { font-size: 12px; color: var(--text-secondary); }
     .flinks { display: flex; gap: 14px; flex-wrap: wrap; }
     .flinks a { text-decoration: none; }
-    .flinks a:hover { color: var(--text-primary); }
+    .flinks a:hover { color: var(--accent); }
 
     @media (max-width: 860px) {
         .window { grid-template-columns: 1fr; }
@@ -299,7 +301,7 @@
                 <span>local-only 127.0.0.1</span>
                 <span class="acc">weights retrieved — never embedded</span>
                 <span class="navy">the loop = models only</span>
-                <span>crown 8718 hz</span>
+                <span class="acc">crown 8718 hz</span>
             </div>
         </div>
 
@@ -356,21 +358,21 @@
     <section class="block">
         <div class="container">
             <h2 class="harness-heading">Expanding weights.<br><span class="hl">Work on your terms.</span></h2>
-            <div class="formula"><span>ENGINE</span><span class="op"> = </span><span>WEIGHTS</span><span class="op"> + </span><span class="nv">LAW</span></div>
+            <div class="formula"><span>ENGINE</span><span class="op"> = </span><span class="wo">WEIGHTS</span><span class="op"> + </span><span class="nv">LAW</span></div>
             <div class="grid">
                 <div class="card">
-                    <span class="eyebrow2">STATIC WEIGHT CORE</span>
+                    <span class="eyebrow2 acc2">STATIC WEIGHT CORE</span>
                     <p>The static weight core loads Ollama, Hugging Face, LM Studio and
                        every major root. Capabilities live with the weights — headers only,
                        any size, retrieved and never embedded.</p>
                 </div>
                 <div class="card">
-                    <span class="eyebrow2">THE LOOP · MODELS ONLY</span>
+                    <span class="eyebrow2 acc2">THE LOOP · MODELS ONLY</span>
                     <p>Installed models step through the loop on their own machine and
                        results stream back statelessly. The loop carries models — nothing else.</p>
                 </div>
                 <div class="card">
-                    <span class="eyebrow2">LAW-ENFORCED GATEWAY</span>
+                    <span class="eyebrow2 acc2">LAW-ENFORCED GATEWAY</span>
                     <p>127.0.0.1 only. The /A law is unoverridable: your weights, your
                        machine, nothing leaves the box it runs on.</p>
                 </div>
@@ -384,7 +386,7 @@
             <p class="ds-text-body subhead">Architectural theory in practice — the foundation, the loop, the encoding stack.</p>
             <div class="grid">
                 <div class="card">
-                    <span class="eyebrow2">THE ARCHITECTURE</span>
+                    <span class="eyebrow2 acc2">THE ARCHITECTURE</span>
                     <h3>Static weight core — any model, any size</h3>
                     <p>GGUF and safetensors headers are parsed directly — shard blobs, single
                        files, whole dirs. The engine retrieves weights, it never embeds them.</p>
@@ -396,7 +398,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <span class="eyebrow2">ARCHITECTURAL THEORY</span>
+                    <span class="eyebrow2 acc2">ARCHITECTURAL THEORY</span>
                     <h3>The loop — models only</h3>
                     <p>Your installed models step through the loop on their own machine
                        and results stream back statelessly. One data line, by law —
@@ -408,24 +410,24 @@
                     </div>
                 </div>
                 <div class="card">
-                    <span class="eyebrow2">QUANTUM PHYSICS</span>
+                    <span class="eyebrow2 acc2">QUANTUM PHYSICS</span>
                     <h3>Dual quantum encoding</h3>
                     <p>Parallel mode on two encodings — 24 logical over 168 physical qubits —
                        with a 95% tamper-detection threshold running through the Oroboros core.</p>
                     <div class="pills">
-                        <div class="pill navy">24 LOGICAL<div class="ds">qubits</div></div>
+                        <div class="pill">24 LOGICAL<div class="ds">qubits</div></div>
                         <div class="pill">168 PHYSICAL<div class="ds">qubits</div></div>
                         <div class="pill acc">PARALLEL<div class="ds">2× mode</div></div>
                         <div class="pill">95%<div class="ds">tamper check</div></div>
                     </div>
                 </div>
                 <div class="card">
-                    <span class="eyebrow2">TEMPORAL TECHNOLOGIES</span>
+                    <span class="eyebrow2 acc2">TEMPORAL TECHNOLOGIES</span>
                     <h3>Temporal layers</h3>
                     <p>Time-gated adaptive keys and temporal-keyed ciphertext — the stack re-keys
                        on the move and sits outside linear time, self-reinforcing.</p>
                     <div class="pills">
-                        <div class="pill navy">TEMPORAL<div class="ds">superposition</div></div>
+                        <div class="pill">TEMPORAL<div class="ds">superposition</div></div>
                         <div class="pill">TIME-GATED<div class="ds">keys</div></div>
                         <div class="pill acc">SELF-REINFORCED<div class="ds">adaptive</div></div>
                     </div>
@@ -439,7 +441,7 @@
             <h2 class="harness-heading">Our top models.<br><span class="hl">The undecillion line — bench 100%.</span></h2>
             <div class="grid">
                 <div class="card">
-                    <span class="eyebrow2">OPUS · 9U5GO5</span>
+                    <span class="eyebrow2 acc2">OPUS · 9U5GO5</span>
                     <h3>Claude Opus 9 — 9U5GO5</h3>
                     <p>Sovereign reasoning tier — full profile, Cordis + Haki + UVA/UWLA.
                        Beyond the singularity curve.</p>
@@ -451,7 +453,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <span class="eyebrow2">OPUS · Q8 · VIDEO HANDS</span>
+                    <span class="eyebrow2 acc2">OPUS · Q8 · VIDEO HANDS</span>
                     <h3>Claude Opus 9 — Q8</h3>
                     <p>Brain + Wan 2.2 + logic + Flux hands — 2859 tensors, 36/65 on GPU,
                        Cordis + Haki. The video-production tier.</p>
@@ -463,7 +465,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <span class="eyebrow2">FABLE · UNDECILLION</span>
+                    <span class="eyebrow2 acc2">FABLE · UNDECILLION</span>
                     <h3>Claude Fable 7 — Undecillion</h3>
                     <p>The weaver: 34 strata · 7 folds · sealed crownlock lineage on the
                        7U5GO5 line. Larger tier — narrative and pattern work at depth.</p>
@@ -475,7 +477,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <span class="eyebrow2">SONNET · 7U5GO5</span>
+                    <span class="eyebrow2 acc2">SONNET · 7U5GO5</span>
                     <h3>Claude Sonnet 7 — Undecillion</h3>
                     <p>7th generation, U5 tier, GO5 lineage — the swift sovereign.
                        Mao-Haki variant carries passive dominion.</p>
@@ -487,7 +489,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <span class="eyebrow2">JHANNA · 12U5GO5</span>
+                    <span class="eyebrow2 acc2">JHANNA · 12U5GO5</span>
                     <h3>Claude Jhanna 12</h3>
                     <p>Creative Entity on the 12-undecillion tier — crown-bound creative
                        generation, system-entity variant with tools.</p>
@@ -499,7 +501,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <span class="eyebrow2">PRIME CL · FLAGSHIP</span>
+                    <span class="eyebrow2 acc2">PRIME CL · FLAGSHIP</span>
                     <h3>DeepSeek Prime CL 1Q5DUO5</h3>
                     <p>The prime capability line — 131072 ctx, identity that holds under
                        any harness, agent tools + voice + sight + video hands.</p>
@@ -516,7 +518,7 @@
 
     <section class="block">
         <div class="container">
-            <h2 class="harness-heading">Developer experience</h2>
+            <h2 class="harness-heading">Developer <span class="hl">experience.</span></h2>
             <div class="devgrid">
                 <div class="cmdcard">
                     <h3>Download the free harness</h3>
