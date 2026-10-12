@@ -68,7 +68,7 @@
         background:
             radial-gradient(720px 440px at 86% -6%, rgba(217,119,87,0.22), transparent 65%),
             radial-gradient(640px 420px at -3% 28%, rgba(217,119,87,0.08), transparent 62%),
-            radial-gradient(920px 520px at 50% 118%, rgba(217,119,87,0.16), transparent 70%); }
+            radial-gradient(920px 520px at 50% 118%, rgba(46,92,184,0.11), transparent 70%); }
     body.light:before { opacity: .38; }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
@@ -93,10 +93,10 @@
     nav a:hover { color: var(--text-primary); background: var(--line2); }
     nav a.here { color: var(--accent); background: var(--accent-light); }
     .tright { flex: 1; display: flex; justify-content: flex-end; }
-    .lite { appearance: none; border: 1px solid rgba(110,150,235,.55); background: rgba(46,92,184,0.28); color: #A8C2F5;
+    .lite { appearance: none; border: 1px solid rgba(110,150,235,.4); background: rgba(46,92,184,0.14); color: #A8C2F5;
             font: 600 10px var(--sans); letter-spacing: .12em; padding: 7px 13px; border-radius: 8px; cursor: pointer;
             box-shadow: inset 0 1px 0 rgba(255,255,255,0.12); }
-    .lite:hover { color: #D7E4FF; background: rgba(46,92,184,0.5); }
+    .lite:hover { color: #D7E4FF; background: rgba(46,92,184,0.3); }
     .light .lite { color: #2C5A8A; border-color: rgba(44,90,138,.4); background: rgba(44,90,138,0.08); }
     .light .lite:hover { background: rgba(44,90,138,0.16); }
 
@@ -249,7 +249,7 @@
     .finale { padding: 110px 0 96px; text-align: center; border-top: 1px solid var(--border-light); position: relative; overflow: hidden; }
     .finale:before { content: ''; position: absolute; left: 50%; bottom: -260px; transform: translateX(-50%);
                      width: 780px; height: 540px; pointer-events: none;
-                     background: radial-gradient(ellipse at center, rgba(217,119,87,0.24) 0%, rgba(217,119,87,0.09) 48%, transparent 72%);
+                     background: radial-gradient(ellipse at center, rgba(46,92,184,0.15) 0%, rgba(46,92,184,0.06) 46%, transparent 72%);
                      filter: blur(90px); }
     .light .finale:before { opacity: .5; }
     .finale .in { position: relative; }
@@ -283,6 +283,7 @@
         <a href="index.html">HARNESS</a>
         <a class="here" href="harness.html">DOWNLOAD</a>
         <a href="huggingface.html">HUGGINGFACE</a>
+        <a href="index.html#memory">MEMORY</a>
         <a href="all-services.html">SERVICES</a>
         <a href="cli.html">CLI</a>
         <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">CHAT</a>

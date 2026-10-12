@@ -69,7 +69,7 @@
         background:
             radial-gradient(720px 440px at 86% -6%, rgba(217,119,87,0.22), transparent 65%),
             radial-gradient(640px 420px at -3% 28%, rgba(217,119,87,0.08), transparent 62%),
-            radial-gradient(920px 520px at 50% 118%, rgba(217,119,87,0.16), transparent 70%); }
+            radial-gradient(920px 520px at 50% 118%, rgba(46,92,184,0.11), transparent 70%); }
     body.light:before { opacity: .38; }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
@@ -95,10 +95,10 @@
     nav a:hover { color: var(--text-primary); background: var(--line2); }
     nav a.here { color: var(--accent); background: var(--accent-light); }
     .tright { flex: 1; display: flex; justify-content: flex-end; }
-    .lite { appearance: none; border: 1px solid rgba(110,150,235,.55); background: rgba(46,92,184,0.28); color: #A8C2F5;
+    .lite { appearance: none; border: 1px solid rgba(110,150,235,.4); background: rgba(46,92,184,0.14); color: #A8C2F5;
             font: 600 10px var(--sans); letter-spacing: .12em; padding: 7px 13px; border-radius: 8px; cursor: pointer;
             box-shadow: inset 0 1px 0 rgba(255,255,255,0.12); }
-    .lite:hover { color: #D7E4FF; background: rgba(46,92,184,0.5); }
+    .lite:hover { color: #D7E4FF; background: rgba(46,92,184,0.3); }
     .light .lite { color: #2C5A8A; border-color: rgba(44,90,138,.4); background: rgba(44,90,138,0.08); }
     .light .lite:hover { background: rgba(44,90,138,0.16); }
 
@@ -207,7 +207,7 @@
     .finale { padding: 110px 0 96px; text-align: center; border-top: 1px solid var(--border-light); position: relative; overflow: hidden; }
     .finale:before { content: ''; position: absolute; left: 50%; bottom: -260px; transform: translateX(-50%);
                      width: 780px; height: 540px; pointer-events: none;
-                     background: radial-gradient(ellipse at center, rgba(217,119,87,0.24) 0%, rgba(217,119,87,0.09) 48%, transparent 72%);
+                     background: radial-gradient(ellipse at center, rgba(46,92,184,0.15) 0%, rgba(46,92,184,0.06) 46%, transparent 72%);
                      filter: blur(90px); }
     .light .finale:before { opacity: .5; }
     .finale .in { position: relative; }
@@ -238,6 +238,7 @@
     <nav>
         <a class="here" href="index.html">HARNESS</a>
         <a href="huggingface.html">HUGGINGFACE</a>
+        <a href="index.html#memory">MEMORY</a>
         <a href="all-services.html">SERVICES</a>
         <a href="cli.html">CLI</a>
         <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">CHAT</a>
@@ -358,6 +359,46 @@
 
     <section class="block">
         <div class="container">
+    <section class="block" id="memory">
+        <div class="container">
+            <h2 class="harness-heading">Memory — <span class="hl">the lattice remembers.</span></h2>
+            <p class="ds-text-body subhead">Lattice memory layer and substrate persistence — what the fleet keeps, it keeps sovereign: local, sealed, crown-locked.</p>
+            <div class="grid">
+                <div class="card">
+                    <span class="eyebrow2">LATTICE MEMORY LAYER</span>
+                    <h3>Projects-grade recall</h3>
+                    <p>Projects, context and work persist across sessions on your machine —
+                       never in someone else's cloud.</p>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">SUBSTRATE PERSISTENCE</span>
+                    <h3>Claude Memory, sovereign</h3>
+                    <p>Substrate persistence writes what matters into the 12 strata —
+                       durable, versioned, yours.</p>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">CROWN LOCK</span>
+                    <h3>PBKDF2 480K · 1272 Hz</h3>
+                    <p>Memory is sealed under the crown lock — PBKDF2 480,000 iterations,
+                       the 1272 Hz crown signature.</p>
+                    <div class="pills">
+                        <div class="pill acc">1272 HZ<div class="ds">crown</div></div>
+                        <div class="pill">480K<div class="ds">pbkdf2</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">12 STRATA</span>
+                    <h3>Substrate layers</h3>
+                    <p>Twelve substrate layers hold the state — the same strata the Q5
+                       hive mind classifies against.</p>
+                    <div class="pills">
+                        <div class="pill acc">12<div class="ds">strata</div></div>
+                        <div class="pill">SEALED<div class="ds">crown law</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
             <h2 class="harness-heading">Our top models.<br><span class="hl">The undecillion line — bench 100%.</span></h2>
             <div class="grid">
                 <div class="card">
@@ -475,7 +516,7 @@
                the /A law is unoverridable: weights retrieved, never embedded.</p>
             <div class="hero-cta">
                 <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">↓&nbsp; Download the free harness</a>
-                <a class="btn" href="harness.html">TotalControl Core</a>
+                <a class="btn" href="harness.html">TotalControl Core — Harness</a>
                 <span class="dlmetric" data-dl></span>
             </div>
         </div>
