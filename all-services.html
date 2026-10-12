@@ -7,6 +7,7 @@
 <meta name="description" content="The complete sovereign stack — loops, content engineering, dual brain, and every /A service running through the Oroboros Core.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="favicon.png">
+<script>try{var v=null;try{v=localStorage.getItem("tc-lite")}catch(e){}if(v===null){try{v=sessionStorage.getItem("tc-lite")}catch(e){}}if(v===null){var m=document.cookie.match(/(?:^|;\s*)tc-lite=([^;]*)/);if(m)v=m[1]}if(v==="1")document.documentElement.classList.add("light")}catch(e){if(document.cookie.indexOf("tc-lite=1")>=0)document.documentElement.classList.add("light")}</script>
 <style>
     :root {
         --bg-primary: #111111;
@@ -553,16 +554,31 @@ claude-cli</div>
 </footer>
 
 <script>
-function setFaviconLite(on){
-  const f = document.querySelector('link[rel="icon"]');
-  if (f) f.href = on ? 'favicon-light.png' : 'favicon.png';
-}
-function toggleLite(){
-  const on = document.body.classList.toggle('light');
-  setFaviconLite(on);
-  try { localStorage.setItem('tc-lite', on ? '1' : ''); } catch(e){}
-}
-try { if (localStorage.getItem('tc-lite') === '1') { document.body.classList.add('light'); setFaviconLite(true); } } catch(e){}
+(function(){
+  function readOn(){
+    try { var v = localStorage.getItem('tc-lite'); if (v !== null && v !== '') return v; } catch(e){}
+    try { var s = sessionStorage.getItem('tc-lite'); if (s) return s; } catch(e){}
+    try { var m = document.cookie.match(/(?:^|;\s*)tc-lite=([^;]*)/); if (m && m[1]) return m[1]; } catch(e){}
+    return document.documentElement.classList.contains('light') ? '1' : '';
+  }
+  function writeAll(on){
+    try { localStorage.setItem('tc-lite', on ? '1' : ''); } catch(e){}
+    try { sessionStorage.setItem('tc-lite', on ? '1' : ''); } catch(e){}
+    try { document.cookie = 'tc-lite=' + (on ? '1' : '0') + '; path=/; max-age=31536000; SameSite=Lax'; } catch(e){}
+  }
+  window.setFaviconLite = function(on){ var f = document.querySelector('link[rel="icon"]'); if (f) f.href = on ? 'favicon-light.png' : 'favicon.png'; };
+  window.toggleLite = function(){
+    var on = document.body.classList.toggle('light');
+    document.documentElement.classList.toggle('light', on);
+    writeAll(on);
+    window.setFaviconLite(on);
+  };
+  if (readOn() === '1') {
+    document.body.classList.add('light');
+    document.documentElement.classList.add('light');
+    window.setFaviconLite(true);
+  }
+})();
 async function loadDlCount(){
   const els = document.querySelectorAll('[data-dl]');
   if (!els.length) return;
