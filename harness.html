@@ -705,33 +705,7 @@ async function loadDlCount(){
 loadDlCount();
 </script>
 
-<script>
-(function () {
-  try {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const internal = (a) => {
-      const href = a.getAttribute('href') || '';
-      if (!href || a.target === '_blank') return false;
-      return href.endsWith('.html') && !href.startsWith('http');
-    };
-    document.querySelectorAll('a[href]').forEach(a => {
-      if (!internal(a)) return;
-      a.addEventListener('click', ev => {
-        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
-        ev.preventDefault();
-        document.body.classList.add('leaving');
-        setTimeout(() => { location.href = a.getAttribute('href'); }, 120);
-      });
-    });
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
-    }), { threshold: 0.08 });
-    document.querySelectorAll('section, .prod, .card, .glass, .slider').forEach(el => {
-      el.classList.add('reveal');
-      io.observe(el);
-    });
-  } catch (e) {}
-})();
-</script>
+
+<script src="site.js" defer></script>
 </body>
 </html>
