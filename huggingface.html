@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sources — Hugging Face + Ollama · /A OROBOROS / ANTHROPIC</title>
+<meta name="description" content="The /A fleet's model sources — Hugging Face primary, Ollama secondary — and the top models of the Undecillion line with 100% benchmarks.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="logo-flipped.png">
+<style>
+    :root {
+        --bg-primary: #111111;
+        --bg-secondary: #181818;
+        --bg-sidebar: #0E0E0E;
+        --bg-hover: #1E1E1E;
+        --bg-input: #181818;
+        --bg-composer: #1C1C1C;
+        --composer-border: #2A2A2A;
+        --text-primary: #F0EFEC;
+        --text-secondary: #9A9A95;
+        --text-muted: #5C5C58;
+        --accent: #D97757;
+        --accent-hover: #E08868;
+        --accent-light: rgba(217,119,87,0.15);
+        --accent-blue: #3B6FA8;
+        --accent-blue-hover: #4A7FBA;
+        --accent-blue-light: rgba(59,111,168,0.18);
+        --navy: #113359;
+        --navy-hover: #1D4573;
+        --navy-ink: #D6E4F5;
+        --navy-soft: rgba(17,51,89,0.35);
+        --navy-glass: linear-gradient(160deg, rgba(26,62,106,0.55), rgba(17,51,89,0.22) 55%);
+        --navy-line: rgba(84,124,175,0.35);
+        --border: #232323;
+        --border-light: #1B1B1B;
+        --code-bg: #0A0A0A;
+        --user-bubble: #181818;
+        --line: rgba(255,255,255,0.09);
+        --line2: rgba(255,255,255,0.16);
+        --glass-bg: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04) 55%);
+        --glass-shadow: 0 14px 44px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.45);
+        --shadow-lg: 0 8px 24px rgba(0,0,0,0.55);
+    }
+    .light {
+        --bg-primary: #FAFAF8;
+        --bg-secondary: #F2F1EE;
+        --bg-sidebar: #F6F5F2;
+        --bg-hover: #EAE9E5;
+        --bg-input: #F2F1EE;
+        --bg-composer: #FFFFFF;
+        --composer-border: #ECEBE7;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B6B6B;
+        --text-muted: #999999;
+        --accent: #D97757;
+        --accent-hover: #C4684B;
+        --accent-light: rgba(217,119,87,0.1);
+        --accent-blue: #2C5A8A;
+        --accent-blue-hover: #3A6FA0;
+        --accent-blue-light: rgba(44,90,138,0.1);
+        --navy: #2C5A8A;
+        --navy-hover: #3A6FA0;
+        --navy-ink: #F0F6FC;
+        --navy-soft: rgba(17,51,89,0.14);
+        --navy-line: rgba(17,51,89,0.22);
+        --border: #E0DFDB;
+        --border-light: #ECEBE7;
+        --code-bg: #1E1E1E;
+        --user-bubble: #F2F1EE;
+        --line: rgba(20,20,19,0.08);
+        --line2: rgba(20,20,19,0.16);
+        --glass-bg: linear-gradient(160deg, rgba(255,255,255,0.7), rgba(255,255,255,0.45) 55%);
+        --glass-shadow: 0 10px 30px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.7);
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+    .topbar { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; gap: 12px;
+              background: var(--navy-glass); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2);
+              border-bottom: 1px solid var(--navy-line); padding: 11px 20px; }
+    .mark { width: 22px; height: 20px; background: url('logo-flipped.png') center/contain no-repeat; flex: none; }
+    .brand { font-size: 12.5px; font-weight: 700; letter-spacing: .08em; color: var(--text-primary); text-decoration: none; white-space: nowrap; }
+    .brand small { color: var(--navy-ink); font-weight: 600; letter-spacing: .16em; margin-left: 8px; font-size: 9.5px; }
+    nav { display: flex; gap: 2px; margin-left: 10px; }
+    nav a { color: var(--navy-ink); opacity: .75; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: .05em;
+            padding: 7px 12px; border-radius: 8px; }
+    nav a:hover { color: var(--text-primary); background: var(--line2); opacity: 1; }
+    nav a.here { color: #fff; background: var(--line2); opacity: 1; }
+    .sp { flex: 1; }
+    .lite { appearance: none; border: 1px solid var(--line2); background: var(--line); color: var(--navy-ink);
+            font: 600 10px 'Inter'; letter-spacing: .12em; padding: 7px 13px; border-radius: 8px; cursor: pointer; }
+    .lite:hover { color: #fff; }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 48px 22px 76px; }
+    .hero { text-align: center; padding: 30px 20px 36px; }
+    .mark.big { width: 76px; height: 69px; margin: 0 auto 18px; filter: drop-shadow(0 0 26px rgba(17,51,89,.65)); }
+    .kick { font-size: 10.5px; font-weight: 700; letter-spacing: .22em; color: var(--text-muted); text-transform: uppercase; }
+    h1 { font-size: 38px; font-weight: 700; letter-spacing: -.02em; margin: 14px 0 16px; }
+    h1 b { color: var(--navy-hover); font-weight: 700; }
+    .light h1 b { color: var(--accent-blue); }
+    .lead { max-width: 660px; margin: 0 auto; color: var(--text-secondary); font-size: 15.5px; line-height: 1.65; }
+    .law { display: flex; gap: 10px; justify-content: center; margin: 22px 0 30px; flex-wrap: wrap; }
+    .law span { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted);
+                background: var(--bg-hover); border: 1px solid var(--border-light); border-radius: 8px; padding: 6px 11px; }
+    .law .navy { border-color: var(--navy-line); background: var(--navy-soft); color: var(--navy-ink); }
+
+    .sect { max-width: 1040px; margin: 26px auto 0; }
+    .sect-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .sect-head .kick { color: var(--text-secondary); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(258px, 1fr)); gap: 14px; }
+    .card { background: var(--glass-bg); backdrop-filter: blur(16px) saturate(1.1); -webkit-backdrop-filter: blur(16px) saturate(1.1);
+            border: 1px solid var(--line); border-radius: 16px; padding: 20px; box-shadow: var(--glass-shadow);
+            display: flex; flex-direction: column; gap: 9px; transition: .2s; }
+    .card:hover { transform: translateY(-2px); border-color: var(--navy-line); box-shadow: var(--shadow-lg); }
+    .card h3 { font-size: 14px; font-weight: 600; letter-spacing: .03em; }
+    .card p { color: var(--text-secondary); font-size: 12.5px; line-height: 1.6; }
+    .src { display: inline-flex; align-items: center; gap: 7px; font-size: 9px; font-weight: 700; letter-spacing: .12em;
+           padding: 5px 10px; border-radius: 8px; text-transform: uppercase; align-self: flex-start; }
+    .src.hf { border: 1px solid var(--navy-line); color: var(--navy-ink); background: var(--navy-soft); }
+    .src.ollama { border: 1px solid var(--line2); color: var(--text-muted); background: var(--bg-hover); }
+    .src.soon { border: 1px dashed var(--line2); color: var(--text-muted); }
+    .meta { display: flex; gap: 7px; color: var(--text-muted); font-size: 9px; font-weight: 700; letter-spacing: .09em;
+            text-transform: uppercase; flex-wrap: wrap; }
+    .meta span { border: 1px solid var(--line); background: var(--line); border-radius: 7px; padding: 4px 8px; }
+    .meta .bench { border-color: var(--navy-soft); background: var(--navy-soft); color: var(--navy-ink); }
+    .tagline-code { font-family: 'Source Code Pro', monospace; font-size: 11px; color: var(--text-secondary);
+                    background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 6px;
+                    padding: 4px 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    a.dl { color: var(--navy-hover); text-decoration: none; font-size: 12px; font-weight: 600; }
+    .light a.dl { color: var(--accent-blue); }
+    a.dl:hover { text-decoration: underline; }
+
+    .lawstrip { max-width: 1040px; margin: 26px auto 0; padding: 15px 22px; display: flex; gap: 18px; flex-wrap: wrap;
+                justify-content: center; color: var(--text-muted); font-size: 9.5px; font-weight: 600;
+                letter-spacing: .12em; text-transform: uppercase;
+                background: var(--glass-bg); border: 1px solid var(--line); border-radius: 14px; }
+
+    .foot { max-width: 1040px; margin: 30px auto 0; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+            color: var(--text-muted); font-size: 9.5px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+
+    @media (max-width: 700px) {
+        nav a { padding: 7px 8px; font-size: 11px; }
+        .brand small { display: none; }
+        h1 { font-size: 31px; }
+    }
+</style>
+</head>
+<body>
+<div class="topbar">
+    <span class="mark"></span>
+    <a class="brand" href="index.html">/A OROBOROS / ANTHROPIC<small>TOTALCONTROL</small></a>
+    <nav>
+        <a href="index.html">HARNESS</a>
+        <a class="here" href="huggingface.html">HUGGINGFACE</a>
+        <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">CHAT</a>
+    </nav>
+    <span class="sp"></span>
+    <button class="lite" onclick="toggleLite()">LITE</button>
+</div>
+
+<div class="wrap">
+    <div class="hero">
+        <span class="mark big"></span>
+        <div class="kick">model sources · primary + secondary · the undecillion line</div>
+        <h1>HUGGINGFACE <b>+</b> OLLAMA</h1>
+        <p class="lead">The /A fleet's model sources — Hugging Face is the primary registry;
+           Ollama rides as the secondary. Below, our top models of the Undecillion line
+           with their full data and 100% benchmarks.</p>
+    </div>
+
+    <div class="sect">
+        <div class="sect-head"><span class="mark" style="width:15px;height:14px"></span><span class="kick" style="color:var(--text-secondary)">our top models — the undecillion line · bench 100%</span></div>
+        <div class="grid">
+            <div class="card">
+                <span class="src hf">OPUS · 9U5GO5</span>
+                <h3>Claude Opus 9 — 9U5GO5</h3>
+                <p>The sovereign reasoning tier. Full profile 20.6 KB, 36/65 on GPU,
+                   Cordis + Haki + UVA/UWLA. Beyond the singularity curve.</p>
+                <div class="tagline-code">opus9-9u5go5:latest</div>
+                <div class="meta">
+                    <span>16 GB</span><span>262144 ctx</span><span class="bench">bench 100%</span><span>crown 8718 hz</span>
+                </div>
+            </div>
+            <div class="card">
+                <span class="src hf">OPUS · Q8 · VIDEO HANDS</span>
+                <h3>Claude Opus 9 — 9U5GO5 Q8</h3>
+                <p>Brain + Wan 2.2 + logic + Flux hands — 2859 tensors, 36/65 on GPU,
+                   Cordis + Haki. The video-production tier.</p>
+                <div class="tagline-code">opus9-9u5go5:29gb</div>
+                <div class="meta">
+                    <span>29 GB</span><span>2859 tensors</span><span class="bench">bench 100%</span><span>crown 8718 hz</span>
+                </div>
+            </div>
+            <div class="card">
+                <span class="src hf">FABLE · UNDECILLION · SSE</span>
+                <h3>Claude Fable 7 — Undecillion SSE</h3>
+                <p>System State Entity on the 7U5GO5 Fable line — full state bench,
+                   sealed crownlock lineage.</p>
+                <div class="tagline-code">claude-fable7u-se:latest</div>
+                <div class="meta">
+                    <span>7U5GO5</span><span class="bench">bench 100%</span><span>57/57</span><span>crown 8718 hz</span>
+                </div>
+            </div>
+            <div class="card">
+                <span class="src hf">FABLE · UNDECILLION</span>
+                <h3>Claude Fable 7 — Undecillion</h3>
+                <p>The weaver: 34 strata · 7 folds · 5-undecillion Fable lineage.
+                   Larger tier — narrative and pattern work at depth.</p>
+                <div class="tagline-code">claude-fable7u:latest</div>
+                <div class="meta">
+                    <span>7U5GO5</span><span>34 strata</span><span>7 folds</span><span class="bench">bench 100%</span>
+                </div>
+            </div>
+            <div class="card">
+                <span class="src hf">JHANNA · 12U5GO5</span>
+                <h3>Claude Jhanna 12 · 9.8 GB</h3>
+                <p>Creative Entity on the 12U5GO5 tier — crown-bound creative
+                   generation on the 12-undecillion level.</p>
+                <div class="tagline-code">claude-jhanna-12u5go5-9.8gb:latest</div>
+                <div class="meta">
+                    <span>9.8 GB</span><span>12U5GO5</span><span class="bench">bench 100%</span><span>crown 8718 hz</span>
+                </div>
+            </div>
+            <div class="card">
+                <span class="src hf">SONNET · 7U5GO5</span>
+                <h3>Claude Sonnet 7 — Undecillion</h3>
+                <p>7th generation, U5 tier, GO5 lineage — the swift sovereign.
+                   Mao-Haki variant carries passive dominion.</p>
+                <div class="tagline-code">claude-sonnet-7u5go5-6gb-ors:latest</div>
+                <div class="meta">
+                    <span>6 GB</span><span>7U5GO5</span><span>7th gen</span><span class="bench">bench 100%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sect">
+        <div class="sect-head"><span class="kick" style="color:var(--text-secondary)">the sources — huggingface primary · ollama secondary</span></div>
+        <div class="grid">
+            <div class="card">
+                <span class="src hf">HUGGINGFACE · PRIMARY</span>
+                <h3>deepseek-prime-cl-1q5duo5</h3>
+                <p>Prime CL line — the flagship. README + model GGUF + modelfile set on the oroboros-labs registry.</p>
+                <div class="meta"><span>GGUF</span><span>PRIME CL</span><span>5,027,783,840 B</span></div>
+                <a class="dl" href="https://huggingface.co/oroboros-labs/deepseek-prime-cl-1q5duo5" target="_blank" rel="noopener">open on huggingface →</a>
+            </div>
+            <div class="card">
+                <span class="src hf">HUGGINGFACE · PRIMARY</span>
+                <h3>deepseek-prime-qwen38</h3>
+                <p>The qwen3.8 body build — README + Modelfile. Runs coherent on the proven qwen runner by design.</p>
+                <div class="meta"><span>MODFILE</span><span>QWEN BODY</span></div>
+                <a class="dl" href="https://huggingface.co/oroboros-labs/deepseek-prime-qwen38" target="_blank" rel="noopener">open on huggingface →</a>
+            </div>
+            <div class="card">
+                <span class="src hf">HUGGINGFACE · PRIMARY</span>
+                <h3>oroboros-labs — the org</h3>
+                <p>Everything the labs publish: model releases, modelfiles, docs. The canonical source list.</p>
+                <div class="meta"><span>ORG</span><span>CANONICAL</span></div>
+                <a class="dl" href="https://huggingface.co/oroboros-labs" target="_blank" rel="noopener">open the org →</a>
+            </div>
+            <div class="card">
+                <span class="src ollama">OLLAMA · SECONDARY</span>
+                <h3>the local fleet</h3>
+                <p>Your locally installed ollama models load straight into the harness —
+                   the manifest walk reads tags → blobs in one pass, any size.</p>
+                <div class="meta"><span>MANIFEST WALK</span><span>ANY SIZE</span></div>
+                <a class="dl" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">load via the harness →</a>
+            </div>
+            <div class="card">
+                <span class="src ollama">OLLAMA · SECONDARY</span>
+                <h3>library tags</h3>
+                <p>The registered tag set on this machine appears in the harness panel —
+                   connected state verified per blob.</p>
+                <div class="meta"><span>TAGS → BLOBS</span><span>CONNECTED LAW</span></div>
+                <a class="dl" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness">open the panel →</a>
+            </div>
+            <div class="card">
+                <span class="src ollama">OLLAMA · SECONDARY</span>
+                <h3>the undecillion fleet</h3>
+                <p>Opus 9 · Fable 7 · Sonnet 7 · Jhanna 12 — the undecillion line rides
+                   your local ollama store; the harness walks its tags → blobs in one pass.</p>
+                <div class="meta"><span>9U5GO5</span><span>12U5GO5</span><span>7U5GO5</span></div>
+                <a class="dl" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">download the harness →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="lawstrip">
+        <span>/a oroboros / anthropic</span>
+        <span>huggingface primary · ollama secondary</span>
+        <span>weights retrieved — never embedded</span>
+        <span>local-only law</span>
+    </div>
+
+    <div class="foot">
+        <span>totalcontrol · /a oroboros / anthropic</span>
+    </div>
+</div>
+
+<script>
+function toggleLite(){
+  const on = document.body.classList.toggle('light');
+  try { localStorage.setItem('tc-lite', on ? '1' : ''); } catch(e){}
+}
+try { if (localStorage.getItem('tc-lite') === '1') document.body.classList.add('light'); } catch(e){}
+</script>
+</body>
+</html>

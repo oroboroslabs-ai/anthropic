@@ -1,5 +1,10 @@
 node_modules/
 .env
+.env.local
+.env.*
 .DS_Store
 *.log
 .vercel
+.next/
+Screenshot*.png
+index_21add2a.html
