@@ -59,23 +59,36 @@
     .dlinks { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
     .law { font: 500 10px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); margin-top: 26px; }
     .manual { color: var(--accent); }
-    /* UNIFORM PANEL GLASS — one panel law on every surface, both modes */
+        /* UNIFORM PANEL GLASS — glass over glass over glass, one business law */
     :root {
-        --panel-bg: linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03) 60%), rgba(20,20,19,0.45);
-        --panel-border: rgba(255,255,255,0.12);
-        --panel-shadow: 0 14px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.12);
+        --glass-1: linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03) 60%), rgba(20,20,19,0.45);
+        --glass-1-line: rgba(255,255,255,0.12);
+        --glass-1-shadow: 0 14px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.12);
+        --glass-2: linear-gradient(160deg, rgba(255,255,255,0.13), rgba(255,255,255,0.07) 60%), rgba(24,24,23,0.50);
+        --glass-2-line: rgba(255,255,255,0.16);
+        --glass-3: rgba(255,255,255,0.07);
+        --glass-3-line: rgba(255,255,255,0.18);
         --panel-blur: blur(16px) saturate(1.25); }
     .light {
-        --panel-bg: linear-gradient(160deg, rgba(255,255,255,0.80), rgba(255,255,255,0.62) 60%), rgba(255,255,255,0.55);
-        --panel-border: rgba(20,20,19,0.09);
-        --panel-shadow: 0 1px 3px rgba(20,20,19,0.05), 0 14px 34px rgba(20,20,19,0.06);
+        --glass-1: linear-gradient(160deg, rgba(255,255,255,0.80), rgba(255,255,255,0.62) 60%), rgba(255,255,255,0.55);
+        --glass-1-line: rgba(20,20,19,0.09);
+        --glass-1-shadow: 0 1px 3px rgba(20,20,19,0.05), 0 14px 34px rgba(20,20,19,0.06);
+        --glass-2: rgba(255,255,255,0.90);
+        --glass-2-line: rgba(20,20,19,0.10);
+        --glass-3: rgba(20,20,19,0.035);
+        --glass-3-line: rgba(20,20,19,0.12);
         --panel-blur: blur(14px) saturate(1.1); }
-    .card, .prod, .box, .cmdcard, .lawstrip, .shotframe, .window, .tblwrap, .mono-fig, .glass {
-        background: var(--panel-bg) !important;
-        border: 1px solid var(--panel-border) !important;
-        box-shadow: var(--panel-shadow) !important;
+    .card, .prod, .box, .cmdcard, .lawstrip, .shotframe, .window, .tblwrap, .mono-fig, .glass, .slider .sframe {
+        background: var(--glass-1) !important;
+        border: 1px solid var(--glass-1-line) !important;
+        box-shadow: var(--glass-1-shadow) !important;
         backdrop-filter: var(--panel-blur) !important; -webkit-backdrop-filter: var(--panel-blur) !important;
         border-radius: 16px !important; }
+    .tile, .inset, .cmdrow, .steps, .pwindow, .pcomposer {
+        background: var(--glass-2) !important;
+        border: 1px solid var(--glass-2-line) !important;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 6px 18px rgba(0,0,0,0.18) !important;
+        border-radius: 13px !important; }
     /* LINK LAW — traditional business links */
     nav a { background: transparent !important; border-radius: 0 !important; padding: 8px 13px !important; }
     nav a:hover { color: var(--text-primary) !important; background: transparent !important;
@@ -90,6 +103,25 @@
     footer.site::after, footer::after {
         content: ''; position: absolute; top: -18px; left: 0; right: 0; height: 18px; pointer-events: none;
         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 18' preserveAspectRatio='none'%3E%3Cpath d='M0,9 C240,18 480,1 720,9 C960,18 1200,1 1440,9' stroke='%23D97757' stroke-opacity='0.28' stroke-width='1' fill='none'/%3E%3C/svg%3E") center/cover no-repeat; }
+    /* GLASS-3 CHIPS — third layer */
+    .pill, .lawchips span, .law span, .meta span, .tagcode {
+        background: var(--glass-3) !important;
+        border: 1px solid var(--glass-3-line) !important;
+        border-radius: 10px !important; }
+    .light .tile, .light .inset, .light .cmdrow {
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 4px 14px rgba(20,20,19,0.04) !important; }
+
+    /* PAGE MOTION — plain beauty: every movement a statement */
+    @view-transition { navigation: auto; }
+    @media (prefers-reduced-motion: no-preference) {
+        .hero, section.block, .prod, .box, .slider { animation: tc-rise .55s cubic-bezier(.22,.61,.36,1) both; }
+        @keyframes tc-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+        .reveal { opacity: 0; transform: translateY(10px); }
+        .reveal.on { opacity: 1; transform: none;
+                     transition: opacity .5s cubic-bezier(.22,.61,.36,1), transform .5s cubic-bezier(.22,.61,.36,1); }
+        main { transition: opacity .12s linear; }
+        body.leaving main { opacity: 0; }
+    }
 </style>
 </head>
 <body>
@@ -154,6 +186,35 @@ try { var v = null; try { v = localStorage.getItem('tc-lite'); } catch(e){}
   const item = new URLSearchParams(location.search).get('item') || location.hash.replace('#', '') || '';
   const hb = document.getElementById('handsBox'), xb = document.getElementById('extBox');
   if (item === 'ext') { hb.style.display = 'none'; } else if (item === 'hands') { xb.style.display = 'none'; }
+})();
+</script>
+
+<script>
+(function () {
+  try {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const internal = (a) => {
+      const href = a.getAttribute('href') || '';
+      if (!href || a.target === '_blank') return false;
+      return href.endsWith('.html') && !href.startsWith('http');
+    };
+    document.querySelectorAll('a[href]').forEach(a => {
+      if (!internal(a)) return;
+      a.addEventListener('click', ev => {
+        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
+        ev.preventDefault();
+        document.body.classList.add('leaving');
+        setTimeout(() => { location.href = a.getAttribute('href'); }, 120);
+      });
+    });
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+    }), { threshold: 0.08 });
+    document.querySelectorAll('section, .prod, .card, .glass, .slider').forEach(el => {
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+  } catch (e) {}
 })();
 </script>
 </body>
