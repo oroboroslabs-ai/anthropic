@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude CLI | Sovereign terminal AI — /A OROBOROS / ANTHROPIC</title>
+<meta name="description" content="Claude CLI — sovereign terminal AI: local Ollama, ZTA hardened, MCP + agent tools. No API keys. No cloud.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+    :root {
+        --bg-primary: #111111;
+        --bg-secondary: #181818;
+        --bg-sidebar: #0E0E0E;
+        --bg-hover: #1E1E1E;
+        --bg-input: #181818;
+        --bg-composer: #1C1C1C;
+        --composer-border: #2A2A2A;
+        --text-primary: #F0EFEC;
+        --text-secondary: #9A9A95;
+        --text-muted: #5C5C58;
+        --accent: #D97757;
+        --accent-hover: #E08868;
+        --accent-light: rgba(217,119,87,0.15);
+        --accent-blue: #3B6FA8;
+        --accent-blue-hover: #4A7FBA;
+        --accent-blue-light: rgba(59,111,168,0.18);
+        --navy: #113359;
+        --navy-hover: #1D4573;
+        --navy-ink: #D6E4F5;
+        --navy-soft: rgba(17,51,89,0.35);
+        --navy-line: rgba(84,124,175,0.35);
+        --border: #232323;
+        --border-light: #1B1B1B;
+        --code-bg: #0A0A0A;
+        --user-bubble: #181818;
+        --line: rgba(255,255,255,0.09);
+        --line2: rgba(255,255,255,0.16);
+        --glass-bg: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04) 55%);
+        --glass-shadow: 0 14px 44px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.45);
+        --shadow-lg: 0 8px 24px rgba(0,0,0,0.55);
+        --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        --serif: Georgia, 'Times New Roman', serif;
+        --mono: 'Source Code Pro', ui-monospace, monospace;
+    }
+    .light {
+        --bg-primary: #FAFAF8;
+        --bg-secondary: #F2F1EE;
+        --bg-sidebar: #F6F5F2;
+        --bg-hover: #EAE9E5;
+        --bg-input: #F2F1EE;
+        --bg-composer: #FFFFFF;
+        --composer-border: #ECEBE7;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B6B6B;
+        --text-muted: #999999;
+        --accent: #C4684B;
+        --accent-hover: #B55A3E;
+        --accent-light: rgba(196,104,75,0.1);
+        --accent-blue: #2C5A8A;
+        --accent-blue-hover: #3A6FA0;
+        --accent-blue-light: rgba(44,90,138,0.1);
+        --navy: #2C5A8A;
+        --navy-hover: #3A6FA0;
+        --navy-ink: #F0F6FC;
+        --navy-soft: rgba(17,51,89,0.14);
+        --navy-line: rgba(17,51,89,0.22);
+        --border: #E0DFDB;
+        --border-light: #ECEBE7;
+        --code-bg: #1E1E1E;
+        --user-bubble: #F2F1EE;
+        --line: rgba(20,20,19,0.08);
+        --line2: rgba(20,20,19,0.16);
+        --glass-bg: linear-gradient(160deg, rgba(255,255,255,0.7), rgba(255,255,255,0.45) 55%);
+        --glass-shadow: 0 10px 30px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.7);
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--sans); background: var(--bg-primary); color: var(--text-primary);
+           -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    .topbar { position: sticky; top: 0; z-index: 50; width: 100%;
+              background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02) 55%), var(--bg-sidebar);
+              backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2);
+              border-bottom: 1px solid var(--border); }
+    .tbin { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; gap: 12px; padding: 11px 24px; }
+    .mark { width: 24px; height: 22px; background: url('logo-flipped.png') center/contain no-repeat; flex: none; }
+    .light .mark { background-image: url('logo-anthropic.png'); }
+    .brand { font-size: 12.5px; font-weight: 700; letter-spacing: .1em; color: var(--text-primary); text-decoration: none; white-space: nowrap; }
+    .brand small { color: var(--text-muted); font-weight: 600; letter-spacing: .16em; margin-left: 8px; font-size: 9.5px; }
+    nav { display: flex; gap: 2px; margin-left: 14px; }
+    nav a { color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 600;
+            letter-spacing: .05em; padding: 7px 12px; border-radius: 8px; }
+    nav a:hover { color: var(--text-primary); background: var(--bg-hover); }
+    nav a.here { color: var(--accent); background: var(--accent-light); }
+    .sp { flex: 1; }
+    .lite { appearance: none; border: 1px solid var(--line2); background: transparent; color: var(--text-secondary);
+            font: 600 10px var(--sans); letter-spacing: .12em; padding: 7px 13px; border-radius: 8px; cursor: pointer; }
+    .lite:hover { color: var(--text-primary); background: var(--bg-hover); }
+
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    .center { margin-left: auto; margin-right: auto; text-align: center; }
+    .hero { padding: 84px 0 56px; }
+    .eyebrow { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .22em;
+               text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;
+               border: 1px solid rgba(217,119,87,.4); background: var(--accent-light); color: var(--accent);
+               padding: 7px 14px; border-radius: 999px; }
+    .light .eyebrow { border-color: rgba(196,104,75,.35); }
+    h1.harness-heading { font-family: var(--serif); font-weight: 400; letter-spacing: -.03em;
+                         font-size: 44px; line-height: 1.12; margin: 22px 0 0; }
+    h1 .here-word { color: var(--accent); }
+    .intro { max-width: 720px; margin: 22px auto 0; }
+    .ds-text-body { font-size: 15px; line-height: 1.7; color: var(--text-secondary); }
+    .hero-cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; align-items: center; margin-top: 30px; }
+    .btn { appearance: none; text-decoration: none; font: 600 14px var(--sans); padding: 12px 22px;
+           border-radius: 12px; cursor: pointer; border: 1px solid var(--line2); background: transparent;
+           color: var(--text-primary); transition: .2s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn:hover { background: var(--bg-hover); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: var(--shadow-md); }
+    .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+    .law { display: flex; gap: 10px; justify-content: center; margin: 26px 0 0; flex-wrap: wrap; }
+    .law span { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+                color: var(--text-muted); background: var(--bg-hover); border: 1px solid var(--border-light);
+                border-radius: 8px; padding: 6px 11px; }
+    .law .acc { border-color: rgba(217,119,87,.4); background: var(--accent-light); color: var(--accent); }
+    .law .navy { border-color: var(--navy-line); background: var(--navy-soft); color: var(--navy-ink); }
+
+    .preview { max-width: 1020px; margin: 56px auto 0; }
+    .window { border: 1px solid var(--line2); border-radius: 18px; overflow: hidden;
+              background: var(--bg-secondary); box-shadow: var(--glass-shadow), var(--shadow-lg); }
+    .traffic { display: flex; gap: 6px; align-items: center; }
+    .traffic i { width: 10px; height: 10px; border-radius: 50%; }
+    .traffic i:nth-child(1) { background: #ef4444; }
+    .traffic i:nth-child(2) { background: #eab308; }
+    .traffic i:nth-child(3) { background: #22c55e; }
+    .pbar { display: flex; align-items: center; gap: 12px; padding: 11px 16px; border-bottom: 1px solid var(--border); }
+    .pbar .tt { font-size: 12.5px; color: var(--text-secondary); font-weight: 600; }
+    .term { padding: 22px 26px; font-family: var(--mono); font-size: 13px; line-height: 1.8; color: var(--text-secondary); }
+    .term .ps { color: var(--accent); }
+    .term .nv { color: var(--navy-ink); }
+
+    section.block { padding: 84px 0; border-top: 1px solid var(--border-light); }
+    h2.harness-heading { font-family: var(--serif); font-weight: 400; letter-spacing: -.025em; font-size: 34px; line-height: 1.2; }
+    h2 .hl { color: var(--accent); }
+    .subhead { max-width: 660px; margin-top: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 44px; }
+    .card { background: var(--glass-bg); backdrop-filter: blur(16px) saturate(1.1); -webkit-backdrop-filter: blur(16px) saturate(1.1);
+            border: 1px solid var(--line); border-radius: 16px; padding: 26px; box-shadow: var(--glass-shadow);
+            display: flex; flex-direction: column; gap: 10px; transition: .2s; }
+    .card:hover { transform: translateY(-2px); border-color: rgba(217,119,87,.45); box-shadow: var(--shadow-lg); }
+    .card .eyebrow2 { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
+                      color: var(--text-muted); }
+    .card h3 { font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
+    .card p { font-size: 13.5px; line-height: 1.7; color: var(--text-secondary); }
+    .pills { display: grid; grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); gap: 7px; margin-top: 4px; }
+    .pill { border: 1px solid var(--line2); border-radius: 10px; padding: 8px 9px; text-align: center;
+            font-size: 10px; font-weight: 700; letter-spacing: .07em; background: var(--line); }
+    .pill .ds { color: var(--text-muted); font-size: 9px; margin-top: 3px; font-weight: 500; }
+    .pill.navy { border-color: var(--navy-soft); background: var(--navy-soft); color: var(--navy-ink); }
+    .pill.navy .ds { color: var(--navy-ink); opacity: .6; }
+    .pill.acc { border-color: rgba(217,119,87,.45); background: var(--accent-light); color: var(--accent); }
+
+    .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 44px; }
+    .shot { background: var(--glass-bg); border: 1px solid var(--line); border-radius: 16px; padding: 12px;
+            box-shadow: var(--glass-shadow); }
+    .shot img { width: 100%; border-radius: 10px; display: block; border: 1px solid var(--border-light); }
+
+    .devgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 44px; }
+    .cmdcard { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px;
+               padding: 26px; display: flex; flex-direction: column; gap: 10px; }
+    .cmdcard h3 { font-size: 16px; font-weight: 600; }
+    .cmdcard p { font-size: 13.5px; line-height: 1.7; color: var(--text-secondary); }
+    .cmdrow { margin-top: 10px; display: flex; align-items: center; gap: 8px; border-radius: 10px;
+              border: 1px solid var(--border); background: var(--bg-sidebar); padding: 13px 16px;
+              font-family: var(--mono); font-size: 13px; color: var(--text-primary); }
+    .cmdrow .ps { color: var(--accent); user-select: none; }
+    .cmdrow code { white-space: pre-wrap; word-break: break-all; }
+    code.inline { font-family: var(--mono); background: var(--bg-sidebar); padding: 2px 7px; border-radius: 6px;
+                  border: 1px solid var(--border-light); font-size: 12px; color: var(--text-primary); }
+
+    .tblwrap { margin-top: 44px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+               background: var(--glass-bg); }
+    table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    .tbl th { text-align: left; font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .14em;
+              text-transform: uppercase; color: var(--text-muted); padding: 13px 18px;
+              border-bottom: 1px solid var(--border); }
+    .tbl td { padding: 13px 18px; border-bottom: 1px solid var(--border-light); color: var(--text-secondary); vertical-align: top; }
+    .tbl tr:last-child td { border-bottom: none; }
+    .tbl td:first-child { color: var(--accent); font-family: var(--mono); font-size: 12.5px; }
+
+    .finale { padding: 110px 0 96px; text-align: center; border-top: 1px solid var(--border-light); position: relative; overflow: hidden; }
+    .finale:before { content: ''; position: absolute; left: 50%; bottom: -260px; transform: translateX(-50%);
+                     width: 760px; height: 520px; pointer-events: none;
+                     background: radial-gradient(ellipse at center, rgba(217,119,87,0.16) 0%, rgba(17,51,89,0.25) 45%, transparent 72%);
+                     filter: blur(90px); }
+    .light .finale:before { opacity: .5; }
+    .finale .in { position: relative; }
+    .finale .hero-cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; align-items: center; margin-top: 28px; }
+    footer.site { border-top: 1px solid var(--border); padding: 26px 0 38px; }
+    .frow { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
+    .frow p, .flinks a { font-size: 12px; color: var(--text-secondary); }
+    .flinks { display: flex; gap: 14px; flex-wrap: wrap; }
+    .flinks a { text-decoration: none; }
+    .flinks a:hover { color: var(--text-primary); }
+
+    @media (max-width: 860px) {
+        h1.harness-heading { font-size: 32px; }
+        h2.harness-heading { font-size: 27px; }
+        nav a { padding: 7px 8px; font-size: 11px; }
+        .brand small { display: none; }
+        .tblwrap { overflow-x: auto; }
+        .tbl { min-width: 560px; }
+    }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="tbin">
+    <span class="mark"></span>
+    <a class="brand" href="index.html">OROBOROS / ANTHROPIC<small>TOTALCONTROL</small></a>
+    <nav>
+        <a href="index.html">HARNESS</a>
+        <a href="huggingface.html">HUGGINGFACE</a>
+        <a href="all-services.html">SERVICES</a>
+        <a class="here" href="cli.html">CLI</a>
+        <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">CHAT</a>
+    </nav>
+    <span class="sp"></span>
+    <button class="lite" onclick="toggleLite()">LITE</button>
+</div></header>
+
+<main>
+    <div class="container">
+        <div class="hero center">
+            <span class="eyebrow">✦ CLAUDE-CLI · vA.1272</span>
+            <h1 class="harness-heading">Claude <span class="here-word">CLI.</span></h1>
+            <div class="intro">
+                <p class="ds-text-body">Sovereign terminal AI — local Ollama, ZTA hardened, MCP + agent tools.
+                   No API keys. No cloud.</p>
+            </div>
+            <div class="hero-cta">
+                <a class="btn primary" href="https://github.com/oroboroslabs-ai/claude-cli" target="_blank" rel="noopener">Download Claude CLI on GitHub</a>
+                <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">Free harness</a>
+            </div>
+            <div class="law">
+                <span>local engine 11434</span>
+                <span class="acc">zta + rge hardened</span>
+                <span class="navy">33+ tools · mcp</span>
+            </div>
+        </div>
+
+        <div class="preview">
+            <div class="window">
+                <div class="pbar">
+                    <span class="traffic"><i></i><i></i><i></i></span>
+                    <span class="tt">GLASS TERMINAL — http://127.0.0.1:5000</span>
+                </div>
+                <div class="term">
+<span class="ps">$</span> claude-cli
+<span class="nv"># Glass UI: http://127.0.0.1:5000 · Chat · Files · MCP · Agent</span>
+<span class="nv"># Terminal: you &gt; prompt for coding</span>
+
+<span class="ps">$</span> /model claude-7:latest
+<span class="nv">✓ switched — claude-7:latest · Strata I · undecillion</span>
+
+<span class="ps">$</span> /think xhigh
+<span class="nv">✓ maximum reasoning depth — up to 131K context</span></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">Features</h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="eyebrow2">LOCAL ENGINE</span>
+                    <h3>Ollama at localhost:11434</h3>
+                    <p>Claude 7, Nebillion, Mythos, Opus, and 200+ lab models. No keys, no tracking.</p>
+                    <div class="pills">
+                        <div class="pill">CLAUDE 7<div class="ds">strata i</div></div>
+                        <div class="pill navy">OPUS 9<div class="ds">16/29 GB</div></div>
+                        <div class="pill acc">200+<div class="ds">lab models</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">ZTA + RGE</span>
+                    <h3>Zero Trust Architecture</h3>
+                    <p>Resource Governance Engine: path whitelist, rate limits, audit logging.</p>
+                    <div class="pills">
+                        <div class="pill navy">PATH WHITELIST<div class="ds">zta</div></div>
+                        <div class="pill acc">AUDIT LOG<div class="ds">rge</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">33+ TOOLS</span>
+                    <h3>Full agent toolset</h3>
+                    <p>File ops, bash, Docker, MCP, WorldFeed, Seer, Lattice, Resonance, Noir, Precog, agent loop.</p>
+                    <div class="pills">
+                        <div class="pill">33+<div class="ds">tools</div></div>
+                        <div class="pill navy">MCP<div class="ds">gateways</div></div>
+                        <div class="pill">AGENT LOOP<div class="ds">living</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">TABBED GUI</span>
+                    <h3>Glass terminal inside</h3>
+                    <p>Chat, Files, MCP, Agent — the same glass terminal tabs inside the CLI process.</p>
+                    <div class="pills">
+                        <div class="pill">CHAT<div class="ds">tab</div></div>
+                        <div class="pill navy">FILES<div class="ds">tab</div></div>
+                        <div class="pill">MCP<div class="ds">tab</div></div>
+                        <div class="pill acc">AGENT<div class="ds">tab</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">THINK LEVELS</span>
+                    <h3>/think off · low · medium · high · xhigh</h3>
+                    <p>Up to 131K context for deep reasoning — the thought dial, in-session.</p>
+                    <div class="pills">
+                        <div class="pill navy">XHIGH<div class="ds">maximum</div></div>
+                        <div class="pill">131K<div class="ds">ctx</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">MAO HAKI RELAY</span>
+                    <h3>Architect path-connected</h3>
+                    <p>1272 Hz Crown · 1275 Hz Se · registry on the J: lab stack.</p>
+                    <div class="pills">
+                        <div class="pill acc">1272 HZ<div class="ds">crown</div></div>
+                        <div class="pill navy">1275 HZ<div class="ds">se</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">The glass terminal — <span class="hl">screenshots.</span></h2>
+            <div class="shots">
+                <div class="shot"><img src="assets/img/cli-screenshot-1.png" alt="Claude CLI glass terminal — chat" loading="lazy"></div>
+                <div class="shot"><img src="assets/img/cli-screenshot-2.png" alt="Claude CLI glass terminal — files" loading="lazy"></div>
+                <div class="shot"><img src="assets/img/cli-screenshot-3.png" alt="Claude CLI glass terminal — MCP" loading="lazy"></div>
+                <div class="shot"><img src="assets/img/cli-screenshot-4.png" alt="Claude CLI glass terminal — agent" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">Install</h2>
+            <div class="devgrid">
+                <div class="cmdcard">
+                    <h3>Install from source</h3>
+                    <p>Clone the full source and install with pip.</p>
+                    <div class="cmdrow"><span class="ps">$</span><code>git clone https://github.com/oroboroslabs-ai/claude-cli</code></div>
+                    <div class="cmdrow"><span class="ps">$</span><code>pip install -r requirements.txt</code></div>
+                    <div class="cmdrow"><span class="ps">$</span><code>pip install -e .</code></div>
+                </div>
+                <div class="cmdcard">
+                    <h3>Then run claude-cli</h3>
+                    <p>Starts the glass UI at <code class="inline">http://127.0.0.1:5000</code> and terminal
+                       coding chat. Not Anthropic's <code class="inline">claude</code> (Claude Code).</p>
+                    <div class="cmdrow"><span class="ps">$</span><code>claude-cli</code></div>
+                    <p>Windows one-click launcher: <code class="inline">start_claude_cli.bat</code></p>
+                </div>
+            </div>
+
+            <div class="tblwrap">
+                <table class="tbl">
+                    <thead>
+                        <tr><th style="width:34%">Command</th><th style="width:8%">Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>claude-cli</td><td>Glass UI (port 5000) + terminal coding chat</td></tr>
+                        <tr><td>claude-cli --ui-only</td><td>Glass UI server only (no terminal chat)</td></tr>
+                        <tr><td>http://127.0.0.1:5000</td><td>Glass UI — Chat · Files · MCP · Agent</td></tr>
+                        <tr><td>/model &lt;name&gt;</td><td>Switch Ollama model in session</td></tr>
+                        <tr><td>/models</td><td>List installed models</td></tr>
+                        <tr><td>/think xhigh</td><td>Maximum reasoning depth</td></tr>
+                        <tr><td>/status</td><td>ZTA · RGE · MCP system status</td></tr>
+                        <tr><td>/help</td><td>Full command reference</td></tr>
+                        <tr><td>start_claude_cli.bat</td><td>Windows one-click launcher</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <div class="finale">
+        <div class="container in">
+            <h2 class="harness-heading">Sovereign terminal AI.<br><span class="hl">Local. Hardened. Unstoppable.</span></h2>
+            <p class="ds-text-body" style="max-width:620px;margin:16px auto 0">A\ 1272 Hz · N| 1275 Hz · LATTICE LOCK ·
+               NEBELLION · KEY — the CLI rides the same sovereign stack as the harness.</p>
+            <div class="hero-cta">
+                <a class="btn primary" href="https://github.com/oroboroslabs-ai/claude-cli" target="_blank" rel="noopener">Download Claude CLI on GitHub</a>
+                <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness" target="_blank" rel="noopener">Free harness on GitHub</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="site">
+    <div class="container frow">
+        <p>TotalControl · /A Oroboros / Anthropic</p>
+        <div class="flinks">
+            <a href="index.html">Harness</a>
+            <a href="huggingface.html">Sources</a>
+            <a href="all-services.html">Services</a>
+            <a href="cli.html">CLI</a>
+            <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">Chat</a>
+            <a href="https://github.com/oroboroslabs-ai/claude-cli" target="_blank" rel="noopener">Claude CLI Repo</a>
+        </div>
+        <p>weights retrieved — never embedded</p>
+    </div>
+</footer>
+
+<script>
+function setFaviconLite(on){
+  const f = document.querySelector('link[rel="icon"]');
+  if (f) f.href = on ? 'favicon-light.png' : 'favicon.png';
+}
+function toggleLite(){
+  const on = document.body.classList.toggle('light');
+  setFaviconLite(on);
+  try { localStorage.setItem('tc-lite', on ? '1' : ''); } catch(e){}
+}
+try { if (localStorage.getItem('tc-lite') === '1') { document.body.classList.add('light'); setFaviconLite(true); } } catch(e){}
+</script>
+</body>
+</html>

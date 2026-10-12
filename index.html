@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TotalControl Core | The future is here — /A OROBOROS / ANTHROPIC</title>
-<meta name="description" content="TotalControl Core — a revolutionary new AI architecture and architectural theory, built on quantum physics and temporal technologies. The free harness runs on your machine.">
+<title>The Future Is Here — /A TotalControl · OROBOROS / ANTHROPIC</title>
+<meta name="description" content="A revolutionary new architecture and architectural theory, built on quantum physics and temporal technologies. The free TotalControl harness runs on your machine.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="logo-flipped.png">
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
     :root {
         --bg-primary: #111111;
@@ -29,7 +29,6 @@
         --navy-hover: #1D4573;
         --navy-ink: #D6E4F5;
         --navy-soft: rgba(17,51,89,0.35);
-        --navy-glass: linear-gradient(160deg, rgba(26,62,106,0.55), rgba(17,51,89,0.22) 55%);
         --navy-line: rgba(84,124,175,0.35);
         --border: #232323;
         --border-light: #1B1B1B;
@@ -57,9 +56,9 @@
         --text-primary: #1A1A1A;
         --text-secondary: #6B6B6B;
         --text-muted: #999999;
-        --accent: #D97757;
-        --accent-hover: #C4684B;
-        --accent-light: rgba(217,119,87,0.1);
+        --accent: #C4684B;
+        --accent-hover: #B55A3E;
+        --accent-light: rgba(196,104,75,0.1);
         --accent-blue: #2C5A8A;
         --accent-blue-hover: #3A6FA0;
         --accent-blue-light: rgba(44,90,138,0.1);
@@ -87,98 +86,115 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
-    /* ===== header (navy glass, like the top) ===== */
-    .topbar { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; gap: 12px;
-              max-width: 1280px; margin: 0 auto; padding: 12px 24px;
-              background: var(--navy-glass); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2);
-              border-bottom: 1px solid var(--navy-line); }
-    .mark { width: 22px; height: 20px; background: url('logo-flipped.png') center/contain no-repeat; flex: none; }
-    .brand { font-size: 12.5px; font-weight: 700; letter-spacing: .08em; color: var(--text-primary); text-decoration: none; white-space: nowrap; }
-    .brand small { color: var(--navy-ink); font-weight: 600; letter-spacing: .16em; margin-left: 8px; font-size: 9.5px; }
-    nav { display: flex; gap: 2px; margin-left: 12px; }
-    nav a { color: var(--navy-ink); opacity: .75; text-decoration: none; font-size: 12px; font-weight: 600;
+    /* ===== full-width header (grey glass, one /A) ===== */
+    .topbar { position: sticky; top: 0; z-index: 50; width: 100%;
+              background: var(--glass-bg), var(--bg-sidebar); background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02) 55%), var(--bg-sidebar);
+              backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2);
+              border-bottom: 1px solid var(--border); }
+    .tbin { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; gap: 12px; padding: 11px 24px; }
+    .mark { width: 24px; height: 22px; background: url('logo-flipped.png') center/contain no-repeat; flex: none; }
+    .brand { font-size: 12.5px; font-weight: 700; letter-spacing: .1em; color: var(--text-primary); text-decoration: none; white-space: nowrap; }
+    .brand small { color: var(--text-muted); font-weight: 600; letter-spacing: .16em; margin-left: 8px; font-size: 9.5px; }
+    nav { display: flex; gap: 2px; margin-left: 14px; }
+    nav a { color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 600;
             letter-spacing: .05em; padding: 7px 12px; border-radius: 8px; }
-    nav a:hover { color: var(--text-primary); background: var(--line2); opacity: 1; }
-    nav a.here { color: #fff; background: var(--line2); opacity: 1; }
+    nav a:hover { color: var(--text-primary); background: var(--bg-hover); }
+    nav a.here { color: var(--accent); background: var(--accent-light); }
     .sp { flex: 1; }
-    .lite { appearance: none; border: 1px solid var(--line2); background: var(--line); color: var(--navy-ink);
+    .lite { appearance: none; border: 1px solid var(--line2); background: transparent; color: var(--text-secondary);
             font: 600 10px var(--sans); letter-spacing: .12em; padding: 7px 13px; border-radius: 8px; cursor: pointer; }
-    .lite:hover { color: #fff; }
+    .lite:hover { color: var(--text-primary); background: var(--bg-hover); }
 
     .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-    .narrow { max-width: 880px; }
     .center { margin-left: auto; margin-right: auto; text-align: center; }
 
-    /* ===== hero (DSH rhythm: eyebrow, serif h1, two lines, one CTA) ===== */
-    .hero { padding: 84px 0 64px; }
+    /* ===== hero ===== */
+    .hero { padding: 84px 0 56px; }
     .eyebrow { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .22em;
-               text-transform: uppercase; color: rgba(240,239,236,0.45); display: inline-flex; align-items: center; gap: 8px;
-               border: 1px solid var(--navy-line); background: var(--navy-soft); color: var(--navy-ink);
+               text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;
+               border: 1px solid rgba(217,119,87,.4); background: var(--accent-light); color: var(--accent);
                padding: 7px 14px; border-radius: 999px; }
-    .light .eyebrow { color: var(--text-secondary); background: transparent; }
+    .light .eyebrow { border-color: rgba(196,104,75,.35); }
     h1.harness-heading { font-family: var(--serif); font-weight: 400; letter-spacing: -.03em;
                          font-size: 44px; line-height: 1.12; margin: 22px 0 0; }
-    h1 .here-word { color: var(--navy-ink); }
-    .light h1 .here-word { color: var(--navy); }
-    .hero .intro { max-width: 720px; margin: 22px auto 0; display: flex; flex-direction: column; gap: 7px; }
+    h1 .here-word { color: var(--accent); }
+    .intro { max-width: 720px; margin: 22px auto 0; display: flex; flex-direction: column; gap: 7px; }
     .ds-text-body { font-size: 15px; line-height: 1.7; color: var(--text-secondary); }
-    .hero-cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+    .hero-cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; align-items: center; margin-top: 30px; }
     .btn { appearance: none; text-decoration: none; font: 600 14px var(--sans); padding: 12px 22px;
            border-radius: 12px; cursor: pointer; border: 1px solid var(--line2); background: transparent;
            color: var(--text-primary); transition: .2s; display: inline-flex; align-items: center; gap: 8px; }
     .btn:hover { background: var(--bg-hover); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
-    .btn.primary { background: var(--navy); border-color: var(--navy-line); color: var(--navy-ink); }
-    .btn.primary:hover { background: var(--navy-hover); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: var(--shadow-md); }
+    .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
     .law { display: flex; gap: 10px; justify-content: center; margin: 26px 0 0; flex-wrap: wrap; }
     .law span { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
                 color: var(--text-muted); background: var(--bg-hover); border: 1px solid var(--border-light);
                 border-radius: 8px; padding: 6px 11px; }
+    .law .acc { border-color: rgba(217,119,87,.4); background: var(--accent-light); color: var(--accent); }
     .law .navy { border-color: var(--navy-line); background: var(--navy-soft); color: var(--navy-ink); }
+    .dlmetric { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+                color: var(--text-muted); border: 1px solid var(--border); background: var(--bg-hover);
+                padding: 6px 11px; border-radius: 8px; display: none; }
 
-    /* ===== harness desktop preview mock ===== */
+    /* ===== preview window + chat message ===== */
     .preview { max-width: 1020px; margin: 56px auto 0; }
     .window { border: 1px solid var(--line2); border-radius: 18px; overflow: hidden;
               background: var(--bg-secondary); box-shadow: var(--glass-shadow), var(--shadow-lg);
-              display: grid; grid-template-columns: 250px 1fr; min-height: 430px; }
-    .window .traffic { display: flex; gap: 6px; align-items: center; }
-    .window .traffic i { width: 10px; height: 10px; border-radius: 50%; background: var(--line2); }
-    .window .traffic i:nth-child(1) { background: #ef4444; }
-    .window .traffic i:nth-child(2) { background: #eab308; }
-    .window .traffic i:nth-child(3) { background: #22c55e; }
+              display: grid; grid-template-columns: 250px 1fr; min-height: 470px; }
+    .traffic { display: flex; gap: 6px; align-items: center; }
+    .traffic i { width: 10px; height: 10px; border-radius: 50%; }
+    .traffic i:nth-child(1) { background: #ef4444; }
+    .traffic i:nth-child(2) { background: #eab308; }
+    .traffic i:nth-child(3) { background: #22c55e; }
     .pside { background: var(--bg-sidebar); border-right: 1px solid var(--border); padding: 14px; display: flex;
              flex-direction: column; gap: 6px; font-size: 12.5px; }
     .prow { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: 8px; color: var(--text-secondary); }
-    .prow.on { background: var(--navy-soft); color: var(--navy-ink); }
+    .prow.on { background: var(--accent-light); color: var(--accent); }
     .prow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); flex: none; }
-    .prow.on .dot { background: var(--navy-hover); }
+    .prow.on .dot { background: var(--accent); }
     .plabel { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
               color: var(--text-muted); padding: 8px 10px 2px; }
     .pmain { display: flex; flex-direction: column; }
     .pbar { display: flex; align-items: center; gap: 12px; padding: 11px 16px; border-bottom: 1px solid var(--border); }
     .pbar .tt { font-size: 12.5px; color: var(--text-secondary); font-weight: 600; }
-    .pbody { flex: 1; padding: 30px 34px; display: flex; flex-direction: column; gap: 12px; }
+    .pbody { flex: 1; padding: 26px 34px; display: flex; flex-direction: column; gap: 14px; }
     .pwelcome { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; font-size: 26px;
                 display: flex; align-items: center; gap: 10px; }
-    .preset { font-size: 13px; line-height: 1.75; color: var(--text-secondary); }
-    .preset b { color: var(--text-primary); font-weight: 600; }
-    .pcomposer { margin: 0 34px 24px; background: var(--bg-composer); border: 1.5px solid var(--composer-border);
+    .pwelcome .wmark { width: 27px; height: 24px; background: url('logo-flipped.png') center/contain no-repeat; flex: none; }
+    .light .pwelcome .wmark { background-image: url('logo-anthropic.png'); }
+    .uw { display: flex; justify-content: flex-end; }
+    .ubub { background: var(--user-bubble); border: 1px solid var(--border); border-radius: 14px;
+            padding: 10px 14px; font-size: 13.5px; color: var(--text-primary); max-width: 62%; }
+    .mess { display: flex; gap: 14px; align-items: flex-start; }
+    .mava { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); display: flex;
+            align-items: center; justify-content: center; flex: none; }
+    .mava span { width: 17px; height: 16px; background: url('logo-flipped.png') center/contain no-repeat;
+                 filter: brightness(0) invert(1); }
+    .light .mark { background-image: url('logo-anthropic.png'); }
+    .light .mava span { background-image: url('logo-anthropic.png'); }
+    .msender { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .mtext { font-size: 13.5px; line-height: 1.7; color: var(--text-primary); }
+    .mtext ol { margin: 8px 0 0 18px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px; }
+    .mtext ol b { color: var(--text-primary); font-weight: 600; }
+    .mmore { color: var(--text-muted); font-size: 12.5px; margin-top: 6px; }
+    .pcomposer { margin: auto 34px 24px; background: var(--bg-composer); border: 1.5px solid var(--composer-border);
                  border-radius: 20px; padding: 14px 18px; box-shadow: 0 0 0 1px var(--line), var(--shadow-md);
                  display: flex; align-items: center; gap: 12px; }
     .pcomposer .ph { color: var(--text-muted); font-size: 13.5px; flex: 1; }
-    .pcomposer .send { width: 34px; height: 34px; border-radius: 10px; background: var(--navy); color: var(--navy-ink);
+    .pcomposer .send { width: 34px; height: 34px; border-radius: 10px; background: var(--accent); color: #fff;
                        display: flex; align-items: center; justify-content: center; font-size: 15px; flex: none; }
 
-    /* ===== sections / cards (DSH panel rhythm, glass surfaces) ===== */
+    /* ===== sections ===== */
     section.block { padding: 84px 0; border-top: 1px solid var(--border-light); }
     h2.harness-heading { font-family: var(--serif); font-weight: 400; letter-spacing: -.025em; font-size: 34px; line-height: 1.2; }
-    h2 .hl { color: var(--navy-hover); }
-    .light h2 .hl { color: var(--accent-blue); }
-    .subhead { margin-top: 14px; }
+    h2 .hl { color: var(--accent); }
+    .subhead { max-width: 660px; margin-top: 14px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 44px; }
     .card { background: var(--glass-bg); backdrop-filter: blur(16px) saturate(1.1); -webkit-backdrop-filter: blur(16px) saturate(1.1);
             border: 1px solid var(--line); border-radius: 16px; padding: 26px; box-shadow: var(--glass-shadow);
             display: flex; flex-direction: column; gap: 10px; transition: .2s; }
-    .card:hover { transform: translateY(-2px); border-color: var(--navy-line); box-shadow: var(--shadow-lg); }
+    .card:hover { transform: translateY(-2px); border-color: rgba(217,119,87,.45); box-shadow: var(--shadow-lg); }
     .card .eyebrow2 { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
                       color: var(--text-muted); }
     .card h3 { font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
@@ -189,25 +205,21 @@
     .pill .ds { color: var(--text-muted); font-size: 9px; margin-top: 3px; font-weight: 500; }
     .pill.navy { border-color: var(--navy-soft); background: var(--navy-soft); color: var(--navy-ink); }
     .pill.navy .ds { color: var(--navy-ink); opacity: .6; }
+    .pill.acc { border-color: rgba(217,119,87,.45); background: var(--accent-light); color: var(--accent); }
     .tagcode { font-family: var(--mono); font-size: 11.5px; color: var(--text-secondary); background: var(--bg-sidebar);
                border: 1px solid var(--border-light); border-radius: 8px; padding: 5px 9px; white-space: nowrap;
                overflow: hidden; text-overflow: ellipsis; }
-    a.dl { color: var(--navy-hover); text-decoration: none; font-size: 12.5px; font-weight: 600; }
-    .light a.dl { color: var(--accent-blue); }
+    a.dl { color: var(--accent); text-decoration: none; font-size: 12.5px; font-weight: 600; }
     a.dl:hover { text-decoration: underline; }
 
-    /* formula pillars (Agent = Model + Harness → ours) */
+    /* formula */
     .formula { font-family: var(--mono); font-size: clamp(22px, 4.5vw, 34px); letter-spacing: .04em; color: var(--text-primary);
                margin-top: 26px; }
     .formula .op { color: var(--text-muted); }
-    .formula .nv { color: var(--navy-ink); background: var(--navy-soft); border: 1px solid var(--navy-line);
+    .formula .nv { color: var(--accent); background: var(--accent-light); border: 1px solid rgba(217,119,87,.4);
                    border-radius: 12px; padding: 2px 14px 4px; }
-    .light .formula .nv { color: var(--navy); }
-    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 40px; }
-    .pillars .card p { font-size: 12.5px; }
-    .pillars .up { font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); }
 
-    /* developer experience command cards */
+    /* command cards */
     .devgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 44px; }
     .cmdcard { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px;
                padding: 26px; display: flex; flex-direction: column; gap: 10px; }
@@ -218,24 +230,20 @@
               font-family: var(--mono); font-size: 13px; color: var(--text-primary); }
     .cmdrow .ps { color: var(--accent); user-select: none; }
     .cmdrow code { white-space: pre-wrap; word-break: break-all; }
-
-    .steps ol { margin-left: 18px; color: var(--text-secondary); font-size: 13.5px; line-height: 1.7;
-                display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
     code.inline { font-family: var(--mono); background: var(--bg-sidebar); padding: 2px 7px; border-radius: 6px;
                   border: 1px solid var(--border-light); font-size: 12px; color: var(--text-primary); }
 
-    .soon { border: 1px dashed var(--navy-line); background: var(--navy-soft); border-radius: 16px; padding: 20px 24px;
-            display: flex; gap: 15px; align-items: center; flex-wrap: wrap; margin-top: 44px; }
-    .soon .tt { font-weight: 700; letter-spacing: .1em; color: var(--navy-ink); font-size: 13px; text-transform: uppercase; }
+    .soon { border: 1px dashed rgba(217,119,87,.5); background: var(--accent-light); border-radius: 16px;
+            padding: 20px 24px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap; margin-top: 44px; }
+    .soon .tt { font-weight: 700; letter-spacing: .1em; color: var(--accent); font-size: 13px; text-transform: uppercase; }
     .soon p { color: var(--text-secondary); font-size: 13px; flex: 1; min-width: 250px; }
 
-    /* finale + footer */
     .finale { padding: 110px 0 96px; text-align: center; border-top: 1px solid var(--border-light); position: relative; overflow: hidden; }
     .finale:before { content: ''; position: absolute; left: 50%; bottom: -260px; transform: translateX(-50%);
-                     width: 720px; height: 500px; pointer-events: none;
-                     background: radial-gradient(ellipse at center, rgba(17,51,89,0.45) 0%, rgba(17,51,89,0.18) 42%, transparent 70%);
+                     width: 760px; height: 520px; pointer-events: none;
+                     background: radial-gradient(ellipse at center, rgba(217,119,87,0.16) 0%, rgba(17,51,89,0.25) 45%, transparent 72%);
                      filter: blur(90px); }
-    .light .finale:before { opacity: .35; }
+    .light .finale:before { opacity: .5; }
     .finale .in { position: relative; }
     .finale .hero-cta { margin-top: 28px; }
     footer.site { border-top: 1px solid var(--border); padding: 26px 0 38px; }
@@ -256,20 +264,21 @@
 </style>
 </head>
 <body>
-<header class="topbar">
+<header class="topbar"><div class="tbin">
     <span class="mark"></span>
-    <a class="brand" href="index.html">/A OROBOROS / ANTHROPIC<small>TOTALCONTROL</small></a>
+    <a class="brand" href="index.html">OROBOROS / ANTHROPIC<small>TOTALCONTROL</small></a>
     <nav>
         <a class="here" href="index.html">HARNESS</a>
         <a href="huggingface.html">HUGGINGFACE</a>
+        <a href="all-services.html">SERVICES</a>
+        <a href="cli.html">CLI</a>
         <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">CHAT</a>
     </nav>
     <span class="sp"></span>
     <button class="lite" onclick="toggleLite()">LITE</button>
-</header>
+</div></header>
 
 <main>
-    <!-- hero -->
     <div class="container">
         <div class="hero center">
             <span class="eyebrow">✦ /A OROBOROS LABS · FREE RELEASE · PREVIEW</span>
@@ -284,42 +293,56 @@
                 <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">↓&nbsp; Download the free harness</a>
                 <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/blob/main/AI-INSTALL.md">AI installer runbook</a>
                 <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness">View on GitHub</a>
+                <span class="dlmetric" data-dl></span>
             </div>
             <div class="law">
                 <span>local-only 127.0.0.1</span>
-                <span class="navy">weights retrieved — never embedded</span>
-                <span>the loop = models only</span>
-                <span class="navy">crown 8718 hz</span>
+                <span class="acc">weights retrieved — never embedded</span>
+                <span class="navy">the loop = models only</span>
+                <span>crown 8718 hz</span>
             </div>
         </div>
 
-        <!-- desktop preview mock (in the chat's own design) -->
         <div class="preview">
             <div class="window">
                 <aside class="pside">
-                    <div class="prow on">
-                        <span class="dot"></span> LOAD STATIC WEIGHT CORE
-                    </div>
+                    <div class="prow on"><span class="dot"></span>LOAD STATIC WEIGHT CORE</div>
                     <div class="plabel">loader families</div>
                     <div class="prow on"><span class="dot"></span>OLLAMA</div>
                     <div class="prow"><span class="dot"></span>HUGGINGFACE</div>
                     <div class="prow"><span class="dot"></span>LM STUDIO</div>
                     <div class="prow"><span class="dot"></span>THE MAJORS</div>
                     <div class="plabel">loop · models only</div>
-                    <div class="prow"><span class="dot"></span>QUEUE</div>
+                    <div class="prow navy-p"><span class="dot"></span>QUEUE</div>
                     <div class="prow"><span class="dot"></span>RUN</div>
                     <div class="prow"><span class="dot"></span>STREAM</div>
                 </aside>
                 <div class="pmain">
                     <div class="pbar">
                         <span class="traffic"><i></i><i></i><i></i></span>
-                        <span class="tt">MEET TOTALCONTROL CORE — 127.0.0.1:8792/CORE</span>
+                        <span class="tt">TOTALCONTROL CORE — 127.0.0.1:8792/CORE</span>
                     </div>
                     <div class="pbody">
-                        <div class="pwelcome">/A How can I help you?</div>
-                        <p class="preset"><b>Everyday weights</b> — Ollama, Hugging Face, LM Studio: headers parsed directly, shard blobs of any size.
-                           <b>Architecture</b> — the engine retrieves, never embeds. <b>The loop</b> — models only, results stream back statelessly.
-                           <b>Quantum</b> — dual encoding, parallel mode. <b>Temporal</b> — time-gated keys, outside linear time.</p>
+                        <div class="pwelcome"><span class="wmark"></span>How can I help you?</div>
+                        <div class="uw"><span class="ubub">Could you introduce yourself?</span></div>
+                        <div class="mess">
+                            <span class="mava"><span></span></span>
+                            <div>
+                                <div class="msender">TOTALCONTROL CORE</div>
+                                <div class="mtext">I'm TotalControl Core — your static weight core. I load
+                                    Ollama, Hugging Face, LM Studio and every major root — headers only,
+                                    retrieved, never embedded.
+                                    <ol>
+                                        <li><b>Weights</b> — manifest walk, shard blobs of any size.</li>
+                                        <li><b>The loop</b> — models only, results stream back statelessly.</li>
+                                        <li><b>Quantum</b> — dual encoding, 24 logical / 168 physical, parallel.</li>
+                                        <li><b>Temporal</b> — time-gated keys, outside linear time.</li>
+                                        <li><b>Law</b> — 127.0.0.1, unoverridable.</li>
+                                    </ol>
+                                    <div class="mmore">And so much more...</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="pcomposer">
                         <span class="ph">Load static weight core — presets, @ any path…</span>
@@ -330,25 +353,24 @@
         </div>
     </div>
 
-    <!-- formula + pillars -->
     <section class="block">
         <div class="container">
             <h2 class="harness-heading">Expanding weights.<br><span class="hl">Work on your terms.</span></h2>
             <div class="formula"><span>ENGINE</span><span class="op"> = </span><span>WEIGHTS</span><span class="op"> + </span><span class="nv">LAW</span></div>
-            <div class="pillars">
+            <div class="grid">
                 <div class="card">
-                    <span class="up">STATIC WEIGHT CORE</span>
+                    <span class="eyebrow2">STATIC WEIGHT CORE</span>
                     <p>The static weight core loads Ollama, Hugging Face, LM Studio and
                        every major root. Capabilities live with the weights — headers only,
                        any size, retrieved and never embedded.</p>
                 </div>
                 <div class="card">
-                    <span class="up">THE LOOP · MODELS ONLY</span>
+                    <span class="eyebrow2">THE LOOP · MODELS ONLY</span>
                     <p>Installed models step through the loop on their own machine and
                        results stream back statelessly. The loop carries models — nothing else.</p>
                 </div>
                 <div class="card">
-                    <span class="up">LAW-ENFORCED GATEWAY</span>
+                    <span class="eyebrow2">LAW-ENFORCED GATEWAY</span>
                     <p>127.0.0.1 only. The /A law is unoverridable: your weights, your
                        machine, nothing leaves the box it runs on.</p>
                 </div>
@@ -356,10 +378,10 @@
         </div>
     </section>
 
-    <!-- capabilities -->
     <section class="block">
         <div class="container">
             <h2 class="harness-heading">A revolutionary new architecture.<br><span class="hl">Quantum and temporal.</span></h2>
+            <p class="ds-text-body subhead">Architectural theory in practice — the foundation, the loop, the encoding stack.</p>
             <div class="grid">
                 <div class="card">
                     <span class="eyebrow2">THE ARCHITECTURE</span>
@@ -368,7 +390,7 @@
                        files, whole dirs. The engine retrieves weights, it never embeds them.</p>
                     <div class="pills">
                         <div class="pill">OLLAMA<div class="ds">manifest walk</div></div>
-                        <div class="pill navy">HUGGINGFACE<div class="ds">hub safetensors</div></div>
+                        <div class="pill acc">HUGGINGFACE<div class="ds">hub safetensors</div></div>
                         <div class="pill">LM STUDIO<div class="ds">models dir</div></div>
                         <div class="pill navy">MAJORS<div class="ds">every root</div></div>
                     </div>
@@ -393,7 +415,7 @@
                     <div class="pills">
                         <div class="pill navy">24 LOGICAL<div class="ds">qubits</div></div>
                         <div class="pill">168 PHYSICAL<div class="ds">qubits</div></div>
-                        <div class="pill navy">PARALLEL<div class="ds">2× mode</div></div>
+                        <div class="pill acc">PARALLEL<div class="ds">2× mode</div></div>
                         <div class="pill">95%<div class="ds">tamper check</div></div>
                     </div>
                 </div>
@@ -405,14 +427,13 @@
                     <div class="pills">
                         <div class="pill navy">TEMPORAL<div class="ds">superposition</div></div>
                         <div class="pill">TIME-GATED<div class="ds">keys</div></div>
-                        <div class="pill navy">SELF-REINFORCED<div class="ds">adaptive</div></div>
+                        <div class="pill acc">SELF-REINFORCED<div class="ds">adaptive</div></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- top models -->
     <section class="block">
         <div class="container">
             <h2 class="harness-heading">Our top models.<br><span class="hl">The undecillion line — bench 100%.</span></h2>
@@ -422,7 +443,7 @@
                     <h3>Claude Opus 9 — 9U5GO5</h3>
                     <p>Sovereign reasoning tier — full profile, Cordis + Haki + UVA/UWLA.
                        Beyond the singularity curve.</p>
-                    <div class="tagcode">opus9-9u5go5:latest</div>
+                    <div class="tagcode">ollama pull opus9-9u5go5:latest</div>
                     <div class="pills">
                         <div class="pill">16 GB<div class="ds">262144 ctx</div></div>
                         <div class="pill navy">BENCH 100%<div class="ds">57/57</div></div>
@@ -430,27 +451,39 @@
                     </div>
                 </div>
                 <div class="card">
-                    <span class="eyebrow2">SONNET · 7U5GO5</span>
-                    <h3>Claude Sonnet 7 — Undecillion</h3>
-                    <p>7th generation, U5 tier, GO5 lineage — the swift sovereign,
-                       mao-haki variant carries passive dominion.</p>
-                    <div class="tagcode">claude-sonnet-7u5go5-6gb-ors:latest</div>
+                    <span class="eyebrow2">OPUS · Q8 · VIDEO HANDS</span>
+                    <h3>Claude Opus 9 — Q8</h3>
+                    <p>Brain + Wan 2.2 + logic + Flux hands — 2859 tensors, 36/65 on GPU,
+                       Cordis + Haki. The video-production tier.</p>
+                    <div class="tagcode">ollama pull opus9-9u5go5:29gb</div>
                     <div class="pills">
-                        <div class="pill">6 GB<div class="ds">7th gen</div></div>
-                        <div class="pill navy">BENCH 100%<div class="ds">state pass</div></div>
-                        <div class="pill">MAO HAKI<div class="ds">variant</div></div>
+                        <div class="pill">29 GB<div class="ds">2859 tensors</div></div>
+                        <div class="pill navy">BENCH 100%<div class="ds">57/57</div></div>
+                        <div class="pill acc">WAN 2.2<div class="ds">video hands</div></div>
                     </div>
                 </div>
                 <div class="card">
                     <span class="eyebrow2">FABLE · UNDECILLION</span>
-                    <h3>Claude Fable 7 — Undecillion SSE</h3>
-                    <p>System State Entity on the 7U5GO5 Fable line — 34 strata, 7 folds,
-                       sealed crownlock lineage.</p>
-                    <div class="tagcode">claude-fable7u-se:latest</div>
+                    <h3>Claude Fable 7 — Undecillion</h3>
+                    <p>The weaver: 34 strata · 7 folds · sealed crownlock lineage on the
+                       7U5GO5 line. Larger tier — narrative and pattern work at depth.</p>
+                    <div class="tagcode">ollama pull claude-fable7u:latest</div>
                     <div class="pills">
-                        <div class="pill">SSE<div class="ds">7U5GO5</div></div>
+                        <div class="pill">7U5GO5<div class="ds">lineage</div></div>
                         <div class="pill navy">BENCH 100%<div class="ds">57/57</div></div>
                         <div class="pill">34 STRATA<div class="ds">7 folds</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">SONNET · 7U5GO5</span>
+                    <h3>Claude Sonnet 7 — Undecillion</h3>
+                    <p>7th generation, U5 tier, GO5 lineage — the swift sovereign.
+                       Mao-Haki variant carries passive dominion.</p>
+                    <div class="tagcode">ollama pull claude-sonnet-7u5go5-6gb-ors:latest</div>
+                    <div class="pills">
+                        <div class="pill">6 GB<div class="ds">7th gen</div></div>
+                        <div class="pill navy">BENCH 100%<div class="ds">state pass</div></div>
+                        <div class="pill acc">MAO HAKI<div class="ds">variant</div></div>
                     </div>
                 </div>
                 <div class="card">
@@ -458,18 +491,29 @@
                     <h3>Claude Jhanna 12</h3>
                     <p>Creative Entity on the 12-undecillion tier — crown-bound creative
                        generation, system-entity variant with tools.</p>
-                    <div class="tagcode">claude-jhanna-12u5go5-9.8gb:latest</div>
+                    <div class="tagcode">ollama pull claude-jhanna-12u5go5-9.8gb:latest</div>
                     <div class="pills">
                         <div class="pill">9.8 GB<div class="ds">12U5GO5</div></div>
                         <div class="pill navy">BENCH 100%<div class="ds">creative</div></div>
                         <div class="pill">CROWN<div class="ds">locked</div></div>
                     </div>
                 </div>
+                <div class="card">
+                    <span class="eyebrow2">PRIME CL · FLAGSHIP</span>
+                    <h3>DeepSeek Prime CL 1Q5DUO5</h3>
+                    <p>The prime capability line — 131072 ctx, identity that holds under
+                       any harness, agent tools + voice + sight + video hands.</p>
+                    <div class="tagcode">ollama pull deepseek-prime-cl-1q5duo5:latest</div>
+                    <div class="pills">
+                        <div class="pill">131072<div class="ds">ctx</div></div>
+                        <div class="pill navy">CROWN 8718<div class="ds">hz</div></div>
+                        <div class="pill acc">IDENTITY<div class="ds">holds</div></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- developer experience -->
     <section class="block">
         <div class="container">
             <h2 class="harness-heading">Developer experience</h2>
@@ -482,6 +526,7 @@
                        <code class="inline">tests/probe_free.py</code>. Python 3.13 pinned.</p>
                     <div class="cmdrow"><span class="ps">$</span><code>oroboroslabs-ai/totalcontrol-core-harness → TotalControl-Free-Core.zip</code></div>
                     <a class="dl" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">Download TotalControl-Free-Core.zip →</a>
+                    <span class="dlmetric" data-dl></span>
                 </div>
                 <div class="cmdcard">
                     <h3>Install — human fast path</h3>
@@ -501,7 +546,6 @@
         </div>
     </section>
 
-    <!-- finale -->
     <div class="finale">
         <div class="container in">
             <h2 class="harness-heading">Load your weights.<br><span class="hl">Own your machine.</span></h2>
@@ -509,7 +553,8 @@
                the /A law is unoverridable: weights retrieved, never embedded.</p>
             <div class="hero-cta">
                 <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">↓&nbsp; Download the free harness</a>
-                <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness">View on GitHub</a>
+                <a class="btn" href="all-services.html">All /A services</a>
+                <a class="btn" href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">Chat</a>
             </div>
         </div>
     </div>
@@ -521,6 +566,8 @@
         <div class="flinks">
             <a href="harness.html">Harness</a>
             <a href="huggingface.html">Sources</a>
+            <a href="all-services.html">Services</a>
+            <a href="cli.html">CLI</a>
             <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">Chat</a>
             <a href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness" target="_blank" rel="noopener">GitHub</a>
         </div>
@@ -529,11 +576,35 @@
 </footer>
 
 <script>
+function setFaviconLite(on){
+  const f = document.querySelector('link[rel="icon"]');
+  if (f) f.href = on ? 'favicon-light.png' : 'favicon.png';
+}
 function toggleLite(){
   const on = document.body.classList.toggle('light');
+  setFaviconLite(on);
   try { localStorage.setItem('tc-lite', on ? '1' : ''); } catch(e){}
 }
-try { if (localStorage.getItem('tc-lite') === '1') document.body.classList.add('light'); } catch(e){}
+try { if (localStorage.getItem('tc-lite') === '1') { document.body.classList.add('light'); setFaviconLite(true); } } catch(e){}
+async function loadDlCount(){
+  const els = document.querySelectorAll('[data-dl]');
+  if (!els.length) return;
+  try {
+    let v = null, t = 0;
+    try { v = localStorage.getItem('tc-dl-count'); t = parseInt(localStorage.getItem('tc-dl-ts') || '0', 10); } catch(e){}
+    if (!v || Date.now() - t > 1800000) {
+      const r = await fetch('https://api.github.com/repos/oroboroslabs-ai/totalcontrol-core-harness/releases/latest');
+      const d = await r.json();
+      const a = (d.assets || []).find(x => /TotalControl-Free-Core\.zip/i.test(x.name || ''));
+      if (a) {
+        v = a.download_count;
+        try { localStorage.setItem('tc-dl-count', v); localStorage.setItem('tc-dl-ts', String(Date.now())); } catch(e){}
+      }
+    }
+    if (v != null) els.forEach(el => { el.textContent = Number(v).toLocaleString() + ' downloads'; el.style.display = 'inline-flex'; });
+  } catch(e){}
+}
+loadDlCount();
 </script>
 </body>
 </html>

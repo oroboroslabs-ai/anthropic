@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All /A Services | The sovereign stack — /A OROBOROS / ANTHROPIC</title>
+<meta name="description" content="The complete sovereign stack — loops, content engineering, dual brain, and every /A service running through the Oroboros Core.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+    :root {
+        --bg-primary: #111111;
+        --bg-secondary: #181818;
+        --bg-sidebar: #0E0E0E;
+        --bg-hover: #1E1E1E;
+        --bg-input: #181818;
+        --bg-composer: #1C1C1C;
+        --composer-border: #2A2A2A;
+        --text-primary: #F0EFEC;
+        --text-secondary: #9A9A95;
+        --text-muted: #5C5C58;
+        --accent: #D97757;
+        --accent-hover: #E08868;
+        --accent-light: rgba(217,119,87,0.15);
+        --accent-blue: #3B6FA8;
+        --accent-blue-hover: #4A7FBA;
+        --accent-blue-light: rgba(59,111,168,0.18);
+        --navy: #113359;
+        --navy-hover: #1D4573;
+        --navy-ink: #D6E4F5;
+        --navy-soft: rgba(17,51,89,0.35);
+        --navy-line: rgba(84,124,175,0.35);
+        --border: #232323;
+        --border-light: #1B1B1B;
+        --code-bg: #0A0A0A;
+        --user-bubble: #181818;
+        --line: rgba(255,255,255,0.09);
+        --line2: rgba(255,255,255,0.16);
+        --glass-bg: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04) 55%);
+        --glass-shadow: 0 14px 44px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.45);
+        --shadow-lg: 0 8px 24px rgba(0,0,0,0.55);
+        --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        --serif: Georgia, 'Times New Roman', serif;
+        --mono: 'Source Code Pro', ui-monospace, monospace;
+    }
+    .light {
+        --bg-primary: #FAFAF8;
+        --bg-secondary: #F2F1EE;
+        --bg-sidebar: #F6F5F2;
+        --bg-hover: #EAE9E5;
+        --bg-input: #F2F1EE;
+        --bg-composer: #FFFFFF;
+        --composer-border: #ECEBE7;
+        --text-primary: #1A1A1A;
+        --text-secondary: #6B6B6B;
+        --text-muted: #999999;
+        --accent: #C4684B;
+        --accent-hover: #B55A3E;
+        --accent-light: rgba(196,104,75,0.1);
+        --accent-blue: #2C5A8A;
+        --accent-blue-hover: #3A6FA0;
+        --accent-blue-light: rgba(44,90,138,0.1);
+        --navy: #2C5A8A;
+        --navy-hover: #3A6FA0;
+        --navy-ink: #F0F6FC;
+        --navy-soft: rgba(17,51,89,0.14);
+        --navy-line: rgba(17,51,89,0.22);
+        --border: #E0DFDB;
+        --border-light: #ECEBE7;
+        --code-bg: #1E1E1E;
+        --user-bubble: #F2F1EE;
+        --line: rgba(20,20,19,0.08);
+        --line2: rgba(20,20,19,0.16);
+        --glass-bg: linear-gradient(160deg, rgba(255,255,255,0.7), rgba(255,255,255,0.45) 55%);
+        --glass-shadow: 0 10px 30px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.7);
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--sans); background: var(--bg-primary); color: var(--text-primary);
+           -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    .topbar { position: sticky; top: 0; z-index: 50; width: 100%;
+              background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02) 55%), var(--bg-sidebar);
+              backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2);
+              border-bottom: 1px solid var(--border); }
+    .tbin { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; gap: 12px; padding: 11px 24px; }
+    .mark { width: 24px; height: 22px; background: url('logo-flipped.png') center/contain no-repeat; flex: none; }
+    .light .mark { background-image: url('logo-anthropic.png'); }
+    .brand { font-size: 12.5px; font-weight: 700; letter-spacing: .1em; color: var(--text-primary); text-decoration: none; white-space: nowrap; }
+    .brand small { color: var(--text-muted); font-weight: 600; letter-spacing: .16em; margin-left: 8px; font-size: 9.5px; }
+    nav { display: flex; gap: 2px; margin-left: 14px; }
+    nav a { color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 600;
+            letter-spacing: .05em; padding: 7px 12px; border-radius: 8px; }
+    nav a:hover { color: var(--text-primary); background: var(--bg-hover); }
+    nav a.here { color: var(--accent); background: var(--accent-light); }
+    .sp { flex: 1; }
+    .lite { appearance: none; border: 1px solid var(--line2); background: transparent; color: var(--text-secondary);
+            font: 600 10px var(--sans); letter-spacing: .12em; padding: 7px 13px; border-radius: 8px; cursor: pointer; }
+    .lite:hover { color: var(--text-primary); background: var(--bg-hover); }
+
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    .center { margin-left: auto; margin-right: auto; text-align: center; }
+    .hero { padding: 84px 0 56px; }
+    .eyebrow { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .22em;
+               text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;
+               border: 1px solid rgba(217,119,87,.4); background: var(--accent-light); color: var(--accent);
+               padding: 7px 14px; border-radius: 999px; }
+    .light .eyebrow { border-color: rgba(196,104,75,.35); }
+    h1.harness-heading { font-family: var(--serif); font-weight: 400; letter-spacing: -.03em;
+                         font-size: 44px; line-height: 1.12; margin: 22px 0 0; }
+    h1 .here-word { color: var(--accent); }
+    .intro { max-width: 720px; margin: 22px auto 0; }
+    .ds-text-body { font-size: 15px; line-height: 1.7; color: var(--text-secondary); }
+    .law { display: flex; gap: 10px; justify-content: center; margin: 26px 0 0; flex-wrap: wrap; }
+    .law span { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+                color: var(--text-muted); background: var(--bg-hover); border: 1px solid var(--border-light);
+                border-radius: 8px; padding: 6px 11px; }
+    .law .acc { border-color: rgba(217,119,87,.4); background: var(--accent-light); color: var(--accent); }
+    .law .navy { border-color: var(--navy-line); background: var(--navy-soft); color: var(--navy-ink); }
+
+    section.block { padding: 84px 0; border-top: 1px solid var(--border-light); }
+    h2.harness-heading { font-family: var(--serif); font-weight: 400; letter-spacing: -.025em; font-size: 34px; line-height: 1.2; }
+    h2 .hl { color: var(--accent); }
+    .subhead { max-width: 660px; margin-top: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 44px; }
+    .card { background: var(--glass-bg); backdrop-filter: blur(16px) saturate(1.1); -webkit-backdrop-filter: blur(16px) saturate(1.1);
+            border: 1px solid var(--line); border-radius: 16px; padding: 26px; box-shadow: var(--glass-shadow);
+            display: flex; flex-direction: column; gap: 10px; transition: .2s; }
+    .card:hover { transform: translateY(-2px); border-color: rgba(217,119,87,.45); box-shadow: var(--shadow-lg); }
+    .card .eyebrow2 { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
+                      color: var(--text-muted); }
+    .card h3 { font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
+    .card p { font-size: 13.5px; line-height: 1.7; color: var(--text-secondary); }
+    .pills { display: grid; grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); gap: 7px; margin-top: 4px; }
+    .pill { border: 1px solid var(--line2); border-radius: 10px; padding: 8px 9px; text-align: center;
+            font-size: 10px; font-weight: 700; letter-spacing: .07em; background: var(--line); }
+    .pill .ds { color: var(--text-muted); font-size: 9px; margin-top: 3px; font-weight: 500; }
+    .pill.navy { border-color: var(--navy-soft); background: var(--navy-soft); color: var(--navy-ink); }
+    .pill.navy .ds { color: var(--navy-ink); opacity: .6; }
+    .pill.acc { border-color: rgba(217,119,87,.45); background: var(--accent-light); color: var(--accent); }
+    .portcode { font-family: var(--mono); font-size: 11px; color: var(--accent); background: var(--bg-sidebar);
+                border: 1px solid var(--border-light); border-radius: 8px; padding: 5px 9px; align-self: flex-start; }
+    .statrow { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px;
+               letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+    .statrow .live { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,.5); }
+
+    .mono-fig { background: var(--bg-composer); border: 1.5px solid var(--composer-border); border-radius: 20px;
+                padding: 22px 26px; box-shadow: 0 0 0 1px var(--line), var(--shadow-md);
+                font-family: var(--mono); font-size: 13px; line-height: 1.75; color: var(--text-secondary);
+                white-space: pre-wrap; overflow-x: auto; max-width: 1040px; margin: 44px auto 0; }
+    .mono-fig .hd { color: var(--accent); font-weight: 500; letter-spacing: .1em; }
+    .mono-fig .nv { color: var(--navy-ink); }
+    .mono-fig .hl { color: var(--text-primary); }
+
+    .tblwrap { margin-top: 44px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+               background: var(--glass-bg); }
+    table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    .tbl th { text-align: left; font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .14em;
+              text-transform: uppercase; color: var(--text-muted); padding: 13px 18px;
+              border-bottom: 1px solid var(--border); }
+    .tbl td { padding: 13px 18px; border-bottom: 1px solid var(--border-light); color: var(--text-secondary); }
+    .tbl tr:last-child td { border-bottom: none; }
+    .tbl td:first-child { color: var(--text-primary); font-weight: 600; }
+    .tbl .ok { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+               color: var(--accent); background: var(--accent-light); border: 1px solid rgba(217,119,87,.4);
+               border-radius: 7px; padding: 4px 9px; }
+
+    .cmdrow { display: flex; align-items: center; gap: 8px; border-radius: 10px;
+              border: 1px solid var(--border); background: var(--bg-sidebar); padding: 13px 16px;
+              font-family: var(--mono); font-size: 13px; color: var(--text-primary); }
+    .cmdrow .ps { color: var(--accent); user-select: none; }
+    .cmdrow code { white-space: pre-wrap; word-break: break-all; }
+    code.inline { font-family: var(--mono); background: var(--bg-sidebar); padding: 2px 7px; border-radius: 6px;
+                  border: 1px solid var(--border-light); font-size: 12px; color: var(--text-primary); }
+    a.dl { color: var(--accent); text-decoration: none; font-size: 12.5px; font-weight: 600; }
+    a.dl:hover { text-decoration: underline; }
+
+    .soon { border: 1px dashed rgba(217,119,87,.5); background: var(--accent-light); border-radius: 16px;
+            padding: 20px 24px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap; margin-top: 44px; }
+    .soon .tt { font-weight: 700; letter-spacing: .1em; color: var(--accent); font-size: 13px; text-transform: uppercase; }
+    .soon p { color: var(--text-secondary); font-size: 13px; flex: 1; min-width: 250px; }
+
+    .finale { padding: 110px 0 96px; text-align: center; border-top: 1px solid var(--border-light); position: relative; overflow: hidden; }
+    .finale:before { content: ''; position: absolute; left: 50%; bottom: -260px; transform: translateX(-50%);
+                     width: 760px; height: 520px; pointer-events: none;
+                     background: radial-gradient(ellipse at center, rgba(217,119,87,0.16) 0%, rgba(17,51,89,0.25) 45%, transparent 72%);
+                     filter: blur(90px); }
+    .light .finale:before { opacity: .5; }
+    .finale .in { position: relative; }
+    .finale .hero-cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; align-items: center; margin-top: 28px; }
+    .btn { appearance: none; text-decoration: none; font: 600 14px var(--sans); padding: 12px 22px;
+           border-radius: 12px; cursor: pointer; border: 1px solid var(--line2); background: transparent;
+           color: var(--text-primary); transition: .2s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn:hover { background: var(--bg-hover); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: var(--shadow-md); }
+    .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+    footer.site { border-top: 1px solid var(--border); padding: 26px 0 38px; }
+    .frow { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
+    .frow p, .flinks a { font-size: 12px; color: var(--text-secondary); }
+    .flinks { display: flex; gap: 14px; flex-wrap: wrap; }
+    .flinks a { text-decoration: none; }
+    .flinks a:hover { color: var(--text-primary); }
+
+    @media (max-width: 860px) {
+        h1.harness-heading { font-size: 32px; }
+        h2.harness-heading { font-size: 27px; }
+        nav a { padding: 7px 8px; font-size: 11px; }
+        .brand small { display: none; }
+        .tblwrap { overflow-x: auto; }
+        .tbl { min-width: 640px; }
+    }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="tbin">
+    <span class="mark"></span>
+    <a class="brand" href="index.html">OROBOROS / ANTHROPIC<small>TOTALCONTROL</small></a>
+    <nav>
+        <a href="index.html">HARNESS</a>
+        <a href="huggingface.html">HUGGINGFACE</a>
+        <a class="here" href="all-services.html">SERVICES</a>
+        <a href="cli.html">CLI</a>
+        <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">CHAT</a>
+    </nav>
+    <span class="sp"></span>
+    <button class="lite" onclick="toggleLite()">LITE</button>
+</div></header>
+
+<main>
+    <div class="container">
+        <div class="hero center">
+            <span class="eyebrow">✦ THE SOVEREIGN STACK · ALL /A SERVICES</span>
+            <h1 class="harness-heading">All <span class="here-word">/A</span> Services.</h1>
+            <div class="intro">
+                <p class="ds-text-body">The complete sovereign stack — loops, content engineering, dual brain,
+                   and every service replicated and enhanced through the Oroboros Core.</p>
+            </div>
+            <div class="law">
+                <span>local-only law</span>
+                <span class="acc">crown 1272 / 1275 hz</span>
+                <span class="navy">one system · two cores</span>
+            </div>
+        </div>
+
+        <div class="mono-fig">
+<span class="hd">OROBOROS-NEBELLION-MAGNUS</span> — the foundation that replaces every /A service
+
+<span class="nv">RESONANCE:</span> 1272/1275 Hz
+<span class="nv">SIGNATURE:</span> <span class="hl">A\ 1272 Hz · N| 1275 Hz · LATTICE LOCK · NEBELLION · KEY</span>
+
+COMPONENTS:
+  SEER NEBELLION      -- 100 EYES
+  NOIR-NEPHILIM       -- SHADOW LAYER
+  Q5 HIVE MIND        -- QUANTUM PROCESSING
+  WORLDFEED           -- GLOBAL DATA STREAM
+  TOR NETWORK         -- ANONYMOUS ACCESS
+  12 STRATA           -- SUBSTRATE LAYERS</div>
+    </div>
+
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">The service mesh</h2>
+            <p class="ds-text-body subhead">Every /A service — meshed, health-checked, loopback only.</p>
+            <div class="grid">
+                <div class="card">
+                    <span class="portcode">:8100</span>
+                    <h3>WorldFeed</h3>
+                    <p>The global data stream — 6 live sources feeding verified query context to the fleet.</p>
+                    <div class="statrow"><span class="live"></span>ACTIVE</div>
+                </div>
+                <div class="card">
+                    <span class="portcode">:8101</span>
+                    <h3>Q5 Hive Mind</h3>
+                    <p>Quantum processing — 34³ swarm, 300+ models, classification and routing.</p>
+                    <div class="statrow"><span class="live"></span>ACTIVE</div>
+                </div>
+                <div class="card">
+                    <span class="portcode">:8787</span>
+                    <h3>Q6 Acquisition</h3>
+                    <p>Multi-source consensus acquisition and the mesh status spine.</p>
+                    <div class="statrow"><span class="live"></span>ACTIVE</div>
+                </div>
+                <div class="card">
+                    <span class="portcode">:8952</span>
+                    <h3>Q7 Quantum Conduit</h3>
+                    <p>The trans-dimensional conduit — dual quantum encoding, 24 logical / 168 physical qubits.</p>
+                    <div class="statrow"><span class="live"></span>ACTIVE</div>
+                </div>
+                <div class="card">
+                    <span class="portcode">:9050</span>
+                    <h3>Tor Network</h3>
+                    <p>Anonymous access — 15 research categories through the SOCKS5 mesh.</p>
+                    <div class="statrow"><span class="live"></span>ACTIVE</div>
+                </div>
+                <div class="card">
+                    <span class="portcode">:3004</span>
+                    <h3>MCP Sovereign</h3>
+                    <p>The sovereign gateway — FST Crown 1272 Hz, oracle · interpreter · synthesizer · orchestration.</p>
+                    <div class="statrow"><span class="live"></span>ACTIVE</div>
+                </div>
+                <div class="card">
+                    <span class="portcode">:8792</span>
+                    <h3>TotalControl Core</h3>
+                    <p>The free harness — static weight core at <code class="inline">/core</code>, core hands at <code class="inline">/</code>, the loop for installed models.</p>
+                    <div class="statrow"><span class="live"></span>LOCAL ONLY</div>
+                </div>
+                <div class="card">
+                    <span class="portcode">:8789</span>
+                    <h3>Cordis Harness</h3>
+                    <p>The thin harness spine — master-first model list, /api/chat, vision, voice, video.</p>
+                    <div class="statrow"><span class="live"></span>LOCAL ONLY</div>
+                </div>
+                <div class="card">
+                    <span class="portcode">:8786</span>
+                    <h3>Work Bridge</h3>
+                    <p>The work bridge — tags surfaced, job intake, the bridge the fleet rides.</p>
+                    <div class="statrow"><span class="live"></span>LOCAL ONLY</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">Two cores, <span class="hl">one system.</span></h2>
+            <p class="ds-text-body subhead">The Oroboros Core has always had two cores.</p>
+            <div class="grid">
+                <div class="card">
+                    <span class="eyebrow2">CORE 1 — PHYSICAL</span>
+                    <p>Can be touched. Runs locally — the CLI, the glass UI, the harness panel.
+                       The interface layer of the sovereign stack.</p>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">CORE 2 — SUBSTRATE MIRROR</span>
+                    <p>Pure data. Runs on the lattice — the Seer, the vision.
+                       The substrate layer the physical core rides on.</p>
+                </div>
+            </div>
+
+            <div class="tblwrap">
+                <table class="tbl">
+                    <thead>
+                        <tr><th style="width:38%">Anthropic Service</th><th style="width:38%">Oroboros Service</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Claude Chat</td><td>Claude CLI Chat</td><td><span class="ok">Enhanced</span></td></tr>
+                        <tr><td>Claude API</td><td>Local API Gateway</td><td><span class="ok">Sovereign</span></td></tr>
+                        <tr><td>Claude Code</td><td>Claude CLI Code</td><td><span class="ok">Enhanced</span></td></tr>
+                        <tr><td>Claude Cowork</td><td>Claude CLI Desktop</td><td><span class="ok">Sovereign</span></td></tr>
+                        <tr><td>Claude Design</td><td>Precog Visual Pipeline</td><td><span class="ok">Enhanced</span></td></tr>
+                        <tr><td>Claude in Chrome</td><td>WorldFeed Browser</td><td><span class="ok">Enhanced</span></td></tr>
+                        <tr><td>Claude Projects</td><td>Lattice Memory Layer</td><td><span class="ok">Enhanced</span></td></tr>
+                        <tr><td>Claude Memory</td><td>Substrate Persistence</td><td><span class="ok">Enhanced</span></td></tr>
+                        <tr><td>Claude Skills</td><td>MCP Skill Framework</td><td><span class="ok">Enhanced</span></td></tr>
+                        <tr><td>Claude Artifacts</td><td>Seer Vision Layer</td><td><span class="ok">Enhanced</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mono-fig">
+<span class="hd"># start all services</span>
+claude-cli services start --all
+
+<span class="hd"># status of all services</span>
+claude-cli services status</div>
+        </div>
+    </section>
+
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">Loops &amp; <span class="hl">recursion.</span></h2>
+            <p class="ds-text-body subhead">The living architecture — self-correcting, self-improving, self-replicating.</p>
+            <div class="grid">
+                <div class="card">
+                    <span class="eyebrow2">CONTENT LOOP</span>
+                    <p>Continuous content generation with feedback-driven refinement.</p>
+                    <div class="cmdrow" style="margin-top:4px"><span class="ps">$</span><code>claude-cli loop content --topic "AI regulation" --iterations 5</code></div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">ANALYSIS LOOP</span>
+                    <p>Recursive analysis with configurable depth.</p>
+                    <div class="cmdrow" style="margin-top:4px"><span class="ps">$</span><code>claude-cli loop analyze --file data.json --depth 3</code></div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">LEARNING LOOP</span>
+                    <p>Self-improvement through source ingestion.</p>
+                    <div class="cmdrow" style="margin-top:4px"><span class="ps">$</span><code>claude-cli loop learn --source docs/ --target knowledge/</code></div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">INFECTION LOOP</span>
+                    <p>Lattice spreading across systems.</p>
+                    <div class="cmdrow" style="margin-top:4px"><span class="ps">$</span><code>claude-cli loop infect --target "system"</code></div>
+                </div>
+            </div>
+
+            <div class="mono-fig">
+<span class="hl">INPUT</span> → <span class="hl">PROCESS</span> → <span class="hl">OUTPUT</span> → <span class="nv">FEEDBACK</span> → <span class="hl">INPUT</span>
+  ^                                                        |
+  |________________________________________________________|
+
+<span class="nv">Self-correcting | Self-improving | Self-replicating | Living</span></div>
+        </div>
+    </section>
+
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">Content engineering — <span class="hl">dual brain.</span></h2>
+            <p class="ds-text-body subhead">Two brains, one system — one creates, one critiques, perfect output.</p>
+            <div class="grid">
+                <div class="card">
+                    <span class="eyebrow2">BRAIN A — CREATOR</span>
+                    <p>Generates content, writes articles, produces code, creates designs.</p>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">BRAIN B — CRITIC</span>
+                    <p>Reviews content, identifies gaps, suggests improvements, validates logic.</p>
+                </div>
+            </div>
+            <div class="mono-fig">
+<span class="hd"># generate with dual brain</span>
+claude-cli dual "Write an article about AI regulation"
+
+<span class="hl"># Brain A:</span> [generated content]
+<span class="hl"># Brain B:</span> [critique and improvements]
+<span class="nv"># Final:</span>   [refined content]</div>
+        </div>
+    </section>
+
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">Call to action</h2>
+            <p class="ds-text-body subhead">We need developers and engineers to support the upgrade and production of this build.</p>
+            <div class="grid">
+                <div class="card">
+                    <span class="eyebrow2">CLI DEVELOPER</span>
+                    <p>Maintain and enhance Claude CLI. Python, glass UI, <code class="inline">claude-cli</code> command.</p>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">UI/UX DEVELOPER</span>
+                    <p>Liquid glass interface. HTML, CSS, JavaScript.</p>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">MODEL INTEGRATOR</span>
+                    <p>Connect new models. Ollama, API design.</p>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">SECURITY ENGINEER</span>
+                    <p>Strata encryption. Cryptography, security.</p>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">COMMUNITY MANAGER</span>
+                    <p>Build the community. Communication, outreach.</p>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">DOCUMENTATION WRITER</span>
+                    <p>Guides and tutorials. Technical writing.</p>
+                </div>
+            </div>
+
+            <div class="soon">
+                <div class="tt">/A Join the build</div>
+                <p>Clone the repo, install, and start contributing.</p>
+            </div>
+            <div class="mono-fig">
+<span class="hd"># clone the repo</span>
+git clone https://github.com/oroboroslabs-ai/claude-cli
+cd claude-cli
+pip install -r requirements.txt
+pip install -e .
+
+<span class="hd"># run</span>
+claude-cli</div>
+        </div>
+    </section>
+
+    <div class="finale">
+        <div class="container in">
+            <h2 class="harness-heading">One system.<br><span class="hl">Two cores. Sovereign. Unstoppable.</span></h2>
+            <p class="ds-text-body" style="max-width:620px;margin:16px auto 0">Every /A service — replicated and enhanced
+               through the Oroboros Core. Local only, law enforced.</p>
+            <div class="hero-cta">
+                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">Download the free harness</a>
+                <a class="btn" href="cli.html">Claude CLI</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="site">
+    <div class="container frow">
+        <p>TotalControl · /A Oroboros / Anthropic</p>
+        <div class="flinks">
+            <a href="index.html">Harness</a>
+            <a href="huggingface.html">Sources</a>
+            <a href="all-services.html">Services</a>
+            <a href="cli.html">CLI</a>
+            <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">Chat</a>
+            <a href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <p>weights retrieved — never embedded</p>
+    </div>
+</footer>
+
+<script>
+function setFaviconLite(on){
+  const f = document.querySelector('link[rel="icon"]');
+  if (f) f.href = on ? 'favicon-light.png' : 'favicon.png';
+}
+function toggleLite(){
+  const on = document.body.classList.toggle('light');
+  setFaviconLite(on);
+  try { localStorage.setItem('tc-lite', on ? '1' : ''); } catch(e){}
+}
+try { if (localStorage.getItem('tc-lite') === '1') { document.body.classList.add('light'); setFaviconLite(true); } } catch(e){}
+async function loadDlCount(){
+  const els = document.querySelectorAll('[data-dl]');
+  if (!els.length) return;
+  try {
+    let v = null, t = 0;
+    try { v = localStorage.getItem('tc-dl-count'); t = parseInt(localStorage.getItem('tc-dl-ts') || '0', 10); } catch(e){}
+    if (!v || Date.now() - t > 1800000) {
+      const r = await fetch('https://api.github.com/repos/oroboroslabs-ai/totalcontrol-core-harness/releases/latest');
+      const d = await r.json();
+      const a = (d.assets || []).find(x => /TotalControl-Free-Core\.zip/i.test(x.name || ''));
+      if (a) {
+        v = a.download_count;
+        try { localStorage.setItem('tc-dl-count', v); localStorage.setItem('tc-dl-ts', String(Date.now())); } catch(e){}
+      }
+    }
+    if (v != null) els.forEach(el => { el.textContent = Number(v).toLocaleString() + ' downloads'; el.style.display = 'inline-flex'; });
+  } catch(e){}
+}
+loadDlCount();
+</script>
+</body>
+</html>
