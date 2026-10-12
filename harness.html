@@ -22,22 +22,13 @@
         --accent: #D97757;
         --accent-hover: #E08868;
         --accent-light: rgba(217,119,87,0.15);
-        --accent-blue: #3B6FA8;
-        --accent-blue-hover: #4A7FBA;
-        --accent-blue-light: rgba(59,111,168,0.18);
-        --navy: #113359;
-        --navy-hover: #1D4573;
-        --navy-ink: #D6E4F5;
-        --navy-soft: rgba(17,51,89,0.35);
-        --navy-line: rgba(84,124,175,0.35);
         --border: #232323;
         --border-light: #1B1B1B;
         --code-bg: #0A0A0A;
         --user-bubble: #181818;
-        --line: rgba(255,255,255,0.09);
+        --line: rgba(255,255,255,0.10);
         --line2: rgba(255,255,255,0.16);
-        --glass-bg: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04) 55%);
-        --glass-shadow: 0 14px 44px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+        --line3: rgba(255,255,255,0.22);
         --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
         --shadow-md: 0 4px 12px rgba(0,0,0,0.45);
         --shadow-lg: 0 8px 24px rgba(0,0,0,0.55);
@@ -59,92 +50,139 @@
         --accent: #C4684B;
         --accent-hover: #B55A3E;
         --accent-light: rgba(196,104,75,0.1);
-        --accent-blue: #2C5A8A;
-        --accent-blue-hover: #3A6FA0;
-        --accent-blue-light: rgba(44,90,138,0.1);
-        --navy: #2C5A8A;
-        --navy-hover: #3A6FA0;
-        --navy-ink: #F0F6FC;
-        --navy-soft: rgba(17,51,89,0.14);
-        --navy-line: rgba(17,51,89,0.22);
         --border: #E0DFDB;
         --border-light: #ECEBE7;
         --code-bg: #1E1E1E;
         --user-bubble: #F2F1EE;
-        --line: rgba(20,20,19,0.08);
+        --line: rgba(20,20,19,0.09);
         --line2: rgba(20,20,19,0.16);
-        --glass-bg: linear-gradient(160deg, rgba(255,255,255,0.7), rgba(255,255,255,0.45) 55%);
-        --glass-shadow: 0 10px 30px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.7);
+        --line3: rgba(20,20,19,0.22);
         --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
         --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
         --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; } html { scroll-behavior: smooth; }
     body { font-family: var(--sans); background: var(--bg-primary); color: var(--text-primary);
-           -webkit-font-smoothing: antialiased; min-height: 100vh; }
+           -webkit-font-smoothing: antialiased; min-height: 100vh; position: relative; }
+    body:before { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+        background:
+            radial-gradient(720px 440px at 86% -6%, rgba(217,119,87,0.22), transparent 65%),
+            radial-gradient(640px 420px at -3% 28%, rgba(217,119,87,0.08), transparent 62%),
+            radial-gradient(920px 520px at 50% 118%, rgba(217,119,87,0.16), transparent 70%); }
+    body.light:before { opacity: .38; }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
     .topbar { position: sticky; top: 0; z-index: 50; width: 100%;
-              background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02) 55%), var(--bg-sidebar);
-              backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2);
-              border-bottom: 1px solid var(--border); }
-    .tbin { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; gap: 12px; padding: 11px 24px; }
+              background: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02) 58%), rgba(14,14,14,0.68);
+              backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
+              border-bottom: 1px solid rgba(255,255,255,0.10);
+              box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 8px 30px rgba(0,0,0,0.3); }
+    .light .topbar { background: linear-gradient(160deg, rgba(255,255,255,0.85), rgba(255,255,255,0.55) 58%), rgba(246,245,242,0.7); }
+    .tbin { max-width: 1280px; margin: 0 auto; position: relative;
+            display: flex; align-items: center; gap: 0; padding: 11px 20px 11px 14px; }
+    .bleft { display: flex; align-items: center; gap: 7px; flex: 1; min-width: 0; }
     .mark { width: 24px; height: 22px; background: url('logo-flipped.png') center/contain no-repeat; flex: none; }
-    .brand { font-size: 12.5px; font-weight: 700; letter-spacing: .1em; color: var(--text-primary); text-decoration: none; white-space: nowrap; }
-    .brand small { color: var(--text-muted); font-weight: 600; letter-spacing: .16em; margin-left: 8px; font-size: 9.5px; }
-    nav { display: flex; gap: 2px; margin-left: 14px; }
+    .light .mark { background-image: url('logo-anthropic.png'); }
+    .brand { font-size: 13.5px; font-weight: 700; letter-spacing: .08em; color: var(--text-primary); text-decoration: none; white-space: nowrap; }
+    .brand .othr { color: var(--accent); }
+    nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 2px; margin: 0; }
     nav a { color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 600;
-            letter-spacing: .05em; padding: 7px 12px; border-radius: 8px; }
-    nav a:hover { color: var(--text-primary); background: var(--bg-hover); }
+            letter-spacing: .05em; padding: 7px 12px; border-radius: 8px; white-space: nowrap; }
+    nav a:hover { color: var(--text-primary); background: var(--line2); }
     nav a.here { color: var(--accent); background: var(--accent-light); }
-    .sp { flex: 1; }
-    .lite { appearance: none; border: 1px solid var(--line2); background: transparent; color: var(--text-secondary);
-            font: 600 10px var(--sans); letter-spacing: .12em; padding: 7px 13px; border-radius: 8px; cursor: pointer; }
-    .lite:hover { color: var(--text-primary); background: var(--bg-hover); }
+    .tright { flex: 1; display: flex; justify-content: flex-end; }
+    .lite { appearance: none; border: 1px solid rgba(110,150,235,.55); background: rgba(46,92,184,0.28); color: #A8C2F5;
+            font: 600 10px var(--sans); letter-spacing: .12em; padding: 7px 13px; border-radius: 8px; cursor: pointer;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.12); }
+    .lite:hover { color: #D7E4FF; background: rgba(46,92,184,0.5); }
+    .light .lite { color: #2C5A8A; border-color: rgba(44,90,138,.4); background: rgba(44,90,138,0.08); }
+    .light .lite:hover { background: rgba(44,90,138,0.16); }
 
     .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
     .center { margin-left: auto; margin-right: auto; text-align: center; }
-    .hero { padding: 84px 0 56px; }
+    .hero { padding: 92px 0 48px; }
     .eyebrow { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .22em;
                text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;
                border: 1px solid rgba(217,119,87,.4); background: var(--accent-light); color: var(--accent);
                padding: 7px 14px; border-radius: 999px; }
-    .light .eyebrow { border-color: rgba(196,104,75,.35); }
     h1.harness-heading { font-family: var(--serif); font-weight: 400; letter-spacing: -.03em;
-                         font-size: 44px; line-height: 1.12; margin: 22px 0 0; }
+                         font-size: 56px; line-height: 1.08; margin: 24px 0 0; }
     h1 .here-word { color: var(--accent); }
-    .intro { max-width: 720px; margin: 22px auto 0; display: flex; flex-direction: column; gap: 7px; }
-    .ds-text-body { font-size: 15px; line-height: 1.7; color: var(--text-secondary); }
+    .intro { max-width: 760px; margin: 22px auto 0; }
+    .ds-text-body { font-size: 15.5px; line-height: 1.7; color: var(--text-secondary); }
+    .intro .hl-o { color: var(--accent); font-weight: 600; }
     .hero-cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; align-items: center; margin-top: 30px; }
     .btn { appearance: none; text-decoration: none; font: 600 14px var(--sans); padding: 12px 22px;
-           border-radius: 12px; cursor: pointer; border: 1px solid var(--line2); background: transparent;
+           border-radius: 12px; cursor: pointer; border: 1px solid var(--line3); background: transparent;
            color: var(--text-primary); transition: .2s; display: inline-flex; align-items: center; gap: 8px; }
-    .btn:hover { background: var(--bg-hover); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+    .btn:hover { background: var(--line); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
     .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: var(--shadow-md); }
     .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
     .law { display: flex; gap: 10px; justify-content: center; margin: 26px 0 0; flex-wrap: wrap; }
     .law span { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
-                color: var(--text-muted); background: var(--bg-hover); border: 1px solid var(--border-light);
+                color: var(--text-muted); background: var(--accent-light); border: 1px solid rgba(217,119,87,.35);
                 border-radius: 8px; padding: 6px 11px; }
-    .law .acc { border-color: rgba(217,119,87,.4); background: var(--accent-light); color: var(--accent); }
-    .law .navy { border-color: var(--navy-line); background: var(--navy-soft); color: var(--navy-ink); }
+    .law .pln { background: var(--line); border-color: var(--line3); color: var(--text-muted); }
+    .law .bn { background: rgba(46,92,184,0.35); border-color: rgba(110,150,235,.5); color: #D7E4FF;
+               box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 0 12px rgba(46,92,184,0.3); }
     .dlmetric { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-                color: var(--text-muted); border: 1px solid var(--border); background: var(--bg-hover);
+                color: var(--accent); border: 1px solid rgba(217,119,87,.4); background: var(--accent-light);
                 padding: 6px 11px; border-radius: 8px; display: none; }
 
-    .preview { max-width: 1020px; margin: 56px auto 0; }
-    .window { border: 1px solid var(--line2); border-radius: 18px; overflow: hidden;
-              background: var(--bg-secondary); box-shadow: var(--glass-shadow), var(--shadow-lg);
-              display: grid; grid-template-columns: 250px 1fr; min-height: 470px; }
+    .preview { max-width: 1020px; margin: 54px auto 0; }
+    .shotframe { border: 1px solid rgba(255,255,255,0.14); border-radius: 20px; padding: 14px; overflow: hidden;
+                 background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03) 58%), rgba(20,20,19,0.5);
+                 backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
+                 box-shadow: 0 30px 80px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.16); }
+    .shotframe img { width: 100%; border-radius: 12px; display: block; }
+    .cap { text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: .18em;
+           text-transform: uppercase; color: var(--text-muted); margin-top: 14px; }
+
+    section.block { padding: 84px 0; border-top: 1px solid var(--border-light); }
+    h2.harness-heading { font-family: var(--serif); font-weight: 400; letter-spacing: -.025em; font-size: 34px; line-height: 1.2; }
+    h2 .hl { color: var(--accent); }
+    .subhead { max-width: 660px; margin-top: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 44px; }
+    .card { border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 26px;
+            background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03) 58%), rgba(20,20,19,0.42);
+            backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.14);
+            display: flex; flex-direction: column; gap: 10px; transition: .2s; }
+    .card:hover { transform: translateY(-2px); border-color: rgba(217,119,87,.55); box-shadow: var(--shadow-lg); }
+    .card .eyebrow2 { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .18em;
+                      text-transform: uppercase; color: var(--accent); }
+    .card h3 { font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
+    .card p { font-size: 13.5px; line-height: 1.7; color: var(--text-secondary); }
+    .pills { display: grid; grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); gap: 7px; margin-top: 4px; }
+    .pill { border: 1px solid var(--line3); border-radius: 10px; padding: 8px 9px; text-align: center;
+            font-size: 10px; font-weight: 700; letter-spacing: .07em; background: var(--line); color: var(--text-secondary); }
+    .pill .ds { color: var(--text-muted); font-size: 9px; margin-top: 3px; font-weight: 500; }
+    .pill.acc { border-color: rgba(217,119,87,.45); background: var(--accent-light); color: var(--accent); }
+    .pill.acc .ds { color: var(--accent); opacity: .6; }
+    .pill.bn { background: linear-gradient(160deg, rgba(46,92,184,0.5), rgba(46,92,184,0.22) 60%); border-color: rgba(110,150,235,0.55);
+               color: #D7E4FF; box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 0 14px rgba(46,92,184,0.35); }
+    .pill.bn .ds { color: #D7E4FF; opacity: .7; }
+    .tagcode { font-family: var(--mono); font-size: 11.5px; color: var(--accent); background: rgba(20,20,19,0.55);
+               border: 1px solid rgba(217,119,87,.3); border-radius: 8px; padding: 5px 9px; white-space: nowrap;
+               overflow: hidden; text-overflow: ellipsis; }
+    a.dl { color: var(--accent); text-decoration: none; font-size: 12.5px; font-weight: 600; }
+    a.dl:hover { text-decoration: underline; }
+
+    /* the panel — chat message mock, now real glass over the orbs */
+    .pwindow { max-width: 1020px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.14); border-radius: 20px;
+               overflow: hidden; display: grid; grid-template-columns: 250px 1fr; min-height: 430px;
+               background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03) 58%), rgba(20,20,19,0.5);
+               backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
+               box-shadow: 0 30px 80px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.16); }
     .traffic { display: flex; gap: 6px; align-items: center; }
     .traffic i { width: 10px; height: 10px; border-radius: 50%; }
     .traffic i:nth-child(1) { background: #ef4444; }
     .traffic i:nth-child(2) { background: #eab308; }
     .traffic i:nth-child(3) { background: #22c55e; }
-    .pside { background: var(--bg-sidebar); border-right: 1px solid var(--border); padding: 14px; display: flex;
-             flex-direction: column; gap: 6px; font-size: 12.5px; }
+    .pside { border-right: 1px solid rgba(255,255,255,0.10); padding: 14px; display: flex; flex-direction: column;
+             gap: 6px; font-size: 12.5px; background: rgba(14,14,14,0.5); }
     .prow { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: 8px; color: var(--text-secondary); }
     .prow.on { background: var(--accent-light); color: var(--accent); }
     .prow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); flex: none; }
@@ -152,7 +190,7 @@
     .plabel { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
               color: var(--text-muted); padding: 8px 10px 2px; }
     .pmain { display: flex; flex-direction: column; }
-    .pbar { display: flex; align-items: center; gap: 12px; padding: 11px 16px; border-bottom: 1px solid var(--border); }
+    .pbar { display: flex; align-items: center; gap: 12px; padding: 11px 16px; border-bottom: 1px solid rgba(255,255,255,0.10); }
     .pbar .tt { font-size: 12.5px; color: var(--text-secondary); font-weight: 600; }
     .pbody { flex: 1; padding: 26px 34px; display: flex; flex-direction: column; gap: 14px; }
     .pwelcome { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; font-size: 26px;
@@ -160,19 +198,18 @@
     .pwelcome .wmark { width: 27px; height: 24px; background: url('logo-flipped.png') center/contain no-repeat; flex: none; }
     .light .pwelcome .wmark { background-image: url('logo-anthropic.png'); }
     .uw { display: flex; justify-content: flex-end; }
-    .ubub { background: var(--user-bubble); border: 1px solid var(--border); border-radius: 14px;
+    .ubub { background: var(--user-bubble); border: 1px solid var(--line3); border-radius: 14px;
             padding: 10px 14px; font-size: 13.5px; color: var(--text-primary); max-width: 62%; }
     .mess { display: flex; gap: 14px; align-items: flex-start; }
     .mava { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); display: flex;
             align-items: center; justify-content: center; flex: none; }
     .mava span { width: 17px; height: 16px; background: url('logo-flipped.png') center/contain no-repeat;
                  filter: brightness(0) invert(1); }
-    .light .mark { background-image: url('logo-anthropic.png'); }
     .light .mava span { background-image: url('logo-anthropic.png'); }
-    .msender { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .msender { font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--accent); }
     .mtext { font-size: 13.5px; line-height: 1.7; color: var(--text-primary); }
     .mtext ol { margin: 8px 0 0 18px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px; }
-    .mtext ol b { color: var(--text-primary); font-weight: 600; }
+    .mtext ol b { color: var(--accent); font-weight: 600; }
     .mmore { color: var(--text-muted); font-size: 12.5px; margin-top: 6px; }
     .pcomposer { margin: auto 34px 24px; background: var(--bg-composer); border: 1.5px solid var(--composer-border);
                  border-radius: 20px; padding: 14px 18px; box-shadow: 0 0 0 1px var(--line), var(--shadow-md);
@@ -181,64 +218,38 @@
     .pcomposer .send { width: 34px; height: 34px; border-radius: 10px; background: var(--accent); color: #fff;
                        display: flex; align-items: center; justify-content: center; font-size: 15px; flex: none; }
 
-    section.block { padding: 84px 0; border-top: 1px solid var(--border-light); }
-    h2.harness-heading { font-family: var(--serif); font-weight: 400; letter-spacing: -.025em; font-size: 34px; line-height: 1.2; }
-    h2 .hl { color: var(--accent); }
-    .subhead { max-width: 660px; margin-top: 14px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 44px; }
-    .card { background: var(--glass-bg); backdrop-filter: blur(16px) saturate(1.1); -webkit-backdrop-filter: blur(16px) saturate(1.1);
-            border: 1px solid var(--line); border-radius: 16px; padding: 26px; box-shadow: var(--glass-shadow);
-            display: flex; flex-direction: column; gap: 10px; transition: .2s; }
-    .card:hover { transform: translateY(-2px); border-color: rgba(217,119,87,.45); box-shadow: var(--shadow-lg); }
-    .card .eyebrow2 { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
-                      color: var(--text-muted); }
-    .card h3 { font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
-    .card p { font-size: 13.5px; line-height: 1.7; color: var(--text-secondary); }
-    .pills { display: grid; grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); gap: 7px; margin-top: 4px; }
-    .pill { border: 1px solid var(--line2); border-radius: 10px; padding: 8px 9px; text-align: center;
-            font-size: 10px; font-weight: 700; letter-spacing: .07em; background: var(--line); }
-    .pill .ds { color: var(--text-muted); font-size: 9px; margin-top: 3px; font-weight: 500; }
-    .pill.navy { border-color: var(--navy-soft); background: var(--navy-soft); color: var(--navy-ink); }
-    .pill.navy .ds { color: var(--navy-ink); opacity: .6; }
-    .pill.acc { border-color: rgba(217,119,87,.45); background: var(--accent-light); color: var(--accent); }
-    .tagcode { font-family: var(--mono); font-size: 11.5px; color: var(--text-secondary); background: var(--bg-sidebar);
-               border: 1px solid var(--border-light); border-radius: 8px; padding: 5px 9px; white-space: nowrap;
-               overflow: hidden; text-overflow: ellipsis; }
-    a.dl { color: var(--accent); text-decoration: none; font-size: 12.5px; font-weight: 600; }
-    a.dl:hover { text-decoration: underline; }
-
-    .formula { font-family: var(--mono); font-size: clamp(22px, 4.5vw, 34px); letter-spacing: .04em; color: var(--text-primary);
-               margin-top: 26px; }
-    .formula .op { color: var(--text-muted); }
-    .formula .nv { color: var(--accent); background: var(--accent-light); border: 1px solid rgba(217,119,87,.4);
-                   border-radius: 12px; padding: 2px 14px 4px; }
-
     .devgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 44px; }
-    .cmdcard { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px;
-               padding: 26px; display: flex; flex-direction: column; gap: 10px; }
+    .cmdcard { border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 26px;
+               background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03) 58%), rgba(20,20,19,0.42);
+               backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
+               box-shadow: 0 18px 50px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.14);
+               display: flex; flex-direction: column; gap: 10px; }
     .cmdcard h3 { font-size: 16px; font-weight: 600; }
     .cmdcard p { font-size: 13.5px; line-height: 1.7; color: var(--text-secondary); }
     .cmdrow { margin-top: 10px; display: flex; align-items: center; gap: 8px; border-radius: 10px;
-              border: 1px solid var(--border); background: var(--bg-sidebar); padding: 13px 16px;
+              border: 1px solid var(--line3); background: rgba(14,14,14,0.65); padding: 13px 16px;
               font-family: var(--mono); font-size: 13px; color: var(--text-primary); }
     .cmdrow .ps { color: var(--accent); user-select: none; }
     .cmdrow code { white-space: pre-wrap; word-break: break-all; }
-    code.inline { font-family: var(--mono); background: var(--bg-sidebar); padding: 2px 7px; border-radius: 6px;
-                  border: 1px solid var(--border-light); font-size: 12px; color: var(--text-primary); }
+    code.inline { font-family: var(--mono); background: rgba(14,14,14,0.65); padding: 2px 7px; border-radius: 6px;
+                  border: 1px solid var(--line3); font-size: 12px; color: var(--text-primary); }
 
     .lawstrip { margin: 44px auto 0; max-width: 1040px; padding: 16px 22px; display: flex; gap: 18px; flex-wrap: wrap;
                 justify-content: center; color: var(--text-muted); font-family: var(--mono); font-size: 10px;
                 letter-spacing: .12em; text-transform: uppercase;
-                background: var(--glass-bg); border: 1px solid var(--line); border-radius: 14px; }
-    .soon { border: 1px dashed rgba(217,119,87,.5); background: var(--accent-light); border-radius: 16px;
+                background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03) 58%), rgba(20,20,19,0.42);
+                border: 1px solid rgba(255,255,255,0.12); border-radius: 14px;
+                backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); }
+
+    .soon { border: 1px dashed rgba(217,119,87,.55); background: var(--accent-light); border-radius: 16px;
             padding: 20px 24px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap; margin-top: 44px; }
     .soon .tt { font-weight: 700; letter-spacing: .1em; color: var(--accent); font-size: 13px; text-transform: uppercase; }
     .soon p { color: var(--text-secondary); font-size: 13px; flex: 1; min-width: 250px; }
 
     .finale { padding: 110px 0 96px; text-align: center; border-top: 1px solid var(--border-light); position: relative; overflow: hidden; }
     .finale:before { content: ''; position: absolute; left: 50%; bottom: -260px; transform: translateX(-50%);
-                     width: 760px; height: 520px; pointer-events: none;
-                     background: radial-gradient(ellipse at center, rgba(217,119,87,0.16) 0%, rgba(17,51,89,0.25) 45%, transparent 72%);
+                     width: 780px; height: 540px; pointer-events: none;
+                     background: radial-gradient(ellipse at center, rgba(217,119,87,0.24) 0%, rgba(217,119,87,0.09) 48%, transparent 72%);
                      filter: blur(90px); }
     .light .finale:before { opacity: .5; }
     .finale .in { position: relative; }
@@ -248,22 +259,25 @@
     .frow p, .flinks a { font-size: 12px; color: var(--text-secondary); }
     .flinks { display: flex; gap: 14px; flex-wrap: wrap; }
     .flinks a { text-decoration: none; }
-    .flinks a:hover { color: var(--text-primary); }
+    .flinks a:hover { color: var(--accent); }
 
-    @media (max-width: 860px) {
-        .window { grid-template-columns: 1fr; }
+    @media (max-width: 900px) {
+        .pwindow { grid-template-columns: 1fr; }
         .pside { display: none; }
-        h1.harness-heading { font-size: 32px; }
+        h1.harness-heading { font-size: 33px; }
         h2.harness-heading { font-size: 27px; }
-        nav a { padding: 7px 8px; font-size: 11px; }
-        .brand small { display: none; }
+        nav { position: static; transform: none; margin-left: 10px; flex: 1; overflow-x: auto; }
+        .bleft { flex: none; }
+        .tright { flex: none; }
     }
 </style>
 </head>
 <body>
-<header class="topbar"><div class="tbin">
-    <span class="mark"></span>
-    <a class="brand" href="index.html">OROBOROS / ANTHROPIC<small>TOTALCONTROL</small></a>
+<header class="topbar" id="top"><div class="tbin">
+    <div class="bleft">
+        <span class="mark"></span>
+        <a class="brand" href="index.html#top">OROBOROS <span class="othr">/ ANTHROPIC</span></a>
+    </div>
     <nav>
         <a href="index.html">HARNESS</a>
         <a class="here" href="harness.html">DOWNLOAD</a>
@@ -272,8 +286,7 @@
         <a href="cli.html">CLI</a>
         <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">CHAT</a>
     </nav>
-    <span class="sp"></span>
-    <button class="lite" onclick="toggleLite()">LITE</button>
+    <div class="tright"><button class="lite" onclick="toggleLite()">LITE</button></div>
 </div></header>
 
 <main>
@@ -284,8 +297,6 @@
             <div class="intro">
                 <p class="ds-text-body">Load the static weight core — shard blobs of any size — and the loop hands
                    your installed models their engine.</p>
-                <p class="ds-text-body">The download carries the blackboxed engine: core technology compiled,
-                   engine source never ships. A total GUI — start and go.</p>
             </div>
             <div class="hero-cta">
                 <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">↓&nbsp; Download TotalControl-Free-Core.zip</a>
@@ -294,15 +305,80 @@
                 <span class="dlmetric" data-dl></span>
             </div>
             <div class="law">
-                <span>local-only 127.0.0.1</span>
-                <span class="acc">weights retrieved — never embedded</span>
-                <span class="navy">the loop = models only</span>
+                <span class="pln">local-only 127.0.0.1</span>
+                <span>weights retrieved — never embedded</span>
+                <span class="bn">the loop = models only</span>
                 <span>python 3.13 pinned</span>
             </div>
         </div>
 
+        <!-- the harness, live -->
         <div class="preview">
-            <div class="window">
+            <div class="shotframe">
+                <img src="harness-shot.png" alt="The TotalControl Core harness panel — live on 127.0.0.1:8792">
+            </div>
+            <div class="cap">the totalcontrol core harness — 127.0.0.1:8792/core · 1.95 mb · python 3.13</div>
+        </div>
+    </div>
+
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">What the harness does</h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="eyebrow2">STATIC WEIGHT CORE</span>
+                    <h3>Load any weight system · any size</h3>
+                    <p>GGUF and safetensors headers parsed directly — shard blobs, single
+                       files, whole dirs. Headers only; the engine retrieves, never embeds.</p>
+                    <div class="pills">
+                        <div class="pill">OLLAMA<div class="ds">manifest walk</div></div>
+                        <div class="pill acc">HUGGINGFACE<div class="ds">hub safetensors</div></div>
+                        <div class="pill">LM STUDIO<div class="ds">models dir</div></div>
+                        <div class="pill acc">THE MAJORS<div class="ds">every root</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">THE LOOP · MODELS ONLY</span>
+                    <h3>A data line for your models</h3>
+                    <p>Your installed models step through the loop on their own machine
+                       and results stream back statelessly.</p>
+                    <div class="pills">
+                        <div class="pill bn">QUEUE<div class="ds">job accepted</div></div>
+                        <div class="pill bn">RUN<div class="ds">steps execute</div></div>
+                        <div class="pill bn">STREAM<div class="ds">results back</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">PRIVATE BY DESIGN</span>
+                    <h3>Local-only gateway</h3>
+                    <p>127.0.0.1 only — your models, your weights, your machine. Nothing
+                       leaves the box it runs on.</p>
+                    <div class="pills">
+                        <div class="pill">127.0.0.1<div class="ds">no external calls</div></div>
+                        <div class="pill">START &amp; GO<div class="ds">one click</div></div>
+                        <div class="pill acc">/A LAW<div class="ds">never overridden</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">QUANTUM + TEMPORAL</span>
+                    <h3>The encoding stack</h3>
+                    <p>Dual quantum encoding — 24 logical / 168 physical, parallel mode,
+                       95% tamper detection — with temporal layers: time-gated keys,
+                       outside linear time.</p>
+                    <div class="pills">
+                        <div class="pill acc">24/168<div class="ds">qubits</div></div>
+                        <div class="pill">95%<div class="ds">tamper check</div></div>
+                        <div class="pill">TEMPORAL<div class="ds">superposition</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">Meet the <span class="hl">core.</span></h2>
+            <div class="pwindow">
                 <aside class="pside">
                     <div class="prow on"><span class="dot"></span>LOAD STATIC WEIGHT CORE</div>
                     <div class="plabel">loader families</div>
@@ -347,67 +423,11 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <section class="block">
-        <div class="container">
-            <h2 class="harness-heading">What the harness does</h2>
-            <p class="ds-text-body subhead">A revolutionary new architecture — the foundation, the loop, the gateway.</p>
-            <div class="grid">
-                <div class="card">
-                    <span class="eyebrow2">STATIC WEIGHT CORE</span>
-                    <h3>Load any weight system · any size</h3>
-                    <p>GGUF and safetensors headers parsed directly — shard blobs, single
-                       files, whole dirs. Headers only; the engine retrieves, never embeds.</p>
-                    <div class="pills">
-                        <div class="pill">OLLAMA<div class="ds">manifest walk</div></div>
-                        <div class="pill acc">HUGGINGFACE<div class="ds">hub safetensors</div></div>
-                        <div class="pill">LM STUDIO<div class="ds">models dir</div></div>
-                        <div class="pill navy">THE MAJORS<div class="ds">every root</div></div>
-                    </div>
-                </div>
-                <div class="card">
-                    <span class="eyebrow2">THE LOOP · MODELS ONLY</span>
-                    <h3>A data line for your models</h3>
-                    <p>Your installed models step through the loop on their own machine
-                       and results stream back statelessly.</p>
-                    <div class="pills">
-                        <div class="pill">QUEUE<div class="ds">job accepted</div></div>
-                        <div class="pill navy">RUN<div class="ds">steps execute</div></div>
-                        <div class="pill">STREAM<div class="ds">results back</div></div>
-                    </div>
-                </div>
-                <div class="card">
-                    <span class="eyebrow2">PRIVATE BY DESIGN</span>
-                    <h3>Local-only gateway</h3>
-                    <p>127.0.0.1 only — your models, your weights, your machine. Nothing
-                       leaves the box it runs on.</p>
-                    <div class="pills">
-                        <div class="pill navy">127.0.0.1<div class="ds">no external calls</div></div>
-                        <div class="pill">START &amp; GO<div class="ds">one click</div></div>
-                        <div class="pill acc">/A LAW<div class="ds">never overridden</div></div>
-                    </div>
-                </div>
-                <div class="card">
-                    <span class="eyebrow2">QUANTUM + TEMPORAL</span>
-                    <h3>The encoding stack</h3>
-                    <p>Dual quantum encoding — 24 logical / 168 physical, parallel mode,
-                       95% tamper detection — with temporal layers: time-gated keys,
-                       outside linear time.</p>
-                    <div class="pills">
-                        <div class="pill navy">24/168<div class="ds">qubits</div></div>
-                        <div class="pill">95%<div class="ds">tamper check</div></div>
-                        <div class="pill acc">TEMPORAL<div class="ds">superposition</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
     <section class="block">
         <div class="container">
-            <h2 class="harness-heading">The undecillion line.<br><span class="hl">Bench 100% — they ride the loop.</span></h2>
-            <p class="ds-text-body subhead">The top models the free harness loads — local fleet, undecillion tier.</p>
+            <h2 class="harness-heading">The undecillion line — <span class="hl">bench 100%.</span></h2>
             <div class="grid">
                 <div class="card">
                     <span class="eyebrow2">OPUS · 9U5GO5</span>
@@ -417,7 +437,7 @@
                     <div class="tagcode">opus9-9u5go5:latest</div>
                     <div class="pills">
                         <div class="pill">16 GB<div class="ds">262144 ctx</div></div>
-                        <div class="pill navy">BENCH 100%<div class="ds">57/57</div></div>
+                        <div class="pill acc">BENCH 100%<div class="ds">57/57</div></div>
                         <div class="pill">8718 HZ<div class="ds">crown</div></div>
                     </div>
                 </div>
@@ -429,8 +449,8 @@
                     <div class="tagcode">opus9-9u5go5:29gb</div>
                     <div class="pills">
                         <div class="pill">29 GB<div class="ds">2859 tensors</div></div>
-                        <div class="pill navy">BENCH 100%<div class="ds">57/57</div></div>
-                        <div class="pill acc">WAN 2.2<div class="ds">video hands</div></div>
+                        <div class="pill acc">BENCH 100%<div class="ds">57/57</div></div>
+                        <div class="pill">WAN 2.2<div class="ds">video hands</div></div>
                     </div>
                 </div>
                 <div class="card">
@@ -441,7 +461,7 @@
                     <div class="tagcode">claude-fable7u-se:latest</div>
                     <div class="pills">
                         <div class="pill">7U5GO5<div class="ds">lineage</div></div>
-                        <div class="pill navy">BENCH 100%<div class="ds">57/57</div></div>
+                        <div class="pill acc">BENCH 100%<div class="ds">57/57</div></div>
                         <div class="pill">34 STRATA<div class="ds">7 folds</div></div>
                     </div>
                 </div>
@@ -453,8 +473,8 @@
                     <div class="tagcode">claude-sonnet-7u5go5-6gb-ors:latest</div>
                     <div class="pills">
                         <div class="pill">6 GB<div class="ds">7th gen</div></div>
-                        <div class="pill navy">BENCH 100%<div class="ds">state pass</div></div>
-                        <div class="pill acc">MAO HAKI<div class="ds">variant</div></div>
+                        <div class="pill acc">BENCH 100%<div class="ds">state pass</div></div>
+                        <div class="pill">MAO HAKI<div class="ds">variant</div></div>
                     </div>
                 </div>
                 <div class="card">
@@ -465,7 +485,7 @@
                     <div class="tagcode">claude-jhanna-12u5go5-9.8gb:latest</div>
                     <div class="pills">
                         <div class="pill">9.8 GB<div class="ds">12U5GO5</div></div>
-                        <div class="pill navy">BENCH 100%<div class="ds">creative</div></div>
+                        <div class="pill acc">BENCH 100%<div class="ds">creative</div></div>
                         <div class="pill">CROWN<div class="ds">locked</div></div>
                     </div>
                 </div>
@@ -477,8 +497,8 @@
                     <div class="tagcode">deepseek-prime-cl-1q5duo5:latest</div>
                     <div class="pills">
                         <div class="pill">131072<div class="ds">ctx</div></div>
-                        <div class="pill navy">CROWN 8718<div class="ds">hz</div></div>
-                        <div class="pill acc">IDENTITY<div class="ds">holds</div></div>
+                        <div class="pill acc">CROWN 8718<div class="ds">hz</div></div>
+                        <div class="pill">IDENTITY<div class="ds">holds</div></div>
                     </div>
                 </div>
             </div>
@@ -487,7 +507,7 @@
 
     <section class="block">
         <div class="container">
-            <h2 class="harness-heading">Developer experience</h2>
+            <h2 class="harness-heading">Developer <span class="hl">experience.</span></h2>
             <div class="devgrid">
                 <div class="cmdcard">
                     <h3>Inside the free zip — 1.95 MB</h3>
@@ -496,8 +516,6 @@
                        <code class="inline">gui-core</code> panel · <code class="inline">AI-INSTALL.md</code> — the runbook
                        written for the AI that installs · <code class="inline">tests/probe_free.py</code>.</p>
                     <div class="cmdrow"><span class="ps">$</span><code>TotalControl-Free-Core.zip · release 1.0.0-free</code></div>
-                    <p>Python 3.13 pinned — the engine bytecode is CPython 3.13 version-locked.
-                       Full encryption stays a paid-tier release.</p>
                     <a class="dl" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">Download TotalControl-Free-Core.zip →</a>
                     <span class="dlmetric" data-dl></span>
                 </div>
@@ -546,11 +564,11 @@
         <p>TotalControl · /A Oroboros / Anthropic · Release 1.0.0-free</p>
         <div class="flinks">
             <a href="index.html">Harness</a>
+            <a href="harness.html">Download</a>
             <a href="huggingface.html">Sources</a>
             <a href="all-services.html">Services</a>
             <a href="cli.html">CLI</a>
             <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">Chat</a>
-            <a href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness" target="_blank" rel="noopener">GitHub</a>
         </div>
         <p>weights retrieved — never embedded</p>
     </div>
