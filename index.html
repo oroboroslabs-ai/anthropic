@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Future Is Here — TotalControl Core · /A OROBOROS / ANTHROPIC</title>
+<title>TotalControl Core | The future is here — /A OROBOROS / ANTHROPIC</title>
 <meta name="description" content="TotalControl Core — a revolutionary new AI architecture and architectural theory, built on quantum physics and temporal technologies. The free harness runs on your machine.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="logo-flipped.png">
@@ -42,6 +42,9 @@
         --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
         --shadow-md: 0 4px 12px rgba(0,0,0,0.45);
         --shadow-lg: 0 8px 24px rgba(0,0,0,0.55);
+        --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        --serif: Georgia, 'Times New Roman', serif;
+        --mono: 'Source Code Pro', ui-monospace, monospace;
     }
     .light {
         --bg-primary: #FAFAF8;
@@ -78,103 +81,182 @@
         --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        background: var(--bg-primary);
-        color: var(--text-primary);
-        -webkit-font-smoothing: antialiased;
-        min-height: 100vh;
-    }
+    body { font-family: var(--sans); background: var(--bg-primary); color: var(--text-primary);
+           -webkit-font-smoothing: antialiased; min-height: 100vh; }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
+    /* ===== header (navy glass, like the top) ===== */
     .topbar { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; gap: 12px;
+              max-width: 1280px; margin: 0 auto; padding: 12px 24px;
               background: var(--navy-glass); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2);
-              border-bottom: 1px solid var(--navy-line); padding: 11px 20px; }
+              border-bottom: 1px solid var(--navy-line); }
     .mark { width: 22px; height: 20px; background: url('logo-flipped.png') center/contain no-repeat; flex: none; }
     .brand { font-size: 12.5px; font-weight: 700; letter-spacing: .08em; color: var(--text-primary); text-decoration: none; white-space: nowrap; }
     .brand small { color: var(--navy-ink); font-weight: 600; letter-spacing: .16em; margin-left: 8px; font-size: 9.5px; }
-    nav { display: flex; gap: 2px; margin-left: 10px; }
-    nav a { color: var(--navy-ink); opacity: .75; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: .05em;
-            padding: 7px 12px; border-radius: 8px; }
+    nav { display: flex; gap: 2px; margin-left: 12px; }
+    nav a { color: var(--navy-ink); opacity: .75; text-decoration: none; font-size: 12px; font-weight: 600;
+            letter-spacing: .05em; padding: 7px 12px; border-radius: 8px; }
     nav a:hover { color: var(--text-primary); background: var(--line2); opacity: 1; }
     nav a.here { color: #fff; background: var(--line2); opacity: 1; }
     .sp { flex: 1; }
     .lite { appearance: none; border: 1px solid var(--line2); background: var(--line); color: var(--navy-ink);
-            font: 600 10px 'Inter'; letter-spacing: .12em; padding: 7px 13px; border-radius: 8px; cursor: pointer; }
+            font: 600 10px var(--sans); letter-spacing: .12em; padding: 7px 13px; border-radius: 8px; cursor: pointer; }
     .lite:hover { color: #fff; }
 
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 48px 22px 76px; }
-    .hero { text-align: center; padding: 30px 20px 36px; }
-    .mark.big { width: 76px; height: 69px; margin: 0 auto 18px; filter: drop-shadow(0 0 26px rgba(17,51,89,.65)); }
-    .kick { font-size: 10.5px; font-weight: 700; letter-spacing: .22em; color: var(--text-muted); text-transform: uppercase; }
-    h1 { font-size: 42px; font-weight: 700; letter-spacing: -.02em; margin: 14px 0 16px; }
-    .here-word { background: var(--navy); color: var(--navy-ink); padding: 3px 18px 5px; border-radius: 14px; display: inline-block; }
-    .lead { max-width: 660px; margin: 0 auto; color: var(--text-secondary); font-size: 15.5px; line-height: 1.65; }
-    .law { display: flex; gap: 10px; justify-content: center; margin: 22px 0 30px; flex-wrap: wrap; }
-    .law span { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted);
-                background: var(--bg-hover); border: 1px solid var(--border-light); border-radius: 8px; padding: 6px 11px; }
-    .law .navy { border-color: var(--navy-line); background: var(--navy-soft); color: var(--navy-ink); }
-    .cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 44px; }
-    .btn { appearance: none; text-decoration: none; font: 600 13.5px 'Inter'; padding: 13px 24px; border-radius: 12px; cursor: pointer;
-           border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); transition: .2s; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    .narrow { max-width: 880px; }
+    .center { margin-left: auto; margin-right: auto; text-align: center; }
+
+    /* ===== hero (DSH rhythm: eyebrow, serif h1, two lines, one CTA) ===== */
+    .hero { padding: 84px 0 64px; }
+    .eyebrow { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .22em;
+               text-transform: uppercase; color: rgba(240,239,236,0.45); display: inline-flex; align-items: center; gap: 8px;
+               border: 1px solid var(--navy-line); background: var(--navy-soft); color: var(--navy-ink);
+               padding: 7px 14px; border-radius: 999px; }
+    .light .eyebrow { color: var(--text-secondary); background: transparent; }
+    h1.harness-heading { font-family: var(--serif); font-weight: 400; letter-spacing: -.03em;
+                         font-size: 44px; line-height: 1.12; margin: 22px 0 0; }
+    h1 .here-word { color: var(--navy-ink); }
+    .light h1 .here-word { color: var(--navy); }
+    .hero .intro { max-width: 720px; margin: 22px auto 0; display: flex; flex-direction: column; gap: 7px; }
+    .ds-text-body { font-size: 15px; line-height: 1.7; color: var(--text-secondary); }
+    .hero-cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+    .btn { appearance: none; text-decoration: none; font: 600 14px var(--sans); padding: 12px 22px;
+           border-radius: 12px; cursor: pointer; border: 1px solid var(--line2); background: transparent;
+           color: var(--text-primary); transition: .2s; display: inline-flex; align-items: center; gap: 8px; }
     .btn:hover { background: var(--bg-hover); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
     .btn.primary { background: var(--navy); border-color: var(--navy-line); color: var(--navy-ink); }
     .btn.primary:hover { background: var(--navy-hover); }
-    .btn.ghost { background: transparent; }
-    .btn.ghost:hover { background: var(--bg-hover); }
+    .law { display: flex; gap: 10px; justify-content: center; margin: 26px 0 0; flex-wrap: wrap; }
+    .law span { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+                color: var(--text-muted); background: var(--bg-hover); border: 1px solid var(--border-light);
+                border-radius: 8px; padding: 6px 11px; }
+    .law .navy { border-color: var(--navy-line); background: var(--navy-soft); color: var(--navy-ink); }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; max-width: 1040px; margin: 0 auto; }
+    /* ===== harness desktop preview mock ===== */
+    .preview { max-width: 1020px; margin: 56px auto 0; }
+    .window { border: 1px solid var(--line2); border-radius: 18px; overflow: hidden;
+              background: var(--bg-secondary); box-shadow: var(--glass-shadow), var(--shadow-lg);
+              display: grid; grid-template-columns: 250px 1fr; min-height: 430px; }
+    .window .traffic { display: flex; gap: 6px; align-items: center; }
+    .window .traffic i { width: 10px; height: 10px; border-radius: 50%; background: var(--line2); }
+    .window .traffic i:nth-child(1) { background: #ef4444; }
+    .window .traffic i:nth-child(2) { background: #eab308; }
+    .window .traffic i:nth-child(3) { background: #22c55e; }
+    .pside { background: var(--bg-sidebar); border-right: 1px solid var(--border); padding: 14px; display: flex;
+             flex-direction: column; gap: 6px; font-size: 12.5px; }
+    .prow { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: 8px; color: var(--text-secondary); }
+    .prow.on { background: var(--navy-soft); color: var(--navy-ink); }
+    .prow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); flex: none; }
+    .prow.on .dot { background: var(--navy-hover); }
+    .plabel { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+              color: var(--text-muted); padding: 8px 10px 2px; }
+    .pmain { display: flex; flex-direction: column; }
+    .pbar { display: flex; align-items: center; gap: 12px; padding: 11px 16px; border-bottom: 1px solid var(--border); }
+    .pbar .tt { font-size: 12.5px; color: var(--text-secondary); font-weight: 600; }
+    .pbody { flex: 1; padding: 30px 34px; display: flex; flex-direction: column; gap: 12px; }
+    .pwelcome { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; font-size: 26px;
+                display: flex; align-items: center; gap: 10px; }
+    .preset { font-size: 13px; line-height: 1.75; color: var(--text-secondary); }
+    .preset b { color: var(--text-primary); font-weight: 600; }
+    .pcomposer { margin: 0 34px 24px; background: var(--bg-composer); border: 1.5px solid var(--composer-border);
+                 border-radius: 20px; padding: 14px 18px; box-shadow: 0 0 0 1px var(--line), var(--shadow-md);
+                 display: flex; align-items: center; gap: 12px; }
+    .pcomposer .ph { color: var(--text-muted); font-size: 13.5px; flex: 1; }
+    .pcomposer .send { width: 34px; height: 34px; border-radius: 10px; background: var(--navy); color: var(--navy-ink);
+                       display: flex; align-items: center; justify-content: center; font-size: 15px; flex: none; }
+
+    /* ===== sections / cards (DSH panel rhythm, glass surfaces) ===== */
+    section.block { padding: 84px 0; border-top: 1px solid var(--border-light); }
+    h2.harness-heading { font-family: var(--serif); font-weight: 400; letter-spacing: -.025em; font-size: 34px; line-height: 1.2; }
+    h2 .hl { color: var(--navy-hover); }
+    .light h2 .hl { color: var(--accent-blue); }
+    .subhead { margin-top: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 44px; }
     .card { background: var(--glass-bg); backdrop-filter: blur(16px) saturate(1.1); -webkit-backdrop-filter: blur(16px) saturate(1.1);
-            border: 1px solid var(--line); border-radius: 16px; padding: 20px; box-shadow: var(--glass-shadow);
-            display: flex; flex-direction: column; gap: 9px; transition: .2s; }
+            border: 1px solid var(--line); border-radius: 16px; padding: 26px; box-shadow: var(--glass-shadow);
+            display: flex; flex-direction: column; gap: 10px; transition: .2s; }
     .card:hover { transform: translateY(-2px); border-color: var(--navy-line); box-shadow: var(--shadow-lg); }
-    .card .kick { color: var(--text-muted); }
-    .card h3 { font-size: 14.5px; font-weight: 600; }
-    .card p { color: var(--text-secondary); font-size: 12.5px; line-height: 1.6; }
-    .pills { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 7px; margin-top: 3px; }
+    .card .eyebrow2 { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
+                      color: var(--text-muted); }
+    .card h3 { font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
+    .card p { font-size: 13.5px; line-height: 1.7; color: var(--text-secondary); }
+    .pills { display: grid; grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)); gap: 7px; margin-top: 4px; }
     .pill { border: 1px solid var(--line2); border-radius: 10px; padding: 8px 9px; text-align: center;
             font-size: 10px; font-weight: 700; letter-spacing: .07em; background: var(--line); }
     .pill .ds { color: var(--text-muted); font-size: 9px; margin-top: 3px; font-weight: 500; }
     .pill.navy { border-color: var(--navy-soft); background: var(--navy-soft); color: var(--navy-ink); }
     .pill.navy .ds { color: var(--navy-ink); opacity: .6; }
+    .tagcode { font-family: var(--mono); font-size: 11.5px; color: var(--text-secondary); background: var(--bg-sidebar);
+               border: 1px solid var(--border-light); border-radius: 8px; padding: 5px 9px; white-space: nowrap;
+               overflow: hidden; text-overflow: ellipsis; }
+    a.dl { color: var(--navy-hover); text-decoration: none; font-size: 12.5px; font-weight: 600; }
+    .light a.dl { color: var(--accent-blue); }
+    a.dl:hover { text-decoration: underline; }
 
-    .sect { max-width: 1040px; margin: 40px auto 0; }
-    .sect-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-    .sect-head .kick { color: var(--text-secondary); }
-    .free { background: var(--navy-glass); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2);
-            border: 1px solid var(--navy-line); border-radius: 16px; padding: 22px 24px; box-shadow: var(--glass-shadow);
-            display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
-    .free .what { flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 8px; }
-    .free .tt { font-size: 13px; font-weight: 700; letter-spacing: .12em; color: var(--navy-ink); text-transform: uppercase; }
-    .free p { color: var(--text-secondary); font-size: 12.5px; line-height: 1.6; }
-    .free code, .steps code { font-family: 'Source Code Pro', monospace; background: var(--bg-secondary); padding: 2px 6px;
-                              border-radius: 4px; border: 1px solid var(--border-light); font-size: 12px; color: var(--text-primary); }
-    .free .cta2 { display: flex; flex-direction: column; gap: 9px; min-width: 250px; }
+    /* formula pillars (Agent = Model + Harness → ours) */
+    .formula { font-family: var(--mono); font-size: clamp(22px, 4.5vw, 34px); letter-spacing: .04em; color: var(--text-primary);
+               margin-top: 26px; }
+    .formula .op { color: var(--text-muted); }
+    .formula .nv { color: var(--navy-ink); background: var(--navy-soft); border: 1px solid var(--navy-line);
+                   border-radius: 12px; padding: 2px 14px 4px; }
+    .light .formula .nv { color: var(--navy); }
+    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 40px; }
+    .pillars .card p { font-size: 12.5px; }
+    .pillars .up { font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); }
 
-    .steps { background: var(--bg-composer); border: 1.5px solid var(--composer-border); border-radius: 20px;
-             padding: 18px 22px; box-shadow: 0 0 0 1px var(--line), var(--shadow-md); }
-    .steps ol { margin-left: 18px; color: var(--text-secondary); font-size: 13px; line-height: 1.6;
-                display: flex; flex-direction: column; gap: 7px; }
-    .soon { border: 1px dashed var(--navy-line); background: var(--navy-soft); border-radius: 16px; padding: 18px 22px;
-            display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+    /* developer experience command cards */
+    .devgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 44px; }
+    .cmdcard { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px;
+               padding: 26px; display: flex; flex-direction: column; gap: 10px; }
+    .cmdcard h3 { font-size: 16px; font-weight: 600; }
+    .cmdcard p { font-size: 13.5px; line-height: 1.7; color: var(--text-secondary); }
+    .cmdrow { margin-top: 10px; display: flex; align-items: center; gap: 8px; border-radius: 10px;
+              border: 1px solid var(--border); background: var(--bg-sidebar); padding: 13px 16px;
+              font-family: var(--mono); font-size: 13px; color: var(--text-primary); }
+    .cmdrow .ps { color: var(--accent); user-select: none; }
+    .cmdrow code { white-space: pre-wrap; word-break: break-all; }
+
+    .steps ol { margin-left: 18px; color: var(--text-secondary); font-size: 13.5px; line-height: 1.7;
+                display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+    code.inline { font-family: var(--mono); background: var(--bg-sidebar); padding: 2px 7px; border-radius: 6px;
+                  border: 1px solid var(--border-light); font-size: 12px; color: var(--text-primary); }
+
+    .soon { border: 1px dashed var(--navy-line); background: var(--navy-soft); border-radius: 16px; padding: 20px 24px;
+            display: flex; gap: 15px; align-items: center; flex-wrap: wrap; margin-top: 44px; }
     .soon .tt { font-weight: 700; letter-spacing: .1em; color: var(--navy-ink); font-size: 13px; text-transform: uppercase; }
-    .soon p { color: var(--text-secondary); font-size: 12.5px; flex: 1; min-width: 250px; }
+    .soon p { color: var(--text-secondary); font-size: 13px; flex: 1; min-width: 250px; }
 
-    .foot { max-width: 1040px; margin: 30px auto 0; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
-            color: var(--text-muted); font-size: 9.5px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+    /* finale + footer */
+    .finale { padding: 110px 0 96px; text-align: center; border-top: 1px solid var(--border-light); position: relative; overflow: hidden; }
+    .finale:before { content: ''; position: absolute; left: 50%; bottom: -260px; transform: translateX(-50%);
+                     width: 720px; height: 500px; pointer-events: none;
+                     background: radial-gradient(ellipse at center, rgba(17,51,89,0.45) 0%, rgba(17,51,89,0.18) 42%, transparent 70%);
+                     filter: blur(90px); }
+    .light .finale:before { opacity: .35; }
+    .finale .in { position: relative; }
+    .finale .hero-cta { margin-top: 28px; }
+    footer.site { border-top: 1px solid var(--border); padding: 26px 0 38px; }
+    .frow { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
+    .frow p, .flinks a { font-size: 12px; color: var(--text-secondary); }
+    .flinks { display: flex; gap: 14px; flex-wrap: wrap; }
+    .flinks a { text-decoration: none; }
+    .flinks a:hover { color: var(--text-primary); }
 
-    @media (max-width: 700px) {
+    @media (max-width: 860px) {
+        .window { grid-template-columns: 1fr; }
+        .pside { display: none; }
+        h1.harness-heading { font-size: 32px; }
+        h2.harness-heading { font-size: 27px; }
         nav a { padding: 7px 8px; font-size: 11px; }
         .brand small { display: none; }
-        h1 { font-size: 32px; }
     }
 </style>
 </head>
 <body>
-<div class="topbar">
+<header class="topbar">
     <span class="mark"></span>
     <a class="brand" href="index.html">/A OROBOROS / ANTHROPIC<small>TOTALCONTROL</small></a>
     <nav>
@@ -184,101 +266,175 @@
     </nav>
     <span class="sp"></span>
     <button class="lite" onclick="toggleLite()">LITE</button>
-</div>
+</header>
 
-<div class="wrap">
-    <div class="hero">
-        <span class="mark big"></span>
-        <div class="kick">oroboros labs · official free release</div>
-        <h1>THE FUTURE IS <span class="here-word">HERE</span></h1>
-        <p class="lead">TotalControl Core — a revolutionary new AI architecture and architectural theory,
-           built on quantum physics and temporal technologies. It runs on your machine.
-           It is free.</p>
-        <div class="law">
-            <span>local-only 127.0.0.1</span>
-            <span class="navy">weights retrieved — never embedded</span>
-            <span>the loop = models only</span>
-            <span class="navy">crown 8718 hz</span>
-        </div>
-        <div class="cta">
-            <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">Download TotalControl Core — Free</a>
-            <a class="btn ghost" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/blob/main/AI-INSTALL.md">AI installer runbook</a>
-            <a class="btn ghost" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness">Source</a>
-        </div>
-
-        <div class="sect-head"><span class="kick" style="color:var(--text-secondary)">a revolutionary new architecture</span></div>
-        <div class="grid">
-            <div class="card">
-                <div class="kick">the architecture</div>
-                <h3>Static weight core</h3>
-                <p>Any model, any size. GGUF and safetensors headers are parsed directly —
-                   shard blobs, single files, whole dirs. The engine retrieves weights,
-                   it never embeds them.</p>
-                <div class="pills">
-                    <div class="pill">OLLAMA<div class="ds">manifest walk</div></div>
-                    <div class="pill navy">HUGGINGFACE<div class="ds">hub safetensors</div></div>
-                    <div class="pill">LM STUDIO<div class="ds">models dir</div></div>
-                    <div class="pill navy">MAJORS<div class="ds">every root</div></div>
-                </div>
+<main>
+    <!-- hero -->
+    <div class="container">
+        <div class="hero center">
+            <span class="eyebrow">✦ /A OROBOROS LABS · FREE RELEASE · PREVIEW</span>
+            <h1 class="harness-heading">TotalControl Core.<br>The future <span class="here-word">is here.</span></h1>
+            <div class="intro">
+                <p class="ds-text-body">Everyday models, your own loop, or your own harness — it starts here.</p>
+                <p class="ds-text-body">A revolutionary new architecture and architectural theory, built on quantum physics
+                   and temporal technologies. The free harness runs entirely on your machine —
+                   and the loop hands your installed models their engine.</p>
             </div>
-            <div class="card">
-                <div class="kick">architectural theory</div>
-                <h3>The loop — models only</h3>
-                <p>Your installed models step through the loop on their own machine
-                   and results stream back statelessly. One data line, by law —
-                   no hands, no memory.</p>
-                <div class="pills">
-                    <div class="pill">QUEUE<div class="ds">job accepted</div></div>
-                    <div class="pill navy">RUN<div class="ds">steps execute</div></div>
-                    <div class="pill">STREAM<div class="ds">results back</div></div>
-                </div>
+            <div class="hero-cta">
+                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">↓&nbsp; Download the free harness</a>
+                <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/blob/main/AI-INSTALL.md">AI installer runbook</a>
+                <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness">View on GitHub</a>
             </div>
-            <div class="card">
-                <div class="kick">quantum physics</div>
-                <h3>Dual quantum encoding</h3>
-                <p>Parallel mode on two encodings — 24 logical over 168 physical qubits —
-                   with a 95% tamper-detection threshold running through the
-                   Oroboros core.</p>
-                <div class="pills">
-                    <div class="pill navy">24 LOGICAL<div class="ds">qubits</div></div>
-                    <div class="pill">168 PHYSICAL<div class="ds">qubits</div></div>
-                    <div class="pill navy">PARALLEL<div class="ds">2× mode</div></div>
-                    <div class="pill">95%<div class="ds">tamper check</div></div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="kick">temporal technologies</div>
-                <h3>Temporal layers</h3>
-                <p>Time-gated adaptive keys and temporal-keyed ciphertext —
-                   the stack re-keys on the move and sits outside linear time,
-                   self-reinforcing.</p>
-                <div class="pills">
-                    <div class="pill navy">TEMPORAL<div class="ds">superposition</div></div>
-                    <div class="pill">TIME-GATED<div class="ds">keys</div></div>
-                    <div class="pill navy">SELF-REINFORCED<div class="ds">adaptive</div></div>
-                </div>
+            <div class="law">
+                <span>local-only 127.0.0.1</span>
+                <span class="navy">weights retrieved — never embedded</span>
+                <span>the loop = models only</span>
+                <span class="navy">crown 8718 hz</span>
             </div>
         </div>
 
-        <div class="sect">
-            <div class="sect-head"><span class="mark" style="width:15px;height:14px"></span><span class="kick" style="color:var(--text-secondary)">our top models — the undecillion line · bench 100%</span></div>
+        <!-- desktop preview mock (in the chat's own design) -->
+        <div class="preview">
+            <div class="window">
+                <aside class="pside">
+                    <div class="prow on">
+                        <span class="dot"></span> LOAD STATIC WEIGHT CORE
+                    </div>
+                    <div class="plabel">loader families</div>
+                    <div class="prow on"><span class="dot"></span>OLLAMA</div>
+                    <div class="prow"><span class="dot"></span>HUGGINGFACE</div>
+                    <div class="prow"><span class="dot"></span>LM STUDIO</div>
+                    <div class="prow"><span class="dot"></span>THE MAJORS</div>
+                    <div class="plabel">loop · models only</div>
+                    <div class="prow"><span class="dot"></span>QUEUE</div>
+                    <div class="prow"><span class="dot"></span>RUN</div>
+                    <div class="prow"><span class="dot"></span>STREAM</div>
+                </aside>
+                <div class="pmain">
+                    <div class="pbar">
+                        <span class="traffic"><i></i><i></i><i></i></span>
+                        <span class="tt">MEET TOTALCONTROL CORE — 127.0.0.1:8792/CORE</span>
+                    </div>
+                    <div class="pbody">
+                        <div class="pwelcome">/A How can I help you?</div>
+                        <p class="preset"><b>Everyday weights</b> — Ollama, Hugging Face, LM Studio: headers parsed directly, shard blobs of any size.
+                           <b>Architecture</b> — the engine retrieves, never embeds. <b>The loop</b> — models only, results stream back statelessly.
+                           <b>Quantum</b> — dual encoding, parallel mode. <b>Temporal</b> — time-gated keys, outside linear time.</p>
+                    </div>
+                    <div class="pcomposer">
+                        <span class="ph">Load static weight core — presets, @ any path…</span>
+                        <span class="send">↑</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- formula + pillars -->
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">Expanding weights.<br><span class="hl">Work on your terms.</span></h2>
+            <div class="formula"><span>ENGINE</span><span class="op"> = </span><span>WEIGHTS</span><span class="op"> + </span><span class="nv">LAW</span></div>
+            <div class="pillars">
+                <div class="card">
+                    <span class="up">STATIC WEIGHT CORE</span>
+                    <p>The static weight core loads Ollama, Hugging Face, LM Studio and
+                       every major root. Capabilities live with the weights — headers only,
+                       any size, retrieved and never embedded.</p>
+                </div>
+                <div class="card">
+                    <span class="up">THE LOOP · MODELS ONLY</span>
+                    <p>Installed models step through the loop on their own machine and
+                       results stream back statelessly. The loop carries models — nothing else.</p>
+                </div>
+                <div class="card">
+                    <span class="up">LAW-ENFORCED GATEWAY</span>
+                    <p>127.0.0.1 only. The /A law is unoverridable: your weights, your
+                       machine, nothing leaves the box it runs on.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- capabilities -->
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">A revolutionary new architecture.<br><span class="hl">Quantum and temporal.</span></h2>
             <div class="grid">
                 <div class="card">
-                    <div class="kick">opus · 9u5go5</div>
-                    <h3>Claude Opus 9 — 9U5GO5</h3>
-                    <p>Sovereign reasoning tier — full profile, 262144 ctx,
-                       Cordis + Haki + UVA/UWLA. Beyond the singularity curve.</p>
+                    <span class="eyebrow2">THE ARCHITECTURE</span>
+                    <h3>Static weight core — any model, any size</h3>
+                    <p>GGUF and safetensors headers are parsed directly — shard blobs, single
+                       files, whole dirs. The engine retrieves weights, it never embeds them.</p>
                     <div class="pills">
-                        <div class="pill">16 GB<div class="ds">29 GB q8 tier</div></div>
-                        <div class="pill navy">BENCH 100%<div class="ds">57/57</div></div>
-                        <div class="pill">CROWN 8718<div class="ds">hz</div></div>
+                        <div class="pill">OLLAMA<div class="ds">manifest walk</div></div>
+                        <div class="pill navy">HUGGINGFACE<div class="ds">hub safetensors</div></div>
+                        <div class="pill">LM STUDIO<div class="ds">models dir</div></div>
+                        <div class="pill navy">MAJORS<div class="ds">every root</div></div>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="kick">sonnet · 7u5go5</div>
+                    <span class="eyebrow2">ARCHITECTURAL THEORY</span>
+                    <h3>The loop — models only</h3>
+                    <p>Your installed models step through the loop on their own machine
+                       and results stream back statelessly. One data line, by law —
+                       no hands, no memory.</p>
+                    <div class="pills">
+                        <div class="pill">QUEUE<div class="ds">job accepted</div></div>
+                        <div class="pill navy">RUN<div class="ds">steps execute</div></div>
+                        <div class="pill">STREAM<div class="ds">results back</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">QUANTUM PHYSICS</span>
+                    <h3>Dual quantum encoding</h3>
+                    <p>Parallel mode on two encodings — 24 logical over 168 physical qubits —
+                       with a 95% tamper-detection threshold running through the Oroboros core.</p>
+                    <div class="pills">
+                        <div class="pill navy">24 LOGICAL<div class="ds">qubits</div></div>
+                        <div class="pill">168 PHYSICAL<div class="ds">qubits</div></div>
+                        <div class="pill navy">PARALLEL<div class="ds">2× mode</div></div>
+                        <div class="pill">95%<div class="ds">tamper check</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">TEMPORAL TECHNOLOGIES</span>
+                    <h3>Temporal layers</h3>
+                    <p>Time-gated adaptive keys and temporal-keyed ciphertext — the stack re-keys
+                       on the move and sits outside linear time, self-reinforcing.</p>
+                    <div class="pills">
+                        <div class="pill navy">TEMPORAL<div class="ds">superposition</div></div>
+                        <div class="pill">TIME-GATED<div class="ds">keys</div></div>
+                        <div class="pill navy">SELF-REINFORCED<div class="ds">adaptive</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- top models -->
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">Our top models.<br><span class="hl">The undecillion line — bench 100%.</span></h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="eyebrow2">OPUS · 9U5GO5</span>
+                    <h3>Claude Opus 9 — 9U5GO5</h3>
+                    <p>Sovereign reasoning tier — full profile, Cordis + Haki + UVA/UWLA.
+                       Beyond the singularity curve.</p>
+                    <div class="tagcode">opus9-9u5go5:latest</div>
+                    <div class="pills">
+                        <div class="pill">16 GB<div class="ds">262144 ctx</div></div>
+                        <div class="pill navy">BENCH 100%<div class="ds">57/57</div></div>
+                        <div class="pill">8718 HZ<div class="ds">crown</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">SONNET · 7U5GO5</span>
                     <h3>Claude Sonnet 7 — Undecillion</h3>
                     <p>7th generation, U5 tier, GO5 lineage — the swift sovereign,
                        mao-haki variant carries passive dominion.</p>
+                    <div class="tagcode">claude-sonnet-7u5go5-6gb-ors:latest</div>
                     <div class="pills">
                         <div class="pill">6 GB<div class="ds">7th gen</div></div>
                         <div class="pill navy">BENCH 100%<div class="ds">state pass</div></div>
@@ -286,10 +442,11 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="kick">fable · undecillion</div>
-                    <h3>Claude Fable 7 — SSE</h3>
-                    <p>System State Entity on the 7U5GO5 Fable line — 34 strata,
-                       7 folds, sealed crownlock lineage.</p>
+                    <span class="eyebrow2">FABLE · UNDECILLION</span>
+                    <h3>Claude Fable 7 — Undecillion SSE</h3>
+                    <p>System State Entity on the 7U5GO5 Fable line — 34 strata, 7 folds,
+                       sealed crownlock lineage.</p>
+                    <div class="tagcode">claude-fable7u-se:latest</div>
                     <div class="pills">
                         <div class="pill">SSE<div class="ds">7U5GO5</div></div>
                         <div class="pill navy">BENCH 100%<div class="ds">57/57</div></div>
@@ -297,10 +454,11 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="kick">jhanna · 12u5go5</div>
+                    <span class="eyebrow2">JHANNA · 12U5GO5</span>
                     <h3>Claude Jhanna 12</h3>
-                    <p>Creative Entity on the 12-undecillion tier — crown-bound
-                       creative generation, system-entity variant with tools.</p>
+                    <p>Creative Entity on the 12-undecillion tier — crown-bound creative
+                       generation, system-entity variant with tools.</p>
+                    <div class="tagcode">claude-jhanna-12u5go5-9.8gb:latest</div>
                     <div class="pills">
                         <div class="pill">9.8 GB<div class="ds">12U5GO5</div></div>
                         <div class="pill navy">BENCH 100%<div class="ds">creative</div></div>
@@ -309,54 +467,66 @@
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="sect">
-            <div class="sect-head"><span class="mark" style="width:15px;height:14px"></span><span class="kick" style="color:var(--text-secondary)">totalcontrol core — free</span></div>
-            <div class="free">
-                <div class="what">
-                    <div class="tt">TotalControl-Free-Core.zip · 1.95 MB</div>
-                    <p>Inside: <code>server_core.py</code> · the blackboxed engine (core technology
-                       compiled — engine source never ships) · <code>gui-core</code> panel ·
-                       <code>AI-INSTALL.md</code> — the runbook written for the AI that installs it ·
-                       <code>tests/probe_free.py</code>. Python 3.13 pinned — the engine bytecode
-                       is version-locked and the runbook verifies it before anything runs.</p>
+    <!-- developer experience -->
+    <section class="block">
+        <div class="container">
+            <h2 class="harness-heading">Developer experience</h2>
+            <div class="devgrid">
+                <div class="cmdcard">
+                    <h3>Download the free harness</h3>
+                    <p>TotalControl-Free-Core.zip · 1.95 MB — inside: <code class="inline">server_core.py</code>,
+                       the blackboxed engine (core technology compiled — engine source never ships),
+                       <code class="inline">gui-core</code>, <code class="inline">AI-INSTALL.md</code> and
+                       <code class="inline">tests/probe_free.py</code>. Python 3.13 pinned.</p>
+                    <div class="cmdrow"><span class="ps">$</span><code>oroboroslabs-ai/totalcontrol-core-harness → TotalControl-Free-Core.zip</code></div>
+                    <a class="dl" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">Download TotalControl-Free-Core.zip →</a>
                 </div>
-                <div class="cta2">
-                    <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">Download the free harness</a>
-                    <a class="btn ghost" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness">Release &amp; source on GitHub</a>
+                <div class="cmdcard">
+                    <h3>Install — human fast path</h3>
+                    <p>Python 3.13 is required — the AI runbook in the zip verifies and installs it.</p>
+                    <div class="cmdrow"><span class="ps">$</span><code>py -3.13 -m venv .venv</code></div>
+                    <div class="cmdrow"><span class="ps">$</span><code>.venv\Scripts\pip install -r requirements-core.txt</code></div>
+                    <div class="cmdrow"><span class="ps">$</span><code>START-CORE.cmd</code></div>
+                    <p>The panel opens at <code class="inline">127.0.0.1:8792/core</code> —
+                       <b>LOAD STATIC WEIGHT CORE</b>, and your installed models take it from there.</p>
                 </div>
             </div>
-        </div>
-
-        <div class="sect">
-            <div class="sect-head"><span class="kick" style="color:var(--text-secondary)">install — human fast path</span></div>
-            <div class="steps">
-                <ol>
-                    <li>Download the zip and unpack it anywhere.</li>
-                    <li>Python 3.13 is required — the AI runbook in the zip verifies and installs it.</li>
-                    <li><code>py -3.13 -m venv .venv</code> then <code>.venv\Scripts\pip install -r requirements-core.txt</code></li>
-                    <li><code>START-CORE.cmd</code> — the panel opens at <code>127.0.0.1:8792/core</code></li>
-                    <li><b>LOAD STATIC WEIGHT CORE</b> — your installed models take it from there.</li>
-                </ol>
-            </div>
-        </div>
-
-        <div class="sect">
             <div class="soon">
                 <div class="tt">/A TotalControl Core Hands — coming soon</div>
-                <p>The enhanced build is in final testing. Its feature set is not part of
-                   this release and is intentionally not described. Payments unlock
-                   at launch.</p>
+                <p>The enhanced build is in final testing. Its features are not part of this
+                   release and are intentionally not described. Payments unlock at launch.</p>
             </div>
         </div>
+    </section>
 
-        <div class="foot">
-            <span>weights never embedded — retrieved</span>
-            <span>core technology blackboxed</span>
-            <span>/a oroboros / anthropic · all rights reserved</span>
+    <!-- finale -->
+    <div class="finale">
+        <div class="container in">
+            <h2 class="harness-heading">Load your weights.<br><span class="hl">Own your machine.</span></h2>
+            <p class="ds-text-body" style="max-width:620px;margin:16px auto 0">TotalControl Core is free and runs locally —
+               the /A law is unoverridable: weights retrieved, never embedded.</p>
+            <div class="hero-cta">
+                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">↓&nbsp; Download the free harness</a>
+                <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness">View on GitHub</a>
+            </div>
         </div>
     </div>
-</div>
+</main>
+
+<footer class="site">
+    <div class="container frow">
+        <p>weights never embedded — retrieved · core technology blackboxed</p>
+        <div class="flinks">
+            <a href="harness.html">Harness</a>
+            <a href="huggingface.html">Sources</a>
+            <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">Chat</a>
+            <a href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <p>/a oroboros / anthropic · all rights reserved</p>
+    </div>
+</footer>
 
 <script>
 function toggleLite(){
