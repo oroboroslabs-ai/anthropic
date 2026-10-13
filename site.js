@@ -1,7 +1,7 @@
 /* TC_SHOP — the single store config (the shop + the checkout read this) */
 window.TC_SHOP = {
     paypalBusiness: '',
-    handsPro: 97.00,
+    handsPro: 69.00,
     extAddon: 29.00
 };
 /* ============================================================
