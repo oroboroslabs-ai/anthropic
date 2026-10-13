@@ -1,0 +1,105 @@
+/* ============================================================
+   BUSINESS SKIN — plain, flat, uniform (the last word on style)
+   No glow · no orbs · no bounce · flat panels · hairline borders
+   Orange = the accent only. Loaded after each page's own styles.
+   ============================================================ */
+
+/* the ambient cyberpunk layers go dark entirely */
+body:before, .finale:before, .pwelcome, .mmore { }
+body:before { display: none !important; }
+.finale:before { display: none !important; }
+
+/* the header: one flat bar */
+.topbar {
+    background: rgba(22,22,21,0.98) !important;
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid #2A2A29 !important; }
+.light .topbar { background: #FFFFFF !important; border-bottom: 1px solid #E5E4E0 !important; }
+.tbin { padding: 12px 24px 12px 16px !important; }
+
+/* panel law: flat cards, hairline borders, no shadow, small radius */
+.card, .prod, .box, .cmdcard, .lawstrip, .shotframe, .window, .tblwrap, .mono-fig,
+.glass, .slider .sframe, .pwindow {
+    background: #171818 !important;
+    border: 1px solid #2A2A29 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+    border-radius: 10px !important; }
+.light .card, .light .prod, .light .box, .light .cmdcard, .light .lawstrip,
+.light .shotframe, .light .window, .light .tblwrap, .light .mono-fig,
+.light .glass, .light .slider .sframe, .light .pwindow {
+    background: #FFFFFF !important;
+    border: 1px solid #E5E4E0 !important; }
+.tile, .inset, .cmdrow, .steps, .pcomposer {
+    background: #1C1D1D !important;
+    border: 1px solid #2E2E2D !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+    border-radius: 8px !important; }
+.light .tile, .light .inset, .light .cmdrow, .light .steps, .light .pcomposer {
+    background: #FAFAF9 !important;
+    border-color: #E5E4E0 !important; }
+.pill, .lawchips span, .law span, .tagcode {
+    background: #1E1F1F !important;
+    border: 1px solid #2E2E2D !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+    color: #B9B8B4 !important;
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+.light .pill, .light .lawchips span, .light .law span, .light .tagcode {
+    background: #F1F1EF !important;
+    border-color: #E5E4E0 !important;
+    color: #444443 !important; }
+.pill.acc, .law .acc { color: #D97757 !important; border-color: rgba(217,119,87,.4) !important; background: rgba(217,119,87,0.08) !important; }
+.pill.bn, .law .bn { color: #A8C2F5 !important; border-color: rgba(110,150,235,.35) !important; background: rgba(46,92,184,0.10) !important; }
+
+/* the pages: left-aligned like every business page */
+.hero, .hero.center, .center, section.block, .subhead { text-align: left !important; margin-left: 0 !important; margin-right: auto !important; }
+.hero { padding: 56px 0 40px !important; }
+.hero .intro, .intro { margin: 18px 0 0 !important; }
+.hero .law, .law { margin: 18px 0 0 !important; justify-content: flex-start !important; }
+.hero-cta { margin-top: 22px !important; justify-content: flex-start !important; }
+.formula { text-align: left !important; }
+.finale { text-align: left !important; padding: 72px 0 64px !important; }
+.finale .hero-cta { justify-content: flex-start !important; }
+.slider { text-align: left !important; margin: 28px 0 0 !important; }
+
+/* the type: a plain business title */
+.eyebrow, .eyebrow2 { border-radius: 6px !important; color: #D97757 !important;
+    background: transparent !important; border: none !important; padding: 0 !important;
+    letter-spacing: .2em !important; font-size: 11px !important; }
+h1.harness-heading, h2.harness-heading, h1, h2 {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.015em !important; }
+h1.harness-heading { font-size: 38px !important; }
+h2.harness-heading { font-size: 27px !important; }
+h1 .here-word, h1 .hl, h2 .hl { color: #D97757 !important; }
+.here-word { display: inline !important; padding: 0 !important; }
+.ds-text-body, .subhead, .lead, .intro { color: #9A9A95 !important; }
+
+/* the buttons: flat business */
+.btn { border-radius: 8px !important; box-shadow: none !important; transition: background .12s ease, border-color .12s ease, color .12s ease !important; }
+.btn.primary { background: #D97757 !important; border-color: #D97757 !important; color: #FFFFFF !important; }
+.btn.primary:hover { background: #D97757E6 !important; }
+.btn:not(.primary):hover { background: #232424 !important; transform: none !important; }
+.light .btn:not(.primary):hover { background: #F1F1EF !important; }
+.card:hover, .prod:hover { transform: none !important; box-shadow: none !important; border-color: rgba(217,119,87,.45) !important; }
+
+/* the tables / command rows: flat */
+.tbl th { color: #9A9A95 !important; }
+.tbl td { color: #B9B8B4 !important; }
+.cmdrow, code.inline { background: #101111 !important; border-color: #2E2E2D !important; }
+.light .cmdrow, .light code.inline { background: #F5F5F3 !important; border-color: #E5E4E0 !important; }
+
+/* the lite button = still the only quiet blue */
+.lite { border-color: rgba(110,150,235,.35) !important; background: rgba(46,92,184,0.10) !important; color: #A8C2F5 !important; border-radius: 8px !important; }
+.light .lite { background: rgba(44,90,138,0.06) !important; color: #2C5A8A !important; border-color: rgba(44,90,138,.28) !important; }
+
+/* nav: uniform business chips off — plain text links */
+nav a { border-radius: 6px !important; text-decoration: none !important; }
+nav a.here { background: #232424 !important; color: #D97757 !important; }
+.light nav a.here { background: #F1F1EF !important; }
+
+/* the footer wave stays — the one flourish */
