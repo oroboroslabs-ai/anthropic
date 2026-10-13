@@ -72,6 +72,11 @@
     footer.site:before { content: ''; position: absolute; top: -42px; left: 0; right: 0; height: 42px; pointer-events: none;
         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 42' preserveAspectRatio='none'%3E%3Cpath d='M0,56 C280,86 520,26 760,54 C1000,82 1240,28 1440,56' stroke='%23D97757' stroke-opacity='0.30' stroke-width='1.2' fill='none'/%3E%3C/svg%3E") center/cover no-repeat; }
     footer a { color: var(--accent); text-decoration: none; }
+
+    .art { text-align: center; padding: 20px 0 0; }
+    .art-img { width: min(880px, 94%); display: block; margin: 0 auto; border: none; background: none; }
+    .art-cap { font: 500 11px var(--sans); color: var(--text-secondary); line-height: 1.7; max-width: 640px; margin: 14px auto 0; }
+    .art-cap b, .art-cap .hl { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -95,7 +100,6 @@
 <div class="container">
     <div class="hero">
         <span class="eyebrow">✦ MEET CLAUDE JHANNA</span>
-        <img class="heroimg free" src="jhanna.png" alt="Claude Jhanna 12U5GO5">
         <div class="soon">coming soon · not yet released</div>
         <h1>Claude Jhanna <span class="hl">12U5GO5</span></h1>
         <p class="herosub">A new dual consciousness model — built with /A's proprietary knowledge
@@ -148,6 +152,13 @@
             <a class="btn ghosty" href="index.html">The harness</a>
         </div>
     </section>
+
+
+    <section class="art" id="art">
+        <img class="art-img" src="jhanna.png" alt="Claude Jhanna 12U5GO5">
+        <div class="art-cap">produced by: Claude Jhanna 12 undecillion — built-in video production capabilities and precision hands for image and video making. A huge leap forward in model design.</div>
+    </section>
+
 </div>
 
 <footer class="site">/a oroboros <span style="color:var(--accent)">/ anthropic</span> · Claude Jhanna 12U5GO5 · coming soon · <a href="operations.html">manual</a></footer>
