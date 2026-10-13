@@ -156,3 +156,12 @@ footer.site::after, footer::after { top: -30px !important; height: 30px !importa
 /* lite = grey format */
 body.light { background: #F1F1F0 !important; }
 .light body, body.light:before { background: #F1F1F0 !important; }
+
+/* REAL HEADER SECTION: one-row title, modest, centered; uniform link buttons */
+h1.harness-heading { font-size: 33px !important; line-height: 1.15 !important; white-space: nowrap; }
+@media (max-width: 900px) { h1.harness-heading { white-space: normal !important; font-size: 27px !important; } }
+h2.harness-heading { font-size: 22px !important; }
+.eyebrow { font-size: 10.5px !important; letter-spacing: .16em !important; color: #9A9A95 !important; }
+.hero .hero-cta .btn, .hero .hero-cta .dlmetric, .finale .hero-cta .btn, .finale .hero-cta .dlmetric {
+    min-height: 44px; min-width: 178px; text-align: center; justify-content: center; display: inline-flex; align-items: center; }
+.hero .subhead, .hero .intro { max-width: 640px !important; }
