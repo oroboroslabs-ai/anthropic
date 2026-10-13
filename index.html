@@ -371,30 +371,7 @@
             </div>
     </div>
 
-    <div class="slider">
-    <div class="sframe">
-        <div class="sslide on">
-            <img src="harness-hero.png" alt="The TotalControl harness panel">
-            <div class="scap mono">the harness · one panel · the loop online</div>
-        </div>
-        <div class="sslide"><div class="wordslide"><div class="k">the future is here</div><div class="w">Weights <b>retrieved</b> —<br>never embedded.</div></div></div>
-        <div class="sslide">
-            <img src="core-shot.png" alt="The static weight core panel">
-            <div class="scap mono">the core · load any weight system</div>
-        </div>
-        <div class="sslide"><div class="wordslide"><div class="k">the law</div><div class="w">Local-only <b>127.0.0.1</b>.<br>The loop = models only.</div></div></div>
-        <div class="sslide">
-            <img src="hands-shot.png" alt="The core hands panel">
-            <div class="scap mono">core hands · final testing · launch tomorrow</div>
-        </div>
-        <div class="sslide"><div class="wordslide"><div class="k">shop</div><div class="w">Core free forever.<br><b>Hands Pro</b> — PayPal.</div></div></div>
-    </div>
-    <div class="sbar">
-        <button class="sbtn" id="sprev" aria-label="previous">◀</button>
-        <div class="sdots" id="sdots"></div>
-        <button class="sbtn" id="snext" aria-label="next">▶</button>
-    </div>
-</div>
+    
 <section class="block">
         <div class="container">
             <h2 class="harness-heading">A revolutionary new architecture.<br><span class="hl">Architectural theory, in practice.</span></h2>
@@ -705,22 +682,6 @@ async function loadDlCount(){
   } catch(e){}
 }
 loadDlCount();
-</script>
-<script>
-(function () {
-  const s = document.querySelectorAll('.sslide');
-  if (s.length) {
-    const dots = document.getElementById('sdots');
-    s.forEach((_, i) => { const d = document.createElement('i'); if (!i) d.classList.add('on'); d.onclick = () => show(i); dots.appendChild(d); });
-    let cur = 0, timer = null;
-    const show = i => { s[cur].classList.remove('on'); dots.children[cur].classList.remove('on'); cur = i % s.length; s[cur].classList.add('on'); dots.children[cur].classList.add('on'); restart(); };
-    const next = () => show(cur + 1);
-    const restart = () => { if (timer) clearInterval(timer); timer = setInterval(next, 5200); };
-    document.getElementById('snext').onclick = next;
-    document.getElementById('sprev').onclick = () => show((cur || s.length) - 1);
-    restart();
-  }
-})();
 </script>
 
 
