@@ -1,3 +1,9 @@
+/* TC_SHOP — the single store config (the shop + the checkout read this) */
+window.TC_SHOP = {
+    paypalBusiness: '',
+    handsPro: 97.00,
+    extAddon: 29.00
+};
 /* ============================================================
    TOTALCONTROL site runtime — one cached file, every page.
    Theme (lite) · plain-beauty motion · link prefetch (instant nav)

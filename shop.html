@@ -226,16 +226,7 @@
                 <li>permanently usable · local-only law</li>
             </ul>
             <div class="price" id="pr1">$97<small>one-time · USD</small></div>
-            <form id="ppHands" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-                <input type="hidden" name="cmd" value="_xclick">
-                <input type="hidden" name="business" id="ppBiz1" value="">
-                <input type="hidden" name="item_name" value="TotalControl Hands Pro — /A Oroboros / Anthropic">
-                <input type="hidden" name="amount" id="ppAmt1" value="97.00">
-                <input type="hidden" name="currency_code" value="USD">
-                <input type="hidden" name="return" value="https://oroboroslabs-ai.github.io/anthropic/delivery.html?item=hands">
-                <input type="hidden" name="cancel_return" value="https://oroboroslabs-ai.github.io/anthropic/shop.html">
-                <button class="btn primary" type="submit">Buy with PayPal — Hands Pro</button>
-            </form>
+            <a class="btn primary" href="checkout.html?item=hands">Buy — Hands Pro · checkout</a>
         </div>
 
         <div class="prod">
@@ -249,16 +240,7 @@
                 <li>window.HANDS (grip · type · observe · fill)</li>
             </ul>
             <div class="price" id="pr2">$29<small>one-time · USD</small></div>
-            <form id="ppExt" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-                <input type="hidden" name="cmd" value="_xclick">
-                <input type="hidden" name="business" id="ppBiz2" value="">
-                <input type="hidden" name="item_name" value="TotalControl Extensions Addon — /A Oroboros / Anthropic">
-                <input type="hidden" name="amount" id="ppAmt2" value="29.00">
-                <input type="hidden" name="currency_code" value="USD">
-                <input type="hidden" name="return" value="https://oroboroslabs-ai.github.io/anthropic/delivery.html?item=ext">
-                <input type="hidden" name="cancel_return" value="https://oroboroslabs-ai.github.io/anthropic/shop.html">
-                <button class="btn primary" type="submit">Buy with PayPal — Addon</button>
-            </form>
+            <a class="btn primary" href="checkout.html?item=ext">Buy — Addon · checkout</a>
         </div>
     </div>
 
@@ -287,57 +269,6 @@
         <p>weights retrieved — never embedded</p>
     </div>
 </footer>
-
-<script>
-/* ====== TC_SHOP — the single spot to set tonight ====== */
-const TC_SHOP = {
-    paypalBusiness: '',          //  <- your PayPal merchant email (tonight)
-    handsPro: 97.00,             //  <- launch price, Hands Pro
-    extAddon: 29.00              //  <- launch price, Extensions Addon
-};
-(function apply() {
-    const biz = TC_SHOP.paypalBusiness;
-    for (const i of ['ppBiz1', 'ppBiz2']) { const e = document.getElementById(i); if (e) e.value = biz; }
-    for (const [p, amt] of [['ppAmt1', TC_SHOP.handsPro], ['ppAmt2', TC_SHOP.extAddon]]) {
-        const e = document.getElementById(p); if (e) e.value = Number(amt).toFixed(2);
-    }
-    const p1 = document.getElementById('pr1'); if (p1) { p1.innerHTML = `$` + Number(TC_SHOP.handsPro).toFixed(0) + `<small>one-time · USD</small>`; }
-    const p2 = document.getElementById('pr2'); if (p2) { p2.innerHTML = `$` + Number(TC_SHOP.extAddon).toFixed(0) + `<small>one-time · USD</small>`; }
-    if (!biz) {
-        for (const f of ['ppHands', 'ppExt']) {
-            const form = document.getElementById(f);
-            if (form) form.querySelector('button').addEventListener('click', ev => {
-                ev.preventDefault(); alert('PayPal goes live tonight — set the merchant email in TC_SHOP (see the note at the bottom of the page).');
-            });
-        }
-    }
-})();
-
-function setFaviconLite(on){ const f = document.querySelector('link[rel="icon"]'); if (f) f.href = on ? 'favicon-light.png' : 'favicon.png'; }
-function toggleLite(){ const on = document.body.classList.toggle('light'); document.documentElement.classList.toggle('light', on); setFaviconLite(on);
-  try { localStorage.setItem('tc-lite', on ? '1' : ''); } catch(e){}
-  try { sessionStorage.setItem('tc-lite', on ? '1' : ''); } catch(e){}
-  try { document.cookie = 'tc-lite=' + (on ? '1' : '0') + '; path=/; max-age=31536000; SameSite=Lax'; } catch(e){} }
-try { var v = null; try { v = localStorage.getItem('tc-lite'); } catch(e){}
-  if (v === null || v === '') { v = document.cookie.match(/(?:^|;\s*)tc-lite=([^;]*)/); v = v ? v[1] : null; }
-  if (v === '1') { document.body.classList.add('light'); document.documentElement.classList.add('light'); setFaviconLite(true); } } catch(e){}
-async function loadDlCount(){
-  const els = document.querySelectorAll('[data-dl]'); if (!els.length) return;
-  try {
-    let v = null, t = 0;
-    try { v = localStorage.getItem('tc-dl-count'); t = parseInt(localStorage.getItem('tc-dl-ts') || '0', 10); } catch(e){}
-    if (!v || Date.now() - t > 1800000) {
-      const r = await fetch('https://api.github.com/repos/oroboroslabs-ai/totalcontrol-core-harness/releases/latest');
-      const d = await r.json();
-      const a = (d.assets || []).find(x => /TotalControl-Free-Core\.zip/i.test(x.name || ''));
-      if (a) { v = a.download_count; try { localStorage.setItem('tc-dl-count', v); localStorage.setItem('tc-dl-ts', String(Date.now())); } catch(e){} }
-    }
-    if (v != null) els.forEach(el => { el.textContent = Number(v).toLocaleString() + ' downloads'; el.style.display = 'inline-flex'; });
-  } catch(e){}
-}
-loadDlCount();
-</script>
-
 
 <script src="site.js" defer></script>
 </body>

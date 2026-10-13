@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — TotalControl · /A OROBOROS / ANTHROPIC</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+    :root {
+        --bg-primary: #111111; --bg-sidebar: #0E0E0E; --text-primary: #F0EFEC; --text-secondary: #9A9A95; --text-muted: #5C5C58;
+        --accent: #D97757; --accent-light: rgba(217,119,87,0.15);
+        --border: #232323; --border-light: #1B1B1B;
+        --line: rgba(255,255,255,0.10); --line2: rgba(255,255,255,0.16); --line3: rgba(255,255,255,0.22);
+        --sans: 'Inter', -apple-system, sans-serif; --serif: Georgia, 'Times New Roman', serif; --mono: 'Source Code Pro', ui-monospace, monospace;
+    }
+    .light {
+        --bg-primary: #F1F1F0; --bg-sidebar: #F7F7F5; --text-primary: #1A1A1A; --text-secondary: #4A4A4A; --text-muted: #878787;
+        --accent: #C4684B; --accent-light: rgba(196,104,75,0.08);
+        --border: #DFDFDC; --border-light: #ECEBE7;
+        --line: rgba(20,20,19,0.06); --line2: rgba(20,20,19,0.10); --line3: rgba(20,20,19,0.14);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--sans); background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; position: relative; }
+    body:before { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+        background: radial-gradient(720px 420px at 88% -8%, rgba(217,119,87,0.08), transparent 64%),
+                    radial-gradient(860px 440px at 50% 120%, rgba(46,92,184,0.04), transparent 70%); }
+    body.light:before { opacity: .5; }
+    .topbar { position: sticky; top: 0; z-index: 50; width: 100%; background: #191A1B; border-bottom: 1px solid #2B2C2D; }
+    .light .topbar { background: #FFFFFF; border-color: #E7E6E4; }
+    .tbin { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; padding: 12px 24px 12px 16px; }
+    .bleft { display: flex; align-items: center; gap: 7px; flex: 1; min-width: 0; }
+    .mark { width: 24px; height: 22px; background: url('logo-flipped.png') center/contain no-repeat; flex: none; }
+    .light .mark { background-image: url('logo-anthropic.png'); }
+    .brand { font-size: 13.5px; font-weight: 700; letter-spacing: .08em; color: var(--text-primary); text-decoration: none; }
+    .brand .othr { color: var(--accent); }
+    nav { display: flex; gap: 2px; margin-left: 16px; }
+    nav a { color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: .05em; padding: 8px 12px; }
+    nav a.here { color: var(--accent); box-shadow: inset 0 -2px 0 var(--accent); }
+    .tsp { flex: 1; }
+    .lite { border: 1px solid #2E2E2D; background: #1E1F1F; color: #B9B8B4; font: 600 10px var(--sans); letter-spacing: .12em; padding: 7px 13px; border-radius: 8px; cursor: pointer; }
+    .light .lite { background: #F1F1EF; border-color: #E7E6E4; color: #444443; }
+    .container { max-width: 720px; margin: 0 auto; padding: 56px 24px 90px; }
+    .eyebrow { font: 500 11px var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--text-secondary); display: inline-block; }
+    h1 { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; font-size: 32px; margin: 14px 0 0; }
+    h1 .hl { color: var(--accent); }
+    .box { background: #171818; border: 1px solid #2B2C2D; border-radius: 10px; padding: 24px 26px; margin-top: 24px; }
+    .light .box { background: #FFFFFF; border-color: #E7E6E4; }
+    .summary { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid #2E2E2D; }
+    .light .summary { border-color: #E7E6E4; }
+    .summary b { font-weight: 600; font-size: 14.5px; }
+    .summary .amt { font: 600 20px var(--serif); }
+    .lawlines { color: var(--text-secondary); font-size: 12.5px; line-height: 1.8; margin-top: 12px; }
+    .btn { appearance: none; text-decoration: none; font: 600 14px var(--sans); padding: 13px 24px; border-radius: 8px; cursor: pointer;
+           border: 1px solid #38393A; background: #262728; color: #F0EFEC; transition: background .12s ease; text-align: center; display: inline-block; }
+    .btn:hover { background: #2E2F30; }
+    .btn.pay { background: #FFC439 !important; border-color: #F0B429 !important; color: #1A1A1A !important; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
+    .btn.pay:hover { background: #FFB93C !important; }
+    .btn.ghosty { background: transparent !important; border-color: var(--line3) !important; color: var(--text-primary) !important; }
+    .stat { font: 500 11px var(--mono); letter-spacing: .08em; color: var(--text-muted); margin-top: 14px; }
+    .dlinks { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    footer.site { background: linear-gradient(180deg, rgba(217,119,87,0) 0%, rgba(217,119,87,0.06) 100%), #1A1B1C; margin-top: 80px; position: relative; text-align: center; padding: 28px 0 40px; color: var(--text-secondary); font-size: 12px; }
+    .light footer.site { background: #EBEBE9; }
+    footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<header class="topbar" id="top"><div class="tbin">
+    <div class="bleft">
+        <span class="mark"></span>
+        <a class="brand" href="index.html#top">OROBOROS <span class="othr">/ ANTHROPIC</span></a>
+    </div>
+    <nav>
+        <a href="index.html">HARNESS</a>
+        <a href="harness.html">DOWNLOAD</a>
+        <a class="here" href="checkout.html">CHECKOUT</a>
+        <a href="operations.html">MANUAL</a>
+        <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">CHAT</a>
+    </nav>
+    <span class="tsp"></span>
+    <button class="lite" onclick="toggleLite()">LITE</button>
+</div></header>
+
+<div class="container">
+    <span class="eyebrow">✦ checkout · secure via paypal</span>
+    <h1 id="title">Checkout — <span class="hl">TotalControl Hands Pro</span></h1>
+
+    <div class="box">
+        <div class="summary">
+            <b id="item">TotalControl Hands Pro</b>
+            <span class="amt" id="price">$97.00</span>
+        </div>
+        <p class="lawlines" id="desc">Everything in the free core + the hands session (surf · url bar · forms · typing · motion) +
+           the extension relay + memory (rag) + the crawler + the wallpaper studio. One-time payment,
+           permanently usable, local-only law.</p>
+        <form id="pp" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" id="biz" value="">
+            <input type="hidden" name="item_name" id="iname" value="">
+            <input type="hidden" name="amount" id="amt" value="">
+            <input type="hidden" name="currency_code" value="USD">
+            <input type="hidden" name="return" id="ret" value="https://oroboroslabs-ai.github.io/anthropic/delivery.html">
+            <input type="hidden" name="cancel_return" value="https://oroboroslabs-ai.github.io/anthropic/shop.html">
+            <button class="btn pay" type="submit" style="margin-top:18px">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 3h9a4 4 0 0 1 0 8h-5l-1 4H6l-1.4 6H2L5.6 3H7z" opacity=".9"/></svg>
+                Pay with PayPal
+            </button>
+        </form>
+        <div class="stat" id="stat">pending your merchant email — the button holds tonight</div>
+        <div class="dlinks">
+            <a class="btn ghosty" href="shop.html">◀ back to the shop</a>
+            <a class="btn ghosty" href="delivery.html">the delivery page</a>
+        </div>
+    </div>
+</div>
+
+<footer class="site">/a oroboros <span style="color:var(--accent)">/ anthropic</span> · weights retrieved — never embedded · <a href="operations.html">manual</a></footer>
+
+<script>
+(function () {
+    const cfg = window.TC_SHOP || { paypalBusiness: '', handsPro: 97.00, extAddon: 29.00 };
+    const item = (new URLSearchParams(location.search).get('item') || 'hands').toLowerCase();
+    const IS_HANDS = item !== 'ext';
+    const biz = cfg.paypalBusiness;
+    document.getElementById('item').textContent = IS_HANDS ? 'TotalControl Hands Pro' : 'TotalControl Extensions Addon';
+    document.getElementById('iname').value = 'TotalControl ' + (IS_HANDS ? 'Hands Pro' : 'Extensions Addon') + ' — /A Oroboros / Anthropic';
+    const amt = IS_HANDS ? Number(cfg.handsPro) : Number(cfg.extAddon);
+    document.getElementById('price').textContent = '$' + amt.toFixed(2);
+    document.getElementById('amt').value = amt.toFixed(2);
+    document.getElementById('ret').value = 'https://oroboroslabs-ai.github.io/anthropic/delivery.html?item=' + (IS_HANDS ? 'hands' : 'ext');
+    document.getElementById('biz').value = biz;
+    const stat = document.getElementById('stat');
+    if (biz) {
+        stat.style.display = 'none';
+    } else {
+        stat.style.display = 'block';
+        document.getElementById('pp').querySelector('button').addEventListener('click', ev => {
+            ev.preventDefault();
+            stat.textContent = 'checkout goes live at launch — set the PayPal merchant email (TC_SHOP); tonight\'s step.';
+        });
+    }
+})();
+</script>
+<script src="site.js" defer></script>
+</body>
+</html>
