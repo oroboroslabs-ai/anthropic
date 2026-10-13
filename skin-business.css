@@ -103,3 +103,24 @@ nav a.here { background: #232424 !important; color: #D97757 !important; }
 .light nav a.here { background: #F1F1EF !important; }
 
 /* the footer wave stays — the one flourish */
+/* GRAY BUSINESS SHIFT — less orange, zero blue, black-and-white imagery */
+body { background: #141516 !important; }
+.light body { background: #FFFFFF !important; }
+.topbar { background: #191A1B !important; border-color: #2B2C2D !important; }
+.light .topbar { background: #FFFFFF !important; border-color: #E7E6E4 !important; }
+.card, .prod, .box, .cmdcard, .lawstrip, .shotframe, .window, .tblwrap, .mono-fig, .glass, .slider .sframe, .pwindow {
+    background: #1B1C1D !important; border-color: #2B2C2D !important; }
+.light .card, .light .prod, .light .box, .light .cmdcard, .light .lawstrip, .light .shotframe,
+.light .window, .light .tblwrap, .light .mono-fig, .light .glass, .light .slider .sframe, .light .pwindow {
+    background: #F4F4F3 !important; border-color: #E7E6E4 !important; }
+.tile, .inset, .cmdrow, .steps, .pcomposer { background: #202122 !important; border-color: #2C2D2E !important; }
+.light .tile, .light .inset, .light .cmdrow, .light .steps, .light .pcomposer { background: #FAFAF9 !important; }
+img { filter: grayscale(100%); }
+.btn.primary { background: #262728 !important; border-color: #38393A !important; color: #F0EFEC !important; }
+.btn.primary:hover { background: #2E2F30 !important; }
+.light .btn.primary { background: #2B2B2B !important; border-color: #2B2B2B !important; color: #FFFFFF !important; }
+.btn:not(.primary):hover { background: #232425 !important; }
+.pill.acc, .law .acc, .lawchips span { color: #B9B8B4 !important; border-color: #2E2E2D !important; background: #1E1F1F !important; }
+.lite { background: #1E1F1F !important; border-color: #2E2E2D !important; color: #B9B8B4 !important; }
+.light .lite { background: #F1F1EF !important; border-color: #E7E6E4 !important; color: #444443 !important; }
+/* the orange stays only as: nav-here, page kicker, accent words */ 
