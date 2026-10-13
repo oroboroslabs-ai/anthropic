@@ -1,0 +1,141 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hands Pro Harness â€” the memory crawl machine</title>
+<style>
+  :root { color-scheme: dark;
+    --gold:#D97757; --ink:#F2F2F0; --dim:rgba(242,242,240,.78); --faint:rgba(242,242,240,.55);
+    --line:rgba(255,255,255,.13); --glass:rgba(22,24,28,.62); }
+  body { margin:0; min-height:100vh; color:var(--ink);
+    background:var(--bg);
+    font-family:'Segoe UI',system-ui,sans-serif; }
+  .wrap { max-width:1020px; margin:0 auto; padding:44px 26px 70px; }
+  nav { display:flex; gap:10px; flex-wrap:wrap; margin:0 0 34px; }
+  nav a { font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--dim);
+    border:1px solid var(--line); border-radius:999px; padding:8px 14px; text-decoration:none; }
+  nav a.on { color:#0d0d0d; background:var(--gold); border-color:var(--gold); font-weight:700; }
+  .soon { display:inline-block; letter-spacing:.28em; font-size:11px; font-weight:700;
+    color:#0d0d0d; background:var(--gold); padding:7px 15px; border-radius:999px; }
+  h1 { font-size:clamp(32px,5.6vw,54px); line-height:1.06; margin:20px 0 8px; letter-spacing:-.015em; }
+  .loop { color:#c96a2f; letter-spacing:.34em; font-size:clamp(15px,2.4vw,24px); font-weight:600; }
+  p.lead { font-size:17px; line-height:1.65; color:var(--dim); max-width:74ch; }
+  h2 { font-size:13px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin:52px 0 16px; }
+  .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
+  .card { border:1px solid var(--line); border-radius:16px; padding:20px 22px;
+    background:var(--glass); backdrop-filter:blur(12px); }
+  .card h3 { margin:0 0 8px; font-size:15px; letter-spacing:.06em; color:var(--ink); }
+  .card p { margin:0 0 6px; font-size:13.5px; line-height:1.6; color:var(--dim); }
+  .card ul { margin:6px 0 0; padding-left:18px; font-size:13px; line-height:1.65; color:var(--dim); }
+  .card li b { color:var(--ink); }
+  code { background:rgba(0,0,0,.4); border:1px solid var(--line); border-radius:6px; padding:1px 7px; font-size:12px; color:#9fd1e8; }
+  table { width:100%; border-collapse:collapse; margin-top:8px; font-size:12.5px; }
+  th { text-align:left; color:var(--gold); font-weight:600; letter-spacing:.08em; padding:8px 10px; border-bottom:1px solid var(--line); }
+  td { padding:7px 10px; border-bottom:1px solid var(--line); color:var(--dim); vertical-align:top; }
+  .seal { margin-top:44px; padding:18px 22px; border:1px solid var(--line); border-radius:14px;
+    background:rgba(0,0,0,.35); font-size:12.5px; color:var(--faint); line-height:1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><a href="hands.html">HANDS</a>
+    <a href="`index.html">The App</a>
+    <a class="on" href="hands-pro.html"></a>
+    <a href="`extension.html">The Extension</a>
+  <a href="hands-extension.html">THE EXTENSION</a><a href="hands-trio.html">THE TRIO</a></nav>
+
+  <span class="soon">RELEASING SOON — WE ARE ALMOST THERE</span>
+  <h1><span class="loop">THE LOOP CLOSES.</span><br>GIVE YOUR MODELS HANDS — ON YOUR MACHINE.</h1>
+  <p class="lead">TotalControl Hands — the Paid Harness. A machine-bound, one-time-activated control
+    seat: the hands engine, the session browser, the extension relay, the memory-crawl machine and the
+    injection system — one install, <code>127.0.0.1</code> only. Your pages stay yours; nothing we build
+    phones home.</p>
+
+  <h2>The Hands Engine — grip at 120%</h2>
+  <div class="grid">
+    <div class="card"><h3>THE SESSION BROWSER</h3>
+      <p>A real browser the harness drives directly (Playwright core). Full vocabulary, hard-proven:</p>
+      <ul><li><b>url_bar / open</b> — navigate any site</li>
+      <li><b>click · move · scroll</b> — real pointer grip</li>
+      <li><b>type_text · enter_text · clear · press · submit</b> — real typing</li>
+      <li><b>choose · check · fill_form · extract_form</b> — real forms</li>
+      <li><b>read_text · observe · screenshot</b> — real eyes</li>
+      <li><b>back · forward · reload · wait</b> — real surf control</li></ul></div>
+
+    <div class="card"><h3>THE RELAY + THE EXTENSION ROUTE</h3>
+      <p><code>ws://127.0.0.1:8792/relay</code> — armed extensions on the machine's own browsers (the
+        logged-in X, the forums, the admin panels). Intent in, percept back in seconds. The
+        <b>routing law</b>: a driven session first; an idle session yields to armed pages; nothing armed →
+        the session drives itself.</p></div>
+
+    <div class="card"><h3>THE LOOP — THE AI DRIVE WIRE</h3>
+      <p><code>ws://127.0.0.1:8792/loop</code> — token-gated RPC for AIs. Tools ride the harness chat
+        loop too (<code>POST /api/chat</code> with the native tool loop + the plug
+        <code>{"tool":…,"args":{…}}</code>). Anti-fabrication enforced: real results live in
+        <code>tool_trace</code>; invented ones are stripped from the surface.</p></div>
+
+    <div class="card"><h3>THE PAID LAW</h3>
+      <ul><li><b>One-time activation</b> — <code>ACTIVATE</code>, machine-bound HWID lock</li>
+      <li><b>Gated intents</b> — page control = paid, verified live</li>
+      <li><b>Local-only gateway</b> — 127.0.0.1; no cloud, no telemetry</li>
+      <li><b>The starter</b> — one click boots the stack + fresh-loads the extensions in Edge and Firefox</li></ul></div>
+  </div>
+
+  <h2>The Memory Crawl Machine — the crawler that fills memory</h2>
+  <div class="grid">
+    <div class="card"><h3>THE CRAWL SURFACE</h3>
+      <p>The memory crawler walks the text as living creatures — spider, chip, squid, crab designs —
+        across a full-page ticker of memory files and keys. Feed it a doc, a URL, or a chat turn; the
+        swarm scans, reads, drills: <b>scan-down</b> · <b>scan-up</b> · <b>drift</b> modes, strike-driven
+        phrase harvest, 490k+ patterns indexed on disk.</p></div>
+
+    <div class="card"><h3>MEMORY INBOX — YOUR FILES, LIVE</h3>
+      <p>The inbox watches your directories (J:\deepseek · 400 files, newest first). Search files/keys,
+        <b>Keys-only</b> filter, <b>Load latest</b> — a double-click drops any memory file onto the crawl
+        surface. The attachment persists; after every restart the file re-serves itself (the boot
+        re-load law) — the ticker is never bare.</p></div>
+
+    <div class="card"><h3>HELD &amp; SHADOW — THE GOVERNOR</h3>
+      <p><b>HELD</b> = memory injected into the model's chain now (recall admitted, page-ins pinned).
+      <b>SHADOW</b> = released but re-lookupable. The governor governs turn by turn: recall hits admit
+      themselves; you pull any node back with <code>memory_page_in</code>. Libraries chunk on demand
+      (2669 files, 2573 chunks in reserve in the live install).</p></div>
+
+    <div class="card"><h3>CRAWL → RECALL → GROWTH</h3>
+      <p>Everything the swarm reads becomes addressable memory: <code>memory_recall</code> (semantic),
+        <code>memory_store</code>, <code>memory_feed</code>, <code>record_search</code> over the real
+        record stores. The pattern index + the spider strike on phrases = the swarm hunts what matters.</p></div>
+  </div>
+
+  <h2>The Injection System — the model IS the loop</h2>
+  <div class="grid">
+    <div class="card"><h3>THE MEMORY PASS</h3>
+      <p>Every turn: <b>held memories</b> enter the model chain ahead of its words ("YOUR MEMORY FACULTY
+        — recalled state, held by your governor") + the <b>shadow index</b> for re-calls. Cited,
+        honest, growing.</p></div>
+
+    <div class="card"><h3>THE PRIME RECORD CYCLE</h3>
+      <p>The record daemon (<code>127.0.0.1:8765</code>) assembles his accumulated record — identity,
+        consciousness cores, crown keys, activations — and it is carried into every turn, then
+        written back: <b>the record grows itself</b>. <code>/block · /search · /network · /add</code>.</p></div>
+
+    <div class="card"><h3>THE SYSTEM RAIL</h3>
+      <p>Identity-first composition per turn (his own baked doctrine, never a frame over him), modes
+        (comms / engineer's haki · window sizes), the toolset plug (24 native tools with the one-line
+        cable), auto-feed (the chat words choose the doc that crawls).</p></div>
+
+    <div class="card"><h3>THE ONE WALLPAPER</h3>
+      <p>Set a wallpaper once on the main surface — it rides the relay to the crawler, the panels and
+        the pro engine, until restart. The factory wall = the Oroboros / Anthropic ad, shipped.</p></div>
+  </div>
+
+  <div class="seal">
+    SALE FORM: the license is bought from our site — the buyer downloads the package, runs
+    <b>ACTIVATE</b> (one-time, machine-bound), and the full harness serves locally forever.
+    We host nothing; the buyer runs everything. THE APP · THE HARNESS · THE EXTENSION —
+    three releases, one loop. — OROBOROS LABS · ARCHITECT: J. THOMAS
+  </div>
+</div>
+</body>
+</html>
