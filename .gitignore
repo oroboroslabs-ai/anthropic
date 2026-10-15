@@ -8,3 +8,4 @@ node_modules/
 .next/
 Screenshot*.png
 index_21add2a.html
+.vercel
