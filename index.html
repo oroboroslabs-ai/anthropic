@@ -686,7 +686,12 @@ async function loadDlCount(){
         try { localStorage.setItem('tc-dl-count', v); localStorage.setItem('tc-dl-ts', String(Date.now())); } catch(e){}
       }
     }
-    if (v != null) els.forEach(el => { el.textContent = Number(v).toLocaleString() + ' downloads'; el.style.display = priv ? 'inline-flex' : 'none'; });
+    if (v != null) {
+      // THE COUNTER LAW — hidden until the downloads sit between 100 and 1000;
+      // ?dl=1 stays the private view for us at any count.
+      const inBand = (Number(v) >= 100 && Number(v) <= 1000);
+      els.forEach(el => { el.textContent = Number(v).toLocaleString() + ' downloads'; el.style.display = (priv || inBand) ? 'inline-flex' : 'none'; });
+    }
   } catch(e){}
 }
 loadDlCount();
