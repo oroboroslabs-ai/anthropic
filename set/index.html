@@ -1,0 +1,125 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TotalControl Hands · Your AI workspace</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; min-height:100vh; background:
+      #111111; color:#F2F2F0;
+    font-family:'Segoe UI',system-ui,sans-serif; }
+  .wrap { max-width:980px; margin:0 auto; padding:48px 28px; }
+  h1 { font-size:clamp(34px,6vw,58px); line-height:1.05; margin:18px 0 10px; letter-spacing:-.01em; }
+  p.lead { font-size:18px; line-height:1.6; color:rgba(242,242,240,.86); max-width:none; }
+  .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:30px; }
+  .card { border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:18px 20px;
+    background:rgba(24,26,30,.55); backdrop-filter:blur(10px); }
+  .card h3 { margin:0 0 8px; font-size:15px; letter-spacing:.08em; color:#E8821A; }
+  .card p { margin:0; font-size:14px; line-height:1.55; color:rgba(242,242,240,.8); }
+  .note { margin-top:34px; font-size:13px; color:rgba(242,242,240,.55); letter-spacing:.06em; }
+  a { color:#E8821A; text-decoration:none; }
+  /* THE ONE SALE — three options, PayPal-style buttons, no background fill,
+     in the site's orange (Architect 2026-10-13) */
+  .sale { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); margin-top:34px; }
+  .buy { border:1px solid rgba(255,255,255,.16); border-radius:16px; padding:22px; text-align:center;
+    background:rgba(20,22,26,.45); backdrop-filter:blur(10px); position:relative; }
+  .buy .tier { font-size:12px; letter-spacing:.26em; text-transform:uppercase; color:rgba(242,242,240,.6); }
+  .buy .price { font-size:44px; font-weight:700; margin:10px 0 2px; color:#F2F2F0; }
+  .buy .price small { font-size:13px; font-weight:400; color:rgba(242,242,240,.5); }
+  .buy p { font-size:13px; line-height:1.55; color:rgba(242,242,240,.75); min-height:76px; }
+  /* PayPal style, no background — the site's orange carries the button */
+  .pp { display:inline-block; margin-top:16px; padding:13px 26px; border-radius:8px;
+    border:2px solid #E8821A; color:#E8821A; font-weight:700; font-size:14px; letter-spacing:.06em;
+    cursor:pointer; transition:all .18s ease; }
+  .pp:hover { background:#E8821A; color:#0d0d0d; }
+  .freetier { border:1px solid rgba(255,255,255,.16); border-radius:16px; padding:22px; text-align:center;
+    background:rgba(20,22,26,.45); backdrop-filter:blur(10px); }
+  .freetier .dl { display:inline-block; margin-top:16px; padding:13px 26px; border-radius:8px;
+    border:1px solid rgba(255,255,255,.3); color:#F2F2F0; font-weight:600; font-size:14px; letter-spacing:.06em;
+    text-decoration:none; transition:all .18s ease; }
+  .freetier .dl:hover { border-color:#E8821A; color:#E8821A; }
+  .gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:30px; }
+  .gallery figure { margin:0; overflow:hidden; border:1px solid rgba(255,255,255,.14); border-radius:14px;
+    background:rgba(20,22,26,.55); }
+  .gallery img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; }
+  .gallery figcaption { padding:12px 14px; color:rgba(242,242,240,.72); font-size:13px; line-height:1.45; }
+  @media (max-width:640px) { .gallery { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav style="display:flex;gap:10px;flex-wrap:wrap;margin:0 0 30px;">
+    <a class="on" href="./index.html" style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#0d0d0d;background:#E8821A;border:1px solid #E8821A;border-radius:999px;padding:8px 14px;text-decoration:none;font-weight:700;">The App</a>
+    <a href="./harness.html" style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,242,240,.78);border:1px solid rgba(255,255,255,.13);border-radius:999px;padding:8px 14px;text-decoration:none;">Pro Harness</a>
+    <a href="./extension.html" style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,242,240,.78);border:1px solid rgba(255,255,255,.13);border-radius:999px;padding:8px 14px;text-decoration:none;">Supported Browsers</a>
+     <a href="./extensions.html" style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,242,240,.78);border:1px solid rgba(255,255,255,.13);border-radius:999px;padding:8px 14px;text-decoration:none;">The Extensions</a>
+     <a href="./index.html" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#F2F2F0;border:1px solid rgba(255,255,255,.13);border-radius:999px;padding:8px 14px;font-weight:700;" aria-label="Oroboros / Anthropic — home"><img src="./photos/logo-mark-white.png" alt="" style="height:14px;width:auto;display:block;"><span style="white-space:nowrap;">Oroboros&nbsp;/&nbsp;Anthropic</span></a>
+   </nav>
+  <h1>GIVE YOUR MODELS HANDS.</h1>
+  <p class="lead">A private AI workspace for browser assistance and useful saved context.
+     Choose the free core, the complete Pro Harness, or browser extensions for Chrome,
+     Edge, and Firefox. The product runs on your own machine, with your work under your control.</p>
+  <section class="gallery" aria-label="Product previews">
+    <figure><img src="./photos/totalcontrol-console-panel.png" alt="TotalControl workspace preview">
+      <figcaption>A focused workspace for your AI projects.</figcaption></figure>
+    <figure><img src="./photos/hands-console.png" alt="Browser assistance workspace preview">
+      <figcaption>Browser assistance, ready when you need it.</figcaption></figure>
+    <figure><img src="./photos/memory-controls.png" alt="Saved context feature preview">
+      <figcaption>Bring useful saved context into your work.</figcaption></figure>
+    <figure><img src="./photos/crawler-live.png" alt="Memory and web exploration feature preview">
+      <figcaption>Explore information visually and keep relevant context close.</figcaption></figure>
+  </section>
+  <div class="grid">
+    <div class="card"><h3>BROWSER ASSISTANCE</h3><p>Give supported AI workflows a practical way to work with the pages you choose.</p></div>
+    <div class="card"><h3>MEMORY &amp; CONTEXT</h3><p>Bring saved information into a conversation when it is useful, without exposing the machinery behind it.</p></div>
+    <div class="card"><h3>YOUR WORKSPACE</h3><p>Keep your projects and content in your own environment and use the features on your terms.</p></div>
+    <div class="card"><h3>YOUR SETUP</h3><p>Start with the free core, add the Pro Harness, or choose the browser extensions.</p></div>
+  </div>
+  <p class="note">CHROME · EDGE · FIREFOX · OROBOROS LABS</p>
+
+  <!-- THE ONE SALE — the three options. Replace each href with your PayPal
+       hosted button / PayPal.me target once. No background; the site orange. -->
+  <h1 style="font-size:clamp(24px,3.6vw,34px);margin-top:54px;">CHOOSE YOUR EDITION</h1>
+  <div class="sale">
+    <div class="freetier">
+      <div class="tier" style="font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:rgba(242,242,240,.6);">Local Arms</div>
+      <div class="price" style="font-size:44px;font-weight:700;margin:10px 0 2px;">FREE</div>
+      <p style="font-size:13px;line-height:1.55;color:rgba(242,242,240,.75);min-height:76px;">Explore the core workspace and start using the local features.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px;">
+        <a class="dl" href="./harness.html" style="border-color:#E8821A;color:#E8821A;">PRO HARNESS · $69</a>
+        <!-- PRIVATE DOWNLOAD — us only for now; restore the public link tonight
+        <a class="dl" href="./free/TotalControl-Free-Core-1.0.1-nocrawl.zip" download>DOWNLOAD THE FREE VERSION</a> -->
+      </div>
+    </div>
+    <div class="buy">
+      <div class="tier">Hands Pro — the one sale</div>
+      <div class="price">$69 <small>one-time</small></div>
+      <p>The complete experience: the static weight core — unlock model potential, abilities above industry standards. Feed it your data and a large model weight system of your choosing as the core math and coding unit; the model systems are plug and play — point to models and they are added as static systems, all set up by your LLM on first install. Plus browser assistance, saved-memory features, the extension set, and one year of updates.</p>
+      <!-- PayPal buy-now link: -->
+      <a class="pp" href="https://www.paypal.com/paypalme/" target="_blank" rel="noopener">BUY — PAYPAL · $69</a>
+    </div>
+    <div class="buy">
+      <div class="tier">Second Machine — add-on</div>
+      <div class="price">$29 <small>one-time</small></div>
+      <p>Add the complete Pro experience for use on one additional machine.</p>
+      <!-- PayPal buy-now link: -->
+      <a class="pp" href="https://www.paypal.com/paypalme/" target="_blank" rel="noopener">BUY — PAYPAL · $29</a>
+    </div>
+    <div class="buy">
+      <div class="tier">The Extension Trio</div>
+      <div class="price">$29.99 <small>one-time</small></div>
+      <p>The browser extension set for Firefox, Chrome, and Edge.</p>
+      <a class="pp" href="./extensions.html" style="border-color:#E8821A;">THE TRIO · $29.99 →</a>
+    </div>
+  </div>
+
+  <!-- the bottom row — the harness buttons, next to each other -->
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px;">
+    <a href="./harness.html" style="display:inline-block;padding:13px 26px;border-radius:8px;border:2px solid #E8821A;color:#E8821A;font-weight:700;font-size:14px;letter-spacing:.06em;text-decoration:none;transition:all .18s ease;" onmouseover="this.style.background='#E8821A';this.style.color='#0d0d0d'" onmouseout="this.style.background='transparent';this.style.color='#E8821A'">PRO HARNESS · $69</a>
+    <a href="./extensions.html" style="display:inline-block;padding:13px 26px;border-radius:8px;border:1px solid rgba(255,255,255,.3);color:#F2F2F0;font-weight:600;font-size:14px;letter-spacing:.06em;text-decoration:none;transition:all .18s ease;" onmouseover="this.style.borderColor='#E8821A';this.style.color='#E8821A'" onmouseout="this.style.borderColor='rgba(255,255,255,.3)';this.style.color='#F2F2F0'">THE EXTENSION TRIO · $29.99</a>
+  </div>
+</div>
+<div style="margin-top:34px;padding:18px 22px;border:1px solid rgba(255,255,255,.13);border-radius:14px;background:rgba(20,22,26,.45);font-size:12.5px;line-height:1.7;color:rgba(242,242,240,.7);text-align:left;"><b style="color:#E8821A;letter-spacing:.14em;">THE USE LAW — NOT FOR RESALE</b><br>This is not licensed for resale. However, you may use it in all of your work — and add to your work by building around it. There is no monthly here. It is yours to use.<br><br>As stated: if you develop a product and this will enhance it, simply contact Oroboros / Anthropic with proof of purchase and state what you are developing. What you are developing remains confidential — it is for tracking use of the software for internal records and audit only for its use. It will be approved as long as it is not a rebuild or a resell of the underlying technology.<br><br>That being said &#8212; build and craft your designs.<div style="margin-top:10px;padding-left:2ch;">&#8212;Architect</div></div>
+</body>
+</html>

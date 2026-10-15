@@ -1,0 +1,129 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TotalControl Hands · The Extension Trio</title>
+<style>
+  :root { color-scheme: dark;
+    --gold:#E8821A; --ink:#F2F2F0; --dim:rgba(242,242,240,.78); --faint:rgba(242,242,240,.55);
+    --line:rgba(255,255,255,.13); --glass:rgba(22,24,28,.62); }
+  body { margin:0; min-height:100vh; color:var(--ink);
+    background:#111111;
+    font-family:'Segoe UI',system-ui,sans-serif; }
+  .wrap { max-width:1020px; margin:0 auto; padding:44px 26px 70px; }
+  nav { display:flex; gap:10px; flex-wrap:wrap; margin:0 0 34px; }
+  nav a { font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--dim);
+    border:1px solid var(--line); border-radius:999px; padding:8px 14px; text-decoration:none; }
+  nav a.on { color:#0d0d0d; background:var(--gold); border-color:var(--gold); font-weight:700; }
+  h1 { font-size:clamp(32px,5.6vw,54px); line-height:1.08; margin:20px 0 8px; letter-spacing:-.015em; }
+  .loop { color:#c96a2f; letter-spacing:.34em; font-size:clamp(15px,2.4vw,24px); font-weight:600; }
+  p.lead { font-size:17px; line-height:1.65; color:var(--dim); max-width:none; }
+  h2 { font-size:13px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin:50px 0 16px; }
+  .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
+  .card { border:1px solid var(--line); border-radius:16px; padding:20px 22px;
+    background:var(--glass); backdrop-filter:blur(12px); }
+  .card h3 { margin:0 0 8px; font-size:15px; letter-spacing:.06em; color:var(--ink); }
+  .card p { margin:0; font-size:13.5px; line-height:1.6; color:var(--dim); }
+  .card ul { margin:6px 0 0; padding-left:18px; font-size:13px; line-height:1.65; color:var(--dim); }
+  .card li b { color:var(--ink); }
+  code { background:rgba(0,0,0,.4); border:1px solid var(--line); border-radius:6px; padding:1px 7px; font-size:12px; color:#9fd1e8; }
+  .gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:26px; }
+  .gallery figure { margin:0; overflow:hidden; border:1px solid var(--line); border-radius:16px; background:var(--glass); }
+  .gallery img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; }
+  .gallery figcaption { padding:12px 14px; color:var(--dim); font-size:13px; line-height:1.45; }
+  .media { margin:18px 0 0; overflow:hidden; border:1px solid var(--line); border-radius:16px; background:var(--glass); }
+  .media video { display:block; width:100%; aspect-ratio:16/9; background:#0b0c0e; }
+  .media figcaption { padding:12px 14px; color:var(--dim); font-size:13px; }
+  @media (max-width:640px) { .gallery { grid-template-columns:1fr; } }
+  .pp { display:inline-block; margin-top:14px; padding:13px 26px; border-radius:8px;
+    border:2px solid var(--gold); color:var(--gold); font-weight:700; font-size:14px; letter-spacing:.06em;
+    cursor:pointer; transition:all .18s ease; }
+  .pp:hover { background:var(--gold); color:#0d0d0d; }
+  .seal { margin-top:44px; padding:18px 22px; border:1px solid var(--line); border-radius:14px;
+    background:rgba(0,0,0,.35); font-size:12.5px; color:var(--faint); line-height:1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a href="./index.html">The App</a>
+    <a href="./harness.html">Pro Harness</a>
+    <a href="./extension.html">Supported Browsers</a>
+    <a class="on" href="./extensions.html">The Extensions</a>
+    <a class="logo-pill" href="./index.html" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.13);font-size:11px;letter-spacing:.22em;text-transform:uppercase;" aria-label="Oroboros / Anthropic — home">
+      <img src="./photos/logo-mark-white.png" alt="" style="height:14px;width:auto;display:block;">
+      <span style="white-space:nowrap;"><span style="color:#F2F2F0;">Oroboros&nbsp;/&nbsp;</span><span style="color:#E8821A;">Anthropic</span></span>
+    </a>
+  </nav>
+  <h1><span class="loop">ONE EXTENSION SET.</span><br>THREE BROWSER OPTIONS — $29.99.</h1>
+  <p class="lead">Choose the TotalControl browser extension set for Chrome, Edge, and Firefox. Get
+    browser assistance and visual information tools wherever you prefer to work.</p>
+
+  <section class="gallery" aria-label="Extension product previews">
+    <figure><img src="./photos/hands-console.png" alt="The Cordis side panel and the hands console">
+      <figcaption>The Cordis side panel and the hands console.</figcaption></figure>
+    <figure><img src="./photos/crawler-live.png" alt="Visual information workspace live preview">
+      <figcaption>The crawl arms on a live page.</figcaption></figure>
+  </section>
+  <p class="lead" style="margin-top:2px;max-width:none;">This is the Cordis side panel — the crawlers and the memory system
+    for placing your data. Run one or two crawlers, and use the memory system and the extension at the same
+    time — feeding from both sources at once. The settings panel opens on the right; the Cordis button at
+    the top of this panel opens the Cordis panel with just a click — complete control.</p>
+
+  <div class="grid" style="margin-top:26px;">
+    <div class="card"><h3>FIREFOX — SIGNED &amp; SOVEREIGN</h3>
+      <p>Use TotalControl with your Firefox browser.</p></div>
+
+    <div class="card"><h3>EDGE</h3>
+      <p>Use TotalControl with your Edge browser.</p></div>
+
+    <div class="card"><h3>CHROME</h3>
+      <p>Use TotalControl with your Chrome browser.</p></div>
+  </div>
+
+  <h2>What you can do</h2>
+  <section class="gallery" aria-label="Extension trio product previews">
+    <figure><img src="./photos/totalcontrol-console-panel.png" alt="TotalControl workspace preview">
+      <figcaption>One workspace across your browsers.</figcaption></figure>
+    <figure><img src="./photos/memory-controls.png" alt="Saved context feature preview">
+      <figcaption>Saved context that follows your work.</figcaption></figure>
+  </section>
+  <p class="lead" style="margin-top:2px;max-width:none;">Orca skill support and the Cordis plugin are native — change the
+    wallpaper, flip light and dark mode, tune the blur and the frost glass: you can truly customise this
+    harness. The Cordis side panel is the crawlers and the memory system for placing your data — run one
+    or two crawlers, use the memory system and the extension at the same time, feeding from both sources
+    at once, and hold complete control on the Cordis button, one click at the top of the panel. This
+    harness was designed as a thin client — a much better flow between your AI and your systems.</p>
+
+  <h2>THE ARMS AT WORK — THE LIVE DEMO</h2>
+  <figure class="media">
+    <video src="./photos/totalcontrol-demo.mp4" controls preload="metadata" playsinline></video>
+    <figcaption>The crawl arms on a live page — scan, read and stock memory, driven from the harness.</figcaption>
+  </figure>
+
+  <div class="grid">
+    <div class="card"><h3>BROWSER ASSISTANCE</h3>
+      <p>Work with the web pages you choose as part of your AI workflow.</p></div>
+    <div class="card"><h3>VISUAL EXPLORATION</h3>
+      <p>Explore information in a visual workspace and return to useful details later.</p></div>
+    <div class="card"><h3>SAVED CONTEXT</h3>
+      <p>Bring helpful saved information into your work when you need it.</p></div>
+  </div>
+
+  <!-- THE TRIO SALE — swap in your PayPal hosted button / PayPal.me target -->
+  <div style="text-align:center;margin-top:48px;border:1px solid var(--line);border-radius:18px;padding:34px 20px;background:rgba(20,22,26,.45);">
+    <div style="font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:rgba(242,242,240,.6);">The Extension Trio — all three builds</div>
+    <div style="font-size:54px;font-weight:700;margin:12px 0 4px;">$29.99 <span style="font-size:15px;font-weight:400;color:rgba(242,242,240,.5);">one-time</span></div>
+    <p style="font-size:13.5px;color:rgba(242,242,240,.75);max-width:60ch;margin:6px auto 0;">Firefox + Chrome + Edge — browser assistance and visual information tools across your preferred browsers.</p>
+    <a class="pp" href="https://www.paypal.com/paypalme/" target="_blank" rel="noopener">BUY THE TRIO — PAYPAL · $29.99</a>
+  </div>
+
+  <div class="seal">
+    Pair the extension set with the <a href="./harness.html">Pro Harness</a> for the complete
+    TotalControl experience. — OROBOROS LABS
+  </div>
+</div>
+<div style="margin-top:34px;padding:18px 22px;border:1px solid rgba(255,255,255,.13);border-radius:14px;background:rgba(20,22,26,.45);font-size:12.5px;line-height:1.7;color:rgba(242,242,240,.7);text-align:left;"><b style="color:#E8821A;letter-spacing:.14em;">THE USE LAW — NOT FOR RESALE</b><br>This is not licensed for resale. However, you may use it in all of your work — and add to your work by building around it. There is no monthly here. It is yours to use.<br><br>As stated: if you develop a product and this will enhance it, simply contact Oroboros / Anthropic with proof of purchase and state what you are developing. What you are developing remains confidential — it is for tracking use of the software for internal records and audit only for its use. It will be approved as long as it is not a rebuild or a resell of the underlying technology.<br><br>That being said &#8212; build and craft your designs.<div style="margin-top:10px;padding-left:2ch;">&#8212;Architect</div></div>
+</body>
+</html>

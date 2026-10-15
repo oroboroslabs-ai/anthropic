@@ -347,10 +347,12 @@
                    <span class="hl-o">temporal technologies</span>.</p>
             </div>
             <div class="hero-cta">
-                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">↓&nbsp; Download the free harness</a>
+                <a class="btn primary" href="hands.html">TOTALCONTROL CORE HARNESS PRO</a>
                 <a class="btn" href="all-services.html">All /A services</a>
                 <a class="btn" href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">Chat</a>
                 <span class="dlmetric" data-dl></span>
+                <!-- the download — readable, running, invisible on the page (us-only for now):
+                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">&#8595;&nbsp; Download the free harness</a> -->
             </div>
             <p class="specline">local-only 127.0.0.1 · weights retrieved — never embedded · the loop = models only · crown 8718 hz</p>
         </div>
@@ -581,7 +583,7 @@
                        <code class="inline">gui-core</code>, <code class="inline">AI-INSTALL.md</code> and
                        <code class="inline">tests/probe_free.py</code>. Python 3.13 pinned.</p>
                     <div class="cmdrow"><span class="ps">$</span><code>oroboroslabs-ai/totalcontrol-core-harness → TotalControl-Free-Core.zip</code></div>
-                    <a class="dl" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">Download TotalControl-Free-Core.zip →</a>
+                    <a class="dl" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip" style="display:none" data-dlinvisible>Download TotalControl-Free-Core.zip →</a>
                     <span class="dlmetric" data-dl></span>
                 </div>
                 <div class="cmdcard">
@@ -614,9 +616,11 @@
             <p class="ds-text-body" style="max-width:620px;margin:16px auto 0">TotalControl Core is free and runs locally —
                the /A law is unoverridable: weights retrieved, never embedded.</p>
             <div class="hero-cta">
-                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">↓&nbsp; Download the free harness</a>
+                <a class="btn primary" href="hands.html">TOTALCONTROL CORE HARNESS PRO</a>
                 <a class="btn" href="harness.html">TotalControl Core — Harness</a>
                 <span class="dlmetric" data-dl></span>
+                <!-- the download — readable, running, invisible on the page (us-only for now):
+                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">&#8595;&nbsp; Download the free harness</a> -->
             </div>
         </div>
     </div>
@@ -666,19 +670,23 @@
 async function loadDlCount(){
   const els = document.querySelectorAll('[data-dl]');
   if (!els.length) return;
+  // PRIVATE VIEW: index.html?dl=1 reveals the counter; everyone else — it stays
+  // in the markup (readable), running with every visit, invisible on the page.
+  const priv = /(^|[?&])dl=1(&|$)/.test(location.search);
   try {
     let v = null, t = 0;
     try { v = localStorage.getItem('tc-dl-count'); t = parseInt(localStorage.getItem('tc-dl-ts') || '0', 10); } catch(e){}
     if (!v || Date.now() - t > 1800000) {
-      const r = await fetch('https://api.github.com/repos/oroboroslabs-ai/totalcontrol-core-harness/releases/latest');
+      const r = await fetch('https://api.github.com/repos/oroboroslabs-ai/totalcontrol-core-harness/releases?per_page=20');
       const d = await r.json();
-      const a = (d.assets || []).find(x => /TotalControl-Free-Core\.zip/i.test(x.name || ''));
-      if (a) {
-        v = a.download_count;
+      if (Array.isArray(d)) {
+        let sum = 0;
+        d.forEach(rel => (rel.assets || []).forEach(a => { sum += (a.download_count || 0); }));
+        v = sum;
         try { localStorage.setItem('tc-dl-count', v); localStorage.setItem('tc-dl-ts', String(Date.now())); } catch(e){}
       }
     }
-    if (v != null) els.forEach(el => { el.textContent = Number(v).toLocaleString() + ' downloads'; el.style.display = 'inline-flex'; });
+    if (v != null) els.forEach(el => { el.textContent = Number(v).toLocaleString() + ' downloads'; el.style.display = priv ? 'inline-flex' : 'none'; });
   } catch(e){}
 }
 loadDlCount();

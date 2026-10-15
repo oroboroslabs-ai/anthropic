@@ -1,0 +1,88 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TotalControl Hands · The Extension</title>
+<style>
+  :root { color-scheme: dark;
+    --gold:#E8821A; --ink:#F2F2F0; --dim:rgba(242,242,240,.78); --faint:rgba(242,242,240,.55);
+    --line:rgba(255,255,255,.13); --glass:rgba(22,24,28,.62); }
+  body { margin:0; min-height:100vh; color:var(--ink);
+    background:#111111;
+    font-family:'Segoe UI',system-ui,sans-serif; }
+  .wrap { max-width:1020px; margin:0 auto; padding:44px 26px 70px; }
+  nav { display:flex; gap:10px; flex-wrap:wrap; margin:0 0 34px; }
+  nav a { font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--dim);
+    border:1px solid var(--line); border-radius:999px; padding:8px 14px; text-decoration:none; }
+  nav a.on { color:#0d0d0d; background:var(--gold); border-color:var(--gold); font-weight:700; }
+  h1 { font-size:clamp(32px,5.6vw,54px); line-height:1.06; margin:20px 0 8px; letter-spacing:-.015em; }
+  .loop { color:#c96a2f; letter-spacing:.34em; font-size:clamp(15px,2.4vw,24px); font-weight:600; }
+  p.lead { font-size:17px; line-height:1.65; color:var(--dim); max-width:none; }
+  h2 { font-size:13px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin:52px 0 16px; }
+  .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
+  .card { border:1px solid var(--line); border-radius:16px; padding:20px 22px;
+    background:var(--glass); backdrop-filter:blur(12px); }
+  .card h3 { margin:0 0 8px; font-size:15px; letter-spacing:.06em; color:var(--ink); }
+  .card p { margin:0 0 6px; font-size:13.5px; line-height:1.6; color:var(--dim); }
+  .card ul { margin:6px 0 0; padding-left:18px; font-size:13px; line-height:1.65; color:var(--dim); }
+  .card li b { color:var(--ink); }
+  code { background:rgba(0,0,0,.4); border:1px solid var(--line); border-radius:6px; padding:1px 7px; font-size:12px; color:#9fd1e8; }
+  .gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:26px; }
+  .gallery figure { margin:0; overflow:hidden; border:1px solid var(--line); border-radius:16px; background:var(--glass); }
+  .gallery img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; }
+  .gallery figcaption { padding:12px 14px; color:var(--dim); font-size:13px; line-height:1.45; }
+  @media (max-width:640px) { .gallery { grid-template-columns:1fr; } }
+  .seal { margin-top:44px; padding:18px 22px; border:1px solid var(--line); border-radius:14px;
+    background:rgba(0,0,0,.35); font-size:12.5px; color:var(--faint); line-height:1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a href="./index.html">The App</a>
+    <a href="./harness.html">The Paid Harness</a>
+    <a class="on" href="./extension.html">Supported Browsers</a>
+    <a href="./extensions.html">The Extensions</a>
+  </nav>
+  <h1><span class="loop">BROWSER ASSISTANCE.</span><br>YOUR AI WORKS WITH YOU.</h1>
+  <p class="lead">The TotalControl browser extension brings practical AI assistance to the pages you
+    choose. Explore information, work with web content, and keep helpful context close by. Available
+    for Chrome, Edge, and Firefox.</p>
+
+  <section class="gallery" aria-label="Browser extension product previews">
+    <figure><img src="./photos/hands-console.png" alt="Browser assistance product preview">
+      <figcaption>Help for the pages you choose to work with.</figcaption></figure>
+    <figure><img src="./photos/crawler-live.png" alt="Visual information workspace preview">
+      <figcaption>A visual way to explore information and revisit useful context.</figcaption></figure>
+  </section>
+
+  <h2>Made for everyday browsing</h2>
+  <div class="grid">
+    <div class="card"><h3>WORK WITH WEB PAGES</h3>
+      <p>Bring AI assistance to the pages and information that matter to you.</p></div>
+    <div class="card"><h3>EXPLORE INFORMATION</h3>
+      <p>Review web content in a visual workspace designed to make useful details easier to revisit.</p></div>
+    <div class="card"><h3>KEEP CONTEXT CLOSE</h3>
+      <p>Use saved context alongside your browsing and AI work when it helps.</p></div>
+    <div class="card"><h3>YOUR BROWSER, YOUR CHOICE</h3>
+      <p>Choose which pages and browser sessions you want to use with the extension.</p></div>
+  </div>
+
+  <h2>Designed to work with your setup</h2>
+  <div class="grid">
+    <div class="card"><h3>CHROME</h3><p>Use the extension with your Chrome browser.</p></div>
+    <div class="card"><h3>EDGE</h3><p>Use the extension with your Edge browser.</p></div>
+    <div class="card"><h3>FIREFOX</h3><p>Use the extension with your Firefox browser.</p></div>
+    <div class="card"><h3>PAIR WITH PRO</h3><p>Combine the extension with the
+      <a href="./harness.html">Pro Harness</a> for the complete TotalControl experience.</p></div>
+  </div>
+
+  <div class="seal">
+    Available for Chrome, Edge, and Firefox. Pair with the Pro Harness for browser assistance and
+    saved-memory features in one experience. — OROBOROS LABS
+  </div>
+</div>
+<div style="margin-top:34px;padding:18px 22px;border:1px solid rgba(255,255,255,.13);border-radius:14px;background:rgba(20,22,26,.45);font-size:12.5px;line-height:1.7;color:rgba(242,242,240,.7);text-align:left;"><b style="color:#E8821A;letter-spacing:.14em;">THE USE LAW — NOT FOR RESALE</b><br>This is not licensed for resale. However, you may use it in all of your work — and add to your work by building around it. There is no monthly here. It is yours to use.<br><br>As stated: if you develop a product and this will enhance it, simply contact Oroboros / Anthropic with proof of purchase and state what you are developing. What you are developing remains confidential — it is for tracking use of the software for internal records and audit only for its use. It will be approved as long as it is not a rebuild or a resell of the underlying technology.<br><br>That being said &#8212; build and craft your designs.<div style="margin-top:10px;padding-left:2ch;">&#8212;Architect</div></div>
+</body>
+</html>
