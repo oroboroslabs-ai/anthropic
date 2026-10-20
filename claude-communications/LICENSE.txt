@@ -1,0 +1,25 @@
+CLAUDE COMMUNICATIONS — LIFETIME LICENSE
+
+Price: $59.99, one time.
+Coverage: Chrome, Edge, and Firefox editions — all three, for life.
+
+This license grants the purchaser a personal, non-transferable lifetime
+license to install and use the three Claude Communications browser editions
+on their own devices.
+
+Included:
+- All three browser editions
+- Lifetime use of the editions you purchased
+- Updates to the three editions while the product is maintained
+- Local-first operation against the buyer's own Oroboros harness
+
+Not included:
+- Resale, sublicensing, or redistribution of the packages or source
+- Hosting the software as a service for third parties
+- Use of the Oroboros or Anthropic marks outside this product
+
+The software runs locally. No cloud account is required. The browser
+extensions are provided as unpacked/sideload packages unless a store build
+is separately supplied.
+
+Proprietary source and build materials are not included in this license.
