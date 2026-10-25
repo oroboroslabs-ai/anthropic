@@ -159,3 +159,15 @@ html.light .hero-logos .a-mark, .light .hero-logos .a-mark { color: #141413; }
 .ft-body b { color: #EDEBE6; font-weight: 600; }
 .ft-body .ok { color: #9BBF9B; }
 @media (max-width: 1100px) { .hero-logos .a-mark { width: 120px; height: 120px; } .fake-term { width: 100%; } }
+
+/* embedded-panel topbar: one scrollable row */
+@media (max-width: 900px){
+  header nav, .tbin nav, .topbar nav{
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    gap: 12px !important;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  header nav::-webkit-scrollbar, .tbin nav::-webkit-scrollbar{display:none}
+}
