@@ -1136,3 +1136,7 @@ body, .nav, .inside, .proof, .pricing, .install, .faq, .footer, .price-card, .br
 .steps { border-top: 0; }
 .steps .step { border-right: 0; }
 .steps .step:last-child { border-right: 0; }
+/* LITE: larger and grey, all browsers */
+.lite, #lite-toggle{font-size:13.5px!important;letter-spacing:.16em!important;font-weight:700!important;color:#8f8b83!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:6px!important;padding:8px 12px!important;background:transparent!important}
+.lite:hover, #lite-toggle:hover{color:#edebe6!important;border-color:rgba(255,255,255,.30)!important}
+html.light .lite, html.light #lite-toggle{color:#5d5a54!important;border-color:rgba(20,20,19,.18)!important}
