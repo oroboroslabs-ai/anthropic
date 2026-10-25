@@ -113,6 +113,14 @@
     .topbar nav { gap: 10px; flex-wrap: wrap; font-size: 9.5px; letter-spacing: .12em; }
     .themebtn { top: 8px; right: 8px; padding: 5px 9px; font-size: 9px; }
   }
+
+  @media (max-width: 900px) {
+    .topbar nav, header nav { flex-wrap: nowrap; overflow-x: auto; gap: 12px;
+      -ms-overflow-style: none; scrollbar-width: none; padding-bottom: 2px; }
+    .topbar nav::-webkit-scrollbar, header nav::-webkit-scrollbar { display: none; }
+    .gw-wm span { font-size: clamp(1.6rem, 7vw, 3rem); color: rgba(255,255,255,0.16); }
+    [data-theme="light"] .gw-wm span { color: rgba(20,20,19,0.10); }
+  }
 </style>
 <link rel="stylesheet" href="header-glass.css">
 <script src="header-glass.js" defer></script>
