@@ -1,0 +1,54 @@
+/* ONE TOPBAR LAW — one row everywhere: mark left, links right, scroll when tight. */
+.topbar .tbin {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 0 !important;
+  padding: 0 44px;
+  max-width: 1620px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+}
+.topbar .bleft { flex: 0 0 auto; padding-right: 26px; }
+.topbar .brandimg { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; }
+.topbar .brandimg .oamark { width: 21px; height: 21px; flex: 0 0 auto; color: #edebe6; }
+.topbar .brandimg span {
+  font: 700 12.5px/1 Inter, "Segoe UI", sans-serif; letter-spacing: .12em;
+  color: #edebe6; white-space: nowrap;
+}
+.topbar .brandimg em { font-style: normal; font-weight: 700; color: #6f6d68 !important; }
+.topbar nav {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  margin: 0 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 16px !important;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 2px 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.topbar nav::-webkit-scrollbar { display: none; }
+.topbar nav a { white-space: nowrap; flex: 0 0 auto; }
+html.light .topbar .brandimg .oamark,
+html.light .topbar .brandimg span,
+[data-theme="light"] .topbar .brandimg .oamark,
+[data-theme="light"] .topbar .brandimg span,
+.light .topbar .brandimg .oamark,
+.light .topbar .brandimg span { color: #141413; }
+html.light .topbar .brandimg em,
+[data-theme="light"] .topbar .brandimg em,
+.light .topbar .brandimg em { color: #8A877F !important; }
+@media (max-width: 1100px) {
+  .topbar .tbin { padding: 0 22px; }
+  .topbar .brandimg span { display: none; }
+  .topbar nav { gap: 14px !important; }
+}
