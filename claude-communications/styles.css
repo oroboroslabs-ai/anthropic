@@ -1166,3 +1166,37 @@ html.light .btn-primary { background: #141413; color: #f7f7f5; border-color: #14
 .hero h1 span { color: #e6e3dc; }
 .bundle-line strong { color: #edebe6; }
 html.light .bundle-line strong { color: #141413; }
+
+/* premium layer — neutral, matched to the main pages, above them in finish */
+:root{
+  --panel-bg: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02) 62%), rgba(17,17,17,.72);
+  --panel-border: rgba(255,255,255,.13);
+  --panel-shadow: 0 30px 70px rgba(0,0,0,.50), inset 0 1px 0 rgba(255,255,255,.10);
+}
+body{
+  background:
+    radial-gradient(1100px 520px at 50% -8%, rgba(255,255,255,.06), transparent 62%),
+    radial-gradient(720px 420px at 88% 18%, rgba(255,255,255,.035), transparent 60%),
+    #111111;
+}
+.hero h1{font-size:clamp(46px,5.6vw,78px);line-height:1.02;letter-spacing:-.035em}
+.hero h1 span{color:#f4f1ea}
+.hero .lede{color:#b9b6ae;font-size:17px;max-width:54ch}
+.eyebrow{letter-spacing:.22em;font-size:10px;text-transform:uppercase;color:#8f8b83}
+.section-head h2{font-size:clamp(30px,3.2vw,46px);letter-spacing:-.03em;line-height:1.05}
+.nav{background:rgba(17,17,17,.72);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%)}
+.browser{border-radius:16px;border:1px solid var(--panel-border);box-shadow:var(--panel-shadow);
+         -webkit-backdrop-filter:blur(18px) saturate(125%);backdrop-filter:blur(18px) saturate(125%)}
+.browser-top{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02))}
+.proof-card{border-radius:14px;border:1px solid var(--panel-border);
+  box-shadow:0 22px 48px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.06);
+  overflow:hidden;transition:transform .35s ease, box-shadow .35s ease}
+.proof-card:hover{transform:translateY(-3px);box-shadow:0 34px 70px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08)}
+.price-card{border-radius:18px;border:1px solid rgba(255,255,255,.16);background:var(--panel-bg);
+  box-shadow:0 34px 80px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.12);
+  -webkit-backdrop-filter:blur(18px) saturate(125%);backdrop-filter:blur(18px) saturate(125%)}
+.price .amount{letter-spacing:-.04em}
+.btn{border-radius:8px}
+.btn-primary{box-shadow:0 12px 34px rgba(255,255,255,.10), inset 0 1px 0 rgba(255,255,255,.70)}
+.browser-col{border-top:1px solid rgba(20,20,19,.12);padding-top:18px}
+.bundle-line{border-top:1px solid rgba(20,20,19,.14);padding-top:18px}
