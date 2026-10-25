@@ -1204,3 +1204,8 @@ body{
 /* terminal panel in the hero mock: exact site off-black */
 .browser .panel{background:#111111!important}
 .browser .msg.user{background:#1e1e1e!important}
+
+/* highlight is white, not orange */
+.hero h1 span{color:#ffffff!important}
+html.light .hero h1 span{color:#141413!important}
+dialog, .dialog{border-color:rgba(255,255,255,.35)!important}
