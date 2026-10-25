@@ -450,7 +450,7 @@ h1 span { color: var(--accent-bright); }
   display: flex;
   flex-direction: column;
   min-width: 0;
-  background: #1c1b19;
+  background: #111111;
   color: var(--cream);
   border-left: 1px solid rgba(20, 20, 19, 0.2);
 }
@@ -537,7 +537,7 @@ h1 span { color: var(--accent-bright); }
 .msg.user {
   align-self: flex-end;
   border-bottom-right-radius: 2px;
-  background: #2d2b27;
+  background: #1e1e1e;
   color: #e6e3da;
 }
 .msg.claude {
@@ -1200,3 +1200,7 @@ body{
 .btn-primary{box-shadow:0 12px 34px rgba(255,255,255,.10), inset 0 1px 0 rgba(255,255,255,.70)}
 .browser-col{border-top:1px solid rgba(20,20,19,.12);padding-top:18px}
 .bundle-line{border-top:1px solid rgba(20,20,19,.14);padding-top:18px}
+
+/* terminal panel in the hero mock: exact site off-black */
+.browser .panel{background:#111111!important}
+.browser .msg.user{background:#1e1e1e!important}
