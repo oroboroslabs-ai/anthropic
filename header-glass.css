@@ -211,3 +211,8 @@ html[data-theme="dark"] .brandimg span { color: #edebe6 !important; }
   nav::-webkit-scrollbar { display: none; }
   .topbar { padding: 16px 0 !important; }
 }
+/* the bar is a flex row here (the page grid stacks brand above nav) */
+@media (max-width: 1100px){
+  .tbin { display: flex !important; align-items: center; }
+  .bleft { flex: 0 0 auto; }
+}
