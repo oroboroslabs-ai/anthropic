@@ -46,16 +46,32 @@
   .gallery figcaption { padding:12px 14px; color:rgba(242,242,240,.72); font-size:13px; line-height:1.45; }
   @media (max-width:640px) { .gallery { grid-template-columns:1fr; } }
 </style>
+<link rel="stylesheet" href="../header-glass.css">
+<script src="../header-glass.js" defer></script>
 </head>
 <body>
+<header class="topbar" id="top"><div class="tbin">
+<div class="bleft"><a class="brand brandimg" href="../index.html" aria-label="Oroboros / Anthropic"><svg class="oamark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="37" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-dasharray="209 24" transform="rotate(-118 50 50)"/></svg><span>OROBOROS <em>/ ANTHROPIC</em></span></a></div>
+<nav>
+<a href="../index.html">HARNESS</a>
+<a href="../glasswing.html">GLASSWING</a>
+<a class="here" href="index.html">PRO</a>
+<a href="../huggingface.html">HUGGINGFACE</a>
+<a href="../index.html#memory">MEMORY</a>
+<a href="../all-services.html">SERVICES</a>
+<a href="../cli.html">CLI</a>
+<a href="../claude-communications/">CLAUDE COMMS</a>
+<a href="../chat-anthropic.html">CHAT</a>
+<button class="lite" type="button">LITE</button>
+</nav>
+</div></header>
 <div class="wrap">
-  <nav style="display:flex;gap:10px;flex-wrap:wrap;margin:0 0 30px;">
-    <a class="on" href="./index.html" style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#0d0d0d;background:#E8821A;border:1px solid #E8821A;border-radius:999px;padding:8px 14px;text-decoration:none;font-weight:700;">The App</a>
-    <a href="./harness.html" style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,242,240,.78);border:1px solid rgba(255,255,255,.13);border-radius:999px;padding:8px 14px;text-decoration:none;">Pro Harness</a>
-    <a href="./extension.html" style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,242,240,.78);border:1px solid rgba(255,255,255,.13);border-radius:999px;padding:8px 14px;text-decoration:none;">Supported Browsers</a>
-     <a href="./extensions.html" style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,242,240,.78);border:1px solid rgba(255,255,255,.13);border-radius:999px;padding:8px 14px;text-decoration:none;">The Extensions</a>
-     <a href="https://oroboroslabs-ai.github.io/anthropic/" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#F2F2F0;border:1px solid rgba(255,255,255,.13);border-radius:999px;padding:8px 14px;font-weight:700;" aria-label="Oroboros / Anthropic — home"><img src="./photos/logo-mark-white.png" alt="" style="height:14px;width:auto;display:block;"><span style="white-space:nowrap;">Oroboros&nbsp;/&nbsp;Anthropic</span></a>
-   </nav>
+  <nav class="subnav">
+<a href="./index.html" class="on">The App</a>
+<a href="./harness.html">Pro Harness</a>
+<a href="./extension.html">Supported Browsers</a>
+<a href="./extensions.html">The Extensions</a>
+</nav>
   <h1>GIVE YOUR MODELS HANDS.</h1>
   <p class="lead">A private AI workspace for browser assistance and useful saved context.
      Choose the free core, the complete Pro Harness, or browser extensions for Chrome,

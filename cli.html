@@ -337,63 +337,57 @@
     }
 </style>
     <link rel="stylesheet" href="skin-business.css">
+<link rel="stylesheet" href="header-glass.css">
+<script src="header-glass.js" defer></script>
 </head>
 <body>
 <header class="topbar" id="top"><div class="tbin">
-    <div class="bleft">
-        <span class="mark"></span>
-        <a class="brand" href="index.html#top">OROBOROS <span class="othr">/ ANTHROPIC</span></a>
-    </div>
-    <nav>
-        <a href="index.html">HARNESS</a> <a href="jhanna.html">JHANNA</a> <a href="shop.html">SHOP</a>
-        <a href="huggingface.html">HUGGINGFACE</a>
-        <a href="index.html#memory">MEMORY</a>
-        <a href="all-services.html">SERVICES</a>
-        <a class="here" href="cli.html">CLI</a>
-        <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">CHAT</a>
-    </nav>
-    <div class="tright"><button class="lite" onclick="toggleLite()">LITE</button></div>
+<div class="bleft"><a class="brand brandimg" href="index.html" aria-label="Oroboros / Anthropic"><svg class="oamark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="37" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-dasharray="209 24" transform="rotate(-118 50 50)"/></svg><span>OROBOROS <em>/ ANTHROPIC</em></span></a></div>
+<nav>
+<a href="index.html" data-k="harness">HARNESS</a>
+<a href="glasswing.html" data-k="glasswing">GLASSWING</a>
+<a href="set/index.html" data-k="pro">PRO</a>
+<a href="huggingface.html" data-k="huggingface">HUGGINGFACE</a>
+<a href="index.html#memory" data-k="memory">MEMORY</a>
+<a href="all-services.html" data-k="services">SERVICES</a>
+<a href="cli.html" class="here" data-k="cli">CLI</a>
+<a href="claude-communications/" data-k="comms">CLAUDE COMMS</a>
+<a href="chat-anthropic.html" data-k="chat">CHAT</a>
+<button class="lite" type="button">LITE</button>
+</nav>
 </div></header>
 
 <main>
     <div class="container">
-        <div class="hero center">
-            <span class="eyebrow">✦ CLAUDE-CLI · vA.1272</span>
-            <h1 class="harness-heading">Claude <span class="here-word">CLI.</span></h1>
-            <div class="intro">
+        <div class="hero hf-hero">
+            <div class="hero-copy">
+                <span class="eyebrow">✦ CLAUDE-CLI · vA.1272</span>
+                <h1 class="harness-heading">Claude <span class="here-word">CLI.</span></h1>
+                <div class="intro">
                 <p class="ds-text-body">Sovereign terminal AI — local Ollama, ZTA hardened, MCP + agent tools.
                    No API keys. No cloud.</p>
             </div>
-            <div class="hero-cta">
+                <div class="hero-cta">
                 <a class="btn primary" href="https://github.com/oroboroslabs-ai/claude-cli" target="_blank" rel="noopener">Download Claude CLI on GitHub</a>
                 <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">Free harness</a>
             </div>
-            <div class="law">
+                <div class="law">
                 <span>local engine 11434</span>
                 <span class="acc">zta + rge hardened</span>
                 <span class="navy">33+ tools · mcp</span>
             </div>
-        </div>
-
-        <div class="preview">
-            <div class="window">
-                <div class="pbar">
-                    <span class="traffic"><i></i><i></i><i></i></span>
-                    <span class="tt">GLASS TERMINAL — http://127.0.0.1:5000</span>
+            </div>
+            <div class="hero-logos">
+                <div class="fake-term" aria-hidden="true">
+                    <div class="ft-bar"><i></i><i></i><i></i><span>claude-cli · 127.0.0.1:5000</span></div>
+                    <pre class="ft-body">$ claude
+  model  <b>ollama · local</b>
+  tools  <b>33</b>
+$ ask "status"
+  <span class="ok">&#10003; engine ready</span></pre>
                 </div>
-                <div class="term">
-<span class="ps">$</span> claude-cli
-<span class="nv"># Glass UI: http://127.0.0.1:5000 · Chat · Files · MCP · Agent</span>
-<span class="nv"># Terminal: you &gt; prompt for coding</span>
-
-<span class="ps">$</span> /model claude-7:latest
-<span class="nv">✓ switched — claude-7:latest · Strata I · undecillion</span>
-
-<span class="ps">$</span> /think xhigh
-<span class="nv">✓ maximum reasoning depth — up to 131K context</span></div>
             </div>
         </div>
-    </div>
 
     <section class="block">
         <div class="container">

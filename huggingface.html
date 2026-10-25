@@ -305,38 +305,46 @@
     }
 </style>
     <link rel="stylesheet" href="skin-business.css">
+<link rel="stylesheet" href="header-glass.css">
+<script src="header-glass.js" defer></script>
 </head>
 <body>
 <header class="topbar" id="top"><div class="tbin">
-    <div class="bleft">
-        <span class="mark"></span>
-        <a class="brand" href="index.html#top">OROBOROS <span class="othr">/ ANTHROPIC</span></a>
-    </div>
-    <nav>
-        <a href="index.html">HARNESS</a> <a href="jhanna.html">JHANNA</a> <a href="shop.html">SHOP</a>
-        <a class="here" href="huggingface.html">HUGGINGFACE</a>
-        <a href="index.html#memory">MEMORY</a>
-        <a href="all-services.html">SERVICES</a>
-        <a href="cli.html">CLI</a>
-        <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">CHAT</a>
-    </nav>
-    <div class="tright"><button class="lite" onclick="toggleLite()">LITE</button></div>
+<div class="bleft"><a class="brand brandimg" href="index.html" aria-label="Oroboros / Anthropic"><svg class="oamark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="37" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-dasharray="209 24" transform="rotate(-118 50 50)"/></svg><span>OROBOROS <em>/ ANTHROPIC</em></span></a></div>
+<nav>
+<a href="index.html" data-k="harness">HARNESS</a>
+<a href="glasswing.html" data-k="glasswing">GLASSWING</a>
+<a href="set/index.html" data-k="pro">PRO</a>
+<a href="huggingface.html" class="here" data-k="huggingface">HUGGINGFACE</a>
+<a href="index.html#memory" data-k="memory">MEMORY</a>
+<a href="all-services.html" data-k="services">SERVICES</a>
+<a href="cli.html" data-k="cli">CLI</a>
+<a href="claude-communications/" data-k="comms">CLAUDE COMMS</a>
+<a href="chat-anthropic.html" data-k="chat">CHAT</a>
+<button class="lite" type="button">LITE</button>
+</nav>
 </div></header>
 
 <main>
     <div class="container">
-        <div class="hero center">
-            <span class="eyebrow">✦ MODEL SOURCES · PRIMARY + SECONDARY</span>
-            <h1 class="harness-heading">Hugging Face <span class="here-word">+</span> Ollama.<br>The Undecillion line.</h1>
-            <div class="intro">
+        <div class="hero hf-hero">
+            <div class="hero-copy">
+                <span class="eyebrow">✦ MODEL SOURCES · PRIMARY + SECONDARY</span>
+                <h1 class="harness-heading">Hugging Face <span class="here-word">+</span> Ollama.<br>The Undecillion line.</h1>
+                <div class="intro">
                 <p class="ds-text-body">The /A fleet's model sources — Hugging Face is the primary registry;
                    Ollama rides as the secondary. Below, our top models with their full data
                    and 100% benchmarks.</p>
             </div>
-            <div class="law">
+                <div class="law">
                 <span>weights retrieved — never embedded</span>
                 <span class="navy">bench 100% — 57/57</span>
                 <span>local-only law</span>
+            </div>
+            </div>
+            <div class="hero-logos">
+                <img src="assets/logos/huggingface.png" alt="Hugging Face">
+                <img src="assets/logos/ollama.png" alt="Ollama">
             </div>
         </div>
     </div>

@@ -165,3 +165,70 @@ h2.harness-heading { font-size: 22px !important; }
 .hero .hero-cta .btn, .hero .hero-cta .dlmetric, .finale .hero-cta .btn, .finale .hero-cta .dlmetric {
     min-height: 44px; min-width: 178px; text-align: center; justify-content: center; display: inline-flex; align-items: center; }
 .hero .subhead, .hero .intro { max-width: 640px !important; }
+
+/* === header: no bar. Plain identity row only. === */
+.topbar { position: static !important; background: transparent !important; border: 0 !important;
+          box-shadow: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+          padding: 18px 0 0 !important; }
+.topbar::before, .topbar::after { display: none !important; }
+.tbin { max-width: 1180px !important; padding: 0 24px !important; }
+.brand { color: #a3a19b !important; }
+nav a { background: transparent !important; border: 0 !important; padding: 0 !important;
+        margin-left: 20px !important; color: #6f6d68 !important; font-size: 11.5px !important;
+        letter-spacing: .12em !important; box-shadow: none !important; }
+nav a:hover, nav a.here { background: transparent !important; color: #edebe6 !important; box-shadow: none !important; }
+nav a::after { display: none !important; }
+.lite { background: transparent !important; border: 0 !important; padding: 0 !important;
+        margin-left: 20px !important; color: #6f6d68 !important; box-shadow: none !important; }
+.lite:hover { background: transparent !important; color: #edebe6 !important; }
+.light .topbar { background: transparent !important; border: 0 !important; }
+.light nav a, .light .lite, .light .brand { color: #545350 !important; }
+.light nav a:hover, .light nav a.here { color: #141413 !important; }
+/* === links: color only, no blocks === */
+nav a, nav a:hover, nav a:focus, nav a.here { background: transparent !important; box-shadow: none !important;
+    border: 0 !important; border-radius: 0 !important; padding: 0 !important; text-decoration: none !important; }
+nav a { color: #6f6d68 !important; }
+nav a:hover, nav a.here { color: #edebe6 !important; }
+.cap a, .cap a:hover, .prod, .prod:hover, .card a, .ds-text-body a { text-decoration: none !important; }
+.cap a:hover, .card a:hover, .ds-text-body a:hover { color: #edebe6 !important; }
+footer a:hover { color: #edebe6 !important; text-decoration: none !important; }
+
+/* === hero: left aligned so the type carries weight === */
+.hero.center { text-align: left !important; }
+.hero.center .intro { margin-left: 0 !important; margin-right: 0 !important; max-width: 720px !important; }
+.hero.center .hero-cta { justify-content: flex-start !important; }
+.hero.center .law { justify-content: flex-start !important; }
+.hero.center .specline { text-align: left !important; }
+h1.harness-heading { max-width: 900px; }
+/* === compact header block: same weight as the rest of the site === */
+.hero { padding: 26px 0 16px !important; }
+.hero .eyebrow { font-size: 10px !important; padding: 4px 10px !important; letter-spacing: .16em !important; }
+h1.harness-heading { font-size: 34px !important; line-height: 1.18 !important; max-width: 720px !important;
+                     letter-spacing: -.02em !important; margin-top: 14px !important; }
+.intro { max-width: 620px !important; margin-top: 10px !important; }
+.ds-text-body { font-size: 14px !important; line-height: 1.6 !important; }
+.hero-cta { margin-top: 16px !important; gap: 8px !important; }
+.hero-cta .btn { padding: 9px 14px !important; font-size: 12.5px !important; border-radius: 8px !important; }
+.specline { margin-top: 12px !important; font-size: 10px !important; }
+.preview { margin-top: 22px !important; }
+/* stray empty CTA box + nav rhythm */
+.hero-cta .dlmetric { display: none !important; }
+.hero-cta > span:not(.dlmetric) { display: none !important; }
+.tbin nav { gap: 4px !important; }
+nav a { margin-left: 14px !important; }
+/* hero text must be hard left; nav hard right */
+.bleft { flex: 0 0 auto !important; }
+.tright { flex: 0 0 auto !important; margin-left: 14px !important; }
+.hero.center .intro, .hero.center .intro .ds-text-body, .hero.center .ds-text-body { text-align: left !important; }
+.hero.center .specline { text-align: left !important; }
+/* the logo lockup, not a wordmark typed in CSS */
+.brandimg { display: inline-flex; align-items: center; }
+.brandimg img { height: 22px; width: auto; display: block; }
+.light .brandimg img { filter: invert(1); }
+/* Oroboros mark: the O ring, never the Anthropic A */
+.brandimg { display: inline-flex; align-items: center; gap: 9px; }
+.brandimg .oamark { width: 21px; height: 21px; color: #edebe6; flex: 0 0 auto; }
+.brandimg span { font: 700 12.5px var(--sans); letter-spacing: .12em; color: #edebe6; }
+.brandimg em { font-style: normal; font-weight: 700; color: #6f6d68; }
+.light .brandimg .oamark { color: #141413; }
+.light .brandimg span { color: #141413; }

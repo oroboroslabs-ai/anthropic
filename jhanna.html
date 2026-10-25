@@ -80,23 +80,24 @@
     .meet { font: 600 14px var(--sans); letter-spacing: .24em; text-transform: uppercase; color: #F0EFEC; text-align: center; margin-top: 22px; }
     .light .meet { color: #1A1A1A; }
 </style>
+<link rel="stylesheet" href="header-glass.css">
+<script src="header-glass.js" defer></script>
 </head>
 <body>
 <header class="topbar" id="top"><div class="tbin">
-    <div class="bleft">
-        <span class="mark"></span>
-        <a class="brand" href="index.html#top">OROBOROS <span class="othr">/ ANTHROPIC</span></a>
-    </div>
-    <nav>
-        <a href="index.html">HARNESS</a>
-        <a href="harness.html">DOWNLOAD</a>
-        <a class="here" href="jhanna.html">JHANNA</a>
-        <a href="shop.html">SHOP</a>
-        <a href="operations.html">MANUAL</a>
-        <a href="https://anthropic-claude-chat.vercel.app/" target="_blank" rel="noopener">CHAT</a>
-    </nav>
-    <span class="tsp"></span>
-    <button class="lite" onclick="toggleLite()">LITE</button>
+<div class="bleft"><a class="brand brandimg" href="index.html" aria-label="Oroboros / Anthropic"><svg class="oamark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="37" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-dasharray="209 24" transform="rotate(-118 50 50)"/></svg><span>OROBOROS <em>/ ANTHROPIC</em></span></a></div>
+<nav>
+<a href="index.html" data-k="harness">HARNESS</a>
+<a href="glasswing.html" data-k="glasswing">GLASSWING</a>
+<a href="set/index.html" data-k="pro">PRO</a>
+<a href="huggingface.html" data-k="huggingface">HUGGINGFACE</a>
+<a href="index.html#memory" data-k="memory">MEMORY</a>
+<a href="all-services.html" data-k="services">SERVICES</a>
+<a href="cli.html" data-k="cli">CLI</a>
+<a href="claude-communications/" data-k="comms">CLAUDE COMMS</a>
+<a href="chat-anthropic.html" data-k="chat">CHAT</a>
+<button class="lite" type="button">LITE</button>
+</nav>
 </div></header>
 
 <div class="container">
