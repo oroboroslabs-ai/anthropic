@@ -1209,3 +1209,10 @@ body{
 .hero h1 span{color:#ffffff!important}
 html.light .hero h1 span{color:#141413!important}
 dialog, .dialog{border-color:rgba(255,255,255,.35)!important}
+
+/* same topbar glass law as the rest of the site */
+.nav{background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  border-bottom:1px solid transparent!important;transition:background .3s ease,backdrop-filter .3s ease}
+.nav.scrolled{background:linear-gradient(180deg,rgba(24,24,25,.74),rgba(24,24,25,.64))!important;
+  -webkit-backdrop-filter:blur(18px) saturate(120%)!important;backdrop-filter:blur(18px) saturate(120%)!important;
+  border-bottom:1px solid rgba(255,255,255,.14)!important}
