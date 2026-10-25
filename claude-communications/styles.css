@@ -1131,3 +1131,8 @@ body, .nav, .inside, .proof, .pricing, .install, .faq, .footer, .price-card, .br
   .wave span { animation: none; }
   .btn-primary:hover { transform: none; }
 }
+
+/* install steps: no dividing rules, spacing only */
+.steps { border-top: 0; }
+.steps .step { border-right: 0; }
+.steps .step:last-child { border-right: 0; }
