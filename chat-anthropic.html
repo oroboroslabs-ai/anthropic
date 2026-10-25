@@ -899,6 +899,13 @@
   .animate-fade-in-up {
     animation: fadeInUp 0.4s ease-out forwards;
   }
+
+/* chat-bar-scroll */
+.top-bar{background:transparent!important;border-bottom:1px solid transparent!important;
+  transition:background .3s ease,backdrop-filter .3s ease}
+.top-bar.scrolled{background:linear-gradient(180deg,rgba(24,24,25,.74),rgba(24,24,25,.64))!important;
+  -webkit-backdrop-filter:blur(18px) saturate(120%)!important;backdrop-filter:blur(18px) saturate(120%)!important;
+  border-bottom:1px solid rgba(255,255,255,.14)!important}
 </style>
 <link rel="stylesheet" href="topbar2.css">
 <style id="topbar-law">
@@ -2682,5 +2689,10 @@ Return ONLY the complete HTML code, no explanations.`
   }
 </style>
 
+<script>
+(function(){var b=document.querySelector(".top-bar");if(!b)return;
+function u(){b.classList.toggle("scrolled",(window.scrollY||window.pageYOffset||0)>40);}
+window.addEventListener("scroll",u,{passive:true});u();})();
+</script>
 </body>
 </html>
