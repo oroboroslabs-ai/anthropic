@@ -171,3 +171,12 @@ html.light .hero-logos .a-mark, .light .hero-logos .a-mark { color: #141413; }
   }
   header nav::-webkit-scrollbar, .tbin nav::-webkit-scrollbar{display:none}
 }
+/* wordmark parity with Glasswing: white O, white OROBOROS, grey / ANTHROPIC */
+.brandimg .oamark, .brandimg span { color: #edebe6; }
+.brandimg em { color: #6f6d68 !important; }
+html.light .brandimg .oamark, html.light .brandimg span,
+.light .brandimg .oamark, .light .brandimg span,
+[data-theme="light"] .brandimg .oamark, [data-theme="light"] .brandimg span { color: #141413; }
+html.light .brandimg em, .light .brandimg em,
+[data-theme="light"] .brandimg em { color: #8A877F !important; }
+.brandimg .oamark { width: 21px; height: 21px; flex: 0 0 auto; }
