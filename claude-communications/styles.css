@@ -21,9 +21,9 @@
 }
 
 :root {
-  --ink: #0e0e0e;
+  --ink: #111111;
   --dark: #111111;
-  --dark-raised: #181818;
+  --dark-raised: #151515;
   --cream: #f0efec;
   --paper: #f5f2ed;
   --muted: #9a9a95;
@@ -33,7 +33,7 @@
   --accent: #d97757;
   --accent-bright: #e08868;
   --accent-deep: #c4684b;
-  --body-copy: #d6d2c8;
+  --body-copy: #cfcfca;
   --nav-bg: rgba(17, 17, 17, 0.88);
   --footer-bg: var(--ink);
   --display: 'Poppins', 'Segoe UI', sans-serif;
@@ -145,8 +145,8 @@ section[id] { scroll-margin-top: 84px; }
   min-width: 0;
 }
 .brand-mark {
-  width: 24px;
-  height: 22px;
+  width: 21px;
+  height: 19px;
   flex: none;
   background: url('assets/logo-flipped.png') center / contain no-repeat;
 }
