@@ -121,6 +121,42 @@
     .gw-wm span { font-size: clamp(1.6rem, 7vw, 3rem); color: rgba(255,255,255,0.16); }
     [data-theme="light"] .gw-wm span { color: rgba(20,20,19,0.10); }
   }
+
+  /* glass sheets — same panel law as the harness page, gaps show the field */
+  :root {
+    --sheet-bg: linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03) 60%), rgba(20,20,19,0.45);
+    --sheet-border: rgba(255,255,255,0.12);
+    --sheet-shadow: 0 14px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+  [data-theme="light"] {
+    --sheet-bg: linear-gradient(160deg, rgba(255,255,255,0.80), rgba(255,255,255,0.62) 60%), rgba(255,255,255,0.55);
+    --sheet-border: rgba(20,20,19,0.09);
+    --sheet-shadow: 0 1px 3px rgba(20,20,19,0.05), 0 14px 34px rgba(20,20,19,0.06);
+  }
+  main { display: flex; flex-direction: column; gap: 18px; margin: 26px auto 56px; }
+  .sheet {
+    padding: 24px 26px;
+    background: var(--sheet-bg);
+    border: 1px solid var(--sheet-border);
+    box-shadow: var(--sheet-shadow);
+    border-radius: 16px;
+    backdrop-filter: blur(16px) saturate(1.25);
+    -webkit-backdrop-filter: blur(16px) saturate(1.25);
+  }
+  .sheet.lead { padding: 30px 26px 26px; }
+  .sheet h2 { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+  .sheet .sub.tight { margin-bottom: 0; max-width: 62ch; }
+  .sheet .stats { margin: 0; padding: 0; border: 0; }
+  .sheet .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  [data-theme="light"] .sheet .card { background: rgba(255,255,255,0.55); border-color: rgba(20,20,19,0.07); }
+  .sheet.foot { padding: 18px 26px; }
+  .sheet.foot footer { margin: 0; }
+  @media (max-width: 900px) {
+    main { gap: 12px; margin: 14px auto 36px; }
+    .sheet { padding: 16px 16px; border-radius: 13px; }
+    .sheet.lead { padding: 18px 16px 16px; }
+    .sheet h2 { margin-bottom: 9px; }
+  }
 </style>
 <link rel="stylesheet" href="header-glass.css">
 <script src="header-glass.js" defer></script>
@@ -172,36 +208,50 @@
   })();
 </script>
 <main>
-  <h1>Temporal Engine</h1>
-  <p class="sub">Deterministic time simulation. Seeded runs, fixed kernels, no network. The same input produces the same future.</p>
+  <section class="sheet lead">
+    <h1>Temporal Engine</h1>
+    <p class="sub">Deterministic time simulation. Seeded runs, fixed kernels, no network. The same input produces the same future.</p>
+  </section>
 
-  <div class="stats">
-    <div class="stat"><b>4</b><span>Engines · simulation, forecast, scenario, replay</span></div>
-    <div class="stat"><b>4</b><span>Kernels · logistic, predator-prey, SEIR, damped wave</span></div>
-    <div class="stat"><b>0</b><span>Network calls per run</span></div>
-    <div class="stat"><b>1–12</b><span>Forecast steps</span></div>
-    <div class="stat"><b>Seed-locked</b><span>Replay reproduces identical output</span></div>
-  </div>
+  <section class="sheet">
+    <div class="stats">
+      <div class="stat"><b>4</b><span>Engines · simulation, forecast, scenario, replay</span></div>
+      <div class="stat"><b>4</b><span>Kernels · logistic, predator-prey, SEIR, damped wave</span></div>
+      <div class="stat"><b>0</b><span>Network calls per run</span></div>
+      <div class="stat"><b>1–12</b><span>Forecast steps</span></div>
+      <div class="stat"><b>Seed-locked</b><span>Replay reproduces identical output</span></div>
+    </div>
+  </section>
 
-  <div class="grid">
-    <div class="card"><b>Simulation</b><span><code>sim.logistic</code> · <code>sim.predator</code> · <code>sim.epidemic</code> · <code>sim.wave</code></span></div>
-    <div class="card"><b>Forecast</b><span>Project a kernel 1–12 steps with a confidence band that widens with horizon.</span></div>
-    <div class="card"><b>Scenario</b><span>Two states, same horizon. Reports drift and whether the pair converges or diverges.</span></div>
-    <div class="card"><b>Replay</b><span>Re-run a recorded seed. Output is byte-identical; any difference is a bug, not noise.</span></div>
-  </div>
+  <section class="sheet">
+    <h2>Engines</h2>
+    <div class="grid">
+      <div class="card"><b>Simulation</b><span><code>sim.logistic</code> · <code>sim.predator</code> · <code>sim.epidemic</code> · <code>sim.wave</code></span></div>
+      <div class="card"><b>Forecast</b><span>Project a kernel 1–12 steps with a confidence band that widens with horizon.</span></div>
+      <div class="card"><b>Scenario</b><span>Two states, same horizon. Reports drift and whether the pair converges or diverges.</span></div>
+      <div class="card"><b>Replay</b><span>Re-run a recorded seed. Output is byte-identical; any difference is a bug, not noise.</span></div>
+    </div>
+  </section>
 
-  <h2>Limits</h2>
-  <p class="sub">Every parameter is clamped, every run is capped at 12 steps, and a missing seed is filled from the clock and then reported. The engine models state change over simulated time; it does not move, rewind or observe the real world.</p>
+  <section class="sheet">
+    <h2>Limits</h2>
+    <p class="sub tight">Every parameter is clamped, every run is capped at 12 steps, and a missing seed is filled from the clock and then reported. The engine models state change over simulated time; it does not move, rewind or observe the real world.</p>
+  </section>
 
-  <div class="grid">
-    <div class="card"><b>Desktop engine</b><span>Live in the OA Claude Desktop app under CORE → Temporal Engine: run, ledger, replay.</span></div>
-    <div class="card"><b>IPC surface</b><span><code>temporal:run</code> · <code>temporal:status</code> · <code>temporal:timeline</code> · <code>temporal:replay</code></span></div>
-  </div>
+  <section class="sheet">
+    <h2>Surfaces</h2>
+    <div class="grid">
+      <div class="card"><b>Desktop engine</b><span>Live in the OA Claude Desktop app under CORE → Temporal Engine: run, ledger, replay.</span></div>
+      <div class="card"><b>IPC surface</b><span><code>temporal:run</code> · <code>temporal:status</code> · <code>temporal:timeline</code> · <code>temporal:replay</code></span></div>
+    </div>
+  </section>
 
-  <footer>
-    Kernels: <code>temporal/kernels.js</code> · Engine: <code>temporal/engine.js</code> · Ledger: <code>temporal/runs.jsonl</code><br>
-    Runs are local and offline. Simulation output is arithmetic, not prediction of real events.
-  </footer>
+  <section class="sheet foot">
+    <footer>
+      Kernels: <code>temporal/kernels.js</code> · Engine: <code>temporal/engine.js</code> · Ledger: <code>temporal/runs.jsonl</code><br>
+      Runs are local and offline. Simulation output is arithmetic, not prediction of real events.
+    </footer>
+  </section>
 </main>
 </body>
 </html>
