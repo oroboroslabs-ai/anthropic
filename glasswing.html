@@ -127,6 +127,26 @@
     .gw-wm span { font-size: clamp(1.3rem, 5.6vw, 2.2rem); color: rgba(255,255,255,0.11); }
     [data-theme="light"] .gw-wm span { color: rgba(20,20,19,0.07); }
   }
+
+  /* brand lock — same white/grey O ring as the Glasswing pages */
+  .brandimg { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; }
+  .brandimg .oamark { width: 21px; height: 21px; flex: 0 0 auto; color: #edebe6; }
+  .brandimg span { font: 700 12.5px/1 Inter, "Segoe UI", sans-serif; letter-spacing: .12em;
+                   color: #edebe6; white-space: nowrap; }
+  .brandimg em, header .brandimg em, .brand .brandimg em {
+    font-style: normal !important; font-weight: 700 !important; color: #6f6d68 !important; }
+  html.light .brandimg .oamark, html.light .brandimg span,
+  .light .brandimg .oamark, .light .brandimg span,
+  [data-theme="light"] .brandimg .oamark, [data-theme="light"] .brandimg span { color: #141413; }
+  html.light .brandimg em, .light .brandimg em,
+  [data-theme="light"] .brandimg em,
+  html.light header .brandimg em, .light header .brandimg em { color: #8A877F !important; }
+
+  /* watermark stays below the topbar so it never crosses the nav */
+  .gw-wm { inset: 96px 0 0 0 !important; }
+  @media (max-width: 900px) {
+    .gw-wm { inset: 62px 0 0 0 !important; align-items: flex-start; padding-top: 26px; }
+  }
 </style>
 <link rel="stylesheet" href="header-glass.css">
 <script src="header-glass.js" defer></script>
