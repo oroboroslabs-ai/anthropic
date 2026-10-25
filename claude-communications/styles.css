@@ -1147,3 +1147,22 @@ html.light .brand-slash { color: #8A877F; }
 /* hero second line: lighter than the grey mark */
 .hero h1 span { color: #e6e3dc; }
 html.light .hero h1 span { color: #2c2a26; }
+
+/* neutral palette — match the main pages, no orange highlight */
+:root {
+  --accent: #edebe6;
+  --accent-bright: #edebe6;
+  --accent-deep: #a3a19b;
+}
+html.light, body.light {
+  --accent: #141413;
+  --accent-bright: #141413;
+  --accent-deep: #6f6d68;
+}
+.btn-primary { background: #edebe6; color: #111111; border-color: #edebe6; }
+.btn-primary:hover { background: #ffffff; border-color: #ffffff; color: #111111; }
+html.light .btn-primary { background: #141413; color: #f7f7f5; border-color: #141413; }
+.section-head .eyebrow, .eyebrow, .step > span, .num { color: #a3a19b; }
+.hero h1 span { color: #e6e3dc; }
+.bundle-line strong { color: #edebe6; }
+html.light .bundle-line strong { color: #141413; }
