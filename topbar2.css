@@ -53,3 +53,13 @@ html.light .topbar .brandimg em,
   .topbar .brandimg span { display: none; }
   .topbar nav { gap: 14px !important; }
 }
+
+/* bar glass */
+.topbar{background:rgba(8,9,10,.82)!important;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid rgba(255,255,255,.08)!important}
+html.light .topbar,.light .topbar,[data-theme="light"] .topbar{background:rgba(247,246,242,.92)!important;border-bottom:1px solid rgba(20,20,19,.10)!important}
+html.light .topbar nav a,.light .topbar nav a,[data-theme="light"] .topbar nav a{color:#5d5a54!important}
+html.light .topbar nav a.here,.light .topbar nav a.here,[data-theme="light"] .topbar nav a.here{color:#141413!important}
+html.light .topbar .brandimg .oamark,html.light .topbar .brandimg span,
+.light .topbar .brandimg .oamark,.light .topbar .brandimg span,
+[data-theme="light"] .topbar .brandimg .oamark,[data-theme="light"] .topbar .brandimg span{color:#141413!important}
+html.light .topbar .brandimg em,.light .topbar .brandimg em,[data-theme="light"] .topbar .brandimg em{color:#8A877F!important}
