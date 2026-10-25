@@ -180,3 +180,12 @@ html.light .brandimg .oamark, html.light .brandimg span,
 html.light .brandimg em, .light .brandimg em,
 [data-theme="light"] .brandimg em { color: #8A877F !important; }
 .brandimg .oamark { width: 21px; height: 21px; flex: 0 0 auto; }
+/* final wordmark law */
+html[data-theme="dark"] .brandimg em,
+html:not([data-theme]) .brandimg em,
+.brandimg em { color: #6f6d68 !important; }
+html[data-theme="light"] .brandimg em,
+html.light .brandimg em,
+.light .brandimg em { color: #8A877F !important; }
+html[data-theme="dark"] .brandimg .oamark,
+html[data-theme="dark"] .brandimg span { color: #edebe6 !important; }
