@@ -99,6 +99,20 @@
     border-radius:3px; cursor:pointer;
     backdrop-filter: blur(13px) saturate(180%); -webkit-backdrop-filter: blur(13px) saturate(180%); }
   .themebtn:hover { border-color:var(--accent); }
+
+  /* narrow / short viewports (integrated browser panels) */
+  @media (max-width: 900px) {
+    .gw-wm span { font-size: clamp(2rem, 9vw, 4.5rem); letter-spacing: .06em; color: rgba(255,255,255,0.22); }
+    [data-theme="light"] .gw-wm span { color: rgba(20,20,19,0.14); }
+    main { margin: 18px auto 48px; padding: 0 14px; max-width: none; }
+    h1 { font-size: 21px; }
+    .sub { font-size: 13px; margin-bottom: 18px; }
+    .stats { gap: 14px; margin: 16px 0; padding: 10px 0; }
+    .stat b { font-size: 15px; }
+    .grid { grid-template-columns: 1fr; }
+    .topbar nav { gap: 10px; flex-wrap: wrap; font-size: 9.5px; letter-spacing: .12em; }
+    .themebtn { top: 8px; right: 8px; padding: 5px 9px; font-size: 9px; }
+  }
 </style>
 <link rel="stylesheet" href="header-glass.css">
 <script src="header-glass.js" defer></script>
