@@ -83,13 +83,13 @@
 <style id="topbar-law">
 .topbar{background:rgba(8,9,10,.82)!important;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid rgba(255,255,255,.16)!important;padding:16px 0 15px!important}
 html.light .topbar,.light .topbar,[data-theme="light"] .topbar{background:rgba(247,246,242,.92)!important;border-bottom:1px solid rgba(20,20,19,.16)!important}
-.topbar .tbin{display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center!important;column-gap:0!important;row-gap:0!important;padding:0 20px!important;max-width:none!important;width:100%!important;margin:0 auto;position:relative;box-sizing:border-box}
-.topbar .bleft{grid-column:1;justify-self:start;flex:0 0 auto!important;padding-right:0!important;margin:0!important}
+.topbar .tbin{display:flex!important;align-items:center!important;justify-content:center!important;flex-wrap:nowrap!important;gap:14px!important;padding:0 24px!important;max-width:none!important;width:100%!important;margin:0 auto;position:relative;box-sizing:border-box}
+.topbar .bleft{flex:0 0 auto!important;padding-right:0!important;margin:0!important}
 .topbar .brandimg{display:inline-flex;align-items:center;gap:9px;text-decoration:none}
 .topbar .brandimg .oamark{width:21px;height:21px;flex:0 0 auto;color:#edebe6}
 .topbar .brandimg span{font:700 12.5px/1 Inter,"Segoe UI",sans-serif;letter-spacing:.12em;color:#edebe6;white-space:nowrap}
 .topbar .brandimg em{font-style:normal!important;font-weight:700!important;color:#6f6d68!important}
-.topbar nav{grid-column:2;justify-self:center;position:static!important;left:auto!important;right:auto!important;transform:none!important;margin:0!important;display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:22px!important;min-width:0;max-width:100%;padding:2px 0;scrollbar-width:none;-ms-overflow-style:none}
+.topbar nav{position:static!important;left:auto!important;right:auto!important;transform:none!important;margin:0!important;display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:11px!important;min-width:0;max-width:100%;padding:2px 0;scrollbar-width:none;-ms-overflow-style:none}
 .topbar nav::-webkit-scrollbar{display:none}
 .topbar nav a{white-space:nowrap!important;flex:0 0 auto!important}
 .topbar nav button{flex:0 0 auto!important;white-space:nowrap!important;background:transparent!important;border:0!important;position:static!important;padding:0!important}
@@ -101,9 +101,8 @@ html.light .topbar .brandimg .oamark,html.light .topbar .brandimg span,
 html.light .topbar .brandimg em,.light .topbar .brandimg em,[data-theme="light"] .topbar .brandimg em{color:#8A877F!important}
 @media (max-width:1100px){ .topbar .brandimg span{display:none} }
 @media (max-width:900px){
-  .topbar .tbin{display:flex!important;padding:0 14px!important}
-  .topbar .bleft{padding-right:26px!important}
-  .topbar nav{margin:0 0 0 auto!important;gap:16px!important;overflow-x:auto;max-width:calc(100% - 50px)}
+  .topbar .tbin{padding:0 14px!important;gap:10px!important}
+  .topbar nav{gap:9px!important;overflow-x:auto;max-width:calc(100% - 50px)}
 }
 </style>
 </head>
