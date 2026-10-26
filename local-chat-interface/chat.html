@@ -1611,7 +1611,7 @@ async function generateWebsite() {
     // strip markdown fences if model included them
     let html = full.replace(/^```html\s*\n?/i,'').replace(/^```\s*\n?/m,'').replace(/```\s*$/m,'').trim();
     if (!html.toLowerCase().includes('<!doctype') && !html.toLowerCase().includes('<html')) {
-      html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Generated</title></head><body>${html}<script src="/shared-header.js" defer></script>
+      html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Generated</title></head><body>${html}
 </body></html>`;
     }
     lastWebsiteHtml = html;
@@ -1699,5 +1699,6 @@ const _orig_appendBubble = appendBubble;
   document.querySelectorAll('[data-theme-toggle]').forEach(function(b){ paint(b); b.addEventListener('click',cycle); });
 })();
 </script>
+<script src="/shared-header.js" defer></script>
 </body>
 </html>

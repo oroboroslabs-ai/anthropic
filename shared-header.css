@@ -54,3 +54,5 @@ body:has(> header.nav) { padding-top: 0 !important; }
   #unifiedHeader { height: auto !important; min-height: 48px !important; max-height: none !important; }
   #unifiedHeader .uh-inner { height: auto !important; min-height: 48px !important; max-height: none !important; }
 }
+.top-bar, .main-header { display: none !important; }
+header.top-bar, header.main-header { display: none !important; }
