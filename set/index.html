@@ -5,46 +5,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TotalControl Hands · Your AI workspace</title>
 <style>
-  :root { color-scheme: dark; --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; }
-  body { margin:0; min-height:100vh; background:
-      #111111; color:#F2F2F0;
-    font-family:var(--sans); }
+  :root { color-scheme: dark; --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; --line:rgba(255,255,255,.14); --ink:#F2F2F0; --muted:#A3A19B; --accent:#E8821A; }
+  body { margin:0; min-height:100vh; background: radial-gradient(900px 620px at 14% -8%, rgba(232,130,26,.12), transparent 62%), radial-gradient(800px 600px at 88% 10%, rgba(255,255,255,.06), transparent 62%), #090A0B; background-attachment:fixed; color:var(--ink); font-family:var(--sans); }
   .wrap { max-width:980px; margin:0 auto; padding:48px 28px; }
   h1 { font-size:clamp(34px,6vw,58px); line-height:1.05; margin:18px 0 10px; letter-spacing:-.01em; }
-  p.lead { font-size:18px; line-height:1.6; color:rgba(242,242,240,.86); max-width:none; }
+  p.lead { font-size:18px; line-height:1.6; color:rgba(242,242,240,.82); max-width:none; }
   .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:30px; }
-  .card { border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:18px 20px;
-    background:rgba(24,26,30,.55); backdrop-filter:blur(10px); }
-  .card h3 { margin:0 0 8px; font-size:15px; letter-spacing:.08em; color:#E8821A; }
-  .card p { margin:0; font-size:14px; line-height:1.55; color:rgba(242,242,240,.8); }
-  .note { margin-top:34px; font-size:13px; color:rgba(242,242,240,.55); letter-spacing:.06em; }
-  a { color:#E8821A; text-decoration:none; }
+  .card { border:1px solid var(--line); border-radius:14px; padding:18px 20px; background:rgba(255,255,255,.045); }
+  .card h3 { margin:0 0 8px; font-size:15px; letter-spacing:.08em; color:var(--ink); }
+  .card h3::before { content:""; display:inline-block; width:6px; height:6px; border-radius:50%; margin-right:9px; vertical-align:1px; background:var(--accent); box-shadow:0 0 7px rgba(232,130,26,.5); }
+  .card p { margin:0; font-size:14px; line-height:1.55; color:var(--muted); }
+  .note { margin-top:34px; font-size:13px; color:rgba(242,242,240,.5); letter-spacing:.06em; }
+  a { color:var(--accent); text-decoration:none; }
   /* THE ONE SALE — three options, PayPal-style buttons, no background fill,
      in the site's orange (Architect 2026-10-13) */
   .sale { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); margin-top:34px; }
-  .buy { border:1px solid rgba(255,255,255,.16); border-radius:16px; padding:22px; text-align:center;
-    background:rgba(20,22,26,.45); backdrop-filter:blur(10px); position:relative; }
+  .buy { border:1px solid var(--line); border-radius:16px; padding:22px; text-align:center; background:rgba(255,255,255,.045); }
   .buy .tier { font-size:12px; letter-spacing:.26em; text-transform:uppercase; color:rgba(242,242,240,.6); }
-  .buy .price { font-size:44px; font-weight:700; margin:10px 0 2px; color:#F2F2F0; }
+  .buy .tier::before { content:""; display:inline-block; width:6px; height:6px; border-radius:50%; margin-right:8px; vertical-align:1px; background:var(--accent); }
+  .buy .price { font-size:44px; font-weight:700; margin:10px 0 2px; color:var(--ink); }
   .buy .price small { font-size:13px; font-weight:400; color:rgba(242,242,240,.5); }
-  .buy p { font-size:13px; line-height:1.55; color:rgba(242,242,240,.75); min-height:76px; }
+  .buy p { font-size:13px; line-height:1.55; color:rgba(242,242,240,.72); min-height:76px; }
   /* PayPal style, no background — the site's orange carries the button */
   .pp { display:inline-block; margin-top:16px; padding:13px 26px; border-radius:8px;
-    border:2px solid #E8821A; color:#E8821A; font-weight:700; font-size:14px; letter-spacing:.06em;
+    border:2px solid var(--accent); color:var(--accent); font-weight:700; font-size:14px; letter-spacing:.06em;
     cursor:pointer; transition:all .18s ease; }
-  .pp:hover { background:#E8821A; color:#0d0d0d; }
-  .freetier { border:1px solid rgba(255,255,255,.16); border-radius:16px; padding:22px; text-align:center;
-    background:rgba(20,22,26,.45); backdrop-filter:blur(10px); }
+  .pp:hover { background:var(--accent); color:#0A0A0A; }
+  .freetier { border:1px solid var(--line); border-radius:16px; padding:22px; text-align:center; background:rgba(255,255,255,.045); }
   .freetier .dl { display:inline-block; margin-top:16px; padding:13px 26px; border-radius:8px;
-    border:1px solid rgba(255,255,255,.3); color:#F2F2F0; font-weight:600; font-size:14px; letter-spacing:.06em;
+    border:1px solid rgba(255,255,255,.3); color:var(--ink); font-weight:600; font-size:14px; letter-spacing:.06em;
     text-decoration:none; transition:all .18s ease; }
-  .freetier .dl:hover { border-color:#E8821A; color:#E8821A; }
+  .freetier .dl:hover { border-color:var(--accent); color:var(--accent); }
   .gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:30px; }
-  .gallery figure { margin:0; overflow:hidden; border:1px solid rgba(255,255,255,.14); border-radius:14px;
-    background:rgba(20,22,26,.55); }
+  .gallery figure { margin:0; overflow:hidden; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.045); }
   .gallery img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; }
-  .gallery figcaption { padding:12px 14px; color:rgba(242,242,240,.72); font-size:13px; line-height:1.45; }
-  @media (max-width:640px) { .gallery { grid-template-columns:1fr; } }
+  .gallery figcaption { padding:12px 14px; color:rgba(242,242,240,.68); font-size:13px; line-height:1.45; }
+  /* orange dots on the left of the links — the full client's rail language */
+  .subnav a { position:relative; padding-left:13px; }
+  .subnav a::before { content:""; position:absolute; left:0; top:50%; width:5px; height:5px; margin-top:-2.5px; border-radius:50%; background:#5C5C58; }
+  .subnav a:hover::before, .subnav a.on::before { background:var(--accent); box-shadow:0 0 6px rgba(232,130,26,.55); }
+  .voice-split { display:grid; grid-template-columns:1.3fr .7fr; gap:16px; margin-top:22px; align-items:stretch; }
+  .voice-split figure { margin:0; overflow:hidden; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.045); }
+  .voice-split img { display:block; width:100%; height:100%; object-fit:cover; }
+  .voice-controls { border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.045); padding:22px; }
+  .voice-controls h3 { margin:8px 0 14px; font-size:20px; line-height:1.2; }
+  .voice-controls ul { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+  .voice-controls li { position:relative; padding-left:16px; font-size:13px; line-height:1.45; color:rgba(242,242,240,.74); }
+  .voice-controls li::before { content:""; position:absolute; left:0; top:.55em; width:5px; height:5px; border-radius:50%; background:#5C5C58; }
+  .voice-controls li.on::before { background:var(--accent); box-shadow:0 0 6px rgba(232,130,26,.55); }
+  @media (max-width:640px) { .gallery { grid-template-columns:1fr; } .voice-split { grid-template-columns:1fr; } }
+  .card,.buy,.freetier,.voice-split figure,.voice-controls{background:rgba(255,255,255,.045) !important;border-color:rgba(255,255,255,.13) !important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 20px 60px rgba(0,0,0,.35)}
 </style>
 <link rel="stylesheet" href="../header-glass.css">
 <script src="../header-glass.js" defer></script>
@@ -85,9 +95,27 @@
     <figure><img src="../assets/screens/pro-crawler.png" alt="Crawler live - IANA example domains, two pages">
       <figcaption>Crawler test: two pages at depth 1, captured live.</figcaption></figure>
     <figure><img src="../assets/screens/full-appearance.png" alt="Fog-clear appearance panel">
-      <figcaption>The fog-clear Appearance panel — font size and rail controls.</figcaption></figure>
-    <figure><img src="../assets/screens/white-chat.png" alt="White theme">
-      <figcaption>The white theme — one white screen per page.</figcaption></figure>
+      <figcaption>The fog-clear Appearance panel — theme color, font size and rail controls.</figcaption></figure>
+    <figure><img src="../assets/screens/full-chat.png" alt="Neutral first run">
+      <figcaption>Black client — black, white and orange.</figcaption></figure>
+  </section>
+  <h2 style="text-align:center;margin:44px 0 6px;font-size:clamp(24px,3vw,38px);letter-spacing:-.02em" id="voice">CLAUDE VOICE + CUSTOM CONTROLS</h2>
+  <section class="voice-split" aria-label="Claude voice and custom voice controls">
+    <figure><img src="../assets/screens/full-voice.png" alt="Claude voice screen with manual voice, microphone and custom Piper voices">
+      <figcaption style="padding:12px 14px;color:rgba(242,242,240,.68);font-size:13px">Manual voice · microphone · custom Piper voices — captured from Full 1.5.0.</figcaption></figure>
+    <div class="voice-controls">
+      <div class="tier" style="font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:rgba(242,242,240,.6)">VOICE</div>
+      <h3>Speak on demand.<br>Or let the agent narrate.</h3>
+      <ul>
+        <li class="on">Local natural voice, speed and pitch</li>
+        <li class="on">Auto — Piper first, system voice fallback</li>
+        <li class="on">Agent narration with its own voice</li>
+        <li class="on">Start / repair the voice stack</li>
+        <li class="on">Custom Piper voices — add, preview, remove</li>
+        <li>Microphone input stays available in every edition</li>
+        <li>Voice output and automation are Pro</li>
+      </ul>
+    </div>
   </section>
   <h2 style="text-align:center;margin:44px 0 6px;font-size:clamp(24px,3vw,38px);letter-spacing:-.02em">EVERY SCREEN</h2>
   <section class="gallery" aria-label="Every screen" style="grid-template-columns:repeat(3,minmax(0,1fr))">
@@ -101,7 +129,7 @@
     <figure><img src="../assets/screens/thumbs/full-agents.png" alt="Managed agents screen"><figcaption>Agents</figcaption></figure>
     <figure><img src="../assets/screens/thumbs/full-settings.png" alt="Settings screen"><figcaption>Settings</figcaption></figure>
     <figure><img src="../assets/screens/thumbs/full-sidebar-closed.png" alt="Sidebar closed screen"><figcaption>Sidebar closed</figcaption></figure>
-    <figure><img src="../assets/screens/thumbs/neutral-both-panels.png" alt="Neutral theme with both panels"><figcaption>Neutral · both panels</figcaption></figure>
+    <figure><img src="../assets/screens/thumbs/full-appearance.png" alt="Neutral theme with both panels"><figcaption>Appearance · both panels</figcaption></figure>
   </section>
 
   <div class="grid">
@@ -129,7 +157,7 @@
     <div class="buy">
       <div class="tier">Hands Pro — the one sale</div>
       <div class="price">$69 <small>one-time</small></div>
-      <p>The complete experience: the static weight core — unlock model potential, abilities above industry standards. Feed it your data and a large model weight system of your choosing as the core math and coding unit; the model systems are plug and play — point to models and they are added as static systems, all set up by your LLM on first install. Plus browser assistance, saved-memory features, the extension set, and one year of updates.</p>
+      <p>The complete experience: the static weight core, browser hands, Claude voice with custom Piper controls, saved memory, the extension set, and one year of updates. Black and white with the orange dot rail — the same client as Full.</p>
       <!-- PayPal buy-now link: -->
       <a class="pp" href="https://www.paypal.com/paypalme/" target="_blank" rel="noopener">BUY — PAYPAL · $69</a>
     </div>
@@ -154,8 +182,13 @@
     <a href="./extensions.html" style="display:inline-block;padding:13px 26px;border-radius:8px;border:1px solid rgba(255,255,255,.3);color:#F2F2F0;font-weight:600;font-size:14px;letter-spacing:.06em;text-decoration:none;transition:all .18s ease;" onmouseover="this.style.borderColor='#E8821A';this.style.color='#E8821A'" onmouseout="this.style.borderColor='rgba(255,255,255,.3)';this.style.color='#F2F2F0'">THE EXTENSION TRIO · $29.99</a>
   </div>
 </div>
-<div style="margin-top:34px;padding:18px 22px;border:1px solid rgba(255,255,255,.13);border-radius:14px;background:rgba(20,22,26,.45);font-size:12.5px;line-height:1.7;color:rgba(242,242,240,.7);text-align:left;"><b style="color:#E8821A;letter-spacing:.14em;">THE USE LAW — NOT FOR RESALE</b><br>This is not licensed for resale. However, you may use it in all of your work — and add to your work by building around it. There is no monthly here. It is yours to use.<br><br>As stated: if you develop a product and this will enhance it, simply contact Oroboros / Anthropic with proof of purchase and state what you are developing. What you are developing remains confidential — it is for tracking use of the software for internal records and audit only for its use. It will be approved as long as it is not a rebuild or a resell of the underlying technology.<br><br>That being said &#8212; build and craft your designs.<div style="margin-top:10px;padding-left:2ch;">&#8212;Architect</div></div>
+<div style="margin-top:34px;padding:18px 22px;border:1px solid rgba(255,255,255,.13);border-radius:14px;background:rgba(255,255,255,.045);font-size:12.5px;line-height:1.7;color:rgba(242,242,240,.7);text-align:left;"><b style="color:#F2F2F0;letter-spacing:.14em;">THE USE LAW — NOT FOR RESALE</b><br>This is not licensed for resale. However, you may use it in all of your work — and add to your work by building around it. There is no monthly here. It is yours to use.<br><br>As stated: if you develop a product and this will enhance it, simply contact Oroboros / Anthropic with proof of purchase and state what you are developing. What you are developing remains confidential — it is for tracking use of the software for internal records and audit only for its use. It will be approved as long as it is not a rebuild or a resell of the underlying technology.<br><br>That being said &#8212; build and craft your designs.<div style="margin-top:10px;padding-left:2ch;">&#8212;Architect</div></div>
 
 <script src="/shared-header.js" defer></script>
 </body>
 </html>
+
+
+
+
+
