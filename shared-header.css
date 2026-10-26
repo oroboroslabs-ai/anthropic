@@ -1,0 +1,56 @@
+/* Unified site header — one bar for every page. */
+body > header:not(#unifiedHeader),
+body > .topbar,
+body > .site-header,
+body > .nav,
+.topbar { display: none !important; }
+
+#unifiedHeader {
+  --uh-text: #F0EFEC; --uh-muted: #9A9A95; --uh-accent: #D97757;
+  --uh-line: rgba(255,255,255,.10); --uh-soft: rgba(217,119,87,.15);
+  --uh-blue: #A8C2F5;
+  position: sticky; top: 0; z-index: 2000; width: 100%;
+  background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02) 58%), rgba(14,14,14,.72);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4);
+  border-bottom: 1px solid var(--uh-line);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 8px 30px rgba(0,0,0,.30);
+  color: var(--uh-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+html.light #unifiedHeader {
+  --uh-text: #1A1A1A; --uh-muted: #4A4A4A; --uh-line: rgba(20,20,19,.10);
+  --uh-soft: rgba(196,104,75,.10); --uh-blue: #2C5A8A;
+  background: linear-gradient(160deg, rgba(255,255,255,.85), rgba(255,255,255,.55) 58%), rgba(246,245,242,.78);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 8px 30px rgba(0,0,0,.08);
+}
+#unifiedHeader .uh-inner { max-width: 1440px; margin: 0 auto; display: flex; align-items: center; gap: 14px; padding: 9px 18px; min-height: 48px; }
+#unifiedHeader .uh-brand { display: flex; align-items: center; gap: 8px; text-decoration: none !important; color: var(--uh-text) !important; font-size: 13px; font-weight: 700; letter-spacing: .08em; white-space: nowrap; flex: 0 0 auto; }
+#unifiedHeader .uh-brand svg { width: 26px; height: 24px; color: var(--uh-text); flex: none; }
+#unifiedHeader .uh-brand em { font-style: normal; color: var(--uh-accent); }
+#unifiedHeader nav { position: static !important; left: auto !important; transform: none !important; display: flex; align-items: center; justify-content: center; gap: 1px; flex: 1 1 auto; min-width: 0; margin: 0 !important; overflow-x: auto; scrollbar-width: none; }
+#unifiedHeader nav::-webkit-scrollbar { display: none; }
+#unifiedHeader nav a { position: static !important; display: inline-flex; align-items: center; color: var(--uh-muted) !important; text-decoration: none !important; font: 600 10.5px/1.1 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: .035em; padding: 7px 8px !important; border-radius: 7px !important; white-space: nowrap; background: transparent !important; border: 0 !important; box-shadow: none !important; }
+#unifiedHeader nav a:hover { color: var(--uh-text) !important; background: var(--uh-line) !important; }
+#unifiedHeader nav a.uh-here { color: var(--uh-accent) !important; background: var(--uh-soft) !important; }
+#unifiedHeader .uh-lite { appearance: none; border: 1px solid rgba(110,150,235,.4); background: rgba(46,92,184,.14); color: var(--uh-blue); font: 600 10px 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: .12em; padding: 7px 12px; border-radius: 8px; cursor: pointer; flex: 0 0 auto; box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+#unifiedHeader .uh-lite:hover { background: rgba(46,92,184,.3); }
+html.light #unifiedHeader .uh-lite { background: rgba(44,90,138,.08); border-color: rgba(44,90,138,.4); color: #2C5A8A; }
+html.light #unifiedHeader .uh-lite:hover { background: rgba(44,90,138,.16); }
+@media (max-width: 1180px) { #unifiedHeader nav a { font-size: 10px; padding: 6px 6px !important; } }
+@media (max-width: 900px) {
+  #unifiedHeader .uh-inner { flex-wrap: wrap; gap: 8px; }
+  #unifiedHeader nav { order: 3; flex-basis: 100%; justify-content: flex-start; }
+  #unifiedHeader .uh-brand { flex: 1; }
+}
+
+/* remove body padding used by the old fixed claude-comms nav */
+body:has(> header.nav) { padding-top: 0 !important; }
+#unifiedHeader { padding: 0 !important; }
+#unifiedHeader .uh-inner { padding: 9px 18px !important; }
+#unifiedHeader nav { padding: 0 !important; flex-wrap: nowrap !important; }
+#unifiedHeader { display: block !important; height: 49px !important; min-height: 49px !important; max-height: 49px !important; }
+#unifiedHeader .uh-inner { height: 49px !important; min-height: 49px !important; max-height: 49px !important; }
+@media (max-width: 900px) {
+  #unifiedHeader { height: auto !important; min-height: 48px !important; max-height: none !important; }
+  #unifiedHeader .uh-inner { height: auto !important; min-height: 48px !important; max-height: none !important; }
+}

@@ -323,6 +323,7 @@ textarea.fld{resize:vertical;min-height:60px;font-family:inherit}
   .rail.open{width:100vw;min-width:100vw;position:fixed;right:0;top:0;z-index:50}
 }
 </style>
+<link rel="stylesheet" href="/shared-header.css">
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
@@ -1610,7 +1611,8 @@ async function generateWebsite() {
     // strip markdown fences if model included them
     let html = full.replace(/^```html\s*\n?/i,'').replace(/^```\s*\n?/m,'').replace(/```\s*$/m,'').trim();
     if (!html.toLowerCase().includes('<!doctype') && !html.toLowerCase().includes('<html')) {
-      html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Generated</title></head><body>${html}</body></html>`;
+      html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Generated</title></head><body>${html}<script src="/shared-header.js" defer></script>
+</body></html>`;
     }
     lastWebsiteHtml = html;
     const frame = $('web-frame');

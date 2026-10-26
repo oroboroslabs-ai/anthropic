@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TotalControl Core Harness — Screens</title>
+<meta name="description" content="TotalControl Core Harness 1.5.0 — Free and Paid clients. Every screen, both panels, Windows and Linux.">
+<link rel="stylesheet" href="skin-business.css">
+<link rel="stylesheet" href="header-glass.css">
+<script src="header-glass.js" defer></script>
+<style>
+  .screens-hero{max-width:1220px;margin:0 auto;padding:10px 22px 0}
+  .shotgrid{display:grid;grid-template-columns:1.08fr .92fr;gap:20px;margin:30px 0 0}
+  .shot{background:#0b0d10;border:1px solid rgba(0,0,0,.14);border-radius:18px;overflow:hidden;box-shadow:0 18px 50px rgba(20,18,15,.12)}
+  .shot img{display:block;width:100%;height:auto;background:#0b0d10}
+  .shot .cap{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 16px;background:#111419;color:#f4f1ec;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .shot .cap b{font-weight:700;color:#d97757}
+  .shot .cap span{color:rgba(244,241,236,.55);letter-spacing:.08em}
+  .shot.white{grid-column:1/-1;margin-top:20px}
+  .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:22px 0 0}
+  .gallery .shot{border-radius:14px;box-shadow:0 10px 30px rgba(20,18,15,.09)}
+  .gallery .cap{font-size:9.5px;padding:9px 12px}
+  .screens-title{max-width:1220px;margin:54px auto 0;padding:0 22px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;border-top:1px solid rgba(20,20,19,.12);padding-top:30px}
+  .screens-title h2{font-size:clamp(28px,3vw,44px);letter-spacing:-.03em;margin:0}
+  .screens-title p{max-width:520px;color:#5c5a55;margin:0}
+  .dl{border-top:1px solid rgba(20,20,19,.12);margin-top:48px;padding:34px 0 10px}
+  .dl .cards{align-items:stretch}
+  .dl .prod{display:flex;flex-direction:column}
+  .dl .prod .btn{margin-top:8px}
+  @media(max-width:980px){.shotgrid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.screens-title{display:block}.screens-title p{margin-top:10px}}
+  @media(max-width:620px){.gallery{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/shared-header.css">
+</head>
+<body>
+<header class="topbar" id="top"><div class="tbin">
+<div class="bleft"><a class="brand brandimg" href="index.html" aria-label="Oroboros / Anthropic"><svg class="oamark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="37" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-dasharray="209 24" transform="rotate(-118 50 50)"/></svg><span>OROBOROS <em>/ ANTHROPIC</em></span></a></div>
+<nav>
+<a href="index.html" class="here" data-k="harness">HARNESS</a>
+<a href="glasswing.html" data-k="glasswing">GLASSWING</a>
+<a href="set/index.html" data-k="pro">PRO</a>
+<a href="shop.html#desktop" data-k="desktop" style="border:1px solid currentColor;padding:5px 10px;border-radius:7px;text-decoration:none">CORE HARNESS 1.5.0</a>
+<a href="huggingface.html" data-k="huggingface">HUGGINGFACE</a>
+<a href="index.html#memory" data-k="memory">MEMORY</a>
+<a href="all-services.html" data-k="services">SERVICES</a>
+<a href="cli.html" data-k="cli">CLI</a>
+<a href="claude-communications/" data-k="comms">CLAUDE COMMS</a>
+<a href="chat-anthropic.html" data-k="chat">CHAT</a>
+<button class="lite" type="button">LITE</button>
+</nav>
+</div></header>
+
+<main>
+  <div class="container">
+    <section class="hero center">
+      <span class="eyebrow">✦ TOTALCONTROL CORE HARNESS · 1.5.0 · WINDOWS + LINUX</span>
+      <h1 class="harness-heading">The harness is the client.<br><span class="here-word">Every screen. Both panels.</span></h1>
+      <div class="intro">
+        <p class="ds-text-body">The finished TotalControl harness in the Core Harness client. Free is
+          download-only with microphone input and no hands or voice. Paid is neutral until licensed.
+          Paid is neutral until the licence lands.</p>
+      </div>
+      <div class="hero-cta">
+        <a class="btn primary" href="https://github.com/oroboroslabs-ai/anthropic/releases/download/totalcontrol-core-harness-v1.5.0/TotalControl-Core-Harness-Free-1.5.0.exe">↓&nbsp; Download Free 1.5.0 · Windows</a>
+        <a class="btn" href="https://github.com/oroboroslabs-ai/anthropic/releases/download/totalcontrol-core-harness-v1.5.0/TotalControl-Core-Harness-Free-1.5.0-linux-x64.tar.gz">Free 1.5.0 · Linux x64</a>
+        <a class="btn" href="shop.html#desktop">Free / Paid builds</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="screens-hero">
+    <div class="shotgrid">
+      <figure class="shot">
+        <img src="assets/screens/full-chat.png" alt="TotalControl Core Harness — black chat screen">
+        <figcaption class="cap"><b>BLACK · CLIENT</b><span>chat</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/screens/neutral-both-panels.png" alt="TotalControl Core Harness neutral with left rail and fog-clear appearance panel open">
+        <figcaption class="cap"><b>NEUTRAL · BOTH PANELS</b><span>rail + appearance</span></figcaption>
+      </figure>
+    </div>
+
+    <figure class="shot white">
+      <img src="assets/screens/white-chat.png" alt="TotalControl Core Harness white theme chat screen">
+      <figcaption class="cap"><b>WHITE</b><span>chat</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="screens-title">
+    <h2>Every screen.<br><span class="hl">No mockups.</span></h2>
+    <p>Captured from the finished client against the live harness. The second panel is the
+      fog-clear Appearance drawer: font size and the collapsed rail control; theme is fixed by the edition.</p>
+  </div>
+
+  <div class="screens-hero">
+    <div class="gallery">
+      <figure class="shot"><img src="assets/screens/thumbs/full-system.png" alt="System screen"><figcaption class="cap"><b>SYSTEM</b><span>harness · ogm · aider · pods</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screens/thumbs/full-appearance.png" alt="Appearance panel"><figcaption class="cap"><b>APPEARANCE</b><span>fog-clear · second panel</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screens/thumbs/full-skills.png" alt="Skills and tools screen"><figcaption class="cap"><b>SKILLS &amp; TOOLS</b><span>harness tools</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screens/thumbs/full-voice.png" alt="Voice screen"><figcaption class="cap"><b>VOICE</b><span>stack · mic</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screens/thumbs/full-comms.png" alt="Communications screen"><figcaption class="cap"><b>COMMS</b><span>claude communications</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screens/thumbs/full-agents.png" alt="Managed agents screen"><figcaption class="cap"><b>AGENTS</b><span>supervisor</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screens/thumbs/full-math.png" alt="Math core screen"><figcaption class="cap"><b>MATH CORE</b><span>1272 hz</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screens/thumbs/full-temporal.png" alt="Temporal engine screen"><figcaption class="cap"><b>TEMPORAL</b><span>engine</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screens/thumbs/full-models.png" alt="Models screen"><figcaption class="cap"><b>MODELS</b><span>local + hosted</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screens/thumbs/full-settings.png" alt="Settings screen"><figcaption class="cap"><b>SETTINGS</b><span>licence · local</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screens/thumbs/full-sidebar-closed.png" alt="Sidebar closed screen"><figcaption class="cap"><b>SIDEBAR CLOSED</b><span>clean canvas</span></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="dl" id="download">
+      <div style="text-align:center">
+        <span class="eyebrow2">THE TWO BUILDS · 1.5.0</span>
+        <h2 class="harness-heading">Free. Paid.</h2>
+        <p class="sub">Same Core Harness client, separate app ids. Windows installers and Linux x64 portable builds.</p>
+      </div>
+      <div class="cards">
+        <div class="prod">
+          <div class="tag2">Core Harness · Free</div>
+          <h2>Free — download only</h2>
+          <p>All harness tools. Microphone input only. No hands, no voice output, no paid features.</p>
+          <ul class="incl"><li>86 tools · 0 web · 0 voice</li><li>neutral first run</li><li>Windows + Linux</li></ul>
+          <a class="btn primary" href="https://github.com/oroboroslabs-ai/anthropic/releases/download/totalcontrol-core-harness-v1.5.0/TotalControl-Core-Harness-Free-1.5.0.exe">↓ Free · Windows</a>
+          <a class="btn" href="https://github.com/oroboroslabs-ai/anthropic/releases/download/totalcontrol-core-harness-v1.5.0/TotalControl-Core-Harness-Free-1.5.0-linux-x64.tar.gz">Free · Linux x64</a>
+        </div><div class="prod">
+          <div class="tag2">Core Harness · Paid</div>
+          <h2>Paid — neutral until licensed</h2>
+          <p>Customer build. Signed licence turns the label to Core Harness · Paid and unlocks Pro.</p>
+          <ul class="incl"><li>86 tools unpaid · 0 web · 0 voice</li><li>Pro unlocks hands, voice, comms</li><li>Windows + Linux</li></ul>
+          <a class="btn primary" href="shop.html#desktop">Buy — Paid 1.5.0</a>
+          <a class="btn" href="https://github.com/oroboroslabs-ai/anthropic/releases/download/totalcontrol-core-harness-v1.5.0/TotalControl-Core-Harness-Paid-1.5.0.exe">↓ Installer · Windows</a>
+          <a class="btn" href="https://github.com/oroboroslabs-ai/anthropic/releases/download/totalcontrol-core-harness-v1.5.0/TotalControl-Core-Harness-Paid-1.5.0-linux-x64.tar.gz">Paid · Linux x64</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site"><div class="frow">
+  <span>TotalControl Core Harness 1.5.0</span>
+  <span>local-only 127.0.0.1</span>
+  <span>/A Oroboros Labs · Anthropic</span>
+</div></footer>
+<script src="/shared-header.js" defer></script>
+</body>
+</html>
