@@ -36,10 +36,12 @@ html.light #unifiedHeader nav a::before { background: #B8B5AD; }
 html.light #unifiedHeader nav a:hover::before, html.light #unifiedHeader nav a.uh-here::before { background: #C4684B; box-shadow: 0 0 6px rgba(196,104,75,.45); }
 #unifiedHeader nav a:hover { color: var(--uh-text) !important; background: var(--uh-line) !important; }
 #unifiedHeader nav a.uh-here { color: var(--uh-accent) !important; background: var(--uh-soft) !important; }
-#unifiedHeader .uh-lite { appearance: none; border: 1px solid rgba(110,150,235,.4); background: rgba(46,92,184,.14); color: var(--uh-blue); font: 600 10px 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: .12em; padding: 7px 12px; border-radius: 8px; cursor: pointer; flex: 0 0 auto; box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
-#unifiedHeader .uh-lite:hover { background: rgba(46,92,184,.3); }
-html.light #unifiedHeader .uh-lite { background: rgba(44,90,138,.08); border-color: rgba(44,90,138,.4); color: #2C5A8A; }
-html.light #unifiedHeader .uh-lite:hover { background: rgba(44,90,138,.16); }
+#unifiedHeader .uh-lite { appearance: none; border: 0; background: transparent; color: var(--uh-muted); font: 600 9.5px/1.1 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: .015em; padding: 7px 10px 7px 16px; border-radius: 7px; cursor: pointer; flex: 0 0 auto; box-shadow: none; position: relative; }
+#unifiedHeader .uh-lite::before { content: ""; position: absolute; left: 6px; top: 50%; width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; background: #5C5C58; transition: background .16s ease, box-shadow .16s ease; }
+#unifiedHeader .uh-lite:hover { color: var(--uh-text); background: var(--uh-line); }
+#unifiedHeader .uh-lite:hover::before, #unifiedHeader .uh-lite[aria-pressed="true"]::before { background: var(--uh-accent); box-shadow: 0 0 6px rgba(217,119,87,.55); }
+html.light #unifiedHeader .uh-lite { background: transparent; border: 0; color: var(--uh-muted); }
+html.light #unifiedHeader .uh-lite:hover { background: var(--uh-line); color: var(--uh-text); }
 @media (max-width: 1400px) { #unifiedHeader nav { justify-content: flex-start; } }
 @media (max-width: 1320px) { #unifiedHeader nav a { font-size: 8.8px; letter-spacing: 0; padding: 6px 2px 6px 8px !important; } #unifiedHeader nav a::before { left: 2px; width: 3px; height: 3px; margin-top: -1.5px; } }
 @media (max-width: 1180px) { #unifiedHeader nav a { font-size: 8.5px; padding: 6px 2px 6px 7px !important; } }
@@ -62,6 +64,7 @@ body:has(> header.nav) { padding-top: 0 !important; }
 }
 .top-bar, .main-header { display: none !important; }
 header.top-bar, header.main-header { display: none !important; }
+
 
 
 
