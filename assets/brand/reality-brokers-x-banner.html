@@ -6,7 +6,7 @@
 <title>Reality Brokers — X banner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #050506; --ink: #F4F3EF; --muted: #A9A6A0; --dim: #726F68;
@@ -19,7 +19,6 @@
   html, body { margin: 0; width: 1500px; height: 500px; overflow: hidden; background: var(--bg); color: var(--ink); }
   body { font-family: var(--sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 
-  /* exactly the Glasswing page background */
   .banner {
     position: relative; width: 1500px; height: 500px; overflow: hidden; isolation: isolate;
     background-color: #050506;
@@ -30,49 +29,107 @@
     background-size: auto, 84px 84px, 84px 84px;
   }
 
-  .label {
-    position: absolute; left: 96px; top: 74px; z-index: 3;
-    display: flex; align-items: center; gap: 12px; margin: 0;
-    color: var(--muted); font: 600 10px/1.2 var(--mono);
-    letter-spacing: .2em; text-transform: uppercase; white-space: nowrap;
+  /* right-side star shine */
+  .shine {
+    position: absolute; right: -40px; top: 50%; width: 640px; height: 640px;
+    transform: translateY(-50%); z-index: 1; pointer-events: none;
+    background: radial-gradient(circle, rgba(255,255,255,.16) 0%, rgba(211,226,238,.06) 34%, transparent 66%);
+    filter: blur(8px);
   }
-  .label::before { content: ''; width: 26px; height: 1px; background: var(--line2); }
+  .streak {
+    position: absolute; right: 90px; top: 50%; width: 420px; height: 1px; z-index: 2;
+    transform: translateY(-50%) rotate(-14deg); transform-origin: right center;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+    opacity: .5;
+  }
+  .star {
+    position: absolute; right: 34px; top: 50%; width: 150px; height: 150px; z-index: 3;
+    transform: translateY(-56%); color: #FFFFFF;
+    filter: drop-shadow(0 0 18px rgba(211,226,238,.65));
+    animation: twinkle 4.6s ease-in-out infinite;
+  }
+  .star svg { display: block; width: 100%; height: 100%; }
+  @keyframes twinkle {
+    0%, 100% { opacity: .45; transform: translateY(-56%) scale(.9) rotate(-4deg); }
+    50% { opacity: 1; transform: translateY(-56%) scale(1.08) rotate(4deg); }
+  }
 
-  .center { position: absolute; left: 96px; right: 96px; top: 50%; transform: translateY(-46%); z-index: 3; }
+  .label {
+    position: absolute; left: 0; right: 0; top: 66px; z-index: 5;
+    display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0;
+    color: var(--muted); font: 600 10px/1.2 var(--mono);
+    letter-spacing: .22em; text-transform: uppercase;
+  }
+  .label::before, .label::after { content: ''; width: 26px; height: 1px; background: var(--line2); }
+
+  .center { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-48%); z-index: 4; }
+  .line { width: 1332px; margin: 0 auto; display: flex; align-items: center; min-height: 128px; }
   h1 {
-    margin: 0; display: flex; align-items: center;
-    font: 400 136px/.86 var(--display); letter-spacing: -.055em; text-transform: uppercase;
-    color: var(--ink); white-space: nowrap; min-height: 124px;
-    text-shadow: 0 30px 90px rgba(0,0,0,.45);
+    margin: 0; font: 400 138px/.86 var(--display); letter-spacing: -.055em; text-transform: uppercase;
+    color: var(--ink); white-space: nowrap;
+    text-shadow: 0 30px 90px rgba(0,0,0,.5);
   }
-  .cursor {
-    display: inline-block; width: 9px; height: 100px; margin-left: 12px;
-    background: var(--ink); opacity: 0;
-  }
+  .cursor { display: inline-block; width: 9px; height: 102px; margin-left: 12px; background: var(--ink); opacity: 0; }
   .cursor.on { opacity: 1; }
   .sub {
-    margin: 22px 0 0; color: var(--dim);
+    margin: 22px 0 0; text-align: center; color: var(--dim);
     font: 500 10.5px/1.4 var(--mono); letter-spacing: .2em; text-transform: uppercase;
     opacity: 0; transition: opacity .5s ease;
   }
   .sub.on { opacity: 1; }
 
-  .mark { position: absolute; right: 38px; bottom: 30px; z-index: 4; }
-  .mark img { display: block; width: 56px; height: 56px; opacity: .92; }
+  /* glass name chips */
+  .chip {
+    position: absolute; z-index: 5; display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 12px; border: 1px solid rgba(255,255,255,.22); border-radius: 6px;
+    background: linear-gradient(150deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.30), 0 18px 50px rgba(0,0,0,.35);
+    color: #FFFFFF; font: 600 8.5px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .chip span { color: #A9A6A0; }
+  .chip::before { content: ''; width: 10px; height: 1px; background: rgba(255,255,255,.45); }
+  .chip.tr { right: 64px; top: 62px; }
+  .chip.bl { left: 64px; bottom: 44px; }
+  .chip.br { right: 64px; bottom: 44px; }
+
+  .sigil { position: absolute; left: 64px; top: 62px; width: 34px; height: 34px; z-index: 5; opacity: .8; }
+  .sigil img { display: block; width: 100%; height: 100%; }
 
   .flash { position: absolute; inset: 0; z-index: 9; background: #FFFFFF; opacity: 0; pointer-events: none; }
 </style>
 </head>
 <body>
 <div class="banner">
+  <div class="shine"></div>
+  <div class="streak"></div>
+  <div class="star">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <radialGradient id="sg" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFFFFF"/>
+          <stop offset="35%" stop-color="#FFFFFF" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <path d="M50 2 C53 34 66 47 98 50 C66 53 53 66 50 98 C47 66 34 53 2 50 C34 47 47 34 50 2 Z" fill="url(#sg)"/>
+      <circle cx="50" cy="50" r="4.5" fill="#FFFFFF"/>
+    </svg>
+  </div>
+
   <p class="label">Glasswing / Field Division</p>
+  <div class="sigil"><img src="reality-brokers-mark.svg" alt="Reality Brokers"></div>
 
   <div class="center">
-    <h1><span id="typed"></span><span class="cursor" id="cursor"></span></h1>
+    <div class="line"><h1><span id="typed"></span><span class="cursor" id="cursor"></span></h1></div>
     <p class="sub" id="sub">The field storefront · Public portal A—02</p>
   </div>
 
-  <div class="mark"><img src="reality-brokers-mark.svg" alt="Reality Brokers"></div>
+  <div class="chip tr">Tactical <span>Unit</span></div>
+  <div class="chip bl">Video <span>Pipeline</span></div>
+  <div class="chip br">Local <span>Harness</span></div>
+
   <div class="flash" id="flash"></div>
 </div>
 
