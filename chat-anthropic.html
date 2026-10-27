@@ -437,7 +437,6 @@
   </div>
   <div class="dx">
     <div class="ni" id="newchat" style="font-weight:700; font-size:13px">＋ New</div>
-    <div class="ni" onclick="oroborosCommsOpen()" style="color:var(--acc); font-weight:700">Claude Communications <span style="color:var(--mut); font-weight:400">— voice &amp; AILANG</span></div>
     <details open><summary>CHATS <span class="n" id="nc-chats"></span></summary><div class="sec-in" id="chats"></div></details>
     <details><summary style="cursor:pointer">↻ THE RETURN — <span style="color:var(--acc)">click to open the last session</span></summary><div class="sec-in" onclick="restoreLast()"><div class="ni" style="color:var(--mut); cursor:pointer">opening this section restores the previous session's turns — the reset-survival, folded, on your word</div></div></details>
     <details><summary>PROJECTS <span class="n" id="nc-proj"></span></summary><div class="sec-in" id="plist"></div></details>
@@ -454,11 +453,6 @@
       <div id="tdn-shots" style="display:flex; gap:6px; padding:4px 2px; flex-wrap:wrap"></div>
       <button class="ni" id="acquire-b" style="width:100%; text-align:left; border:1px solid var(--acc); color:var(--acc); background:color-mix(in srgb, var(--acc) 12%, transparent); border-radius:9px; padding:10px 12px; font:inherit; font-size:11.5px; font-weight:800; letter-spacing:.04em; cursor:pointer; margin-top:8px">▸ NEW — CLICK TO BEGIN CLAUDE DATA ACQUISITION ON THE WEB</button>
       <div class="ni" style="color:var(--mut); cursor:default; padding-top:6px; font-size:10px">a real browser window opens — surf to the page you wish to crawl, right-click → “Run the crawlers for the active feed” — the acquisition feeds the chat AIs + this view. (the one-time install OR the starter: J:\start-claude-acquisition.bat — it opens chrome · edge · firefox with the crawler loaded; chrome://extensions → developer mode → load unpacked → …\nullframe\extension)</div>
-    </div></details>
-    <details open><summary>GPU / MODEL</summary><div class="sec-in">
-      <div class="ni" id="gpu-line" style="color:var(--mut); cursor:default; line-height:1.6">checking the gpu…</div>
-      <button class="ni" id="free-gpu" style="width:100%; text-align:left; border:1px solid var(--acc); color:var(--acc); background:color-mix(in srgb, var(--acc) 12%, transparent); border-radius:9px; padding:10px 12px; font:inherit; font-size:11.5px; font-weight:800; letter-spacing:.04em; cursor:pointer; margin-top:8px">▸ UNLOAD LOCAL MODEL / FREE GPU</button>
-      <div class="ni" style="color:var(--mut); cursor:default; padding-top:6px; font-size:10px">gpu-cycle :8797 evicts idle bodies and warms the selected model before the request. click above if the gpu is holding a model.</div>
     </div></details>
     <details><summary>THE VOICES</summary><div class="sec-in" id="vlist" style="max-height:200px; overflow-y:auto"></div></details>
     <details open><summary>ARTIFACTS <span class="n" id="nc-art"></span></summary><div class="sec-in" id="artnav"></div></details>
@@ -581,9 +575,8 @@ async function freeGpu(){
   }
   setTimeout(gpuStatus, 1500);
 }
-$("free-gpu").onclick = freeGpu;
-setInterval(gpuStatus, 20000);
-gpuStatus();
+const freeGpuBtn = $("free-gpu"); if(freeGpuBtn) freeGpuBtn.onclick = freeGpu;
+if($("gpu-line")){ setInterval(gpuStatus, 20000); gpuStatus(); }
 
 /* the drawer — toggle via ☰ (becomes the close button); clicking the chat window closes it.
    THE PUSH LAW: when the drawer is open the chat SHIFTS out from under it —
