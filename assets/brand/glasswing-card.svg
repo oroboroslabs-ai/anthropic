@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 760" role="img" aria-label="Glasswing mark — centered slash-A behind the black Ouroboros, with Anthropic at the foot">
+  <defs>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset=".18" stop-color="#EDF1F6"/>
+      <stop offset=".38" stop-color="#C6D1DE"/>
+      <stop offset=".49" stop-color="#FFFFFF"/>
+      <stop offset=".62" stop-color="#AEBBCA"/>
+      <stop offset=".78" stop-color="#DCE3EB"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5E6B7A" stop-opacity=".72"/>
+      <stop offset=".45" stop-color="#93A2B2" stop-opacity=".52"/>
+      <stop offset=".62" stop-color="#6E7C8C" stop-opacity=".66"/>
+      <stop offset="1" stop-color="#B8C5D2" stop-opacity=".44"/>
+    </linearGradient>
+  </defs>
+  <rect x="30" y="30" width="540" height="700" rx="54" fill="url(#silver)"/>
+  <rect x="42" y="42" width="516" height="676" rx="44" fill="none" stroke="#FFFFFF" stroke-opacity=".65"/>
+  <rect x="50" y="50" width="500" height="660" rx="38" fill="none" stroke="#050506" stroke-opacity=".06"/>
+
+  <!-- Top brand line -->
+  <text x="300" y="86" text-anchor="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="10.5" font-weight="500" letter-spacing="3.2"><tspan fill="#5E5B55">OROBOROS</tspan><tspan fill="#9A968E"> / ANTHROPIC</tspan></text>
+
+  <!-- The centered slash-A, behind the Ouroboros -->
+  <g fill="url(#ink)">
+    <path d="M66.5,0H52.4l25.7,65h14.1L66.5,0z M25.7,0L0,65h14.4l5.3-13.6h26.9L51.8,65h14.4L40.5,0C40.5,0,25.7,0,25.7,0z M24.3,39.3l8.8-22.8l8.8,22.8H24.3z" transform="translate(300 380) scale(5) translate(-46.1 -32.5)"/>
+    <path d="M62 606 L538 154" stroke="url(#ink)" stroke-width="54" stroke-linecap="round" fill="none"/>
+  </g>
+
+  <!-- Black Ouroboros and the black reversed Anthropic A -->
+  <circle cx="300" cy="380" r="146" fill="none" stroke="#08080A" stroke-width="33" stroke-linecap="round" stroke-dasharray="690 96" transform="rotate(-90.5 300 380)"/>
+  <g fill="#08080A" transform="translate(300 380) scale(-2.31 2.31) translate(-46.1 -32.5)">
+    <path d="M66.5,0H52.4l25.7,65h14.1L66.5,0z M25.7,0L0,65h14.4l5.3-13.6h26.9L51.8,65h14.4L40.5,0C40.5,0,25.7,0,25.7,0z M24.3,39.3l8.8-22.8l8.8,22.8H24.3z"/>
+  </g>
+
+  <!-- Copyright line -->
+  <text x="300" y="696" text-anchor="middle" fill="#928F88" font-family="Inter, 'Segoe UI', sans-serif" font-size="10.5" font-weight="500" letter-spacing="3.2">© ANTHROPIC</text>
+</svg>
