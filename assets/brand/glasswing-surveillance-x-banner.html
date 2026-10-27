@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glasswing — X banner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050506; --ink: #F4F3EF; --muted: #A9A6A0; --dim: #726F68;
+    --line: rgba(255,255,255,.11); --line2: rgba(255,255,255,.20); --ice: #D3E2EE;
+    --display: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1500px; height: 500px; overflow: hidden; background: var(--bg); color: var(--ink); }
+  body { font-family: var(--sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+  .banner {
+    position: relative; width: 1500px; height: 500px; overflow: hidden; isolation: isolate;
+    background-color: #050506;
+    background-image:
+      radial-gradient(720px 600px at 76% 30%, rgba(200,220,235,.07), transparent 66%),
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: auto, 84px 84px, 84px 84px;
+  }
+
+  .shine {
+    position: absolute; right: -40px; top: 50%; width: 640px; height: 640px;
+    transform: translateY(-50%); z-index: 1; pointer-events: none;
+    background: radial-gradient(circle, rgba(255,255,255,.16) 0%, rgba(211,226,238,.06) 34%, transparent 66%);
+    filter: blur(8px);
+  }
+  .streak {
+    position: absolute; right: 150px; top: 36%; width: 390px; height: 1px; z-index: 2;
+    transform: translateY(-50%) rotate(-8deg); transform-origin: right center;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+    opacity: .5;
+  }
+  .star {
+    position: absolute; right: 22px; top: 47%; width: 44px; height: 44px; z-index: 3;
+    transform: translateY(-56%); color: #FFFFFF;
+    filter: drop-shadow(0 0 14px rgba(127,211,255,.6));
+    animation: twinkle 4.6s ease-in-out infinite;
+  }
+  .star img { display: block; width: 100%; height: 100%; }
+  @keyframes twinkle {
+    0%, 100% { opacity: .45; transform: translateY(-56%) scale(.9) rotate(-4deg); }
+    50% { opacity: 1; transform: translateY(-56%) scale(1.08) rotate(4deg); }
+  }
+
+  .sigil { position: absolute; left: 58px; top: 48px; width: 17px; height: 17px; z-index: 5; opacity: .8; }
+  .sigil img { display: block; width: 100%; height: 100%; }
+
+  .center { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); z-index: 4; }
+  .line { width: 1306px; margin: 0 auto; }
+  h1 {
+    margin: 0; font: 400 132px/.86 var(--display); letter-spacing: -.055em;
+    text-transform: uppercase; color: var(--ink); white-space: nowrap;
+    text-shadow: 0 30px 90px rgba(0,0,0,.5);
+  }
+
+  .label {
+    margin: 60px 0 0; color: #FFFFFF;
+    font: 400 43.6px/1 var(--display);
+    letter-spacing: -.055em; word-spacing: 1.02ch; text-transform: uppercase; white-space: nowrap;
+    text-shadow: 0 30px 90px rgba(0,0,0,.5);
+  }
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="shine"></div>
+  <div class="streak"></div>
+  <div class="star"><img src="reality-brokers-mark.svg" alt=""></div>
+  <div class="sigil"><img src="reality-brokers-mark.svg" alt="Glasswing"></div>
+
+  <div class="center">
+    <div class="line">
+      <h1>Glasswing</h1>
+      <p class="label">Surveillance and Counter Surveillance Platform</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

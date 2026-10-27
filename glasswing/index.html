@@ -29,12 +29,16 @@
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     background: var(--bg);
     color: var(--ink);
     font: 400 16px/1.6 var(--sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
+  main { flex: 1 0 auto; }
   body::before {
     content: '';
     position: fixed;
@@ -169,7 +173,7 @@
   .elsewhere-links a span { color: var(--dim); }
   .elsewhere-links a:hover { color: var(--ink); }
 
-  .gw-foot { border-top: 1px solid var(--line); }
+  .gw-foot { border-top: 1px solid var(--line); margin-top: auto; flex: none; }
   .foot-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 0 28px; color: var(--dim); font: 500 9px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
   .foot-brand { color: var(--ink); font: 700 11px/1 var(--sans); letter-spacing: .15em; text-decoration: none; }
   .foot-brand em { font-style: normal; color: var(--dim); }
@@ -204,7 +208,8 @@
 <header class="gw-nav">
   <a class="gw-brand" href="index.html">GLASSWING <em>/ PUBLIC</em></a>
   <nav aria-label="Glasswing">
-    <a href="platform/index.html">Platform</a>
+    <a href="../reality-brokers/index.html">Reality Brokers</a>
+    <a href="platform/index.html">Surveillance &amp; Counter-Surveillance Platform</a>
     <a href="../set/harness.html">Pro Harness</a>
     <a href="../claude-communications/">Voice</a>
     <a href="../temporal.html">Temporal</a>
