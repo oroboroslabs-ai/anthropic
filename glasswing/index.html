@@ -97,7 +97,7 @@
   .gw-nav nav a:hover { color: var(--ink); }
 
   .gw-hero { padding: clamp(58px, 7vw, 92px) 0 clamp(64px, 8vw, 110px); }
-  .hero-grid { display: grid; grid-template-columns: minmax(0,1fr); gap: clamp(36px, 6vw, 80px); align-items: center; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0,1.08fr) minmax(0,.92fr); align-items: end; gap: clamp(36px, 6vw, 80px); }
   .hero-copy { max-width: 650px; }
   h1 {
     margin: 20px 0 0;
@@ -174,10 +174,9 @@
   .foot-brand { color: var(--ink); font: 700 11px/1 var(--sans); letter-spacing: .15em; text-decoration: none; }
   .foot-brand em { font-style: normal; color: var(--dim); }
 
-  .gw-hero { position: relative; }
-  .gw-logo-corner { position: absolute; right: 40px; bottom: 30px; z-index: 5; width: 150px; height: auto; filter: drop-shadow(0 18px 44px rgba(0,0,0,.6)); pointer-events: none; }
-  @media (max-width: 1000px) { .gw-logo-corner { width: 110px; right: 24px; bottom: 20px; } }
-  @media (max-width: 720px) { .gw-logo-corner { width: 84px; right: 18px; bottom: 14px; } }
+  .gw-logo-corner { justify-self: end; align-self: end; width: 100%; max-width: 320px; height: auto; margin-bottom: 22px; filter: drop-shadow(0 20px 50px rgba(0,0,0,.6)); pointer-events: none; }
+  @media (max-width: 1000px) { .gw-logo-corner { justify-self: start; max-width: 200px; margin: 22px 0 0; } }
+  @media (max-width: 720px) { .gw-logo-corner { max-width: 150px; } }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .gw-card img, .gw-card::after, .gw-card-flash { animation: none !important; }
@@ -227,8 +226,8 @@
         </div>
         <p class="hero-meta"><span>Local-first</span><span>127.0.0.1</span><span>Clearance on the platform</span></p>
       </div>
+      <img class="gw-logo-corner" src="../assets/brand/glasswing-logo-reverse.png?v=2" alt="Oroboros / Anthropic">
     </div>
-    <img class="gw-logo-corner" src="../assets/brand/glasswing-logo-reverse.png?v=2" alt="Oroboros / Anthropic">
   </section>
 
   <section class="gw-pages" id="pages">
