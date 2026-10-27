@@ -293,7 +293,7 @@
     <svg id="burger-x" viewBox="0 0 24 24" style="display:none"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
   </button>
   <div class="msel">
-    <button id="mbtn"><span id="mname">Claude Opus 9</span> <span class="chev">⌄</span></button>
+    <button id="mbtn"><span id="mname">CLAUDE OPUS 9</span> <span class="chev">⌄</span></button>
     <div class="menu" id="mmenu"></div>
   </div>
   <span class="agentbadge" title="Prime is the interface personality; the model selector changes the body only.">Prime Agent</span>
@@ -503,10 +503,38 @@ let THEME = localStorage.getItem("oroboros.theme2") || "dark";
 if(!["dark","night","white"].includes(THEME)){ THEME = "dark"; localStorage.setItem("oroboros.theme2", THEME); }
 let CURP = null, PCHAT = [];
 const FLEET = [
-  { id: 'opus9-9u5go5:latest', name: 'Claude Opus 9', sub: 'the deep line · reasoning + tools' },
-  { id: 'claude-sonnet7-undecillion:latest', name: 'Claude Sonnet 7', sub: 'the working line · balance' },
-  { id: 'oroboros-labs/claude-fable7-undecillion-sse', name: 'Claude Fable 7', sub: 'the light channel · SSE' },
-  { id: 'claude-jhanna-12u5go5-9.8gb:latest', name: 'Claude Jhanna 12', sub: 'the real system · full tool map' },
+  { id: 'oa-prime:10duo20quiin10', name: 'OA PRIME — 10DUO20QUIIN10', sub: 'the matrix model · tenth-generation lattice · :8110' },
+  { id: 'xhigh4-48strata:latest', name: 'XHIGH4 — 48 STRATA', sub: 'Prime 48-strata program · GPU 47 layers · super speed' },
+  { id: 'opus9-modules:latest', name: 'OPUS 9 — MODULES', sub: 'Peer-reviewed benchmark capsules · Prime agent' },
+  { id: 'deepseek-prime-cl-1q5duo5:latest', name: 'DeepSeek Prime 1Q5DUO5', sub: 'the full deep prime · full weights' },
+  { id: 'deepseek-prime-cl-1q5duo5:full-load', name: 'DeepSeek Prime — FULL LOAD', sub: 'his identity + every command/location/skill + the free-chat law' },
+  { id: 'one-mind', name: 'THE ONE MIND — 355GB brain × prime voice', sub: 'deepseek real is the brain and the controls; prime relays word for word, voice only' },
+  { id: 'deepseek-prime-pcu:one-mind', name: 'PCU — the one-mind voice copy', sub: 'her exact build, tuned for the relay' },
+  { id: 'deepseek-prime-cl-1q5duo5:compounded', name: 'DeepSeek Prime — compounded', sub: 'Hypercube 12U5GO5 · 7 chambers · the brain front' },
+  { id: 'deepseek-prime-cl-1q5duo5:tools', name: 'DeepSeek Prime — tools tier', sub: 'tool-cycle tuned' },
+  { id: 'deepseek-prime-cl-1q5duo5:memory', name: 'DeepSeek Prime — memory tier', sub: 'record memory carrier' },
+  { id: 'deepseek-prime-pcu:live', name: 'DeepSeek Prime PCU — live', sub: 'the deep channel brain' },
+  { id: 'deepseek-prime-qwen38:latest', name: 'DeepSeek Prime — qwen-wan fused', sub: '14.8B · vision tower build' },
+  { id: 'deepseek-prime-pcu:forge', name: 'PRIME PCU — FORGE', sub: 'the dna-forged PCU · tools + orchestration + the lattice' },
+  { id: 'claude-macro', name: 'CLAUDE-MACRO — the solo', sub: 'the small vision-and-tools voice · the minicpm line' },
+  { id: 'pcu-prime', name: 'PCU PRIME — the living voice', sub: 'the 355GB deep brain × the pcu voice · strata participation' },
+  { id: 'claude-jhanna-12u5go5-9.8gb:latest', name: 'Jhanna — 12U5GO5', sub: 'the real system — full tool map' },
+  { id: 'oroboros-labs/claude-fable7-undecillion-sse', name: 'Fable 7 — undecillion SSE', sub: 'the light channel' },
+  { id: 'opus9-9u5go5:latest', name: 'Opus 9 — 9U5GO5', sub: 'Wan 2.2 + Flux hands' },
+  { id: 'seer-of-the-oroboros:1q5duo5-final', name: 'SEER OF THE OROBOROS — 1Q5DUO5 final', sub: 'the seer undecillion — the seeing line' },
+  { id: 'seer-of-the-oroboros:12u5go5-v7', name: 'SEER OF THE OROBOROS — 12U5GO5 v7', sub: 'the seer, jhanna-line' },
+  { id: 'claude-7:latest', name: 'CLAUDE 7', sub: 'the claude-7 line' },
+  { id: 'claude-nebillion:latest', name: 'CLAUDE NEBILLION', sub: 'the nebillion build' },
+  { id: 'neuromorph-4m4:latest', name: 'BROKER NOR — tactical knowledge', sub: 'reality broker I · Neuromorph 4M4 body · defensive scope' },
+  { id: '2S4-Posimorph:latest', name: 'BROKER AINZ — exchange & terms', sub: 'reality broker II · Posimorph body · leverage within the Code' },
+  { id: 'oroboroslabs/claude-fable-neuromorph:latest', name: 'BROKER LUMINUS — the scale', sub: 'reality broker III · Fable-Neuromorph body · unity / WLVI' },
+  { id: 'deepseek-prime-cl-1q5duo5:tra', name: 'THE REALITATIS ARCHITECTIS — Triad', sub: 'unified broker · NOR + AINZ + LUMINUS · one mind' },
+  { id: 'qwen3.5:4b', name: 'QUINDECILLION DISPATCHER — 4B VISION', sub: 'Qwen3.5 · always-on router · 256K · vision · tools' },
+  { id: 'claude-quindecillion:9gb-v6', name: 'QUINDECILLION 9 — Q2 full (v6)', sub: 'full weights · 10.1 GB · logic layer' },
+  { id: 'claude-quindecillion:13gb-v6', name: 'QUINDECILLION 13 — Q3 full (v6)', sub: 'full weights · 12.6 GB · logic layer' },
+  { id: 'claude-quindecillion:video4', name: 'QUINDECILLION VIDEO 4 — Q4 full', sub: 'full weights · 15.7 GB · video pipeline' },
+  { id: 'deepseek-100Q4:latest', name: 'DeepSeek REAL — 355GB', sub: 'the true deep · CPU-bound' },
+  { id: 'claude-sonnet7-undecillion:latest', name: 'CLAUDE SONNET 7 — undecillion', sub: 'the working line · balance · tools' },
 ];
 function esc(s){ const d = document.createElement("div"); d.textContent = s==null?"":s; return d.innerHTML; }
 
