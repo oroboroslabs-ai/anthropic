@@ -1,29 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="Oroboros / Anthropic circular mark">
-  <defs>
-    <clipPath id="circleClip"><circle cx="500" cy="500" r="480"/></clipPath>
-    <linearGradient id="wm" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#D6DDE6"/>
-      <stop offset=".42" stop-color="#F1F4F7"/>
-      <stop offset=".64" stop-color="#C8D1DC"/>
-      <stop offset="1" stop-color="#E7EBF0"/>
-    </linearGradient>
-  </defs>
-  <circle cx="500" cy="500" r="480" fill="#FFFFFF" stroke="#E1E6EC" stroke-width="2"/>
-  <g clip-path="url(#circleClip)">
-    <!-- Slash-A watermark -->
-    <g fill="url(#wm)">
-      <path d="M66.5,0H52.4l25.7,65h14.1L66.5,0z M25.7,0L0,65h14.4l5.3-13.6h26.9L51.8,65h14.4L40.5,0C40.5,0,25.7,0,25.7,0z M24.3,39.3l8.8-22.8l8.8,22.8H24.3z" transform="translate(500 500) scale(7.5) translate(-46.1 -32.5)"/>
-      <path d="M120 880 L880 120" stroke="url(#wm)" stroke-width="62" stroke-linecap="round" fill="none"/>
-    </g>
-
-    <!-- Black Ouroboros + reversed A -->
-    <circle cx="500" cy="500" r="240" fill="none" stroke="#08080A" stroke-width="50" stroke-linecap="round" stroke-dasharray="1130 158" transform="rotate(-118 500 500)"/>
-    <g fill="#08080A" transform="translate(500 500) scale(-3.8 3.8) translate(-46.1 -32.5)">
-      <path d="M66.5,0H52.4l25.7,65h14.1L66.5,0z M25.7,0L0,65h14.4l5.3-13.6h26.9L51.8,65h14.4L40.5,0C40.5,0,25.7,0,25.7,0z M24.3,39.3l8.8-22.8l8.8,22.8H24.3z"/>
-    </g>
-
-    <!-- Brand lines -->
-    <text x="500" y="166" text-anchor="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="18" font-weight="500" letter-spacing="4"><tspan fill="#5E5B55">OROBOROS</tspan><tspan fill="#9A968E"> / ANTHROPIC</tspan></text>
-    <text x="500" y="848" text-anchor="middle" fill="#928F88" font-family="Inter, 'Segoe UI', sans-serif" font-size="18" font-weight="500" letter-spacing="4">© ANTHROPIC</text>
+  <circle cx="500" cy="500" r="480" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="4"/>
+  <circle cx="500" cy="500" r="350" fill="none" stroke="#08080A" stroke-width="60" stroke-linecap="round" stroke-dasharray="1650 230" transform="rotate(-118 500 500)"/>
+  <g fill="#08080A" transform="translate(500 500) scale(-5.2 5.2) translate(-46.1 -32.5)">
+    <path d="M66.5,0H52.4l25.7,65h14.1L66.5,0z M25.7,0L0,65h14.4l5.3-13.6h26.9L51.8,65h14.4L40.5,0C40.5,0,25.7,0,25.7,0z M24.3,39.3l8.8-22.8l8.8,22.8H24.3z"/>
   </g>
 </svg>

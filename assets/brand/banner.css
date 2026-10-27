@@ -24,25 +24,8 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; text-rende
     linear-gradient(120deg, #070708 0%, #0B0C0F 54%, #050506 100%);
   background-size: auto, 84px 84px, 84px 84px, auto;
 }
-.banner::after {
-  content: 'GLASSWING';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 0;
-  transform: translate(-50%, -50%);
-  color: rgba(255,255,255,.022);
-  font-family: var(--display);
-  font-weight: 400;
-  letter-spacing: -.05em;
-  line-height: .8;
-  white-space: nowrap;
-  pointer-events: none;
-}
 .banner.youtube { width: 2560px; height: 1440px; }
-.banner.youtube::after { font-size: 540px; }
 .banner.x { width: 1500px; height: 500px; }
-.banner.x::after { font-size: 240px; }
 
 .safe {
   position: relative;
