@@ -436,6 +436,15 @@
     <span class="w"><span style="color:var(--fg)">Oroboros</span>     <span class="brandg">/ Anthropic</span></span>
   </div>
   <div class="dx">
+    <!-- held out of the public menu; the code stays for the local build
+    <div class="ni" onclick="oroborosCommsOpen()" style="color:var(--acc); font-weight:700">Claude Communications <span style="color:var(--mut); font-weight:400">— voice &amp; AILANG</span></div>
+    <details open><summary>GPU / MODEL</summary><div class="sec-in">
+      <div class="ni" id="gpu-line" style="color:var(--mut); cursor:default; line-height:1.6">checking the gpu…</div>
+      <button class="ni" id="free-gpu" style="width:100%; text-align:left; border:1px solid var(--acc); color:var(--acc); background:color-mix(in srgb, var(--acc) 12%, transparent); border-radius:9px; padding:10px 12px; font:inherit; font-size:11.5px; font-weight:800; letter-spacing:.04em; cursor:pointer; margin-top:8px">▸ UNLOAD LOCAL MODEL / FREE GPU</button>
+      <div class="ni" style="color:var(--mut); cursor:default; padding-top:6px; font-size:10px">gpu-cycle :8797 evicts idle bodies and warms the selected model before the request. click above if the gpu is holding a model.</div>
+    </div></details>
+    -->
+
     <div class="ni" id="newchat" style="font-weight:700; font-size:13px">＋ New</div>
     <details open><summary>CHATS <span class="n" id="nc-chats"></span></summary><div class="sec-in" id="chats"></div></details>
     <details><summary style="cursor:pointer">↻ THE RETURN — <span style="color:var(--acc)">click to open the last session</span></summary><div class="sec-in" onclick="restoreLast()"><div class="ni" style="color:var(--mut); cursor:pointer">opening this section restores the previous session's turns — the reset-survival, folded, on your word</div></div></details>
