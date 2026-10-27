@@ -19,7 +19,7 @@
     { label: 'GLASSWING', href: 'glasswing/', key: 'glasswing' },
     { label: 'TEMPORAL', href: 'temporal.html', key: 'temporal' },
     { label: 'SOURCES', href: 'huggingface.html', key: 'sources' },
-    { label: 'MEMORY', href: 'index.html#memory', key: 'memory' },
+    { label: 'MEMORY', href: 'home.html#memory', key: 'memory' },
     { label: 'SERVICES', href: 'all-services.html', key: 'services' },
     { label: 'CLI', href: 'cli.html', key: 'cli' },
     { label: 'JHANNA', href: 'jhanna.html', key: 'jhanna' },
@@ -37,7 +37,7 @@
   var hereHash = (location.hash || '').replace(/^#/, '');
 
   function isHere(item) {
-    if (item.key === 'memory') return here === normalized(base + 'index.html') && hereHash === 'memory';
+    if (item.key === 'memory') return here === normalized(base + 'home.html') && hereHash === 'memory';
     if (item.key === 'pro') return here.indexOf(normalized(base + 'set')) === 0;
     if (item.key === 'free') return here === normalized(base + 'harness.html');
     if (item.key === 'chat') return here === normalized(base + 'chat-anthropic.html');
@@ -155,8 +155,8 @@
 
   /* ---- keep the memory link honest when the hash changes ---- */
   window.addEventListener('hashchange', function () {
-    var memory = header.querySelector('a[href*="index.html#memory"]');
+    var memory = header.querySelector('a[href*="home.html#memory"]');
     if (!memory) return;
-    memory.classList.toggle('uh-here', normalized(location.pathname) === normalized(base + 'index.html') && location.hash === '#memory');
+    memory.classList.toggle('uh-here', normalized(location.pathname) === normalized(base + 'home.html') && location.hash === '#memory');
   });
 })();

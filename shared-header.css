@@ -378,3 +378,12 @@ html.light #unifiedHeader.uh-scrolled nav a.uh-here::after { background: #171614
   background: transparent !important;
   box-shadow: none !important;
 }
+/* Mobile bar: keep the brand text, let the links scroll, keep the moon right. */
+@media (max-width: 1180px) {
+  .uh-inner { display: flex !important; align-items: center !important; gap: 10px !important; }
+  .uh-brand { flex: 0 0 auto !important; font-size: 11px !important; }
+  .uh-brand span { display: inline !important; }
+  .uh-brand em { display: none !important; }
+  #unifiedHeader nav { flex: 1 1 auto !important; justify-content: flex-start !important; width: auto !important; max-width: 100% !important; }
+  .uh-theme { flex: 0 0 auto !important; }
+}
