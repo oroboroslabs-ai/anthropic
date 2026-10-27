@@ -1,222 +1,283 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Glasswing Public Portal | /A OROBOROS / ANTHROPIC</title>
-<link rel="icon" href="../favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="../favicon.png">
-<style>
-  :root, [data-theme="light"] { color-scheme: light;
-    --bg:#ffffff; --fg:#141413; --muted:#545350; --line:#d9d7d1; --card:rgba(20,20,19,.03); --accent:#141413; }
-  [data-theme="dark"] { color-scheme: dark;
-    --bg:#000000; --fg:#edebe6; --muted:#a3a19b; --line:#2a2d31; --card:rgba(255,255,255,.05); --accent:#edebe6; }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 "Inter","Segoe UI",system-ui,sans-serif; }
-  /* ── THE OFFICIAL GLASSWING FIELD ──
-     Darkest page, restrained light. The base is true black; the top wash and
-     the spotlight are pulled back so the wordmark carries the effect instead
-     of the glow. The crown band is white-led (the cyan is a whisper, not a
-     tint) so nothing reads green at the floor. */
-  .gw-field {
-    position: fixed; inset: 0; z-index: -2; pointer-events: none;
-    background:
-      radial-gradient(1500px 950px at 50% -16%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 32%, transparent 62%),
-      radial-gradient(1200px 800px at 50% 114%, rgba(255,255,255,0.055) 0%, rgba(0,229,255,0.007) 40%, transparent 64%),
-      radial-gradient(1000px 760px at 12% 88%, rgba(255,255,255,0.028) 0%, transparent 58%),
-      repeating-linear-gradient(0deg, rgba(255,255,255,0.058) 0px, rgba(255,255,255,0.058) 1px, transparent 1px, transparent 54px),
-      repeating-linear-gradient(90deg, rgba(255,255,255,0.058) 0px, rgba(255,255,255,0.058) 1px, transparent 1px, transparent 54px),
-      linear-gradient(180deg, #030303 0%, #000000 46%, #000000 100%);
-  }
-  /* the spotlight — pulled back. Softer core, shorter reach; the wordmark
-     carries the presence, not the light. */
-  .gw-spot {
-    position: fixed; z-index: -1; pointer-events: none;
-    left: 50%; top: 40%; transform: translate(-50%, -50%);
-    width: min(1400px, 108vw); height: min(1180px, 132vh);
-    background:
-      radial-gradient(44% 48% at 50% 38%, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.075) 30%, rgba(255,255,255,0.028) 58%, transparent 88%),
-      radial-gradient(64% 64% at 50% 96%, rgba(255,255,255,0.018) 0%, transparent 78%);
-  }
-  /* the crown band — WHITE-led so nothing reads green at the floor; the cyan
-     is only a faint halo behind it */
-  .gw-crown {
-    position: fixed; left: 0; right: 0; bottom: 0; height: 2px; z-index: -1;
-    pointer-events: none;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.55) 20%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0.55) 80%, transparent 100%);
-    box-shadow: 0 0 28px rgba(255,255,255,0.28), 0 0 60px rgba(0,229,255,0.05);
-  }
-  [data-theme="light"] .gw-field {
-    background:
-      radial-gradient(1400px 800px at 50% -12%, rgba(20,20,19,0.085) 0%, transparent 62%),
-      radial-gradient(1100px 700px at 50% 112%, rgba(14,90,117,0.075) 0%, transparent 62%),
-      radial-gradient(900px 700px at 12% 88%, rgba(20,20,19,0.045) 0%, transparent 58%),
-      repeating-linear-gradient(0deg, rgba(20,20,19,0.075) 0px, rgba(20,20,19,0.075) 1px, transparent 1px, transparent 54px),
-      repeating-linear-gradient(90deg, rgba(20,20,19,0.075) 0px, rgba(20,20,19,0.075) 1px, transparent 1px, transparent 54px),
-      linear-gradient(180deg, #ffffff 0%, #fbfbfa 58%, #f6f6f4 100%);
-  }
-  [data-theme="light"] .gw-spot {
-    background:
-      radial-gradient(52% 52% at 50% 46%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.35) 45%, transparent 74%);
-  }
-  [data-theme="light"] .gw-crown {
-    background: linear-gradient(90deg, transparent 0%, rgba(14,90,117,0.45) 22%, rgba(20,20,19,0.65) 50%, rgba(14,90,117,0.45) 78%, transparent 100%);
-    box-shadow: 0 0 30px rgba(14,90,117,0.22);
-  }
-  /* the GLASSWING watermark behind the glass — bright enough to read as the
-     house mark against the backlit field */
-  .gw-wm {
-    position: fixed; inset: 0; z-index: -1; pointer-events: none;
-    display: flex; align-items: center; justify-content: center; overflow: hidden;
-  }
-  .gw-wm span {
-    font-family: "Inter","Segoe UI",system-ui,sans-serif;
-    font-weight: 700; letter-spacing: 0.16em; white-space: nowrap;
-    font-size: clamp(3rem, 13vw, 12rem); line-height: 1; text-align: center;
-    color: rgba(255,255,255,0.34); user-select: none;
-    text-shadow: 0 0 70px rgba(255,255,255,0.16);
-  }
-  [data-theme="light"] .gw-wm span { color: rgba(20,20,19,0.20); text-shadow: none; }
-  main { position: relative; max-width:780px; margin:8vh auto; padding:0 24px; }
-  h1 { font-size:28px; margin:0 0 6px; letter-spacing:-.02em; }
-  .sub { color:var(--muted); margin:0 0 28px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
-  a.card { display:block; padding:16px; border:1px solid var(--line); border-radius:4px;
-           background:var(--card); color:var(--fg); text-decoration:none;
-           backdrop-filter: blur(13px) saturate(180%);
-           -webkit-backdrop-filter: blur(13px) saturate(180%); }
-  a.card:hover { border-color:var(--accent); }
-  .card b { display:block; margin-bottom:4px; }
-  .card span { color:var(--muted); font-size:12px; }
-  .stats { display:flex; gap:20px; flex-wrap:wrap; margin:28px 0; padding:14px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-  .stat b { display:block; font-size:18px; font-variant-numeric:tabular-nums; }
-  .stat span { color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
-  footer { margin-top:28px; color:var(--muted); font-size:12px; }
-  code { background:var(--card); padding:2px 6px; border-radius:3px; font-size:12px; }
-  .themebtn { position:fixed; top:16px; right:16px; display:inline-flex; align-items:center; gap:6px;
-    padding:7px 13px; font:600 11px/1 "Inter","Segoe UI",system-ui,sans-serif; letter-spacing:.06em;
-    text-transform:uppercase; color:var(--fg); background:var(--card); border:1px solid var(--line);
-    border-radius:3px; cursor:pointer;
-    backdrop-filter: blur(13px) saturate(180%); -webkit-backdrop-filter: blur(13px) saturate(180%); }
-  .themebtn:hover { border-color:var(--accent); }
-
-  /* narrow / short viewports (integrated browser panels) */
-  @media (max-width: 900px) {
-    .gw-wm span { font-size: clamp(2rem, 9vw, 4.5rem); letter-spacing: .06em; color: rgba(255,255,255,0.22); }
-    [data-theme="light"] .gw-wm span { color: rgba(20,20,19,0.14); }
-    main { margin: 18px auto 48px; padding: 0 14px; max-width: none; }
-    h1 { font-size: 21px; }
-    .sub { font-size: 13px; margin-bottom: 18px; }
-    .stats { gap: 14px; margin: 16px 0; padding: 10px 0; }
-    .stat b { font-size: 15px; }
-    .grid { grid-template-columns: 1fr; }
-    .topbar nav { gap: 10px; flex-wrap: wrap; font-size: 9.5px; letter-spacing: .12em; }
-    .themebtn { top: 8px; right: 8px; padding: 5px 9px; font-size: 9px; }
-  }
-
-  @media (max-width: 900px) {
-    .topbar nav, header nav { flex-wrap: nowrap; overflow-x: auto; gap: 12px;
-      -ms-overflow-style: none; scrollbar-width: none; padding-bottom: 2px; }
-    .topbar nav::-webkit-scrollbar, header nav::-webkit-scrollbar { display: none; }
-    .gw-wm span { font-size: clamp(1.6rem, 7vw, 3rem); color: rgba(255,255,255,0.16); }
-    [data-theme="light"] .gw-wm span { color: rgba(20,20,19,0.10); }
-  }
-
-  @media (max-width: 900px){
-    .gw-wm { align-items: flex-start; padding-top: 86px; }
-    .gw-wm span { font-size: clamp(1.3rem, 5.6vw, 2.2rem); color: rgba(255,255,255,0.11); }
-    [data-theme="light"] .gw-wm span { color: rgba(20,20,19,0.07); }
-  }
-
-  /* brand lock — same white/grey O ring as the Glasswing pages */
-  .brandimg { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; }
-  .brandimg .oamark { width: 21px; height: 21px; flex: 0 0 auto; color: #edebe6; }
-  .brandimg span { font: 700 12.5px/1 Inter, "Segoe UI", sans-serif; letter-spacing: .12em;
-                   color: #edebe6; white-space: nowrap; }
-  .brandimg em, header .brandimg em, .brand .brandimg em {
-    font-style: normal !important; font-weight: 700 !important; color: #6f6d68 !important; }
-  html.light .brandimg .oamark, html.light .brandimg span,
-  .light .brandimg .oamark, .light .brandimg span,
-  [data-theme="light"] .brandimg .oamark, [data-theme="light"] .brandimg span { color: #141413; }
-  html.light .brandimg em, .light .brandimg em,
-  [data-theme="light"] .brandimg em,
-  html.light header .brandimg em, .light header .brandimg em { color: #8A877F !important; }
-
-  /* watermark stays below the topbar so it never crosses the nav */
-  .gw-wm { inset: 96px 0 0 0 !important; }
-  @media (max-width: 900px) {
-    .gw-wm { inset: 62px 0 0 0 !important; align-items: flex-start; padding-top: 26px; }
-  }
-</style>
-<link rel="stylesheet" href="../header-glass.c3.css">
-
-<style id="topbar-law">
-.topbar{background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border-bottom:1px solid transparent!important;box-shadow:none!important;padding:18px 0!important;transition:background .3s ease,backdrop-filter .3s ease,padding .3s ease}
-.topbar.condensed,.topbar.scrolled{background:linear-gradient(180deg,rgba(24,24,25,.74),rgba(24,24,25,.64))!important;-webkit-backdrop-filter:blur(18px) saturate(120%)!important;backdrop-filter:blur(18px) saturate(120%)!important;border-bottom:1px solid rgba(255,255,255,.14)!important;padding:11px 0!important}
-html.light .topbar,.light .topbar,[data-theme="light"] .topbar{background:transparent!important;border-bottom-color:transparent!important}
-html.light .topbar.condensed,.light .topbar.condensed,[data-theme="light"] .topbar.condensed,html.light .topbar.scrolled,[data-theme="light"] .topbar.scrolled{background:linear-gradient(180deg,rgba(247,246,242,.86),rgba(247,246,242,.78))!important;border-bottom:1px solid rgba(20,20,19,.12)!important}
-.topbar .tbin{display:flex!important;align-items:center!important;justify-content:center!important;flex-wrap:nowrap!important;gap:14px!important;padding:0 24px!important;max-width:none!important;width:100%!important;margin:0 auto;position:relative;box-sizing:border-box}
-.topbar .bleft{flex:0 0 auto!important;padding-right:0!important;margin:0!important}
-.topbar .brandimg{display:inline-flex;align-items:center;gap:9px;text-decoration:none}
-.topbar .brandimg .oamark{width:21px;height:21px;flex:0 0 auto;color:#edebe6}
-.topbar .brandimg span{font:700 12.5px/1 Inter,"Segoe UI",sans-serif;letter-spacing:.12em;color:#edebe6;white-space:nowrap}
-.topbar .brandimg em{font-style:normal!important;font-weight:700!important;color:#6f6d68!important}
-.topbar nav{position:static!important;left:auto!important;right:auto!important;transform:none!important;margin:0!important;display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:11px!important;min-width:0;max-width:100%;padding:2px 0;scrollbar-width:none;-ms-overflow-style:none}
-.topbar nav::-webkit-scrollbar{display:none}
-.topbar nav a{white-space:nowrap!important;flex:0 0 auto!important;margin:0!important}
-.topbar nav button{flex:0 0 auto!important;white-space:nowrap!important;background:transparent!important;border:0!important;position:static!important;padding:0!important}
-html.light .topbar nav a,.light .topbar nav a,[data-theme="light"] .topbar nav a{color:#5d5a54!important}
-html.light .topbar nav a.here,.light .topbar nav a.here,[data-theme="light"] .topbar nav a.here{color:#141413!important}
-html.light .topbar .brandimg .oamark,html.light .topbar .brandimg span,
-.light .topbar .brandimg .oamark,.light .topbar .brandimg span,
-[data-theme="light"] .topbar .brandimg .oamark,[data-theme="light"] .topbar .brandimg span{color:#141413!important}
-html.light .topbar .brandimg em,.light .topbar .brandimg em,[data-theme="light"] .topbar .brandimg em{color:#8A877F!important}
-.topbar nav a{padding-left:0!important;padding-right:0!important}
-@media (max-width:1100px){ .topbar .brandimg span{display:none} }
-@media (max-width:900px){
-  .topbar .tbin{padding:0 14px!important;gap:10px!important}
-  .topbar nav{gap:9px!important;overflow-x:auto;max-width:calc(100% - 50px)}
-}
-.topbar nav .lite{font:700 13.5px/1 Inter,'Segoe UI',sans-serif!important;letter-spacing:.16em!important;color:#8f8b83!important;background:transparent!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:6px!important;padding:8px 12px!important;margin-left:6px!important}
-.topbar nav .lite:hover{color:#edebe6!important;border-color:rgba(255,255,255,.30)!important}
-html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topbar nav .lite{color:#5d5a54!important;border-color:rgba(20,20,19,.18)!important}
-</style>
-<link rel="stylesheet" href="../shared-header.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glasswing — Public Portal | Oroboros / Anthropic</title>
+<meta name="description" content="Glasswing public portal — operations, surfaces, and the path into the local stack.">
+<meta name="theme-color" content="#050506">
+<link rel="icon" type="image/png" href="../favicon.png">
 <link rel="canonical" href="https://oroboros-ai.github.io/anthropic/glasswing/">
-<meta name="description" content="Glasswing public portal — the gated data plane, local-only by design.">
-<style id="glasswing-public">
-  .grid .card { display:block; padding:16px; border:1px solid var(--line); border-radius:4px; background:var(--card); color:var(--fg); text-decoration:none; backdrop-filter:blur(13px) saturate(180%); -webkit-backdrop-filter:blur(13px) saturate(180%); }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050506;
+    --ink: #F4F3EF;
+    --muted: #A9A6A0;
+    --dim: #726F68;
+    --line: rgba(255,255,255,.11);
+    --line2: rgba(255,255,255,.20);
+    --ice: #D3E2EE;
+    --display: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --max: 1200px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 16px/1.6 var(--sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(720px 600px at 76% 30%, rgba(200,220,235,.07), transparent 66%),
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: auto, 84px 84px, 84px 84px;
+  }
+  a { color: inherit; }
+  ::selection { background: rgba(211,226,238,.22); color: #fff; }
+  :focus-visible { outline: 2px solid var(--ice); outline-offset: 4px; }
+  .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+  .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    color: var(--muted);
+    font: 600 10px/1.2 var(--mono);
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+  .label::before { content: ''; width: 26px; height: 1px; background: var(--line2); }
+
+  .gw-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 14px 28px;
+    background: rgba(5,5,6,.62);
+    border-bottom: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(18px) saturate(1.1);
+    backdrop-filter: blur(18px) saturate(1.1);
+  }
+  .gw-brand {
+    color: var(--ink);
+    font: 700 12px/1 var(--sans);
+    letter-spacing: .15em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .gw-brand em { font-style: normal; color: var(--dim); }
+  .gw-nav nav { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .gw-nav nav a {
+    color: var(--muted);
+    font: 600 9.5px/1 var(--mono);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .gw-nav nav a:hover { color: var(--ink); }
+
+  .gw-hero { padding: clamp(58px, 7vw, 92px) 0 clamp(64px, 8vw, 110px); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0,1.08fr) minmax(0,.92fr); gap: clamp(36px, 6vw, 80px); align-items: center; }
+  .hero-copy { max-width: 650px; }
+  h1 {
+    margin: 20px 0 0;
+    font: 400 clamp(74px, 11vw, 150px)/.86 var(--display);
+    letter-spacing: -.06em;
+  }
+  .hero-line { margin: 26px 0 0; font: italic 400 clamp(21px,2.2vw,28px)/1.2 var(--display); letter-spacing: -.02em; color: var(--ink); opacity: .9; }
+  .hero-sub { max-width: 520px; margin: 15px 0 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+  .cta-row { display: flex; align-items: center; flex-wrap: wrap; gap: 11px; margin-top: 30px; }
+  .cta { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 18px; border-radius: 9px; border: 1px solid transparent; font: 600 13px/1 var(--sans); text-decoration: none; transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease; }
+  .cta.primary { background: var(--ink); border-color: var(--ink); color: #080809; }
+  .cta.primary:hover { background: #fff; border-color: #fff; transform: translateY(-1px); }
+  .cta.ghost { background: rgba(255,255,255,.045); border-color: var(--line2); color: var(--ink); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  .cta.ghost:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.32); transform: translateY(-1px); }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 25px 0 0; color: var(--dim); font: 500 9.5px/1.4 var(--mono); letter-spacing: .13em; text-transform: uppercase; }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+  .hero-meta span::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--ice); opacity: .65; }
+
+  .gw-card {
+    position: relative;
+    justify-self: end;
+    display: block;
+    width: min(440px, 100%);
+    text-decoration: none;
+    isolation: isolate;
+  }
+  .gw-card img { position: relative; z-index: 1; display: block; width: 100%; height: auto; filter: drop-shadow(0 36px 90px rgba(0,0,0,.55)); animation: emblemIn 1.25s cubic-bezier(.2,.7,.2,1) both; }
+  .gw-card::before { content: ''; position: absolute; inset: -22%; z-index: 0; border-radius: 50%; background: radial-gradient(circle, rgba(214,232,244,.20), transparent 62%); filter: blur(16px); pointer-events: none; }
+  .gw-card::after { content: ''; position: absolute; inset: -18% -42%; z-index: 2; background: linear-gradient(104deg, transparent 36%, rgba(255,255,255,.52) 50%, transparent 64%); mix-blend-mode: screen; opacity: 0; transform: translateX(-130%) rotate(12deg); animation: shimmerSweep 7.5s ease-in-out 1.4s infinite; pointer-events: none; }
+  .gw-card-flash { position: absolute; inset: -26%; z-index: 3; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,.58), transparent 58%); mix-blend-mode: screen; opacity: 0; pointer-events: none; animation: flashOnce 1.6s ease-out .28s 1; }
+  .gw-card-cap { display: block; margin-top: 14px; color: var(--dim); font: 500 9px/1.4 var(--mono); letter-spacing: .14em; text-align: center; text-transform: uppercase; }
+  @keyframes emblemIn {
+    0% { opacity: 0; transform: scale(.965); filter: brightness(1.8) drop-shadow(0 36px 90px rgba(0,0,0,.55)); }
+    42% { opacity: 1; filter: brightness(1.18) drop-shadow(0 36px 90px rgba(0,0,0,.55)); }
+    100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 36px 90px rgba(0,0,0,.55)); }
+  }
+  @keyframes shimmerSweep {
+    0%, 55% { opacity: 0; transform: translateX(-130%) rotate(12deg); }
+    64% { opacity: .85; }
+    82%, 100% { opacity: 0; transform: translateX(130%) rotate(12deg); }
+  }
+  @keyframes flashOnce {
+    0% { opacity: 0; }
+    16% { opacity: .9; }
+    100% { opacity: 0; }
+  }
+
+  .gw-pages { padding: clamp(62px, 8vw, 100px) 0; border-top: 1px solid var(--line); }
+  .section-head { max-width: 660px; }
+  .section-head h2 { margin: 17px 0 0; font: 400 clamp(38px,5vw,58px)/1.02 var(--display); letter-spacing: -.045em; }
+  .section-head p { max-width: 500px; margin: 16px 0 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
+  .page-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 0 28px; margin-top: 42px; }
+  .page-grid a {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 15px 0;
+    border-top: 1px solid var(--line);
+    color: var(--ink);
+    font: 500 13px/1.3 var(--sans);
+    text-decoration: none;
+  }
+  .page-grid a span { flex: none; width: 22px; color: var(--dim); font: 500 9px/1 var(--mono); letter-spacing: .08em; }
+  .page-grid a:hover { color: var(--ice); border-top-color: var(--line2); }
+
+  .gw-elsewhere { padding: 0 0 76px; }
+  .elsewhere-links { display: flex; flex-wrap: wrap; gap: 12px 26px; margin-top: 22px; }
+  .elsewhere-links a { color: var(--muted); font: 600 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; }
+  .elsewhere-links a span { color: var(--dim); }
+  .elsewhere-links a:hover { color: var(--ink); }
+
+  .gw-foot { border-top: 1px solid var(--line); }
+  .foot-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 0 28px; color: var(--dim); font: 500 9px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+  .foot-brand { color: var(--ink); font: 700 11px/1 var(--sans); letter-spacing: .15em; text-decoration: none; }
+  .foot-brand em { font-style: normal; color: var(--dim); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .gw-card img, .gw-card::after, .gw-card-flash { animation: none !important; }
+  }
+  @media (max-width: 1000px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-copy { max-width: 760px; }
+    .gw-card { justify-self: start; width: min(380px, 62vw); margin-top: 22px; }
+    .page-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  }
+  @media (max-width: 720px) {
+    .wrap { padding: 0 18px; }
+    .gw-nav { padding: 12px 18px; }
+    .gw-nav nav { gap: 12px; overflow-x: auto; flex-wrap: nowrap; max-width: 100%; }
+    h1 { font-size: clamp(64px, 19vw, 96px); }
+    .gw-card { width: min(320px, 82vw); }
+    .page-grid { grid-template-columns: 1fr; }
+    .foot-row { display: block; }
+    .foot-row > span { display: block; margin-top: 10px; }
+  }
 </style>
 </head>
 <body>
-<div class="gw-field" aria-hidden="true"></div>
-<div class="gw-spot" aria-hidden="true"></div>
-<div class="gw-crown" aria-hidden="true"></div>
-<div class="gw-wm" aria-hidden="true"><span>GLASSWING</span></div>
+<header class="gw-nav">
+  <a class="gw-brand" href="index.html">GLASSWING <em>/ PUBLIC</em></a>
+  <nav aria-label="Glasswing">
+    <a href="platform/index.html">Platform</a>
+    <a href="../set/harness.html">Pro Harness</a>
+    <a href="../claude-communications/">Voice</a>
+    <a href="../temporal.html">Temporal</a>
+    <a href="../shop.html">Shop</a>
+    <a href="../cli.html">CLI</a>
+  </nav>
+</header>
+
 <main>
-  <h1>Glasswing Public Portal</h1>
-  <p class="sub">The gated data plane, served as a public portal. The surfaces are described below.</p>
+  <section class="gw-hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="label">Public portal · Oroboros / Anthropic</p>
+        <h1>Glasswing</h1>
+        <p class="hero-line">The public face of the local machine.</p>
+        <p class="hero-sub">Operations, surfaces, and the path into the stack. Local-only by design; the portal is the glass.</p>
+        <div class="cta-row">
+          <a class="cta primary" href="platform/index.html">Open the platform</a>
+          <a class="cta ghost" href="../set/harness.html">Pro Harness</a>
+        </div>
+        <p class="hero-meta"><span>Local-first</span><span>127.0.0.1</span><span>Clearance on the platform</span></p>
+      </div>
+      <a class="gw-card" href="platform/index.html" aria-label="Open the Glasswing platform">
+        <span class="gw-card-flash" aria-hidden="true"></span>
+        <img src="../assets/brand/a-shimmer.svg" width="600" height="760" alt="Glasswing logo — slash-A, black Ouroboros, Anthropic">
+        <span class="gw-card-cap">Public portal · A—01</span>
+      </a>
+    </div>
+  </section>
 
-  <div class="stats">
-    <div class="stat"><b>Neural cognitive link 1274</b><span>Reference standard</span></div>
-    <div class="stat"><b>4</b><span>Clearance tiers</span></div>
-    <div class="stat"><b>L200</b><span>Engineering minimum access</span></div>
-    <div class="stat"><b>Undisclosed</b><span>Owner level · as of 04012026US</span></div>
-    <div class="stat"><b>Public portal higher functions</b><span>L100 developer classification minimum</span></div>
-  </div>
+  <section class="gw-pages" id="pages">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">Platform pages</p>
+        <h2>Every surface, one glass.</h2>
+        <p>Operations, field launch, governance, physics, and the records behind them.</p>
+      </div>
+      <div class="page-grid">
+        <a href="platform/index.html"><span>01</span>Operations</a>
+        <a href="platform/satview.html"><span>02</span>SAT View</a>
+        <a href="platform/partners.html"><span>03</span>Partners</a>
+        <a href="platform/console.html"><span>04</span>Console</a>
+        <a href="platform/firewall.html"><span>05</span>Living Firewall</a>
+        <a href="platform/globe.html"><span>06</span>Living Globe</a>
+        <a href="platform/gov.html"><span>07</span>Government</a>
+        <a href="platform/hud-v2.html"><span>08</span>HUD V2</a>
+        <a href="platform/launch.html"><span>09</span>Field Launch</a>
+        <a href="platform/login.html"><span>10</span>Clearance</a>
+        <a href="platform/maps.html"><span>11</span>Maps</a>
+        <a href="platform/models.html"><span>12</span>Models</a>
+        <a href="platform/phi.html"><span>13</span>Phi-Harmonic</a>
+        <a href="platform/physics.html"><span>14</span>Physics</a>
+        <a href="platform/records.html"><span>15</span>Records</a>
+        <a href="platform/substrate.html"><span>16</span>Substrate</a>
+      </div>
+    </div>
+  </section>
 
-  <div class="grid">
-    <div class="card"><b>Operations Interface</b><span>Public HUD · live posture, capability, testing</span></div>
-    <div class="card"><b>Tactical Portal V2</b><span>Command deck · models, maps, 0-day, dual copy</span></div>
-    <div class="card"><b>Clearance</b><span>L200 engineering · owner undisclosed</span></div>
-    <div class="card"><b>Platform HUD</b><span>Main platform · :3000</span></div>
-  </div>
-
-  <footer>
-    Glasswing is local-only by design. Machine-readable state lives on the local node.
-  </footer>
+  <section class="gw-elsewhere">
+    <div class="wrap">
+      <p class="label">Elsewhere</p>
+      <div class="elsewhere-links">
+        <a href="../set/harness.html">Pro Harness <span>→</span></a>
+        <a href="../claude-communications/">Voice <span>→</span></a>
+        <a href="../temporal.html">Temporal <span>→</span></a>
+        <a href="../shop.html">Shop <span>→</span></a>
+        <a href="../cli.html">CLI <span>→</span></a>
+      </div>
+    </div>
+  </section>
 </main>
-<script src="../shared-header.js" defer></script>
+
+<footer class="gw-foot">
+  <div class="wrap foot-row">
+    <a class="foot-brand" href="index.html">GLASSWING <em>/ PUBLIC</em></a>
+    <span>Glasswing is local-only by design. © 2026 Oroboros / Anthropic.</span>
+  </div>
+</footer>
 </body>
 </html>
-
