@@ -45,8 +45,10 @@
   .menu .i.on{font-weight:700}
   .menu .i small{color:var(--mut); display:block; font-size:10.5px; margin-top:1px}
   .grow{flex:1}
-  .clilink{color:transparent; background:linear-gradient(135deg,#d97757 0%,#c96442 48%,#9d4a2a 100%);
-           -webkit-background-clip:text; background-clip:text; text-decoration:none; font-size:13.5px;
+  .agentbadge{display:none !important}
+  #rawb{display:none !important}
+  .clilink{color:var(--fg); background:none; -webkit-text-fill-color:currentColor;
+           -webkit-background-clip:text; background-clip:border-box; text-decoration:none; font-size:13.5px;
            font-weight:700; margin-right:4px}
   /* THE BURNT GRADIENT — the OD Claude (Anthropic) terracotta ramp rides the brand marks */
   .agentbadge{font:700 8.5px/1 Inter,system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--acc); border:1px solid color-mix(in srgb,var(--acc) 55%, transparent); border-radius:5px; padding:5px 7px; white-space:nowrap}
@@ -298,7 +300,7 @@
   <button class="agentbadge" id="rawb" type="button" title="Bypass the Prime agent and the component loop — test the selected model directly." style="cursor:pointer;background:transparent;font-family:inherit">Raw off</button>
   <div class="grow"></div>
   <a class="clilink" href="http://127.0.0.1:5000/" target="_blank">Claude-CLI</a>
-  <a class="clilink" href="https://oroboroslabs-ai.github.io/anthropic/">Oroboros / Anthropic</a>
+  <a class="clilink" href="https://oroboroslabs-ai.github.io/anthropic/">Oroboros / <span style="color:var(--acc);-webkit-text-fill-color:var(--acc)">Anthropic</span></a>
   <button class="ibtn stencil-ib" id="crawltop" title="THE CRAWLER — crawl a page into the Claude View (REA probe)">
     <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="4"/><path d="M12 9V4M12 4l-3 2M12 4l3 2M8.5 16L5 20M15.5 16L19 20M5 13H2M22 13h-3"/></svg>
   </button>
@@ -340,7 +342,7 @@
   <div class="stage">
     <div class="hero-line">
       <img src="star.png" alt="oroboros anthropic" id="herostar">
-      <h1 id="herotitle">How can I help you?</h1>
+      <h1 id="herotitle">Hello, night owl.</h1>
     </div>
     <div class="compwrap">
       <div class="comp" id="comp1">
