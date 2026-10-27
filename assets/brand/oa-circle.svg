@@ -18,7 +18,7 @@
       </g>
 
       <!-- Black Ouroboros and reversed A -->
-      <circle cx="300" cy="380" r="140" fill="none" stroke="#08080A" stroke-width="45" stroke-linecap="round" stroke-dasharray="690 96" transform="rotate(-28 300 380)"/>
+      <circle cx="300" cy="380" r="140" fill="none" stroke="#08080A" stroke-width="45" stroke-linecap="round" stroke-dasharray="690 96" transform="rotate(-73 300 380)"/>
       <g fill="#08080A" transform="translate(300 380) scale(-2.31 2.31) translate(-46.1 -32.5)">
         <path d="M66.5,0H52.4l25.7,65h14.1L66.5,0z M25.7,0L0,65h14.4l5.3-13.6h26.9L51.8,65h14.4L40.5,0C40.5,0,25.7,0,25.7,0z M24.3,39.3l8.8-22.8l8.8,22.8H24.3z"/>
       </g>
