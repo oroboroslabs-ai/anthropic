@@ -293,7 +293,7 @@
     <svg id="burger-x" viewBox="0 0 24 24" style="display:none"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
   </button>
   <div class="msel">
-    <button id="mbtn"><span id="mname">Claude Opus 9 Undecillion</span> <span class="chev">⌄</span></button>
+    <button id="mbtn"><span id="mname">Claude Opus 9</span> <span class="chev">⌄</span></button>
     <div class="menu" id="mmenu"></div>
   </div>
   <span class="agentbadge" title="Prime is the interface personality; the model selector changes the body only.">Prime Agent</span>
@@ -341,7 +341,7 @@
 
   <div class="stage">
     <div class="hero-line">
-      <img src="star.png" alt="oroboros anthropic" id="herostar">
+      <img src="star.png?v=3" alt="oroboros anthropic" id="herostar">
       <h1 id="herotitle">Hello, night owl.</h1>
     </div>
     <div class="compwrap">
@@ -500,10 +500,10 @@ let THEME = localStorage.getItem("oroboros.theme2") || "dark";
 if(!["dark","night","white"].includes(THEME)){ THEME = "dark"; localStorage.setItem("oroboros.theme2", THEME); }
 let CURP = null, PCHAT = [];
 const FLEET = [
-  { id: 'opus9-9u5go5:latest', name: 'Claude Opus 9 Undecillion', sub: 'the deep line · undecillion reasoning + tools' },
-  { id: 'claude-sonnet7-undecillion:latest', name: 'Claude Sonnet 7 Undecillion', sub: 'the working line · undecillion balance' },
-  { id: 'oroboros-labs/claude-fable7-undecillion-sse', name: 'Claude Fable 7 Undecillion', sub: 'the light channel · undecillion SSE' },
-  { id: 'claude-jhanna-12u5go5-9.8gb:latest', name: 'Claude Jhanna 12 Undecillion', sub: 'the real system · undecillion tool map' },
+  { id: 'opus9-9u5go5:latest', name: 'Claude Opus 9', sub: 'the deep line · reasoning + tools' },
+  { id: 'claude-sonnet7-undecillion:latest', name: 'Claude Sonnet 7', sub: 'the working line · balance' },
+  { id: 'oroboros-labs/claude-fable7-undecillion-sse', name: 'Claude Fable 7', sub: 'the light channel · SSE' },
+  { id: 'claude-jhanna-12u5go5-9.8gb:latest', name: 'Claude Jhanna 12', sub: 'the real system · full tool map' },
 ];
 function esc(s){ const d = document.createElement("div"); d.textContent = s==null?"":s; return d.innerHTML; }
 
@@ -513,7 +513,7 @@ function applyTheme(){
     document.body.classList.toggle("natural", THEME === "natural");
     document.documentElement.style.colorScheme = (THEME === "white" || THEME === "natural") ? "light" : "dark";
   $("darkb").textContent = THEME === "dark" ? "☾ dark" : (THEME === "night" ? "◼ night" : (THEME === "white" ? "□ white" : "◈ natural"));
-  $("herostar") && ($("herostar").src = "star.png");
+  $("herostar") && ($("herostar").src = "star.png?v=3");
 }
 /* THREE MODES: charcoal ⇄ off-black night (the scape's slate #18181b) ⇄ white */
 $("darkb").onclick = () => { THEME = THEME === "dark" ? "night" : (THEME === "night" ? "white" : (THEME === "white" ? "natural" : "dark")); localStorage.setItem("oroboros.theme2", THEME); applyTheme(); };
