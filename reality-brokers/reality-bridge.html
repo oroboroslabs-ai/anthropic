@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Reality Bridge — Internal</title>
+<meta name="theme-color" content="#050506">
+<style>
+  :root {
+    --bg: #050506; --ink: #F4F3EF; --muted: #A9A6A0; --dim: #726F68;
+    --line: rgba(255,255,255,.11); --line2: rgba(255,255,255,.20); --ice: #D3E2EE;
+    --mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); }
+  body { font: 400 15px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(700px 600px at 80% 20%, rgba(200,220,235,.06), transparent 66%),
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: auto, 84px 84px, 84px 84px;
+  }
+  .wrap { width: 100%; max-width: 980px; margin: 0 auto; padding: 64px 28px 80px; }
+  .eyebrow { margin: 0; color: var(--muted); font: 600 10px/1.2 var(--mono); letter-spacing: .18em; text-transform: uppercase; }
+  .bridge-portal {
+    margin-top: 22px; padding: 30px; border: 1px solid var(--line2); border-radius: 16px;
+    background: linear-gradient(155deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 30px 90px rgba(0,0,0,.45);
+  }
+  h2 { margin: 0; font: 600 16px/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+  .status { margin: 12px 0 0; color: var(--dim); font: 500 10px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+  .status b { color: #9BE8B0; font-weight: 600; }
+  .endpoint-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 26px; }
+  .endpoint { padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.03); }
+  .endpoint h3 { margin: 0; color: var(--ice); font: 600 10px/1.3 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+  .endpoint p { margin: 10px 0 0; color: var(--muted); font-size: 13.5px; }
+  .endpoint code { display: inline-block; margin-top: 10px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 5px; background: rgba(255,255,255,.05); color: var(--ink); font: 500 11px/1.4 var(--mono); }
+  .calculation-engine { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+  .calculation-engine h3 { margin: 0; font: 600 11px/1.3 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+  .calculation-engine p { margin: 8px 0 0; color: var(--muted); font: 500 10.5px/1.5 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .foot { margin-top: 28px; color: var(--dim); font: 500 9px/1.5 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+  @media (max-width: 720px) { .endpoint-grid { grid-template-columns: 1fr; } .wrap { padding: 40px 18px 60px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Glasswing · Internal surface · Not indexed</p>
+  <div class="bridge-portal">
+    <h2>Reality Bridge · A/B Endpoint</h2>
+    <p class="status">Status: <b id="bridge-status">ACTIVE</b></p>
+
+    <div class="endpoint-grid">
+      <div class="endpoint">
+        <h3>Endpoint A: Frontier</h3>
+        <p>DeepSeek Prime Bridge</p>
+        <code>api.deepseekresearch.com/v1/prime</code>
+      </div>
+      <div class="endpoint">
+        <h3>Endpoint B: Substrate</h3>
+        <p>Local Harness 127.0.0.1</p>
+        <code>127.0.0.1:8792</code>
+      </div>
+    </div>
+
+    <div class="calculation-engine">
+      <h3>Calculation Engine</h3>
+      <p>Routing: 300-Model Auction Active</p>
+      <p>Seer Control: 100 Eye Observing</p>
+    </div>
+  </div>
+  <p class="foot">Internal API surface · No public navigation · © 2026 Oroboros / Anthropic</p>
+</div>
+</body>
+</html>
