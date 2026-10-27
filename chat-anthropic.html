@@ -553,8 +553,8 @@
   }
 
   .input-container:focus-within {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-light), var(--shadow-lg);
+    border-color: color-mix(in srgb, var(--fg) 26%, transparent);
+    box-shadow: 0 14px 44px rgba(0,0,0,.22);
   }
 
   .input-top-row {
@@ -973,6 +973,242 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
   html.light .chat-brand, body.light .chat-brand { color: #171614; }
   html.light .chat-brand em, body.light .chat-brand em { color: rgba(23, 22, 20, .62); }
 </style>
+
+<style id="glass-skin">
+/* ══════════════════════════════════════════════════════════════
+   GLASS SKIN — inner look only. Layout from the local systemscape
+   (localhost:8795): off-black glass, stencil buttons, the silver
+   rotation around the composer, drawer in the new format.
+   Orange is a touch — text, and the star over the chatbox.
+   ══════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#1a1a18; --bg2:#131311; --fg:#e8e8e2; --mut:#87867f; --ln:#3a3a34;
+  --metal1:#c8c8cf; --metal2:#3a3a40; --metal3:#e8e8ee;
+  --orange:#c96442;
+
+  --bg-primary:#1a1a18; --bg-secondary:#131311; --bg-sidebar:rgba(19,19,17,.88);
+  --bg-hover:rgba(232,232,226,.07); --bg-input:#131311;
+  --text-primary:#e8e8e2; --text-secondary:#a9a69f; --text-muted:#87867f;
+  --border:#3a3a34; --border-light:#2c2c28; --code-bg:#0e0e0c; --user-bubble:#131311;
+  --accent:#c96442; --accent-hover:#d97757; --accent-light:rgba(201,100,66,.10);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.3); --shadow-md:0 10px 30px rgba(0,0,0,.35);
+  --shadow-lg:0 22px 60px rgba(0,0,0,.45);
+}
+body.night{
+  --bg:#18181b; --bg2:#1c1c20; --fg:#f2f2ee; --mut:#b9b9b0; --ln:#2b2b30;
+  --metal1:#c8c8cf; --metal2:#3a3a40; --metal3:#e8e8ee;
+  --bg-primary:#18181b; --bg-secondary:#1c1c20; --bg-sidebar:rgba(28,28,32,.9);
+  --bg-hover:rgba(242,242,238,.07); --bg-input:#1c1c20;
+  --text-primary:#f2f2ee; --text-secondary:#b9b9b0; --text-muted:#b9b9b0;
+  --border:#2b2b30; --border-light:#242428; --user-bubble:#1c1c20;
+}
+body.light{
+  --bg:#ffffff; --bg2:#ffffff; --fg:#0a0a0a; --mut:#6b6b66; --ln:#e6e6e2;
+  --metal1:#b9b9c0; --metal2:#ffffff; --metal3:#6a6a70;
+  --bg-primary:#ffffff; --bg-secondary:#fbfbfa; --bg-sidebar:rgba(255,255,255,.9);
+  --bg-hover:rgba(10,10,10,.05); --bg-input:#ffffff;
+  --text-primary:#0a0a0a; --text-secondary:#4a4a46; --text-muted:#6b6b66;
+  --border:#e6e6e2; --border-light:#f0efec; --code-bg:#111110; --user-bubble:#fbfbfa;
+}
+body.natural{
+  --bg:#f4efe6; --bg2:#fbf7ef; --fg:#2a241c; --mut:#7a7060; --ln:#e2d8c8;
+  --metal1:#b6a894; --metal2:#fbf7ef; --metal3:#8a7c68;
+  --bg-primary:#f4efe6; --bg-secondary:#fbf7ef; --bg-sidebar:rgba(251,247,239,.9);
+  --bg-hover:rgba(42,36,28,.06); --bg-input:#fbf7ef;
+  --text-primary:#2a241c; --text-secondary:#5c5346; --text-muted:#7a7060;
+  --border:#e2d8c8; --border-light:#efe7d9; --code-bg:#2a241c; --user-bubble:#fbf7ef;
+}
+
+body{
+  background:var(--bg); color:var(--fg);
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:13px; letter-spacing:.005em;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+button{font-family:inherit}
+
+/* ── the drawer, new format ── */
+.sidebar{
+  width:330px; min-width:330px;
+  background:var(--bg-sidebar);
+  -webkit-backdrop-filter:blur(16px) saturate(1.22); backdrop-filter:blur(16px) saturate(1.22);
+  border-right:1px solid color-mix(in srgb, var(--fg) 13%, transparent);
+  box-shadow:22px 0 55px rgba(0,0,0,.22);
+  transition:width .24s cubic-bezier(.3,.7,.2,1), min-width .24s cubic-bezier(.3,.7,.2,1);
+}
+.sidebar.collapsed{width:0; min-width:0; border-right:none}
+.sidebar-header{padding:16px 14px 10px; border-bottom:none; gap:10px}
+.sx-brand{font:750 18px/1 Inter,system-ui,sans-serif; letter-spacing:-.04em; color:var(--fg); white-space:nowrap}
+.sx-brand em{font-style:normal; color:var(--text-muted)}
+.sx-brand .sl{color:var(--orange)}
+.new-chat-btn{
+  margin:2px 14px 12px; width:calc(100% - 28px); justify-content:center; gap:9px;
+  border:1px solid color-mix(in srgb, var(--fg) 22%, transparent); border-radius:10px;
+  background:transparent; color:var(--fg); padding:10px 11px;
+  font:700 10.5px/1 'Source Code Pro',monospace; letter-spacing:.16em; text-transform:uppercase;
+}
+.new-chat-btn:hover{background:var(--bg-hover); border-color:color-mix(in srgb, var(--fg) 40%, transparent)}
+.sidebar-nav{padding:0 11px 14px; flex:1; overflow-y:auto}
+.sidebar-nav details{border-bottom:1px solid color-mix(in srgb, var(--border) 60%, transparent)}
+.sidebar-nav summary{
+  display:flex; align-items:center; gap:8px; padding:10px; cursor:pointer; list-style:none;
+  font:800 10.5px/1 'Source Code Pro',monospace; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--text-muted);
+}
+.sidebar-nav summary::-webkit-details-marker{display:none}
+.sidebar-nav summary:hover{color:var(--fg)}
+.sidebar-nav summary .n{margin-left:auto; font-size:9px; letter-spacing:.14em; color:var(--text-muted)}
+.sec-in{padding:2px 4px 10px}
+.nav-section-title{
+  font:700 8.5px/1 'Source Code Pro',monospace; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--text-muted); padding:9px 11px 5px;
+}
+.nav-item{padding:9px 11px; border-radius:10px; font-size:13.5px; color:var(--fg); letter-spacing:.002em}
+.nav-item:hover{background:var(--bg-hover); color:var(--fg)}
+.nav-item.active{background:transparent; color:var(--orange)}
+.nav-item .delete-btn{color:var(--text-muted); opacity:0; transition:opacity .15s, color .15s}
+.nav-item:hover .delete-btn{opacity:1}
+.nav-item .delete-btn:hover{color:var(--orange)}
+.sidebar-nav a{
+  display:block; padding:9px 11px; border-radius:10px; color:var(--fg); text-decoration:none;
+  font:500 13.5px/1.35 Inter,sans-serif;
+}
+.sidebar-nav a:hover{background:var(--bg-hover)}
+.sidebar-nav a small{display:block; color:var(--text-muted); font-size:10.5px; margin-top:2px}
+
+.sidebar-footer{border-top:1px solid var(--border); padding:10px 14px 14px; background:transparent}
+.modes{display:flex; gap:5px; margin-bottom:10px}
+.mode{
+  flex:1; height:28px; border-radius:7px; cursor:pointer; background:transparent; color:var(--text-muted);
+  border:1px solid color-mix(in srgb, var(--fg) 20%, transparent);
+  font:700 8px/1 'Source Code Pro',monospace; letter-spacing:.1em; text-transform:uppercase;
+}
+.mode:hover{color:var(--fg)}
+.mode.on{color:var(--fg); border-color:color-mix(in srgb, var(--fg) 55%, transparent); background:var(--bg-hover)}
+.user-profile{
+  border-radius:10px; padding:9px 10px; border:1px solid color-mix(in srgb, var(--fg) 12%, transparent);
+  background:transparent; gap:10px;
+}
+.user-profile:hover{background:var(--bg-hover)}
+.user-avatar-small{
+  background:transparent; border:1px solid color-mix(in srgb, var(--fg) 28%, transparent);
+  color:var(--fg); border-radius:8px;
+}
+.user-name{color:var(--fg); font-size:12.5px; font-weight:600}
+.user-plan{color:var(--text-muted); font:500 9.5px/1.4 'Source Code Pro',monospace; letter-spacing:.1em; text-transform:uppercase}
+.pro-badge{
+  color:var(--orange); border:1px solid color-mix(in srgb, var(--orange) 50%, transparent);
+  background:transparent; font:800 8px/1 'Source Code Pro',monospace; letter-spacing:.14em;
+}
+
+/* ── the top bar ── */
+.top-bar{height:53px; padding:0 18px; background:transparent; border-bottom:none; display:flex; align-items:center; gap:8px}
+.chat-brand span{font:800 11px/1 Inter,system-ui,sans-serif; letter-spacing:.16em; color:var(--fg)}
+.chat-brand span em{color:var(--text-muted); font-style:normal}
+.chat-brand:hover span{color:var(--fg)}
+.icon-btn{
+  width:34px; height:32px; border:1.3px solid color-mix(in srgb, var(--fg) 34%, transparent);
+  border-radius:9px; background:transparent; color:color-mix(in srgb, var(--fg) 92%, transparent);
+  display:inline-flex; align-items:center; justify-content:center; padding:0;
+}
+.icon-btn:hover{color:var(--fg); border-color:color-mix(in srgb, var(--fg) 46%, transparent); background:transparent}
+.model-selector{border:none; background:transparent; border-radius:8px; padding:7px 9px; font-size:13.5px; font-weight:600; color:var(--fg); gap:8px}
+.model-selector:hover{background:var(--bg-hover)}
+.model-dropdown{background:var(--bg2); border:1px solid var(--border); border-radius:12px; box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.model-option{border-radius:9px; font-size:13.5px; color:var(--fg)}
+.model-option:hover{background:var(--bg-hover)}
+.model-option.selected{background:transparent; color:var(--orange)}
+.top-bar-actions{gap:6px}
+.top-bar-actions .icon-btn{border:none; width:34px; height:34px; color:var(--text-muted)}
+.top-bar-actions .icon-btn:hover{color:var(--fg); background:var(--bg-hover); border:none}
+
+/* ── the welcome stage, the star over the chatbox ── */
+.chat-area{background:transparent}
+.welcome-logo img{width:52px; height:52px; opacity:.95}
+.hero-star{width:34px; height:34px; margin:2px auto 10px; color:var(--orange)}
+.hero-star svg{width:100%; height:100%; stroke:currentColor; fill:none; stroke-width:1.5; stroke-linecap:round}
+.welcome-title{
+  font-family:'Iowan Old Style',Georgia,'Times New Roman',serif; font-weight:400;
+  font-size:clamp(26px,2.9vw,40px); letter-spacing:-.015em; color:var(--fg);
+}
+.welcome-subtitle{color:var(--text-muted); font-size:12.5px; max-width:520px; line-height:1.6}
+.suggestion-grid{
+  display:flex; gap:0; border:1px solid var(--border); border-radius:10px; overflow:hidden;
+  background:transparent; width:min(740px,100%); max-width:740px; margin-top:12px;
+}
+.suggestion-card{flex:1; border:none; border-right:1px solid var(--border); border-radius:0; background:transparent; padding:11px 14px; text-align:center}
+.suggestion-card:last-child{border-right:none}
+.suggestion-card:hover{background:var(--bg-hover)}
+.suggestion-card-title{font-size:12px; color:var(--fg); font-weight:500; line-height:1.3}
+.suggestion-card-desc{display:none}
+
+/* ── messages ── */
+.message-content{max-width:740px}
+.message-avatar{background:transparent; border:1px solid color-mix(in srgb, var(--fg) 18%, transparent)}
+.message-avatar.claude-avatar{background:transparent}
+.message-sender{color:var(--text-muted); font:800 8.5px/1 'Source Code Pro',monospace; letter-spacing:.16em}
+.message-text{font-size:14px; line-height:1.85; color:var(--fg)}
+.message.assistant .message-text{background:var(--bg2); border:1px solid var(--border); border-radius:13px; padding:12px 16px}
+.message-text pre{background:var(--code-bg); border:1px solid var(--border); border-radius:10px}
+.message-text code{background:color-mix(in srgb, var(--fg) 8%, transparent); border-radius:4px}
+.copy-code-btn{background:var(--bg2); border:1px solid var(--border); color:var(--text-muted)}
+.copy-code-btn:hover{color:var(--fg); border-color:color-mix(in srgb, var(--fg) 40%, transparent)}
+
+/* ── the composer + the silver rotation (half weight) ── */
+.input-area{padding:0 18px 16px; background:transparent}
+.input-container{
+  position:relative; isolation:isolate;
+  width:min(740px,100%); margin:0 auto;
+  background:color-mix(in srgb, var(--bg2) 96%, transparent);
+  -webkit-backdrop-filter:blur(14px) saturate(1.05); backdrop-filter:blur(14px) saturate(1.05);
+  border:1px solid var(--border); border-radius:18px; padding:14px 14px 10px;
+  box-shadow:0 14px 44px rgba(0,0,0,.22);
+}
+.input-container::before{
+  content:""; position:absolute; inset:-1.75px; border-radius:19.75px; padding:1.3px;
+  background:linear-gradient(var(--mangle,0deg),var(--metal1),var(--metal2) 25%,var(--metal3) 50%,var(--metal2) 75%,var(--metal1));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor; mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite:exclude; pointer-events:none;
+  animation:mwspin 12s linear infinite; will-change:background;
+}
+@property --mangle{syntax:'<angle>'; initial-value:0deg; inherits:false}
+@keyframes mwspin{to{--mangle:360deg}}
+@media (prefers-reduced-motion: reduce){ .input-container::before{animation:none} }
+.input-container textarea, #chatInput{
+  background:transparent; border:none; color:var(--fg); font-size:15px; line-height:1.55; padding:0 4px; outline:none;
+}
+#chatInput::placeholder{color:var(--text-muted)}
+.plus-btn,.voice-btn,.stop-audio-btn,.send-btn{
+  width:34px; height:32px; border-radius:9px; padding:0;
+  border:1.3px solid color-mix(in srgb, var(--fg) 34%, transparent);
+  background:transparent; color:color-mix(in srgb, var(--fg) 92%, transparent);
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.plus-btn:hover,.voice-btn:hover,.stop-audio-btn:hover{
+  color:var(--fg); border-color:color-mix(in srgb, var(--fg) 46%, transparent); background:transparent;
+}
+.voice-btn.active,.stop-audio-btn.active{color:var(--fg); border-color:color-mix(in srgb, var(--fg) 55%, transparent)}
+.send-btn{width:36px; height:33px}
+.send-btn:not(.inactive){background:var(--fg); color:var(--bg); border-color:var(--fg)}
+.send-btn.inactive{opacity:.55; border-color:color-mix(in srgb, var(--fg) 22%, transparent); color:var(--text-muted)}
+.plus-icon{font-size:16px; line-height:1}
+.input-footer{color:var(--text-muted); font:500 9px/1.6 'Source Code Pro',monospace; letter-spacing:.12em; text-transform:uppercase}
+.toast{background:var(--bg2); border:1px solid var(--border); color:var(--fg); border-radius:9px}
+
+/* idle: the composer rides just under the hero, the whole block centred */
+body.idle .main-content{justify-content:center}
+body.idle .chat-area{flex:0 1 auto; overflow:visible}
+body.idle .welcome-screen{flex:0 0 auto; padding:0 20px}
+body.idle .input-area{margin-top:24px}
+
+@media (max-width: 900px){
+  .sidebar{width:min(330px,86vw); min-width:min(330px,86vw); position:fixed; left:0; top:0; bottom:0; z-index:80}
+  .sidebar.collapsed{width:0; min-width:0}
+  .top-bar{padding:0 12px}
+  .input-area{padding:0 12px 12px}
+}
+</style>
 </head>
 <body data-app="true">
 
@@ -980,32 +1216,68 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
   <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <button class="new-chat-btn" onclick="newChat()">
-        <i data-lucide="plus" style="width:16px;height:16px;"></i>
-        New Chat
-      </button>
-      <button class="icon-btn" onclick="toggleSidebar()" title="Close sidebar">
-        <i data-lucide="panel-left-close" style="width:18px;height:18px;"></i>
-      </button>
-    </div>
-    <nav class="sidebar-nav" id="sidebarNav">
-      <div class="nav-section-title">Today</div>
-      <div id="todayChats"></div>
-      <div class="nav-section-title" style="margin-top:12px;">Previous 7 Days</div>
-      <div id="weekChats"></div>
-    </nav>
-    <div class="sidebar-footer">
-      <div class="user-profile" onclick="showToast('Profile settings')">
-        <div class="user-avatar-small">U</div>
-        <div class="user-info">
-          <div class="user-name">User</div>
-          <div class="user-plan">Online Mode</div>
-        </div>
-        <span class="pro-badge">PRO</span>
-      </div>
-    </div>
-  </aside>
+<div class="sidebar-header">
+<span class="sx-brand">Oroboros <span class="sl">/</span> Anthropic</span>
+<button class="icon-btn" onclick="toggleSidebar()" title="Close sidebar">
+<i data-lucide="panel-left-close" style="width:18px;height:18px;"></i>
+</button>
+</div>
+
+<button class="new-chat-btn" onclick="newChat()">
+<i data-lucide="plus" style="width:14px;height:14px;"></i>
+New chat
+</button>
+
+<nav class="sidebar-nav" id="sidebarNav">
+<details open>
+<summary>Chats <span class="n" id="chatCount">0</span></summary>
+<div class="sec-in">
+<div class="nav-section-title">Today</div>
+<div id="todayChats"></div>
+<div class="nav-section-title">Previous 7 days</div>
+<div id="weekChats"></div>
+</div>
+</details>
+
+<details open>
+<summary>Pages <span class="n">7</span></summary>
+<div class="sec-in">
+<a href="https://oroboroslabs-ai.github.io/anthropic/glasswing/">Glasswing</a>
+<a href="https://oroboroslabs-ai.github.io/anthropic/reality-brokers/">Reality Brokers</a>
+<a href="https://oroboroslabs-ai.github.io/anthropic/glasswing/platform/">Surveillance</a>
+<a href="https://oroboroslabs-ai.github.io/anthropic/set/harness.html">Pro Harness</a>
+<a href="https://oroboroslabs-ai.github.io/anthropic/claude-communications/">Voice</a>
+<a href="https://oroboroslabs-ai.github.io/anthropic/temporal.html">Temporal</a>
+<a href="https://oroboroslabs-ai.github.io/anthropic/cli.html">CLI</a>
+</div>
+</details>
+
+<details>
+<summary>Session <span class="n">2</span></summary>
+<div class="sec-in">
+<a href="https://github.com/oroboroslabs-ai" target="_blank" rel="noopener">Claude CLI<small>the command line</small></a>
+<a href="https://oroboroslabs-ai.github.io/anthropic/">Oroboros / Anthropic<small>back to the main pages</small></a>
+</div>
+</details>
+</nav>
+
+<div class="sidebar-footer">
+<div class="modes" id="modes">
+<button class="mode on" data-mode="offblack">Off</button>
+<button class="mode" data-mode="night">Night</button>
+<button class="mode" data-mode="white">White</button>
+<button class="mode" data-mode="natural">Natural</button>
+</div>
+<div class="user-profile" onclick="showToast('Profile settings')">
+<div class="user-avatar-small">U</div>
+<div class="user-info">
+<div class="user-name">User</div>
+<div class="user-plan">Online Mode</div>
+</div>
+<span class="pro-badge">PRO</span>
+</div>
+</div>
+</aside>
 
   <main class="main-content">
     <header class="top-bar">
@@ -1091,7 +1363,8 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
         <div class="welcome-logo">
           <img src="anthropic.png" alt="Claude">
         </div>
-        <div class="welcome-title">What can I help with?</div>
+        <div class="hero-star" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M5.9 5.9l12.2 12.2M18.1 5.9L5.9 18.1"/></svg></div>
+<div class="welcome-title">What can I help with?</div>
         <div class="welcome-subtitle">I'm Claude, an AI assistant by Oroboros-Anthropic. I can help you write, analyze, code, and think through complex problems.</div>
         <div class="suggestion-grid">
           <button class="suggestion-card" onclick="useSuggestion('Explain quantum computing in simple terms')">
@@ -2257,8 +2530,8 @@ Return ONLY the complete HTML code, no explanations.`
 
   renderSidebar(); lucide.createIcons();
   
-  // Start with sidebar closed
-  document.getElementById('sidebar').classList.add('collapsed');
+  // The drawer is open by default on wide screens
+  if (window.innerWidth < 900) document.getElementById('sidebar').classList.add('collapsed');
 </script>
 
 <!-- Media Panel -->
@@ -2723,5 +2996,46 @@ function u(){b.classList.toggle("scrolled",(window.scrollY||window.pageYOffset||
 window.addEventListener("scroll",u,{passive:true});u();})();
 </script>
 <script src="shared-header.js" defer></script>
+<script>
+(function(){
+  var modes = ['offblack','night','white','natural'];
+  function apply(m){
+    document.body.classList.remove('night','natural','light');
+    if (m === 'night' || m === 'natural') document.body.classList.add(m);
+    if (m === 'white') document.body.classList.add('light');
+    document.documentElement.style.colorScheme = (m === 'white' || m === 'natural') ? 'light' : 'dark';
+    document.querySelectorAll('.mode').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-mode') === m); });
+    try { localStorage.setItem('oa.mode', m); } catch(e){}
+  }
+  var saved = 'offblack';
+  try { saved = localStorage.getItem('oa.mode') || 'offblack'; } catch(e){}
+  apply(saved);
+  var box = document.getElementById('modes');
+  if (box) box.addEventListener('click', function(e){
+    var b = e.target.closest('.mode'); if (b) apply(b.getAttribute('data-mode'));
+  });
+
+  /* the open / close button leads the bar, as in the systemscape */
+  var brand = document.querySelector('.chat-brand');
+  var toggle = document.getElementById('sidebarToggle');
+  if (brand && toggle && brand.parentNode === toggle.parentNode) {
+    toggle.parentNode.insertBefore(toggle, brand);
+  }
+
+  /* idle = the welcome state: the composer sits under the hero */
+  function syncIdle() {
+    var w = document.getElementById('welcomeScreen');
+    var m = document.getElementById('chatMessages');
+    var idle = !!w && w.style.display !== 'none' && (!m || m.style.display === 'none');
+    document.body.classList.toggle('idle', idle);
+  }
+  var mo = new MutationObserver(syncIdle);
+  ['welcomeScreen', 'chatMessages'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) mo.observe(el, { attributes: true, attributeFilter: ['style', 'class'] });
+  });
+  syncIdle();
+})();
+</script>
 </body>
 </html>
