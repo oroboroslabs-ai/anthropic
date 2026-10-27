@@ -946,8 +946,35 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
   -webkit-backdrop-filter:blur(18px) saturate(120%)!important;backdrop-filter:blur(18px) saturate(120%)!important;
   border-bottom:1px solid rgba(255,255,255,.14)!important}
 </style>
+<link rel="stylesheet" href="shared-header.css">
+<style id="chat-chrome">
+  .top-bar, .top-bar.scrolled, .top-bar.condensed {
+    background: transparent !important;
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  .top-bar-actions { display: none !important; }
+  .chat-brand {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    text-decoration: none;
+    font: 750 12.5px/1 Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    letter-spacing: .13em;
+    color: #FFFFFF;
+  }
+  .chat-brand em {
+    font-style: normal;
+    font-weight: 700;
+    color: rgba(255, 255, 255, .68);
+  }
+  html.light .chat-brand, body.light .chat-brand { color: #171614; }
+  html.light .chat-brand em, body.light .chat-brand em { color: rgba(23, 22, 20, .62); }
+</style>
 </head>
-<body>
+<body data-app="true">
 
 <div id="app" style="display:flex; height:100vh; overflow:hidden;">
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
@@ -983,12 +1010,13 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
   <main class="main-content">
     <header class="top-bar">
       <div style="display:flex;align-items:center;gap:8px;">
+        <a href="index.html" class="chat-brand" title="Oroboros / Anthropic home"><span>OROBOROS <em>/ ANTHROPIC</em></span></a>
         <button class="icon-btn" onclick="toggleSidebar()" title="Toggle sidebar" id="sidebarToggle">
           <i data-lucide="panel-left" style="width:18px;height:18px;"></i>
         </button>
         <div style="position:relative;">
           <button class="model-selector" id="modelSelectorBtn" onclick="toggleModelDropdown()">
-            <img src="https://z-cdn-media.chatglm.cn/files/a0a2b11d-c12d-4a80-83f9-36af1f358a73.png?auth_key=1881416280-70ffdc9407974459970d4106824e2cd4-0-42075e5b2bd720b91a1e75afe2d5f7fb" style="width:18px;height:18px;" alt="Claude">
+            <img src="anthropic.png" style="width:18px;height:18px;" alt="Claude">
             <span id="currentModelName">Claude Sonnet 4.7</span>
             <i data-lucide="chevron-down" style="width:14px;height:14px;color:var(--text-muted);"></i>
           </button>
@@ -1061,7 +1089,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
     <div class="chat-area" id="chatArea">
       <div class="welcome-screen" id="welcomeScreen">
         <div class="welcome-logo">
-          <img src="https://z-cdn-media.chatglm.cn/files/a0a2b11d-c12d-4a80-83f9-36af1f358a73.png?auth_key=1881416280-70ffdc9407974459970d4106824e2cd4-0-42075e5b2bd720b91a1e75afe2d5f7fb" alt="Claude">
+          <img src="anthropic.png" alt="Claude">
         </div>
         <div class="welcome-title">What can I help with?</div>
         <div class="welcome-subtitle">I'm Claude, an AI assistant by Oroboros-Anthropic. I can help you write, analyze, code, and think through complex problems.</div>
@@ -1319,7 +1347,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
     div.innerHTML = `
       <div class="message-avatar ${isClaude ? 'claude-avatar' : 'user-avatar'}">
         ${isClaude 
-          ? `<img src="https://z-cdn-media.chatglm.cn/files/a0a2b11d-c12d-4a80-83f9-36af1f358a73.png?auth_key=1881416280-70ffdc9407974459970d4106824e2cd4-0-42075e5b2bd720b91a1e75afe2d5f7fb" alt="C">`
+          ? `<img src="anthropic.png" alt="C">`
           : `<i data-lucide="user" style="width:16px;height:16px;"></i>`}
       </div>
       <div class="message-content">
@@ -1404,7 +1432,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
     typingDiv.className = 'message'; typingDiv.id = 'typingMessage';
     typingDiv.innerHTML = `
       <div class="message-avatar claude-avatar">
-        <img src="https://z-cdn-media.chatglm.cn/files/a0a2b11d-c12d-4a80-83f9-36af1f358a73.png?auth_key=1881416280-70ffdc9407974459970d4106824e2cd4-0-42075e5b2bd720b91a1e75afe2d5f7fb" alt="C">
+        <img src="anthropic.png" alt="C">
       </div>
       <div class="message-content">
         <div class="message-sender">Claude</div>
@@ -2694,5 +2722,6 @@ Return ONLY the complete HTML code, no explanations.`
 function u(){b.classList.toggle("scrolled",(window.scrollY||window.pageYOffset||0)>40);}
 window.addEventListener("scroll",u,{passive:true});u();})();
 </script>
+<script src="shared-header.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,128 @@
+[
+  {
+    "edition": "free",
+    "files": [
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\free-neutral-chat.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\free-neutral-system.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\free-neutral-skills.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\free-neutral-appearance.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\free-neutral-sidebar-closed.png"
+    ],
+    "state": {
+      "build": "CORE HARNESS · FREE · 1.5.0",
+      "theme": "neutral",
+      "title": "TotalControl Core Harness",
+      "brand": "TotalControl\nCore Harness",
+      "logo": "40px",
+      "plan": "free",
+      "edition": "free",
+      "handsHidden": true,
+      "micDisabled": false,
+      "toolsListed": 86,
+      "webToolsListed": 0,
+      "voiceToolsListed": 0,
+      "harness": "Online",
+      "tools": "127.0.0.1:8792 · 80 tools"
+    }
+  },
+  {
+    "edition": "free",
+    "files": [
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\free-white-chat.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\free-white-appearance.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\free-white-sidebar-closed.png"
+    ],
+    "state": {
+      "build": "CORE HARNESS · FREE · 1.5.0",
+      "theme": "white",
+      "title": "TotalControl Core Harness",
+      "brand": "TotalControl\nCore Harness",
+      "logo": "40px",
+      "plan": "free",
+      "edition": "free",
+      "handsHidden": true,
+      "micDisabled": false,
+      "toolsListed": 86,
+      "webToolsListed": 0,
+      "voiceToolsListed": 0,
+      "harness": "Online",
+      "tools": "127.0.0.1:8792 · 80 tools"
+    }
+  },
+  {
+    "edition": "full",
+    "files": [
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\full-black-chat.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\full-black-system.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\full-black-skills.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\full-black-appearance.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\full-black-sidebar-closed.png"
+    ],
+    "state": {
+      "build": "CORE HARNESS · FULL · 1.5.0",
+      "theme": "dark",
+      "title": "TotalControl Core Harness",
+      "brand": "TotalControl\nCore Harness",
+      "logo": "40px",
+      "plan": "pro",
+      "edition": "full",
+      "handsHidden": false,
+      "micDisabled": false,
+      "toolsListed": 120,
+      "webToolsListed": 17,
+      "voiceToolsListed": 12,
+      "harness": "Online",
+      "tools": "127.0.0.1:8792 · 80 tools"
+    }
+  },
+  {
+    "edition": "paid",
+    "files": [
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\paid-neutral-chat.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\paid-neutral-system.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\paid-neutral-skills.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\paid-neutral-appearance.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\paid-neutral-sidebar-closed.png"
+    ],
+    "state": {
+      "build": "CORE HARNESS · UNPAID · 1.5.0",
+      "theme": "neutral",
+      "title": "TotalControl Core Harness",
+      "brand": "TotalControl\nCore Harness",
+      "logo": "40px",
+      "plan": "free",
+      "edition": "paid",
+      "handsHidden": true,
+      "micDisabled": false,
+      "toolsListed": 86,
+      "webToolsListed": 0,
+      "voiceToolsListed": 0,
+      "harness": "Online",
+      "tools": "127.0.0.1:8792 · 80 tools"
+    }
+  },
+  {
+    "edition": "paid",
+    "files": [
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\paid-white-chat.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\paid-white-appearance.png",
+      "Q:\\oroboros-core\\oa-totalcontrol-desktop\\release-1.5.0\\screenshots\\paid-white-sidebar-closed.png"
+    ],
+    "state": {
+      "build": "CORE HARNESS · UNPAID · 1.5.0",
+      "theme": "white",
+      "title": "TotalControl Core Harness",
+      "brand": "TotalControl\nCore Harness",
+      "logo": "40px",
+      "plan": "free",
+      "edition": "paid",
+      "handsHidden": true,
+      "micDisabled": false,
+      "toolsListed": 86,
+      "webToolsListed": 0,
+      "voiceToolsListed": 0,
+      "harness": "Online",
+      "tools": "127.0.0.1:8792 · 80 tools"
+    }
+  }
+]

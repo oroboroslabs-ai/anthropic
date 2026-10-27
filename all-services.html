@@ -383,14 +383,17 @@ html.light .topbar .brandimg em,.light .topbar .brandimg em,[data-theme="light"]
 .topbar nav .lite:hover{color:#edebe6!important;border-color:rgba(255,255,255,.30)!important}
 html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topbar nav .lite{color:#5d5a54!important;border-color:rgba(20,20,19,.18)!important}
 </style>
-</head>
+<link rel="stylesheet" href="shared-header.css">
+<style id="services-a-mark">
+  .hero-logos .a-mark { width: 1.3em; height: 1.3em; transform: scaleX(-1); }
+</style></head>
 <body>
 <header class="topbar" id="top"><div class="tbin">
 <div class="bleft"><a class="brand brandimg" href="index.html" aria-label="Oroboros / Anthropic"><svg class="oamark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="37" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-dasharray="209 24" transform="rotate(-118 50 50)"/></svg><span>OROBOROS <em>/ ANTHROPIC</em></span></a></div>
 <nav>
 <a href="index.html" data-k="harness">HARNESS</a>
 <a href="set/index.html" data-k="pro">PRO</a>
-<a href="glasswing.html" data-k="glasswing">GLASSWING</a>
+<a href="glasswing/" data-k="glasswing">GLASSWING</a>
 <a href="temporal.html" data-k="temporal">TEMPORAL</a>
 <a href="huggingface.html" data-k="huggingface">HUGGINGFACE</a>
 <a href="index.html#memory" data-k="memory">MEMORY</a>
@@ -646,7 +649,7 @@ claude-cli</div>
             <p class="ds-text-body" style="max-width:620px;margin:16px auto 0">Every /A service — replicated and enhanced
                through the Oroboros Core. Local only, law enforced.</p>
             <div class="hero-cta">
-                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">Download the free harness</a>
+                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/download/v1.0.0-free/TotalControl-Free-Core-1.0.1-nocrawl.zip">Download the free harness</a>
                 <a class="btn" href="cli.html">Claude CLI</a>
             </div>
         </div>
@@ -717,5 +720,6 @@ loadDlCount();
 
 
 <script src="site.js" defer></script>
+<script src="shared-header.js" defer></script>
 </body>
 </html>

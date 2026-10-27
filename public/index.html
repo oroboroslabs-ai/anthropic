@@ -972,8 +972,9 @@
     animation: fadeInUp 0.4s ease-out forwards;
   }
 </style>
+<link rel="stylesheet" href="../shared-header.css">
 </head>
-<body>
+<body data-app="true">
 
 <div id="app" style="display:flex; height:100vh; overflow:hidden;">
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
@@ -1014,7 +1015,7 @@
         </button>
         <div style="position:relative;">
           <button class="model-selector" id="modelSelectorBtn" onclick="toggleModelDropdown()">
-            <img src="https://z-cdn-media.chatglm.cn/files/a0a2b11d-c12d-4a80-83f9-36af1f358a73.png?auth_key=1881416280-70ffdc9407974459970d4106824e2cd4-0-42075e5b2bd720b91a1e75afe2d5f7fb" style="width:18px;height:18px;" alt="Claude">
+            <img src="anthropic.png" style="width:18px;height:18px;" alt="Claude">
             <span id="currentModelName">Claude Opus 9.6GB</span>
             <i data-lucide="chevron-down" style="width:14px;height:14px;color:var(--text-muted);"></i>
           </button>
@@ -1374,7 +1375,7 @@
     <div class="chat-area" id="chatArea">
       <div class="welcome-screen" id="welcomeScreen">
         <div class="welcome-logo">
-          <img src="https://z-cdn-media.chatglm.cn/files/a0a2b11d-c12d-4a80-83f9-36af1f358a73.png?auth_key=1881416280-70ffdc9407974459970d4106824e2cd4-0-42075e5b2bd720b91a1e75afe2d5f7fb" alt="Claude">
+          <img src="anthropic.png" alt="Claude">
         </div>
         <div class="welcome-title">What can I help with?</div>
         <div class="welcome-subtitle">I'm Claude, an AI assistant by Oroboros-Anthropic. I can help you write, analyze, code, and think through complex problems.</div>
@@ -1574,7 +1575,7 @@
     div.innerHTML = `
       <div class="message-avatar ${isClaude ? 'claude-avatar' : 'user-avatar'}">
         ${isClaude 
-          ? `<img src="https://z-cdn-media.chatglm.cn/files/a0a2b11d-c12d-4a80-83f9-36af1f358a73.png?auth_key=1881416280-70ffdc9407974459970d4106824e2cd4-0-42075e5b2bd720b91a1e75afe2d5f7fb" alt="C">`
+          ? `<img src="anthropic.png" alt="C">`
           : `<i data-lucide="user" style="width:16px;height:16px;"></i>`}
       </div>
       <div class="message-content">
@@ -1715,7 +1716,7 @@
     typingDiv.className = 'message'; typingDiv.id = 'typingMessage';
     typingDiv.innerHTML = `
       <div class="message-avatar claude-avatar">
-        <img src="https://z-cdn-media.chatglm.cn/files/a0a2b11d-c12d-4a80-83f9-36af1f358a73.png?auth_key=1881416280-70ffdc9407974459970d4106824e2cd4-0-42075e5b2bd720b91a1e75afe2d5f7fb" alt="C">
+        <img src="anthropic.png" alt="C">
       </div>
       <div class="message-content">
         <div class="message-sender">Claude</div>
@@ -1963,5 +1964,6 @@
   renderSidebar(); lucide.createIcons();
 </script>
 
+<script src="../shared-header.js" defer></script>
 </body>
 </html>

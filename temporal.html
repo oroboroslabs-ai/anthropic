@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Temporal Engine — Oroboros / Anthropic</title>
-<link rel="icon" href="http://127.0.0.1:3010/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="http://127.0.0.1:3010/favicon.svg">
+<link rel="icon" href="favicon.png" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon.png">
 <style>
   :root, [data-theme="light"] { color-scheme: light;
     --bg:#ffffff; --fg:#141413; --muted:#545350; --line:#d9d7d1; --card:rgba(20,20,19,.03); --accent:#141413; }
@@ -217,14 +217,24 @@ html.light .topbar .brandimg em,.light .topbar .brandimg em,[data-theme="light"]
 .topbar nav .lite:hover{color:#edebe6!important;border-color:rgba(255,255,255,.30)!important}
 html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topbar nav .lite{color:#5d5a54!important;border-color:rgba(20,20,19,.18)!important}
 </style>
-</head>
+<link rel="stylesheet" href="shared-header.css">
+<style id="temporal-plain-engines">
+  html:not(.light) body .engines .card,
+  html.light body .engines .card,
+  body .engines .card {
+    background: transparent !important;
+    background-image: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+</style></head>
 <body>
 <header class="topbar" id="top"><div class="tbin">
 <div class="bleft"><a class="brand brandimg" href="index.html" aria-label="Oroboros / Anthropic"><svg class="oamark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="37" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-dasharray="209 24" transform="rotate(-118 50 50)"/></svg><span>OROBOROS <em>/ ANTHROPIC</em></span></a></div>
 <nav>
 <a href="index.html">HARNESS</a>
 <a href="set/index.html">PRO</a>
-<a href="glasswing.html">GLASSWING</a>
+<a href="glasswing/">GLASSWING</a>
 <a class="here" href="temporal.html">TEMPORAL</a>
 <a href="huggingface.html">HUGGINGFACE</a>
 <a href="index.html#memory">MEMORY</a>
@@ -282,7 +292,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
 
   <section class="sheet">
     <h2>Engines</h2>
-    <div class="grid">
+    <div class="grid engines">
       <div class="card"><b>Simulation</b><span><code>sim.logistic</code> · <code>sim.predator</code> · <code>sim.epidemic</code> · <code>sim.wave</code></span></div>
       <div class="card"><b>Forecast</b><span>Project a kernel 1–12 steps with a confidence band that widens with horizon.</span></div>
       <div class="card"><b>Scenario</b><span>Two states, same horizon. Reports drift and whether the pair converges or diverges.</span></div>
@@ -310,5 +320,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
     </footer>
   </section>
 </main>
+<script src="shared-header.js" defer></script>
 </body>
 </html>
+

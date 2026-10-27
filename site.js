@@ -1,6 +1,6 @@
 /* TC_SHOP — the single store config (the shop + the checkout read this) */
 window.TC_SHOP = {
-    paypalBusiness: '',
+    paypalBusiness: 'oroboroslabs.ai@gmail.com',
     handsPro: 69.00,
     extAddon: 29.00
 };
@@ -19,8 +19,10 @@ window.TC_SHOP = {
   }
   function writeLite(on) {
     try { localStorage.setItem('tc-lite', on ? '1' : ''); } catch (e) {}
+    try { localStorage.setItem('oa-theme', on ? 'light' : 'dark'); } catch (e) {}
     try { sessionStorage.setItem('tc-lite', on ? '1' : ''); } catch (e) {}
     try { document.cookie = 'tc-lite=' + (on ? '1' : '0') + '; path=/; max-age=31536000; SameSite=Lax'; } catch (e) {}
+    try { document.cookie = 'oa-theme=' + (on ? 'light' : 'dark') + '; path=/; max-age=31536000; SameSite=Lax'; } catch (e) {}
   }
   function readLite() {
     try { const v = localStorage.getItem('tc-lite'); if (v !== null && v !== '') return v; } catch (e) {}
@@ -87,7 +89,7 @@ window.TC_SHOP = {
       if (!v || Date.now() - t > 1800000) {
         const r = await fetch('https://api.github.com/repos/oroboroslabs-ai/totalcontrol-core-harness/releases/latest');
         const d = await r.json();
-        const a = (d.assets || []).find(x => /TotalControl-Free-Core\.zip/i.test(x.name || ''));
+        const a = (d.assets || []).find(x => /TotalControl-Free-Core.*\.zip/i.test(x.name || ''));
         if (a) {
           v = a.download_count;
           try { localStorage.setItem('tc-dl-count', v); localStorage.setItem('tc-dl-ts', String(Date.now())); } catch (e) {}

@@ -1,0 +1,109 @@
+/* One flat, monochrome skin for every marketing page. */
+:root {
+  --plain-bg: #111111;
+  --plain-panel: #161616;
+  --plain-ink: #FFFFFF;
+  --plain-muted: #A8A49C;
+  --plain-dim: #77736B;
+  --plain-line: rgba(255,255,255,.12);
+  --plain-line2: rgba(255,255,255,.18);
+  --accent: #FFFFFF !important;
+  --accent-hover: #FFFFFF !important;
+  --accent-light: rgba(255,255,255,.05) !important;
+}
+html.light {
+  --plain-bg: #FFFFFF;
+  --plain-panel: #FFFFFF;
+  --plain-ink: #171614;
+  --plain-muted: #5E5B55;
+  --plain-dim: #8A867E;
+  --plain-line: rgba(20,20,19,.12);
+  --plain-line2: rgba(20,20,19,.18);
+  --accent: #171614 !important;
+  --accent-hover: #000000 !important;
+  --accent-light: rgba(20,20,19,.05) !important;
+}
+html:not(.light) body { background: #111111 !important; color: var(--plain-ink) !important; }
+html.light body { background: #FFFFFF !important; color: var(--plain-ink) !important; }
+body:before, .finale:before { display: none !important; }
+.reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+.eyebrow { border-color: var(--plain-line) !important; background: transparent !important; color: var(--plain-muted) !important; }
+.eyebrow .dot { background: var(--plain-muted) !important; }
+.eyebrow2 { color: var(--plain-dim) !important; }
+.hl, .hl-o, .here-word { color: inherit !important; }
+.btn.primary { background: var(--plain-ink) !important; border-color: var(--plain-ink) !important; color: var(--plain-bg) !important; box-shadow: none !important; }
+.btn.primary:hover { background: var(--plain-ink) !important; border-color: var(--plain-ink) !important; }
+.btn { border-color: var(--plain-line2) !important; color: var(--plain-ink) !important; background: transparent !important; box-shadow: none !important; }
+.btn:hover { background: var(--plain-panel) !important; border-color: var(--plain-dim) !important; }
+a.dl { color: var(--plain-ink) !important; }
+.soon { border-color: var(--plain-line2) !important; background: transparent !important; }
+.soon .tt { color: var(--plain-ink) !important; }
+.pill.acc, .law .bn, .pill.bn, .tagcode { border-color: var(--plain-line2) !important; background: transparent !important; color: var(--plain-muted) !important; box-shadow: none !important; }
+.pill.acc .ds, .law .bn .ds, .pill.bn .ds { color: var(--plain-dim) !important; }
+.formula .nv { background: var(--plain-ink) !important; border-color: var(--plain-ink) !important; color: var(--plain-bg) !important; }
+.formula .wo { color: var(--plain-ink) !important; }
+.formula .op { color: var(--plain-dim) !important; }
+.card, .prod, .mini, .panel, .window, .tblwrap, .mono-fig, .glass, .cmdcard, .lawstrip { background: var(--plain-panel) !important; border-color: var(--plain-line) !important; box-shadow: 0 1px 2px rgba(0,0,0,.14) !important; }
+.shotframe { background: linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.02)) !important; border-color: var(--plain-line) !important; box-shadow: 0 20px 60px rgba(0,0,0,.35) !important; }
+html.light .shotframe { background: rgba(255,255,255,.65) !important; border-color: var(--plain-line) !important; box-shadow: 0 20px 60px rgba(20,20,19,.08) !important; }
+.prod:hover, .card:hover { border-color: var(--plain-line2) !important; }
+.prod img { border-color: var(--plain-line) !important; }
+.prod-k, .prod p, .card p, .mini p, .cap, .ds-text-body, .note, .lead { color: var(--plain-muted) !important; }
+.prod-l, .card h3, .prod h3, .metric b, .stat b { color: var(--plain-ink) !important; }
+.law span { border-color: var(--plain-line) !important; background: var(--plain-panel) !important; color: var(--plain-muted) !important; }
+section.block { border-top-color: var(--plain-line) !important; }
+footer.site { background: #0D0D0D !important; color: var(--plain-muted) !important; }
+html.light footer.site { background: #EFEEE9 !important; }
+footer:before, footer:after, footer.site:before, footer.site:after { display: none !important; }
+html.light .topbar { background: transparent !important; border-color: transparent !important; }
+html.light nav a { color: var(--plain-muted) !important; }
+html.light nav a.here { color: var(--plain-ink) !important; }
+::selection { background: var(--plain-ink); color: var(--plain-bg); }
+html:not(.light) body .hero .btn.primary,
+html:not(.light) body .btn.primary { background: #FFFFFF !important; border-color: #FFFFFF !important; color: #111111 !important; }
+html:not(.light) body .btn:not(.primary) { color: #FFFFFF !important; border-color: rgba(255,255,255,.28) !important; }
+html:not(.light) h1,
+html:not(.light) h2,
+html:not(.light) h3,
+html:not(.light) .harness-heading,
+html:not(.light) .brand,
+html:not(.light) .formula,
+html:not(.light) .prod-l,
+html:not(.light) .card h3 { color: #FFFFFF !important; }
+html:not(.light) body .hero .eyebrow { background: transparent !important; color: #A8A49C !important; border-color: rgba(255,255,255,.16) !important; }
+html.light body .hero .eyebrow, .light .hero .eyebrow { background: transparent !important; color: #5E5B55 !important; border-color: rgba(20,20,19,.16) !important; }
+html:not(.light) body .eyebrow { background: transparent !important; color: #A8A49C !important; border-color: rgba(255,255,255,.16) !important; }
+html.light body .eyebrow { background: transparent !important; color: #5E5B55 !important; border-color: rgba(20,20,19,.16) !important; }
+html:not(.light) body .eyebrow .dot { background: #A8A49C !important; }
+html.light body .eyebrow .dot { background: #5E5B55 !important; }
+html:not(.light) .loop { color: #FFFFFF !important; }
+html:not(.light) .subnav a, html:not(.light) .subnav a.on { color: rgba(255,255,255,.72) !important; }
+html:not(.light) .subnav a.on { color: #FFFFFF !important; }
+html:not(.light) .subnav { border-color: rgba(255,255,255,.12) !important; }
+html.light .subnav a, html.light .subnav a.on { color: rgba(20,20,19,.62) !important; }
+html.light .subnav a.on { color: #171614 !important; }
+html:not(.light) body .here-word,
+html:not(.light) body .hl,
+html:not(.light) body .hl-o { color: #FFFFFF !important; }
+.gallery img { width: 100% !important; height: auto !important; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+/* Second row of section links on the Pro pages: normal flow, below the fixed bar. */
+.wrap > nav {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 10px !important;
+  margin: 0 0 28px !important;
+  padding: 14px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .12) !important;
+  background: transparent !important;
+}
+html.light .wrap > nav { border-bottom-color: rgba(20, 20, 19, .12) !important; }
+html:not(.light) .tag2 { color: #A8A49C !important; }
+html.light .tag2 { color: #5E5B55 !important; }
+html:not(.light) .dlmetric { color: #A8A49C !important; border-color: rgba(255,255,255,.16) !important; background: transparent !important; }
+html.light .dlmetric { color: #5E5B55 !important; border-color: rgba(20,20,19,.16) !important; background: transparent !important; }

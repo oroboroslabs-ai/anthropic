@@ -1,0 +1,380 @@
+/* ============================================================
+   One finished-site bar for every marketing page.
+   - Text only while the page is at the top.
+   - Frosted fog appears when scrolling and stays until the top.
+   - Same markup, links, and moon/sun control on every page.
+   ============================================================ */
+
+:root {
+  --uh-h: 58px;
+  --uh-dark-bg: rgba(255, 255, 255, .72);
+  --uh-dark-line: rgba(20, 20, 19, .12);
+  --uh-dark-text: #FFFFFF;
+  --uh-dark-dim: rgba(255, 255, 255, .68);
+  --uh-light-bg: rgba(255, 255, 255, .28);
+  --uh-light-line: rgba(20, 20, 19, .12);
+  --uh-light-text: #171614;
+  --uh-light-dim: rgba(23, 22, 20, .62);
+  --uh-accent: #E6E4DE;
+}
+
+/* Application pages keep their own chrome. */
+body[data-app="true"] { padding-top: 0 !important; }
+body:not([data-app="true"]) { padding-top: var(--uh-h) !important; }
+
+/* Hide only the old marketing bars, never an app's own header. */
+body > header.topbar,
+body > header.top-bar.site,
+body > .topbar,
+body > .main-header.site,
+body > .site-header.site { display: none !important; }
+
+#unifiedHeader {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+  width: 100%;
+  min-height: var(--uh-h);
+  margin: 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+  color: var(--uh-dark-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  transition: background .28s ease, border-color .28s ease, box-shadow .28s ease, backdrop-filter .28s ease;
+}
+
+#unifiedHeader.uh-scrolled {
+  background: var(--uh-dark-bg);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  backdrop-filter: blur(18px) saturate(1.1);
+  border-bottom-color: var(--uh-dark-line);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, .22);
+}
+
+.uh-inner {
+  width: 100%;
+  max-width: 1720px;
+  min-height: var(--uh-h);
+  margin: 0 auto;
+  padding: 8px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.uh-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  flex: 0 0 auto;
+  color: var(--uh-dark-text) !important;
+  font-size: 12.5px;
+  font-weight: 750;
+  letter-spacing: .13em;
+  line-height: 1;
+  text-decoration: none !important;
+  white-space: nowrap;
+  border-radius: 7px;
+}
+.uh-brand:focus-visible { outline: 2px solid var(--uh-accent); outline-offset: 4px; }
+.uh-brand svg { width: 24px; height: 24px; flex: none; color: currentColor; }
+.uh-brand em { font-style: normal; font-weight: 700; color: var(--uh-dark-dim); }
+
+#unifiedHeader nav {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+#unifiedHeader nav::-webkit-scrollbar { display: none; }
+
+#unifiedHeader nav a {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 8px 0;
+  color: var(--uh-dark-dim) !important;
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: .085em;
+  line-height: 1;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: color .18s ease;
+}
+#unifiedHeader nav a:hover,
+#unifiedHeader nav a.uh-here { color: var(--uh-dark-text) !important; }
+#unifiedHeader nav a.uh-here::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: var(--uh-accent);
+}
+#unifiedHeader nav a[href*="claude-communications"] { color: var(--uh-dark-text) !important; }
+
+.uh-theme {
+  appearance: none;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--uh-dark-text);
+  cursor: pointer;
+  transition: background .18s ease, color .18s ease;
+}
+.uh-theme:hover { background: rgba(255, 255, 255, .09); }
+.uh-theme:focus-visible { outline: 2px solid var(--uh-accent); outline-offset: 2px; }
+.uh-theme svg { width: 17px; height: 17px; display: block; }
+.uh-theme .uh-sun { display: none; }
+
+/* ---- light mode ---- */
+html.light,
+[data-theme="light"] { color-scheme: light; }
+html.light #unifiedHeader,
+[data-theme="light"] #unifiedHeader { color: var(--uh-light-text); }
+html.light #unifiedHeader.uh-scrolled,
+[data-theme="light"] #unifiedHeader.uh-scrolled {
+  background: var(--uh-light-bg);
+  border-bottom-color: var(--uh-light-line);
+  box-shadow: 0 10px 36px rgba(20, 20, 19, .07);
+}
+html.light .uh-brand,
+[data-theme="light"] .uh-brand { color: var(--uh-light-text) !important; }
+html.light .uh-brand em,
+[data-theme="light"] .uh-brand em { color: var(--uh-light-dim); }
+html.light #unifiedHeader nav a,
+[data-theme="light"] #unifiedHeader nav a { color: var(--uh-light-dim) !important; }
+html.light #unifiedHeader nav a:hover,
+html.light #unifiedHeader nav a.uh-here,
+[data-theme="light"] #unifiedHeader nav a:hover,
+[data-theme="light"] #unifiedHeader nav a.uh-here { color: var(--uh-light-text) !important; }
+html.light #unifiedHeader nav a[href*="claude-communications"],
+[data-theme="light"] #unifiedHeader nav a[href*="claude-communications"] { color: var(--uh-light-text) !important; }
+html.light .uh-theme,
+[data-theme="light"] .uh-theme { color: var(--uh-light-text); }
+html.light .uh-theme:hover,
+[data-theme="light"] .uh-theme:hover { background: rgba(20, 20, 19, .07); }
+html.light .uh-theme .uh-sun,
+[data-theme="light"] .uh-theme .uh-sun { display: block; }
+html.light .uh-theme .uh-moon,
+[data-theme="light"] .uh-theme .uh-moon { display: none; }
+
+/* ---- global light paper for marketing pages without their own palette ---- */
+html.light body:not([data-app="true"]) {
+  background: #FFFFFF !important;
+  color: #171614 !important;
+}
+html.light body:not([data-app="true"])::before { opacity: .5 !important; }
+
+/* ---- the small product-pages share the same paper ---- */
+html.light .wrap { color: #171614; }
+html.light .wrap .lead,
+html.light .wrap .note,
+html.light .wrap .gallery figcaption,
+html.light .wrap .media figcaption,
+html.light .wrap .buy p,
+html.light .wrap .freetier p { color: #5E5B55 !important; }
+html.light .wrap .card,
+html.light .wrap .buy,
+html.light .wrap .freetier,
+html.light .wrap .gallery figure,
+html.light .wrap .media,
+html.light .wrap .box,
+html.light .wrap .tblwrap,
+html.light .wrap .cmdrow {
+  background: #FFFFFF !important;
+  border-color: rgba(20, 20, 19, .12) !important;
+  box-shadow: 0 1px 2px rgba(20, 20, 19, .04), 0 12px 34px rgba(20, 20, 19, .035) !important;
+}
+html.light .wrap .card h3 { color: #171614 !important; }
+html.light .wrap .buy .price,
+html.light .wrap .price,
+html.light .wrap h1,
+html.light .wrap h2,
+html.light .wrap h3 { color: #171614; }
+html.light .wrap .tier { color: #77736B !important; }
+html.light .wrap .pp {
+  color: #171614 !important;
+  border-color: #171614 !important;
+}
+html.light .wrap .pp:hover { background: #171614 !important; color: #FFFFFF !important; }
+html.light .wrap .freetier .dl {
+  color: #171614 !important;
+  border-color: rgba(20, 20, 19, .22) !important;
+}
+html.light .wrap .freetier .dl:hover { color: #171614 !important; border-color: #171614 !important; }
+html.light .wrap .gallery img { background: #F0EFEA; }
+html.light .wrap .logo-pill { border-color: rgba(20, 20, 19, .16) !important; }
+html.light .wrap .logo-pill img { filter: invert(1); }
+html.light .wrap .logo-pill > span > span:first-child { color: #171614 !important; }
+
+/* ---- anchors clear the sticky bar ---- */
+:target,
+section[id],
+[id][style*="scroll-margin"] { scroll-margin-top: calc(var(--uh-h) + 22px); }
+
+@media (max-width: 1420px) {
+  #unifiedHeader nav { gap: 11px; }
+  #unifiedHeader nav a { font-size: 10px; letter-spacing: .065em; }
+}
+@media (max-width: 1180px) {
+  .uh-inner { gap: 10px; padding: 8px 16px; }
+  .uh-brand span { display: none; }
+  #unifiedHeader nav { justify-content: flex-start; }
+}
+@media (max-width: 720px) {
+  .uh-inner { padding: 7px 12px; }
+  #unifiedHeader nav { gap: 9px; }
+  #unifiedHeader nav a { font-size: 9.5px; letter-spacing: .05em; }
+  .uh-theme { width: 30px; height: 30px; }
+}
+/* White fog bar, dark type once the page is scrolled. */
+#unifiedHeader.uh-scrolled {
+  background: rgba(255, 255, 255, .28);
+  border-bottom-color: rgba(20, 20, 19, .12);
+  box-shadow: 0 6px 20px rgba(20, 20, 19, .08);
+  color: #171614;
+}
+#unifiedHeader.uh-scrolled .uh-brand { color: #171614 !important; }
+#unifiedHeader.uh-scrolled .uh-brand em { color: rgba(23, 22, 20, .60) !important; }
+#unifiedHeader.uh-scrolled nav a { color: rgba(23, 22, 20, .62) !important; }
+#unifiedHeader.uh-scrolled nav a:hover,
+#unifiedHeader.uh-scrolled nav a.uh-here { color: #171614 !important; }
+#unifiedHeader.uh-scrolled nav a.uh-here::after { background: #171614; }
+#unifiedHeader.uh-scrolled .uh-theme { color: #171614; }
+#unifiedHeader.uh-scrolled .uh-theme:hover { background: rgba(20, 20, 19, .07); }
+
+/* Monochrome product pages: remove the old orange/gold accents. */
+html:not(.light) body:not([data-app="true"]) .eyebrow,
+html:not(.light) body:not([data-app="true"]) .eyebrow2,
+html:not(.light) body:not([data-app="true"]) .kicker,
+html:not(.light) body:not([data-app="true"]) .prod-k,
+html:not(.light) body:not([data-app="true"]) .tier {
+  color: #A8A49C !important;
+  border-color: rgba(255, 255, 255, .16) !important;
+  background: transparent !important;
+}
+html:not(.light) body:not([data-app="true"]) .btn.primary,
+html:not(.light) body:not([data-app="true"]) .pp,
+html:not(.light) body:not([data-app="true"]) .dl {
+  background: #F2F1EE !important;
+  border-color: #F2F1EE !important;
+  color: #111111 !important;
+}
+html:not(.light) body:not([data-app="true"]) .btn.primary:hover,
+html:not(.light) body:not([data-app="true"]) .pp:hover,
+html:not(.light) body:not([data-app="true"]) .dl:hover {
+  background: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  color: #111111 !important;
+}
+html:not(.light) body:not([data-app="true"]) .hl,
+html:not(.light) body:not([data-app="true"]) .hl-o,
+html:not(.light) body:not([data-app="true"]) .gold,
+html:not(.light) body:not([data-app="true"]) .card h3,
+html:not(.light) body:not([data-app="true"]) .price { color: #F2F1EE !important; }
+html:not(.light) body:not([data-app="true"]) .card,
+html:not(.light) body:not([data-app="true"]) .prod,
+html:not(.light) body:not([data-app="true"]) .buy,
+html:not(.light) body:not([data-app="true"]) .freetier,
+html:not(.light) body:not([data-app="true"]) .gallery figure,
+html:not(.light) body:not([data-app="true"]) .voice-controls,
+html:not(.light) body:not([data-app="true"]) .voice-split figure {
+  background: #161616 !important;
+  border-color: rgba(255, 255, 255, .12) !important;
+}
+html:not(.light) .wrap .logo-pill > span > span:first-child,
+html:not(.light) .wrap .logo-pill > span > span:last-child { color: #F2F1EE !important; }
+/* Override legacy global nav rules on the set pages. */
+#unifiedHeader nav {
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  flex: 1 1 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  min-width: 0 !important;
+  width: auto !important;
+  max-width: none !important;
+}
+#unifiedHeader nav a { font-size: 12px !important; letter-spacing: .05em !important; }
+@media (max-width: 1420px) { #unifiedHeader nav { gap: 10px !important; } #unifiedHeader nav a { font-size: 11.5px !important; } }
+@media (max-width: 1180px) { #unifiedHeader nav { justify-content: flex-start !important; } #unifiedHeader nav a { font-size: 11px !important; } }
+@media (max-width: 720px) { #unifiedHeader nav { gap: 8px !important; } #unifiedHeader nav a { font-size: 10px !important; } }
+#unifiedHeader, #unifiedHeader *, #unifiedHeader *::before, #unifiedHeader *::after { box-sizing: border-box; }
+html.light #unifiedHeader nav a.uh-here::after { background: #8A867E; }
+html.light #unifiedHeader.uh-scrolled nav a.uh-here::after { background: #171614; }
+/* Final bar lock: same geometry on every page, centered on the real page centre. */
+#unifiedHeader { padding: 0 !important; margin: 0 !important; }
+.uh-inner {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, auto) minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+.uh-brand {
+  justify-self: start !important;
+  font-size: 12.5px !important;
+  font-weight: 750 !important;
+  letter-spacing: .13em !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+}
+#unifiedHeader nav {
+  justify-self: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  max-width: 100% !important;
+}
+.uh-theme {
+  justify-self: end !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  appearance: none !important;
+}
+#unifiedHeader nav a {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 8px 0 !important;
+  margin: 0 !important;
+  font-weight: 650 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+}
+#unifiedHeader nav a:hover {
+  border-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}

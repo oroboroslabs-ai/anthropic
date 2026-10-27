@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TotalControl Harness | Free download — /A OROBOROS / ANTHROPIC</title>
+<title>Free TotalCore Harness | TotalControl Core — /A OROBOROS / ANTHROPIC</title>
 <meta name="description" content="TotalControl Core Harness — load the static weight core, run the loop, own your machine. Download the free release v1.0.0-free.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -390,6 +390,16 @@ html.light .topbar .brandimg em,.light .topbar .brandimg em,[data-theme="light"]
 .topbar nav .lite:hover{color:#edebe6!important;border-color:rgba(255,255,255,.30)!important}
 html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topbar nav .lite{color:#5d5a54!important;border-color:rgba(20,20,19,.18)!important}
 </style>
+<link rel="stylesheet" href="shared-header.css">
+<link rel="stylesheet" href="plain-skin.css">
+<style id="free-media">
+  .preview { max-width: 1020px; }
+  .shotframe img { width: 100% !important; height: auto !important; aspect-ratio: 1444 / 901; }
+  .hero + .preview { max-width: 1200px; }
+  .hero.center { position: relative; }
+  .free-ouroboros { position: absolute; top: 50%; right: 0; width: clamp(156px, 15.6vw, 234px); height: auto; transform: translateY(-50%); color: #FFFFFF; pointer-events: none; }
+  @media (max-width: 1100px) { .free-ouroboros { position: static; display: block; margin: 0 auto 18px; width: 125px; transform: none; } }
+</style>
 </head>
 <body>
 <header class="topbar" id="top"><div class="tbin">
@@ -397,7 +407,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
 <nav>
 <a href="index.html" class="here" data-k="harness">HARNESS</a>
 <a href="set/index.html" data-k="pro">PRO</a>
-<a href="glasswing.html" data-k="glasswing">GLASSWING</a>
+<a href="glasswing/" data-k="glasswing">GLASSWING</a>
 <a href="temporal.html" data-k="temporal">TEMPORAL</a>
 <a href="huggingface.html" data-k="huggingface">HUGGINGFACE</a>
 <a href="index.html#memory" data-k="memory">MEMORY</a>
@@ -412,14 +422,15 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
 <main>
     <div class="container">
         <div class="hero center">
+            <svg class="free-ouroboros" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="37" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-dasharray="209 24" transform="rotate(-118 50 50)"/></svg>
             <span class="eyebrow">✦ RELEASE 1.0.0-FREE · RUNS ON YOUR MACHINE</span>
-            <h1 class="harness-heading">TotalControl Harness.<br>Ready to use. <span class="here-word">Right now.</span></h1>
+            <h1 class="harness-heading">Free TotalCore Harness.<br>Ready to use. <span class="here-word">Right now.</span></h1>
             <div class="intro">
                 <p class="ds-text-body">Load the static weight core — shard blobs of any size — and the loop hands
                    your installed models their engine.</p>
             </div>
             <div class="hero-cta">
-                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">↓&nbsp; Download TotalControl-Free-Core.zip</a>
+                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/download/v1.0.0-free/TotalControl-Free-Core-1.0.1-nocrawl.zip">↓&nbsp; Download TotalControl-Free-Core-1.0.1-nocrawl.zip</a>
                 <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/blob/main/docs/AI-INSTALL.md">AI-INSTALL.md runbook</a>
                 <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness">View on GitHub</a>
                 <span class="dlmetric" data-dl></span>
@@ -435,16 +446,23 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
         <!-- the harness, live -->
         <div class="preview">
             <div class="shotframe">
-                <img src="harness-hero.png" alt="The TotalControl harness — load the weight systems, run the loop, own your machine">
+                <img src="assets/screens/fresh-white-chat.png" width="1444" height="901" alt="The free harness chat in white mode" decoding="async">
             </div>
             <div class="cap">the totalcontrol core harness — 127.0.0.1:8792/core · 1.95 mb · python 3.13</div>
         </div>
 
             <div class="preview" style="margin-top:26px">
                 <div class="shotframe">
-                    <img src="core-shot.png" alt="The static weight core panel — load the weight systems, hand the models their engine">
+                    <img src="assets/screens/fresh-white-system.png" width="1444" height="901" alt="The free harness system page in white mode" loading="lazy" decoding="async">
                 </div>
                 <div class="cap">the static weight core — ollama · huggingface · lm studio · the majors — the loop, models only</div>
+            </div>
+
+            <div class="preview" style="margin-top:26px">
+                <div class="shotframe">
+                    <img src="assets/screens/fresh-white-appearance.png" width="1444" height="901" alt="Appearance panel on the right, white mode" loading="lazy" decoding="async">
+                </div>
+                <div class="cap">white mode — warm paper, quiet borders, the same local loop</div>
             </div>
     </div>
 
@@ -642,8 +660,8 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
                        compiled — <code class="inline">engine.py</code> source never ships) ·
                        <code class="inline">gui-core</code> panel · <code class="inline">AI-INSTALL.md</code> — the runbook
                        written for the AI that installs · <code class="inline">tests/probe_free.py</code>.</p>
-                    <div class="cmdrow"><span class="ps">$</span><code>TotalControl-Free-Core.zip · release 1.0.0-free</code></div>
-                    <a class="dl" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">Download TotalControl-Free-Core.zip →</a>
+                    <div class="cmdrow"><span class="ps">$</span><code>TotalControl-Free-Core-1.0.1-nocrawl.zip · release 1.0.0-free</code></div>
+                    <a class="dl" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/download/v1.0.0-free/TotalControl-Free-Core-1.0.1-nocrawl.zip">Download TotalControl-Free-Core-1.0.1-nocrawl.zip →</a>
                     <span class="dlmetric" data-dl></span>
                 </div>
                 <div class="cmdcard">
@@ -673,9 +691,9 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
     </section>
             <div class="preview" style="margin-top:26px">
                 <div class="shotframe">
-                    <img src="hands-shot.png" alt="The TotalControl Core Hands panel — final testing, private build">
+                    <img src="assets/screens/fresh-white-skills.png" width="1444" height="901" alt="The free harness skills and tools in white mode" loading="lazy" decoding="async">
                 </div>
-                <div class="cap">totalcontrol core hands — the panel in final testing · gateway 127.0.0.1 only · payments unlock at launch</div>
+                <div class="cap">skills &amp; tools — local roots, preview, then use in chat · gateway 127.0.0.1 only</div>
             </div>
 
     <div class="finale">
@@ -684,7 +702,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
             <p class="ds-text-body" style="max-width:620px;margin:16px auto 0">Download the free harness, load the
                static weight core, and your installed models step through the loop — on 127.0.0.1 only.</p>
             <div class="hero-cta">
-                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/latest/download/TotalControl-Free-Core.zip">↓&nbsp; Download the free harness</a>
+                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/download/v1.0.0-free/TotalControl-Free-Core-1.0.1-nocrawl.zip">↓&nbsp; Download the free harness</a>
                 <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness">Release &amp; source on GitHub</a>
                 <span class="dlmetric" data-dl></span>
             </div>
@@ -742,7 +760,7 @@ async function loadDlCount(){
     if (!v || Date.now() - t > 1800000) {
       const r = await fetch('https://api.github.com/repos/oroboroslabs-ai/totalcontrol-core-harness/releases/latest');
       const d = await r.json();
-      const a = (d.assets || []).find(x => /TotalControl-Free-Core\.zip/i.test(x.name || ''));
+      const a = (d.assets || []).find(x => /TotalControl-Free-Core.*\.zip/i.test(x.name || ''));
       if (a) {
         v = a.download_count;
         try { localStorage.setItem('tc-dl-count', v); localStorage.setItem('tc-dl-ts', String(Date.now())); } catch(e){}
@@ -756,5 +774,6 @@ loadDlCount();
 
 
 <script src="site.js" defer></script>
+<script src="shared-header.js" defer></script>
 </body>
 </html>

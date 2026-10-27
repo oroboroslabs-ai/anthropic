@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>claude</title>
-  <link rel="icon" type="image/png" href="/anthropic.png">
+  <link rel="icon" type="image/png" href="anthropic.png">
   <style>
     :root {
       /* Slate Grey & Bronze Theme */
@@ -1174,15 +1174,16 @@
       }
     }
   </style>
+<link rel="stylesheet" href="../../shared-header.css">
 </head>
-<body>
+<body data-app="true">
   <div class="app">
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <a href="/" class="logo">
           <div class="logo-icon">
-            <img src="/anthropic.png" alt="Claude">
+            <img src="anthropic.png" alt="Claude">
           </div>
           <span class="logo-text">claude</span>
         </a>
@@ -1252,7 +1253,7 @@
         </button>
         
         <div class="header-title">
-          <img src="/anthropic.png" alt="Claude">
+          <img src="anthropic.png" alt="Claude">
           <span>claude</span>
         </div>
         
@@ -1326,7 +1327,7 @@
         <div class="messages" id="messages">
           <div class="welcome" id="welcome">
             <div class="welcome-icon">
-              <img src="/anthropic.png" alt="Claude">
+              <img src="anthropic.png" alt="Claude">
             </div>
             <h1 class="welcome-title">How can I help you today?</h1>
             <p class="welcome-subtitle">
@@ -1773,7 +1774,7 @@
       const isUser = role === 'user';
       const avatar = isUser 
         ? '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:white;">U</div>'
-        : '<img src="/anthropic.png" alt="Claude" style="width:100%;height:100%;object-fit:contain;">';
+        : '<img src="anthropic.png" alt="Claude" style="width:100%;height:100%;object-fit:contain;">';
       const name = isUser ? 'You' : currentModelName;
       const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       
@@ -2023,5 +2024,6 @@
       console.log('Show pane:', pane);
     }
   </script>
+<script src="../../shared-header.js" defer></script>
 </body>
 </html>
