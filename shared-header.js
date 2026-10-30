@@ -25,7 +25,8 @@
     { label: 'VOICE', href: 'claude-communications/', key: 'voice' },
     { label: 'CHAT', href: 'chat-anthropic.html', key: 'chat' },
     { label: 'MANUAL', href: 'operations.html', key: 'manual' },
-    { label: 'SHOP', href: 'shop.html', key: 'shop' }
+    { label: 'SHOP', href: 'shop.html', key: 'shop' },
+  { label: 'DOCKER SUBSTRATA ACCESS LAYER (DSAL)', href: 'dslc.html', key: 'dslc' }
   ];
 
   function normalized(path) {
@@ -67,6 +68,21 @@
         moonSvg + sunSvg +
       '</button>' +
     '</div>';
+
+  var dslcStyle = document.createElement('style');
+  dslcStyle.id = 'uh-dslc-light';
+  dslcStyle.textContent = 'html.light .uh-dslc,.light .uh-dslc{color:#C4684B !important;border-color:rgba(196,104,75,.45) !important;background:rgba(196,104,75,.10) !important}';
+  document.head.appendChild(dslcStyle);
+
+  var whiteStyle = document.createElement('style');
+  whiteStyle.id = 'uh-topbar-white';
+  whiteStyle.textContent = 'html:not(.light) .uh-inner .uh-brand span,'
+    + 'html:not(.light) .uh-inner .uh-brand em,'
+    + 'html:not(.light) .uh-inner nav a,'
+    + 'html:not(.light) .uh-inner .uh-dslc,'
+    + 'html:not(.light) .uh-inner .uh-dslc span'
+    + '{color:#FFFFFF !important}';
+  document.head.appendChild(whiteStyle);
 
   body.insertBefore(header, body.firstChild);
 

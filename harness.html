@@ -400,6 +400,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
   .free-ouroboros { position: absolute; top: 50%; right: 0; width: clamp(156px, 15.6vw, 234px); height: auto; transform: translateY(-50%); color: #FFFFFF; pointer-events: none; }
   @media (max-width: 1100px) { .free-ouroboros { position: static; display: block; margin: 0 auto 18px; width: 125px; transform: none; } }
 </style>
+
 </head>
 <body>
 <header class="topbar" id="top"><div class="tbin">
@@ -430,7 +431,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
                    your installed models their engine.</p>
             </div>
             <div class="hero-cta">
-                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/download/v1.0.0-free/TotalControl-Free-Core-1.0.1-nocrawl.zip">↓&nbsp; Download TotalControl-Free-Core-1.0.1-nocrawl.zip</a>
+                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/download/v1.0.0-free/TotalControl-Free-Core-1.5.1-nocrawl.zip">↓&nbsp; Download TotalControl-Free-Core-1.5.1-nocrawl.zip</a>
                 <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/blob/main/docs/AI-INSTALL.md">AI-INSTALL.md runbook</a>
                 <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness">View on GitHub</a>
                 <span class="dlmetric" data-dl></span>
@@ -650,6 +651,116 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
         </div>
     </section>
 
+    <section class="block" id="substrate">
+        <div class="container">
+            <span class="eyebrow">✦ SUBSTRATE &amp; STRATA INSTALLER</span>
+            <h2 class="harness-heading">The front end is free. <span class="hl">The stack is the breakthrough.</span></h2>
+            <div class="intro" style="margin-left:0;text-align:left">
+                <p class="ds-text-body">The harness is one executable and one process. The installer adds what
+                   survives a reboot: a substrate that holds state, a router that runs as a service, twelve ring
+                   nodes that are addressed rather than simulated, and a gateway that decides access without
+                   exposing anything behind it.</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <span class="eyebrow2">SUBSTRATE</span>
+                    <h3>Redis — the shared state</h3>
+                    <p>Folds, node heartbeats and field events in one place. Loopback only, no host mapping.
+                       The mesh can restart without losing what it knows.</p>
+                    <div class="pills">
+                        <div class="pill">127.0.0.1<div class="ds">no host port</div></div>
+                        <div class="pill acc">STATE<div class="ds">folds · events</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">RUNE ENGINE</span>
+                    <h3>Semantic router — Go</h3>
+                    <p>34 strata, 309 keywords, 1,760 automaton nodes. One pass per query, no allocations on the
+                       hot path. It decides which nodes own a request, instead of broadcasting blindly.</p>
+                    <div class="pills">
+                        <div class="pill bn">~200 NS<div class="ds">per scan</div></div>
+                        <div class="pill">0 ALLOCS<div class="ds">steady state</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">CORE + RINGS</span>
+                    <h3>Node 0 and twelve nodes</h3>
+                    <p>Core routes by domain and enforces quorum on <em>axiom-valid</em> results only. Each ring
+                       carries a persona, a domain and an axiom preset — ring 6 is the Warden, the strictest gate.</p>
+                    <div class="pills">
+                        <div class="pill">12 RINGS<div class="ds">domain-owned</div></div>
+                        <div class="pill acc">QUORUM<div class="ds">valid only</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">PERSONA ROUTER</span>
+                    <h3>One base model, twelve masks</h3>
+                    <p>The front end as a service. Injects the persona, runs the axiom gate, and answers system
+                       facts from the index at 7–11 ms without touching the model at all.</p>
+                    <div class="pills">
+                        <div class="pill">8421<div class="ds">local port</div></div>
+                        <div class="pill acc">INDEX<div class="ds">exact facts</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">GATEWAY</span>
+                    <h3>The only public process</h3>
+                    <p>Bearer auth against SHA-256 hashes, per-key rate limit, nonce replay guard, body cap.
+                       It returns answers, never topology. Revocation is immediate.</p>
+                    <div class="pills">
+                        <div class="pill bn">HMAC<div class="ds">signed hops</div></div>
+                        <div class="pill">REVOCABLE<div class="ds">hash-only keys</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="eyebrow2">RECOVERY</span>
+                    <h3>Manifest-verified backup</h3>
+                    <p>Images, volumes, container specs, networks and configs into one bundle, SHA-256 per file.
+                       Restore refuses to run on a corrupted bundle.</p>
+                    <div class="pills">
+                        <div class="pill">SHA-256<div class="ds">per file</div></div>
+                        <div class="pill acc">PORTABLE<div class="ds">win · linux</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="devgrid">
+                <div class="cmdcard">
+                    <h3>Install order — one line per step</h3>
+                    <p>Each layer waits for health before the next. On a clean machine this is the whole install.</p>
+                    <div class="cmdrow"><span class="ps">$</span><code>docker compose -f docker-compose.mesh.yml up -d redis</code></div>
+                    <div class="cmdrow"><span class="ps">$</span><code>docker compose -f docker-compose.mesh.yml up -d rune-engine</code></div>
+                    <div class="cmdrow"><span class="ps">$</span><code>docker compose -f docker-compose.mesh.yml up -d core</code></div>
+                    <div class="cmdrow"><span class="ps">$</span><code>docker compose -f docker-compose.mesh.yml up -d ring-01 … ring-12</code></div>
+                    <div class="cmdrow"><span class="ps">$</span><code>python persona_router.py  ·  ./OroborosHiveHarness.exe</code></div>
+                </div>
+                <div class="cmdcard">
+                    <h3>Two placements, same stack</h3>
+                    <p><b>Self-hosted</b> — your machine or your server, Docker, no gateway needed, nothing leaves
+                       your network. <b>Managed</b> — the same stack on our host behind the gateway, reached with
+                       <code class="inline">escalate</code> from any harness.</p>
+                    <div class="cmdrow"><span class="ps">></span><code>curl -s http://127.0.0.1:9400/health &amp;&amp; curl -s http://127.0.0.1:9410/health</code></div>
+                    <p>Four health checks returning 200 means the stack is live end to end.</p>
+                </div>
+            </div>
+
+            <div class="lawstrip">
+                <span>substrate loopback only</span>
+                <span>quorum counts valid results</span>
+                <span>gateway returns answers, not topology</span>
+                <span>index exact · prose honest</span>
+            </div>
+
+            <div class="devgrid">
+                <div class="cmdcard">
+                    <h3>Request the installer</h3>
+                    <p>Access is issued per account. Send your placement (self-hosted or managed), your OS and
+                       your use case.</p>
+                    <a class="btn primary" href="mailto:architect@oroboroslabs.ai?subject=Substrate%20%26%20Strata%20Installer">Request the installer →</a>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="block">
         <div class="container">
             <h2 class="harness-heading">Developer <span class="hl">experience.</span></h2>
@@ -660,8 +771,8 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
                        compiled — <code class="inline">engine.py</code> source never ships) ·
                        <code class="inline">gui-core</code> panel · <code class="inline">AI-INSTALL.md</code> — the runbook
                        written for the AI that installs · <code class="inline">tests/probe_free.py</code>.</p>
-                    <div class="cmdrow"><span class="ps">$</span><code>TotalControl-Free-Core-1.0.1-nocrawl.zip · release 1.0.0-free</code></div>
-                    <a class="dl" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/download/v1.0.0-free/TotalControl-Free-Core-1.0.1-nocrawl.zip">Download TotalControl-Free-Core-1.0.1-nocrawl.zip →</a>
+                    <div class="cmdrow"><span class="ps">$</span><code>TotalControl-Free-Core-1.5.1-nocrawl.zip · release 1.0.0-free</code></div>
+                    <a class="dl" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/download/v1.0.0-free/TotalControl-Free-Core-1.5.1-nocrawl.zip">Download TotalControl-Free-Core-1.5.1-nocrawl.zip →</a>
                     <span class="dlmetric" data-dl></span>
                 </div>
                 <div class="cmdcard">
@@ -702,7 +813,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
             <p class="ds-text-body" style="max-width:620px;margin:16px auto 0">Download the free harness, load the
                static weight core, and your installed models step through the loop — on 127.0.0.1 only.</p>
             <div class="hero-cta">
-                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/download/v1.0.0-free/TotalControl-Free-Core-1.0.1-nocrawl.zip">↓&nbsp; Download the free harness</a>
+                <a class="btn primary" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness/releases/download/v1.0.0-free/TotalControl-Free-Core-1.5.1-nocrawl.zip">↓&nbsp; Download the free harness</a>
                 <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness">Release &amp; source on GitHub</a>
                 <span class="dlmetric" data-dl></span>
             </div>
