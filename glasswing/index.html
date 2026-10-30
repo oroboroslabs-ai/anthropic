@@ -179,10 +179,12 @@
   .foot-brand { color: var(--ink); font: 700 11px/1 var(--sans); letter-spacing: .15em; text-decoration: none; }
   .foot-brand em { font-style: normal; color: var(--dim); }
 
-  .gw-video { position: relative; justify-self: center; width: 100%; max-width: 700px; background: transparent; overflow: visible; }
-  .gw-video::after { content: ""; position: absolute; inset: -10%; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 56% 52% at 50% 50%, transparent 45%, #050506 78%); }
-  .gw-butterfly { display: block; width: 100%; height: auto; }
-  @media (max-width: 1000px) { .gw-video { justify-self: start; width: 100%; margin-top: 22px; } }
+  .gw-stage { position: relative; justify-self: center; width: 100%; max-width: 760px; display: grid; place-items: center; }
+  .gw-butterfly-bg { position: absolute; inset: 0; width: 100%; height: auto; opacity: .9; }
+  .gw-stage::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse 58% 54% at 50% 50%, transparent 42%, #050506 80%); }
+  .gw-stage .gw-card { position: relative; z-index: 2; justify-self: center; width: min(340px, 48%); display: block; }
+  .gw-stage .gw-card img { display: block; width: 100%; height: auto; }
+  @media (max-width: 1000px) { .gw-stage { justify-self: start; margin-top: 22px; } }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .gw-card img, .gw-card::after, .gw-card-flash { animation: none !important; }
@@ -233,8 +235,11 @@
         </div>
         <p class="hero-meta"><span>Local-first</span><span>127.0.0.1</span><span>Clearance on the platform</span></p>
       </div>
-      <div class="gw-video">
-        <img class="gw-butterfly" src="../assets/brand/glasswing-silver-1-alpha.webp?v=6" alt="Glasswing" loading="eager" decoding="async">
+      <div class="gw-stage">
+        <img class="gw-butterfly-bg" src="../assets/brand/glasswing-silver-1-alpha.webp?v=6" alt="Glasswing" loading="eager" decoding="async">
+        <a class="gw-card" href="platform/index.html" aria-label="Open the platform">
+          <img src="../assets/brand/glasswing-card.png" alt="Oroboros / Anthropic">
+        </a>
       </div>
     </div>
   </section>
@@ -290,6 +295,7 @@
 </footer>
 </body>
 </html>
+
 
 
 
