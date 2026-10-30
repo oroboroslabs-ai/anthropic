@@ -101,7 +101,8 @@
   .gw-nav nav a:hover { color: var(--ink); }
 
   .gw-hero { padding: calc(clamp(72px, 8vw, 112px) + 36.5px) 0; }
-  .hero-grid { display: grid; grid-template-columns: minmax(0,1.08fr) minmax(0,.92fr); align-items: center; gap: clamp(36px, 6vw, 80px); }
+  .gw-hero > .wrap { max-width: 1420px; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0,.84fr) minmax(0,1.16fr); align-items: center; gap: clamp(36px, 6vw, 80px); }
   .hero-copy { max-width: 650px; }
   h1 {
     margin: 20px 0 0;
@@ -178,9 +179,9 @@
   .foot-brand { color: var(--ink); font: 700 11px/1 var(--sans); letter-spacing: .15em; text-decoration: none; }
   .foot-brand em { font-style: normal; color: var(--dim); }
 
-  .gw-video { position: relative; justify-self: end; width: min(600px, 100%); background: transparent; isolation: isolate; }
-  .gw-video video { display: block; width: 100%; height: auto; mix-blend-mode: screen; }
-  @media (max-width: 1000px) { .gw-video { justify-self: start; width: min(600px, 100%); margin-top: 22px; } }
+  .gw-video { position: relative; justify-self: end; width: 100%; max-width: 760px; background: transparent; }
+  .gw-butterfly { display: block; width: 100%; height: auto; }
+  @media (max-width: 1000px) { .gw-video { justify-self: start; width: 100%; margin-top: 22px; } }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .gw-card img, .gw-card::after, .gw-card-flash { animation: none !important; }
@@ -232,9 +233,7 @@
         <p class="hero-meta"><span>Local-first</span><span>127.0.0.1</span><span>Clearance on the platform</span></p>
       </div>
       <div class="gw-video">
-        <video autoplay muted loop playsinline preload="metadata" poster="../assets/brand/glasswing-silver-1-poster.jpg" aria-label="Glasswing silver loop">
-          <source src="../assets/brand/glasswing-silver-1.mp4" type="video/mp4">
-        </video>
+        <img class="gw-butterfly" src="../assets/brand/glasswing-silver-1-alpha.webp" alt="Glasswing" loading="eager" decoding="async">
       </div>
     </div>
   </section>
