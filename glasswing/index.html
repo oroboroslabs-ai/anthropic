@@ -101,8 +101,7 @@
   .gw-nav nav a:hover { color: var(--ink); }
 
   .gw-hero { padding: calc(clamp(72px, 8vw, 112px) + 36.5px) 0; }
-  .gw-hero > .wrap { max-width: 1420px; }
-  .hero-grid { display: grid; grid-template-columns: minmax(0,.84fr) minmax(0,1.16fr); align-items: center; gap: clamp(36px, 6vw, 80px); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0,1.08fr) minmax(0,.92fr); align-items: center; gap: clamp(36px, 6vw, 80px); }
   .hero-copy { max-width: 650px; }
   h1 {
     margin: 20px 0 0;
@@ -179,12 +178,9 @@
   .foot-brand { color: var(--ink); font: 700 11px/1 var(--sans); letter-spacing: .15em; text-decoration: none; }
   .foot-brand em { font-style: normal; color: var(--dim); }
 
-  .gw-stage { position: relative; justify-self: center; width: 100%; max-width: 760px; display: grid; place-items: center; }
-  .gw-butterfly-bg { position: absolute; top: 50%; left: 0; width: 100%; height: auto; transform: translateY(-50%); opacity: .9; }
-
-  .gw-stage .gw-card { position: relative; z-index: 2; justify-self: center; width: min(440px, 56%); display: block; }
-  .gw-stage .gw-card img { display: block; width: 100%; height: auto; }
-  @media (max-width: 1000px) { .gw-stage { justify-self: start; margin-top: 22px; } }
+  .gw-video { position: relative; justify-self: end; width: min(600px, 100%); background: transparent; isolation: isolate; }
+  .gw-video video { display: block; width: 100%; height: auto; mix-blend-mode: screen; }
+  @media (max-width: 1000px) { .gw-video { justify-self: start; width: min(600px, 100%); margin-top: 22px; } }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .gw-card img, .gw-card::after, .gw-card-flash { animation: none !important; }
@@ -235,11 +231,10 @@
         </div>
         <p class="hero-meta"><span>Local-first</span><span>127.0.0.1</span><span>Clearance on the platform</span></p>
       </div>
-      <div class="gw-stage">
-        <img class="gw-butterfly-bg" src="../assets/brand/glasswing-silver-1-alpha.webp?v=6" alt="Glasswing" loading="eager" decoding="async">
-        <a class="gw-card" href="platform/index.html" aria-label="Open the platform">
-          <img src="../assets/brand/glasswing-card.png" alt="Oroboros / Anthropic">
-        </a>
+      <div class="gw-video">
+        <video autoplay muted loop playsinline preload="metadata" poster="../assets/brand/glasswing-silver-1-poster.jpg" aria-label="Glasswing silver loop">
+          <source src="../assets/brand/glasswing-silver-1.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </section>
@@ -295,10 +290,6 @@
 </footer>
 </body>
 </html>
-
-
-
-
 
 
 
