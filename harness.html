@@ -401,6 +401,24 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
   @media (max-width: 1100px) { .free-ouroboros { position: static; display: block; margin: 0 auto 18px; width: 125px; transform: none; } }
 </style>
 
+<style id="pink-wash">
+  /* the brand pink, carried in as ambient light — not a panel colour */
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(900px 520px at 82% -8%,  rgba(240,101,159,0.16), transparent 62%),
+      radial-gradient(760px 480px at -6% 30%,  rgba(224,33,138,0.10), transparent 66%),
+      radial-gradient(1000px 560px at 50% 116%, rgba(163,24,107,0.10), transparent 70%);
+  }
+  html.light body::before, .light body::before {
+    background:
+      radial-gradient(900px 520px at 82% -8%,  rgba(240,101,159,0.13), transparent 62%),
+      radial-gradient(760px 480px at -6% 30%,  rgba(224,33,138,0.07), transparent 66%),
+      radial-gradient(1000px 560px at 50% 116%, rgba(163,24,107,0.06), transparent 70%);
+  }
+  .eyebrow { border-color: rgba(240,101,159,.45) !important; color: #F0659F !important;
+             background: rgba(240,101,159,0.10) !important; }
+</style>
 </head>
 <body>
 <header class="topbar" id="top"><div class="tbin">
