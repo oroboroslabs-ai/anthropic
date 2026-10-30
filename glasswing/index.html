@@ -180,9 +180,9 @@
   .foot-brand em { font-style: normal; color: var(--dim); }
 
   .gw-stage { position: relative; justify-self: center; width: 100%; max-width: 760px; display: grid; place-items: center; }
-  .gw-butterfly-bg { position: absolute; inset: 0; width: 100%; height: auto; opacity: .9; }
-  .gw-stage::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse 58% 54% at 50% 50%, transparent 42%, #050506 80%); }
-  .gw-stage .gw-card { position: relative; z-index: 2; justify-self: center; width: min(340px, 48%); display: block; }
+  .gw-butterfly-bg { position: absolute; top: 50%; left: 0; width: 100%; height: auto; transform: translateY(-50%); opacity: .9; }
+
+  .gw-stage .gw-card { position: relative; z-index: 2; justify-self: center; width: min(440px, 56%); display: block; }
   .gw-stage .gw-card img { display: block; width: 100%; height: auto; }
   @media (max-width: 1000px) { .gw-stage { justify-self: start; margin-top: 22px; } }
   @media (prefers-reduced-motion: reduce) {
@@ -295,6 +295,7 @@
 </footer>
 </body>
 </html>
+
 
 
 
