@@ -178,14 +178,11 @@
   .foot-brand { color: var(--ink); font: 700 11px/1 var(--sans); letter-spacing: .15em; text-decoration: none; }
   .foot-brand em { font-style: normal; color: var(--dim); }
 
-  .gw-video { position: relative; justify-self: end; width: min(560px, 100%); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #000; box-shadow: 0 36px 90px rgba(0,0,0,.55); isolation: isolate; }
-  .gw-video video { display: block; width: 100%; height: auto; }
-  .gw-bgmarks { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; mix-blend-mode: screen; }
-  .gw-bgmarks img { position: absolute; display: block; opacity: .10; filter: grayscale(1); }
-  .gw-bgmarks .mark-a { width: min(48vw, 680px); right: -5vw; top: 9vh; }
-  .gw-bgmarks .mark-r3 { width: min(24vw, 320px); right: 13vw; bottom: 7vh; opacity: .07; }
-  @media (max-width: 1000px) { .gw-video { justify-self: start; width: min(560px, 100%); margin-top: 22px; } .gw-bgmarks .mark-a { width: 76vw; right: -22vw; top: 8vh; } .gw-bgmarks .mark-r3 { width: 34vw; right: 4vw; bottom: 5vh; } }
-  @media (max-width: 720px) { .gw-bgmarks .mark-a { opacity: .06; } .gw-bgmarks .mark-r3 { opacity: .045; } }
+  .gw-logo-wrap { position: relative; justify-self: end; align-self: end; display: flex; align-items: center; gap: 28px; width: auto; height: 135px; margin-bottom: 46px; isolation: isolate; }
+  .gw-logo-corner { display: block; width: 135px; height: auto; filter: drop-shadow(0 18px 44px rgba(0,0,0,.6)); pointer-events: none; }
+  .gw-brokers { display: block; width: 135px; height: auto; filter: drop-shadow(0 18px 44px rgba(0,0,0,.55)); pointer-events: none; }
+  @media (max-width: 1000px) { .gw-logo-wrap { justify-self: start; height: auto; margin: 22px 0 0; } .gw-logo-corner, .gw-brokers { width: 120px; } }
+  @media (max-width: 720px) { .gw-logo-corner, .gw-brokers { width: 100px; } }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .gw-card img, .gw-card::after, .gw-card-flash { animation: none !important; }
@@ -209,10 +206,6 @@
 </style>
 </head>
 <body>
-<div class="gw-bgmarks" aria-hidden="true">
-  <img class="mark-a" src="../assets/brand/glasswing-logo-reverse-1512.png" alt="">
-  <img class="mark-r3" src="../assets/brand/glasswing-mark-r3.png" alt="">
-</div>
 <header class="gw-nav">
   <a class="gw-brand" href="index.html">GLASSWING <em>/ PUBLIC</em></a>
   <nav aria-label="Glasswing">
@@ -240,11 +233,10 @@
         </div>
         <p class="hero-meta"><span>Local-first</span><span>127.0.0.1</span><span>Clearance on the platform</span></p>
       </div>
-      <div class="gw-video">
-        <video autoplay muted loop playsinline preload="metadata" poster="../assets/brand/glasswing-silver-1-title-poster.jpg" aria-label="Glasswing silver loop">
-          <source src="../assets/brand/glasswing-silver-1-title.mp4" type="video/mp4">
-        </video>
-      </div>
+      <span class="gw-logo-wrap">
+        <img class="gw-logo-corner" src="../assets/brand/glasswing-logo-reverse-1512.png" alt="Oroboros / Anthropic">
+        <img class="gw-brokers" src="../assets/brand/glasswing-mark-r3.png" alt="Reality Brokers">
+      </span>
     </div>
   </section>
 
