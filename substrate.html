@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Substrate &amp; Strata Installer — Oroboros / Anthropic</title>
+<meta name="description" content="The full stack installer: Redis substrate, rune engine, core node, twelve ring nodes, persona router and gateway. Self-hosted or managed.">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary:#111111; --bg-secondary:#181818; --bg-sidebar:#0E0E0E;
+    --text-primary:#F0EFEC; --text-secondary:#9A9A95; --text-muted:#5C5C58;
+    --accent:#D97757; --accent-hover:#E08868; --accent-light:rgba(217,119,87,0.15);
+    --border:#232323; --border-light:#1B1B1B; --code-bg:#0A0A0A;
+  }
+  .light {
+    --bg-primary:#FAFAF8; --bg-secondary:#F2F1EE; --bg-sidebar:#F6F5F2;
+    --text-primary:#1A1A1A; --text-secondary:#6B6B6B; --text-muted:#999999;
+    --accent:#D97757; --accent-hover:#C4684B; --accent-light:rgba(217,119,87,0.1);
+    --border:#E0DFDB; --border-light:#ECEBE7; --code-bg:#1E1E1E;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+         background:var(--bg-primary); color:var(--text-primary); line-height:1.65;
+         transition:background .2s, color .2s; }
+  .wrap { max-width:820px; margin:0 auto; padding:56px 24px 96px; }
+  .nav { display:flex; align-items:center; gap:20px; font-size:13px;
+         color:var(--text-secondary); margin-bottom:36px; }
+  .nav a { color:var(--text-secondary); text-decoration:none; }
+  .nav a:hover { color:var(--accent); }
+  .nav .spacer { flex:1; }
+  .nav button { background:none; border:1px solid var(--border); color:var(--text-secondary);
+                border-radius:6px; padding:4px 10px; font:inherit; cursor:pointer; }
+  .nav button:hover { border-color:var(--accent); color:var(--accent); }
+  h1 { font-size:34px; font-weight:600; letter-spacing:-.02em; margin-bottom:8px; }
+  h2 { font-size:18px; font-weight:600; color:var(--accent); margin:40px 0 12px; }
+  p { margin:10px 0; }
+  .sub { color:var(--text-secondary); margin-bottom:32px; }
+  .panel { background:var(--bg-secondary); border:1px solid var(--border); border-radius:10px;
+           padding:20px 22px; margin:18px 0; }
+  .row { display:flex; align-items:center; flex-wrap:wrap; gap:10px; }
+  .btn { display:inline-flex; align-items:center; height:46px; background:var(--accent);
+         color:#111111; font-weight:600; padding:0 20px; border-radius:8px;
+         text-decoration:none; transition:background .15s; }
+  .btn:hover { background:var(--accent-hover); color:#111111; }
+  .btn.alt { background:transparent; border:1px solid var(--border); color:var(--text-primary); }
+  .btn.alt:hover { border-color:var(--accent); color:var(--accent); }
+  .tag { display:inline-block; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+         color:var(--accent); border:1px solid var(--accent); border-radius:4px;
+         padding:2px 7px; margin-bottom:10px; }
+  table { width:100%; border-collapse:collapse; font-size:14px; margin:8px 0; }
+  td, th { text-align:left; padding:9px 8px; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text-secondary); font-weight:500; }
+  code { font-family:'Source Code Pro',ui-monospace,monospace; background:var(--code-bg);
+         border:1px solid var(--border); padding:1px 6px; border-radius:4px; font-size:13px; }
+  pre { font-family:'Source Code Pro',ui-monospace,monospace; font-size:12.5px; line-height:1.7;
+        overflow-x:auto; }
+  .sha { font-size:12px; color:var(--text-secondary); word-break:break-all; }
+  .note { border-left:2px solid var(--accent); padding-left:14px; color:var(--text-secondary); margin:22px 0; }
+  ul { padding-left:20px; margin:8px 0; } li { margin:5px 0; }
+  a { color:var(--accent); } a:hover { color:var(--accent-hover); }
+  .layers { width:100%; border-collapse:collapse; font-size:13.5px; }
+  .layers td { border-bottom:1px solid var(--border); padding:8px; }
+  .layers td:first-child { color:var(--accent); width:34%; font-family:'Source Code Pro',monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="nav">
+    <a href="/">← Oroboros</a>
+    <a href="/anthropic/harness.html">Harness</a>
+    <a href="/anthropic/substrate.html">Substrate &amp; Strata</a>
+    <span class="spacer"></span>
+    <button onclick="document.body.classList.toggle('light')">◐</button>
+  </div>
+
+  <span class="tag">Installer · substrate + strata</span>
+  <h1>Substrate &amp; Strata Installer</h1>
+  <p class="sub">The full stack. Substrate, rune engine, core node, twelve rings, persona router, gateway. One installer, two placements: on your metal, or ours.</p>
+
+  <div class="panel">
+    <div class="row">
+      <a class="btn" href="mailto:architect@oroboroslabs.ai?subject=Substrate%20%26%20Strata%20Installer">Request the installer</a>
+      <a class="btn alt" href="/anthropic/harness.html">Free local harness →</a>
+    </div>
+    <p class="sha" style="margin-top:16px">Build 1.2.3 · installs as containers · keys are SHA-256 hashes at rest</p>
+  </div>
+
+  <h2>What it installs</h2>
+  <table class="layers">
+    <tr><td>substrate</td><td>Redis. The shared state: folds, node heartbeats, field events. Loopback only, no host mapping.</td></tr>
+    <tr><td>rune_engine</td><td>Go binary. Semantic router: 34 strata, 309 keywords, 1,760 automaton nodes, one pass per query. ~200 ns/scan.</td></tr>
+    <tr><td>core_node</td><td>Node 0. Routes a fold to the rings that own it, enforces quorum, records the result.</td></tr>
+    <tr><td>ring_1 … ring_12</td><td>Twelve persona nodes. Each with a role, a domain and an axiom preset. Ring 6 is the Warden — strictest gate.</td></tr>
+    <tr><td>persona_router</td><td>The front end. One base model, twelve masks. Injects the persona, enforces the gate, answers system facts from the index.</td></tr>
+    <tr><td>gateway</td><td>Optional. The only public process: bearer auth, per-key rate limit, nonce replay guard, forwards to the private core.</td></tr>
+  </table>
+  <p class="note">The Harness on the free page is the front end alone, in one executable. This installer adds the substrate and the twelve rings as real services — the part that survives a reboot, a second user, and a restart.</p>
+
+  <h2>Why it is the breakthrough</h2>
+  <p>The free harness proves the loop on one machine. The installer makes it a <em>system</em>: state that persists, nodes that are addressed rather than simulated, a router that can be reached by anything on the network, and a gateway that decides access without exposing what is behind it.</p>
+  <ul>
+    <li>Facts are answered by the index at 7–11 ms, deterministic, no model involved.</li>
+    <li>A fold is routed by domain, not broadcast blindly — and a node answering outside its domain is rejected by axiom 6.</li>
+    <li>Quorum counts only axiom-valid results. Mis-routing is visible, not silent.</li>
+    <li>Every hop is signed (HMAC), replay-protected (per-node nonce), and visible in the field store.</li>
+    <li>Manifest-verified backup: images, volumes, container specs, networks, configs, SHA-256 per file.</li>
+  </ul>
+
+  <h2>Two placements</h2>
+  <table>
+    <tr><th>Placement</th><th>Runs on</th><th>You get</th><th>Price</th></tr>
+    <tr><td><strong>Self-hosted</strong></td><td>Your machine or your server, Docker</td><td>The full stack, no gateway needed, nothing leaves your network</td><td>Included with a Strata key</td></tr>
+    <tr><td><strong>Managed</strong></td><td>Our host</td><td>The same stack behind the gateway; you call <code>escalate</code> from any harness</td><td>$19 / month · 1M tokens</td></tr>
+    <tr><td><strong>Architect</strong></td><td>Either</td><td>Higher rate limit, parallel dispatch, dedicated routing</td><td>By arrangement</td></tr>
+  </table>
+
+  <h2>Install order</h2>
+  <p>Each step waits for health before the next. On a clean machine this is one command per line, in this order:</p>
+  <div class="panel">
+<pre>docker compose -f docker-compose.mesh.yml up -d redis
+docker exec mesh-redis redis-cli ping                 # PONG
+
+docker compose -f docker-compose.mesh.yml up -d rune-engine
+curl -s http://127.0.0.1:9400/health                   # {"ok":true,...}
+
+docker compose -f docker-compose.mesh.yml up -d core
+curl -s http://127.0.0.1:9410/health                   # {"ok":true,"rings":12}
+
+docker compose -f docker-compose.mesh.yml up -d ring-01 ... ring-12
+docker compose -f docker-compose.mesh.yml up -d entropy energy
+
+ollama pull claude-7:50duo50quin5                       # 2.8 GB face tier
+python persona_router.py                                # 127.0.0.1:8421
+
+./OroborosHiveHarness.exe                              # the front end</pre>
+  </div>
+  <p class="sha">All four health checks returning 200 means the stack is live end to end. The gateway is only required for the managed placement.</p>
+
+  <h2>Measured</h2>
+  <table>
+    <tr><th>Component</th><th>Latency</th><th>Note</th></tr>
+    <tr><td>Rune engine scan</td><td>~200 ns</td><td>0 allocations, 34 strata in one pass</td></tr>
+    <tr><td>Index answer</td><td>7–11 ms</td><td>HTTP round trip included</td></tr>
+    <tr><td>Fold, 12 rings</td><td>7–25 ms</td><td>12/12 quorum, HMAC verified</td></tr>
+    <tr><td>Prose, 3 GB tier</td><td>2.1–4.7 s warm</td><td>11.4 s first call while the model loads</td></tr>
+    <tr><td>Backup bundle</td><td>~35 min</td><td>57 images, 9 volumes, ~20 GB, SHA-256 per file</td></tr>
+  </table>
+
+  <h2>The two surfaces that ship with it</h2>
+  <div class="grid">
+    <div class="card"><span class="eyebrow2">FIELD</span><h3>Reality Brokers</h3>
+      <p>Three sections: bug reports, usage, field work. Where deployment problems get answered and failures
+         get written down.</p>
+      <p style="margin-top:12px"><a href="reality-brokers.html">Open the forum description &#8594;</a></p></div>
+    <div class="card"><span class="eyebrow2">PRIME</span><h3>Oroboros Anthropic Benchmarks</h3>
+      <p>The Prime line, hosted: open model impressions, benchmark runs and test feedback alongside the fleet
+         on Hugging Face.</p>
+      <p style="margin-top:12px"><a href="https://huggingface.co/spaces/oroboros-labs/oroboros-anthropic-benchmarks">Open the Prime space &#8594;</a></p></div>
+  </div>
+
+  <h2>What the layer installs</h2>
+  <table>
+    <tr><th>You get</th><th>What it does</th><th>Where it runs</th></tr>
+    <tr><td><strong>Substrate</strong></td><td>Redis: folds, heartbeats, field events. Loopback only.</td><td>Docker, your machine</td></tr>
+    <tr><td><strong>Rune engine</strong></td><td>34 strata, 309 keywords, ~200 ns per scan.</td><td>Go binary, container</td></tr>
+    <tr><td><strong>Core + 12 rings</strong></td><td>Domain routing, quorum on axiom-valid results.</td><td>Containers, internal network</td></tr>
+    <tr><td><strong>Persona router</strong></td><td>One base model, twelve masks; index answers at 7-11 ms.</td><td>Local service, :8421</td></tr>
+    <tr><td><strong>Gateway</strong></td><td>Bearer auth, rate limit, replay guard, instant revoke.</td><td>Only public process</td></tr>
+    <tr><td><strong>Backup</strong></td><td>Images, volumes, specs, networks, configs; SHA-256 per file.</td><td>Manifest-verified bundle</td></tr>
+  </table>
+  <p class="note">Measured, not projected: a 12-ring fold completes in 7-25 ms; the paid path was demonstrated end
+     to end - a real key, a real fold, 3/3 valid quorum, revocation without a restart.</p>
+
+  <h2>Requirements</h2>
+  <ul>
+    <li>Docker Desktop (Windows) or Docker Engine (Linux)</li>
+    <li>16 GB RAM recommended — twelve rings plus a model</li>
+    <li>~25 GB free disk for images, volumes and the model tier</li>
+    <li>Ollama for local prose; the index and the mesh run without it</li>
+  </ul>
+
+  <h2>What it does not do</h2>
+  <ul>
+    <li>No training on your prompts.</li>
+    <li>No factual verification beyond the index layer — the gate checks structure, not truth.</li>
+    <li>No hidden access: the gateway is the only public process, and it returns answers, not topology.</li>
+    <li>No guarantee of correctness on open reasoning. That limit is the same at every tier and it is stated on the free page too.</li>
+  </ul>
+
+  <h2>Request the installer</h2>
+  <div class="panel">
+    <p style="margin:0 0 14px">Installer access is issued per account. Send your placement (self-hosted or managed), your OS, and your use case.</p>
+    <a class="btn" href="mailto:architect@oroboroslabs.ai?subject=Substrate%20%26%20Strata%20Installer">Request the installer →</a>
+  </div>
+
+  <p class="sha" style="margin-top:56px">Oroboros / Anthropic — Substrate &amp; Strata Installer, build 1.2.3 · <a href="/anthropic/strata.html">pricing →</a></p>
+
+</div>
+</body>
+</html>
