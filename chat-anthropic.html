@@ -650,24 +650,30 @@ function pickTTS(){
 }
 function loadVoices(){
   const el = $("vlist"); if(!el) return;
-  let local = [];
-  try{ local = speechSynthesis.getVoices(); }catch{}
-  if(!local.length){
-    el.innerHTML = '<div class="ni" id="vrescan" style="color:var(--acc)">↻ rescan the voices</div>';
-    return;
-  }
-  const pickL = localStorage.getItem("oroboros.voice") || "";
-  const rosa = local.find(v => /rosa/i.test(v.name || ""));
-  let chosen = pickL;
-  if(!chosen || !local.some(v => v.name === chosen)){
-    chosen = (rosa && rosa.name) || local[0].name || "";
-    try{ localStorage.setItem("oroboros.voice", chosen); }catch{}
-  }
-  el.innerHTML = '<div class="ni" style="color:var(--acc); font-weight:700">THE WINDOWS VOICES</div>'
-    + local.slice().sort((a,b) => (a.lang||"").localeCompare(b.lang||"")).map(v => '<div class="ni" data-lv="' + esc(v.name) + '" style="' + (v.name === chosen ? "outline:1px solid var(--acc)" : "") + '">◉ ' + esc(v.name) + '<small>' + esc(v.lang || "") + '</small></div>').join("");
-  for(const c of el.children){
-    if(c.dataset.lv) c.onclick = () => { try{ localStorage.setItem("oroboros.voice", c.dataset.lv); }catch{} loadVoices(); speakTestVoice(); };
-  }
+  (async () => {
+    const natural = await nvVoices();
+    let local = [];
+    try{ local = speechSynthesis.getVoices(); }catch{}
+    const pickN = localStorage.getItem("oroboros.nvoice") || "";
+    const pickL = localStorage.getItem("oroboros.voice") || "";
+    if(natural.length){
+      el.innerHTML = '<div class="ni" style="color:var(--acc); font-weight:700">THE NATURAL VOICES — the fleet Windows hid</div>'
+        + '<div class="ni" data-nv="piper:en_US-amy-medium" style="' + ("piper:en_US-amy-medium" === pickN ? "outline:1px solid var(--acc)" : "") + '">◉ Piper Amy — local<small>en_US — speaks through the wrapper :8795</small></div>'
+        + natural.filter(v => v.preferred).map(v => '<div class="ni" data-nv="' + esc(v.voice) + '" style="' + (v.voice === pickN ? "outline:1px solid var(--acc)" : "") + '">◉ ' + esc(v.label) + '<small>' + esc(v.voice) + ' — speaks through the natural service</small></div>').join("")
+        + '<div class="ni" style="color:var(--mut)">＋ ' + (natural.length) + ' more naturals — type: en-XX in the search below (all in the bridge)</div>'
+        + '<div class="ni" style="color:var(--mut); font-weight:700">THE LOCAL WINDOWS VOICES</div>'
+        + local.slice().sort((a,b) => (a.lang||"").localeCompare(b.lang||"")).map(v => '<div class="ni" data-lv="' + esc(v.name) + '" style="' + (v.name === pickL ? "outline:1px solid var(--acc)" : "") + '">◉ ' + esc(v.name) + '<small>' + esc(v.lang || "") + '</small></div>').join("");
+    } else {
+      el.innerHTML = '<div class="ni" id="vrescan" style="color:var(--acc)">↻ rescan the voices</div>'
+        + '<div class="ni" style="color:var(--mut)">the natural bridge :8399 is down — Rosa/Luna wait offline; local voices only</div>'
+        + local.slice().sort((a,b) => (a.lang||"").localeCompare(b.lang||"")).map(v => '<div class="ni" data-lv="' + esc(v.name) + '">◉ ' + esc(v.name) + '<small>' + esc(v.lang || "") + '</small></div>').join("");
+    }
+    for(const c of el.children){
+      if(c.dataset.nv) c.onclick = () => { localStorage.setItem("oroboros.nvoice", c.dataset.nv); NV.current = c.dataset.nv; loadVoices();
+        (async () => { await nvCheck(); nvSpeak("Natural voice online, Architect. The machine speaks with this voice now.", c.dataset.nv); })(); };
+      else if(c.dataset.lv) c.onclick = () => { localStorage.setItem("oroboros.voice", c.dataset.lv); loadVoices(); speakTestVoice(); };
+    }
+  })();
 }
 function speakTestVoice(){
   const u = new SpeechSynthesisUtterance("Voice selected. The machine speaks with this voice now.");
@@ -707,7 +713,58 @@ function startListen(){
   }catch{ vst("", "the voice engine is unavailable in this browser"); }
 }
 function stopListen(){ try{ VO.wantStop = true; if(VO.recog) VO.recog.stop(); }catch{} waveVis(false); }
-/* ── THE WINDOWS VOICES — the browser's own speech engine, Rosa first. ── */
+/* ── THE NATURAL VOICES — the bridge at :8399 speaks through Microsoft's
+   natural service (ROSA en-PH / LUNA en-SG / Neerja en-IN / Aria / the fleet) —
+   the voices Windows hides from every browser, flowing as real audio. ── */
+const NV = { audio:null, current:null, up:null };
+let AUDIO_UNLOCKED = false;
+function unlockAudio(){
+  if(AUDIO_UNLOCKED) return;
+  try{
+    const a = new Audio("data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAABErAAABAAgAZGF0YQAAAAA=");
+    a.volume = 0;
+    a.play().then(() => { AUDIO_UNLOCKED = true; }).catch(() => {});
+  }catch{}
+}
+document.addEventListener("pointerdown", unlockAudio, {once:true, capture:true});
+document.addEventListener("keydown", unlockAudio, {once:true, capture:true});
+try {
+  if (localStorage.getItem && !localStorage.getItem("oroboros.nvoice.migrated-osaragi")) {
+    localStorage.setItem("oroboros.nvoice", "osaragi:osaragi");
+    localStorage.setItem("oroboros.nvoice.migrated-osaragi", "1");
+  }
+  const savedNV = localStorage.getItem && localStorage.getItem("oroboros.nvoice");
+  NV.current = savedNV || "osaragi:osaragi";
+} catch(e) { NV.current = "osaragi:osaragi"; }
+async function nvCheck(){ if(NV.up !== null) return NV.up;
+  try{ const r = await fetch("http://127.0.0.1:8399/health", {signal:AbortSignal.timeout(4000)}); NV.up = (await r.json()).ok === true; }
+  catch{ NV.up = false; } return NV.up; }
+async function nvVoices(){
+  try{ const r = await fetch("http://127.0.0.1:8399/voices", {signal:AbortSignal.timeout(15000)}); const j = await r.json(); return (j.voices||[]); }
+  catch{ return []; }
+}
+async function nvSpeak(text, voice){
+  try{
+    const useGreatSage = String(voice || "") === "great-sage";
+    const useOsaragi = String(voice || "").startsWith("osaragi:") || useGreatSage;
+    const usePiper = String(voice || "").startsWith("piper:");
+    const url = (useOsaragi || usePiper) ? "/api/tts" : "http://127.0.0.1:8399/api/tts";
+    const payload = useOsaragi
+      ? {text: String(text||"").slice(0,4000), engine: "osaragi"}
+      : usePiper
+      ? {text: String(text||"").slice(0,4000), engine: "piper", length_scale: 0.95}
+      : {text: String(text||"").slice(0,6000), voice: voice, rate: "+30%"};
+    const r = await fetch(url, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(payload)});
+    if(!r.ok) return false;
+    const blob = await r.blob();
+    if(NV.audio){ NV.audio.pause(); NV.audio = null; }
+    const a2 = new Audio(URL.createObjectURL(blob));
+    NV.audio = a2; VO.speaking = true; waveVis(true);
+    a2.onended = () => { VO.speaking = false; waveVis(false); setTimeout(() => { if(VO.on) startListen(); }, 250); };
+    await a2.play();
+    return true;
+  }catch{ VO.speaking = false; waveVis(false); return false; }
+}
 function readerText(t){
   return String(t||"")
     .replace(/```[\s\S]*?```/g, " ")
@@ -719,19 +776,45 @@ function readerText(t){
     .trim();
 }
 function speakTTS(txt, done){
-  try{
-    const u = new SpeechSynthesisUtterance(String(txt||"").slice(0,900));
-    const v = pickTTS(); if(v){ u.voice = v; u.lang = v.lang; }
-    u.rate = 1.3; u.volume = .95; VO.speaking = true; waveVis(true);
-    if(VO.recog && VO.listening){ VO.wantStop = true; VO.recog.stop(); }
-    u.onend = () => { VO.speaking = false; waveVis(false); setTimeout(() => { if(VO.on) startListen(); }, 250); if(done) done(); };
-    u.onerror = () => { VO.speaking = false; waveVis(false); setTimeout(() => { if(VO.on) startListen(); }, 250); if(done) done(); };
-    speechSynthesis.speak(u);
-  }catch{ VO.speaking = false; waveVis(false); if(done) done(); }
+  (async () => {
+    if(await nvCheck()){
+      const spoke = await nvSpeak(readerText(txt).slice(0,1100), NV.current || localStorage.getItem("oroboros.nvoice") || "osaragi:osaragi");
+      if(spoke){ if(done) setTimeout(done, 100); return; }
+    }
+    try{
+      const u = new SpeechSynthesisUtterance(String(txt||"").slice(0,900));
+      const v = pickTTS(); if(v){ u.voice = v; u.lang = v.lang; }
+      u.rate = 1.3; u.volume = .95; VO.speaking = true; waveVis(true);
+      if(VO.recog && VO.listening){ VO.wantStop = true; VO.recog.stop(); }
+      u.onend = () => { VO.speaking = false; waveVis(false); setTimeout(() => { if(VO.on) startListen(); }, 250); if(done) done(); };
+      u.onerror = () => { VO.speaking = false; waveVis(false); setTimeout(() => { if(VO.on) startListen(); }, 250); if(done) done(); };
+      speechSynthesis.speak(u);
+    }catch{ VO.speaking = false; waveVis(false); if(done) done(); }
+  })();
 }
 async function speakBrief(text){
-  speakTTS(String(text||"").slice(0,900));
-  return true;
+  try{
+    const r = await fetch("/api/voice", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({action:"brief", text: String(text||"").slice(0,7000), style:"brief", engine:"osaragi"})
+    });
+    const j = await r.json();
+    if(!j.ok || !j.audio) throw new Error(j.error || "no audio");
+    const bin = atob(j.audio);
+    const arr = new Uint8Array(bin.length);
+    for(let i=0;i<bin.length;i++) arr[i] = bin.charCodeAt(i);
+    const blob = new Blob([arr], {type: j.contentType || "audio/wav"});
+    if(NV.audio){ try{ NV.audio.pause(); }catch{} }
+    const a = new Audio(URL.createObjectURL(blob));
+    NV.audio = a; VO.speaking = true; waveVis(true);
+    a.onended = () => { VO.speaking = false; waveVis(false); if(VO.on) setTimeout(startListen, 250); };
+    await a.play();
+    return true;
+  }catch(e){
+    VO.speaking = false; waveVis(false);
+    vst("", "brief unavailable: " + e.message);
+    return false;
+  }
 }
 /* ── THE MIC = NORMAL CLICK-AND-LISTEN (one pass, not the hands-free loop) ── */
 let MICPASS = null;
