@@ -354,6 +354,8 @@
   html.light .brandimg em, .light .brandimg em,
   [data-theme="light"] .brandimg em,
   html.light header .brandimg em, .light header .brandimg em { color: #8A877F !important; }
+  .release-note{margin:10px auto 0;max-width:620px;font-size:12px;line-height:1.7;color:var(--text-muted);letter-spacing:.01em}
+  .release-note .rn-sep{color:var(--accent);opacity:.7;margin:0 4px}
 </style>
     <link rel="stylesheet" href="skin-business.css">
 <link rel="stylesheet" href="header-glass.c3.css">
@@ -389,6 +391,8 @@ html.light .topbar .brandimg em,.light .topbar .brandimg em,[data-theme="light"]
 .topbar nav .lite{font:700 13.5px/1 Inter,'Segoe UI',sans-serif!important;letter-spacing:.16em!important;color:#8f8b83!important;background:transparent!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:6px!important;padding:8px 12px!important;margin-left:6px!important}
 .topbar nav .lite:hover{color:#edebe6!important;border-color:rgba(255,255,255,.30)!important}
 html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topbar nav .lite{color:#5d5a54!important;border-color:rgba(20,20,19,.18)!important}
+  .release-note{margin:10px auto 0;max-width:620px;font-size:12px;line-height:1.7;color:var(--text-muted);letter-spacing:.01em}
+  .release-note .rn-sep{color:var(--accent);opacity:.7;margin:0 4px}
 </style>
 <link rel="stylesheet" href="shared-header.css">
 <link rel="stylesheet" href="plain-skin.css">
@@ -399,6 +403,8 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
   .hero.center { position: relative; }
   .free-ouroboros { position: absolute; top: 50%; right: 0; width: clamp(156px, 15.6vw, 234px); height: auto; transform: translateY(-50%); color: #FFFFFF; pointer-events: none; }
   @media (max-width: 1100px) { .free-ouroboros { position: static; display: block; margin: 0 auto 18px; width: 125px; transform: none; } }
+  .release-note{margin:10px auto 0;max-width:620px;font-size:12px;line-height:1.7;color:var(--text-muted);letter-spacing:.01em}
+  .release-note .rn-sep{color:var(--accent);opacity:.7;margin:0 4px}
 </style>
 
 <style id="pink-wash">
@@ -418,6 +424,8 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
   }
   .eyebrow { border-color: rgba(240,101,159,.45) !important; color: #F0659F !important;
              background: rgba(240,101,159,0.10) !important; }
+  .release-note{margin:10px auto 0;max-width:620px;font-size:12px;line-height:1.7;color:var(--text-muted);letter-spacing:.01em}
+  .release-note .rn-sep{color:var(--accent);opacity:.7;margin:0 4px}
 </style>
 </head>
 <body>
@@ -447,6 +455,9 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
             <div class="intro">
                 <p class="ds-text-body">Load the static weight core — shard blobs of any size — and the loop hands
                    your installed models their engine.</p>
+                <p class="ds-text-body release-note">Windows 10/11 · x64 · 82 MB · unsigned build
+                   <span class="rn-sep">·</span> Linux 1.5.1 · AppImage + deb + tar.gz · 3D simulator
+                   <span class="rn-sep">·</span> blackboxed free</p>
             </div>
             <div class="hero-cta">
                 <a class="btn primary" href="downloads/TotalControl%20Core%20Harness%20Free%20Setup%201.5.1-beta.exe">↓&nbsp; Download Windows .exe · 1.5.1-beta</a>
@@ -455,7 +466,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
                 <a class="btn" href="https://github.com/oroboroslabs-ai/totalcontrol-core-harness">View on GitHub</a>
                 <span class="dlmetric" data-dl></span>
             </div>
-            <p class="ds-text-body" style="margin:14px auto 0;max-width:640px;font-size:12px;color:var(--text-muted)">Windows 10/11 · x64 · 82 MB · unsigned build. Linux 1.5.1 with the 3D simulator is packaging now and gets its own button on the same row.</p>
+
             <div class="law">
                 <span class="pln">local-only 127.0.0.1</span>
                 <span>weights retrieved — never embedded</span>
