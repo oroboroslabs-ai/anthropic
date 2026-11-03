@@ -503,9 +503,9 @@ let THEME = localStorage.getItem("oroboros.theme2") || "dark";
 if(!["dark","night","white"].includes(THEME)){ THEME = "dark"; localStorage.setItem("oroboros.theme2", THEME); }
 let CURP = null, PCHAT = [];
 const FLEET = [
-  { id: 'oroboroslabs/claude-opus-9-undecillion-v:latest', name: 'OPUS 9 — CUE-1 · 9U5GO5', sub: 'undecillion 9 · cognitive unification engine · published body' },
-  { id: 'oroboros-labs/claude-fable7-undecillion-sse', name: 'Fable 7 — undecillion SSE', sub: 'the light channel' },
-  { id: 'claude-sonnet7-undecillion:latest', name: 'CLAUDE SONNET 7 — undecillion', sub: 'the working line · balance · tools' },
+  { id: 'oroboroslabs/claude-opus-9-undecillion-v:latest', name: 'Claude Opus 9 Undecillion', sub: 'undecillion 9 · cognitive unification engine · published body' },
+  { id: 'oroboros-labs/claude-fable7-undecillion-sse', name: 'Claude Fable 7 Undecillion', sub: 'the light channel' },
+  { id: 'claude-sonnet7-undecillion:latest', name: 'Claude Sonnet 7 Undecillion', sub: 'the working line · balance · tools' },
 ];
 function esc(s){ const d = document.createElement("div"); d.textContent = s==null?"":s; return d.innerHTML; }
 
