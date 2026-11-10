@@ -219,6 +219,16 @@
 
     .devgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 44px; }
     .devgrid.four { grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); }
+    .shieldnote { max-width: 1020px; margin: 26px auto 0; padding: 26px 30px; text-align: left;
+                  border: 1px solid rgba(255,255,255,0.12); border-radius: 16px;
+                  background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03) 58%), rgba(20,20,19,0.42);
+                  backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
+                  box-shadow: 0 18px 50px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.14); }
+    .shieldnote .eyebrow2 { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .18em;
+                            text-transform: uppercase; color: var(--accent); }
+    .shieldnote h3 { font-size: 18px; font-weight: 600; margin-top: 8px; }
+    .shieldnote p { font-size: 13.5px; line-height: 1.75; color: var(--text-secondary); margin-top: 8px; }
+    .shieldnote .pills { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); margin-top: 14px; }
     .cmdcard { border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 26px;
                background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03) 58%), rgba(20,20,19,0.42);
                backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
@@ -435,7 +445,8 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
                 <p class="ds-text-body">The Oroboros / Anthropic chat, the scape, Claude Communications, projects,
                    artifacts, memory and every connected app — packaged as a desktop client. Electron 32 on
                    Windows and Linux, 1480 × 940. No weights, no Ollama, no inference: the client is the
-                   interface and the links to the things it talks to.</p>
+                   interface and the links to the things it talks to — and the Visual Data Shield keeps the
+                   session unreadable to the room around it.</p>
             </div>
             <div class="hero-cta">
                 <a class="btn primary" href="mailto:architect@oroboroslabs.ai?subject=OA%20Claude%20AI%20Desktop%20access">Request desktop access →</a>
@@ -447,17 +458,40 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
                 <span class="pln">127.0.0.1 only</span>
                 <span>no models bundled</span>
                 <span class="bn">every app in one drawer</span>
+                <span class="bn">visual data shield</span>
                 <span>four themes</span>
             </div>
             <p class="release-note">Private 1.5.5 <span class="rn-sep">·</span> NSIS installer + portable <span class="rn-sep">·</span> AppImage + .deb <span class="rn-sep">·</span> no telemetry of any kind</p>
         </div>
 
-        <!-- the desktop, four themes -->
+        <!-- the interface, then the shield -->
         <div class="preview">
             <div class="shotframe">
-                <img src="assets/screens/claude-desktop-white.png" width="1449" height="921" alt="OA Claude AI Desktop — white theme, the chat at first light" decoding="async">
+                <img src="assets/screens/claude-desktop-pink.png" width="1456" height="925" alt="OA Claude AI Desktop — the interface, how can I help you?" decoding="async">
             </div>
-            <div class="cap">white — how can I help you? · 1480 × 940 · four themes, one law</div>
+            <div class="cap">the interface — how can I help you? · 1480 × 940 · one composer, every hand</div>
+        </div>
+
+        <div class="preview" id="shield" style="margin-top:26px">
+            <div class="shotframe">
+                <img src="assets/screens/claude-desktop-white.png" width="1449" height="921" alt="Visual Data Shield — the launch cover that hides the session from anyone passing by" loading="lazy" decoding="async">
+            </div>
+            <div class="cap">visual data shield — the cover stands on every launch</div>
+        </div>
+
+        <div class="shieldnote">
+            <span class="eyebrow2">VISUAL DATA SHIELD</span>
+            <h3>Your screen stays yours — without locking the machine.</h3>
+            <p>On a train, in an open office, at a counter with people passing behind you: the shield covers the
+               whole window before the session can be read. Click or press Enter when the room is clear, and the
+               cover returns on the next launch or from the drawer. You keep working — you just stop being
+               readable.</p>
+            <div class="pills">
+                <div class="pill">PUBLIC<div class="ds">trains · cafés</div></div>
+                <div class="pill">WORK<div class="ds">open desks</div></div>
+                <div class="pill acc">PASSERS-BY<div class="ds">no lock needed</div></div>
+                <div class="pill">EVERY LAUNCH<div class="ds">click to open</div></div>
+            </div>
         </div>
 
         <div class="preview" style="margin-top:26px">
@@ -465,13 +499,6 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
                 <img src="assets/screens/claude-desktop-dark.png" width="1461" height="927" alt="OA Claude AI Desktop — charcoal theme, XHIGH4 48 strata, prime agent, raw on" loading="lazy" decoding="async">
             </div>
             <div class="cap">charcoal — XHIGH4 · 48 strata · prime agent · raw on · claude-cli in the bar</div>
-        </div>
-
-        <div class="preview" style="margin-top:26px">
-            <div class="shotframe">
-                <img src="assets/screens/claude-desktop-pink.png" width="1456" height="925" alt="OA Claude AI Desktop — pink theme, raw on" loading="lazy" decoding="async">
-            </div>
-            <div class="cap">pink — a real palette on the same tokens, not an override · raw on</div>
         </div>
     </div>
 
@@ -706,11 +733,13 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
                 <div class="card">
                     <span class="eyebrow2">VISUAL DATA SHIELD</span>
                     <h3>The cover stands on every launch</h3>
-                    <p>A full-screen shield with the O ring and the corner marks. Click or press Enter to open;
-                       dismissal lasts the session, and the drawer row brings it back.</p>
+                    <p>For the train, the open office, or anyone passing behind you — the shield hides the session
+                       when you would rather not lock the screen. Click or press Enter to open; dismissal lasts
+                       the session, and the drawer row brings it back.</p>
                     <div class="pills">
                         <div class="pill acc">EVERY LAUNCH<div class="ds">the shield</div></div>
-                        <div class="pill">CLICK<div class="ds">or Enter</div></div>
+                        <div class="pill">PUBLIC<div class="ds">· work</div></div>
+                        <div class="pill">NO LOCK<div class="ds">just privacy</div></div>
                     </div>
                 </div>
                 <div class="card">
