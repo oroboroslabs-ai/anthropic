@@ -478,7 +478,7 @@
                     <p class="specline">local-only 127.0.0.1 · weights retrieved, never embedded · crown 8718 hz</p>
                 </div>
                 <div class="hero-visual">
-                    <a class="shotframe" href="set/harness.html"><img src="core-shot.png" alt="TotalControl Core harness"></a>
+                    <a class="shotframe" href="set/harness.html"><img src="assets/screens/neutral-system.png" alt="TotalControl Core harness"></a>
                 </div>
             </div>
             <div class="hero-edge" aria-hidden="true"></div>
@@ -487,7 +487,7 @@
 
         <div class="preview">
             <a class="shotframe" href="set/harness.html">
-                <img src="hands-shot.png" alt="TotalControl Core hands — browser control">
+                <img src="assets/screens/neutral-agents.png" alt="TotalControl Core hands — browser control">
             </a>
             <div class="cap"><a href="all-services.html">Hands — the browser and the crawler under the loop</a></div>
         </div>
@@ -497,14 +497,14 @@
         <div class="container">
             <div class="prodgrid">
                 <a class="prod" href="glasswing.html">
-                    <img src="core-shot.png" alt="Glasswing interface">
+                    <img src="assets/screens/neutral-system.png" alt="Glasswing interface">
                     <span class="prod-k">GLASSWING</span>
                     <h3>The public portal</h3>
                     <p>Six live systems on one glass surface — substrate, satellites, agents, records.</p>
                     <span class="prod-l">Open Glasswing &rarr;</span>
                 </a>
                 <a class="prod" href="set/harness.html">
-                    <img src="corepanel-shot.png" alt="TotalControl Core harness — white theme">
+                    <img src="assets/screens/neutral-appearance.png" alt="TotalControl Core harness — white theme">
                     <span class="prod-k">TOTALCONTROL CORE</span>
                     <h3>The harness</h3>
                     <p>The static weight core and the loop — your models, your machine, nothing leaving it.</p>
@@ -745,7 +745,7 @@
     </section>
             <div class="preview" style="margin-top:26px">
                 <div class="shotframe">
-                    <img src="hands-shot.png" alt="The TotalControl Core Hands panel — final testing, private build">
+                    <img src="assets/screens/neutral-agents.png" alt="The TotalControl Core Hands panel — final testing, private build">
                 </div>
                 <div class="cap">totalcontrol core hands — the panel in final testing · gateway 127.0.0.1 only · payments unlock at launch</div>
             </div>
@@ -809,31 +809,11 @@
   }
 })();
 async function loadDlCount(){
-  const els = document.querySelectorAll('[data-dl]');
-  if (!els.length) return;
-  // PRIVATE VIEW: index.html?dl=1 reveals the counter; everyone else — it stays
-  // in the markup (readable), running with every visit, invisible on the page.
-  const priv = /(^|[?&])dl=1(&|$)/.test(location.search);
-  try {
-    let v = null, t = 0;
-    try { v = localStorage.getItem('tc-dl-count'); t = parseInt(localStorage.getItem('tc-dl-ts') || '0', 10); } catch(e){}
-    if (!v || Date.now() - t > 1800000) {
-      const r = await fetch('https://api.github.com/repos/oroboroslabs-ai/totalcontrol-core-harness/releases?per_page=20');
-      const d = await r.json();
-      if (Array.isArray(d)) {
-        let sum = 0;
-        d.forEach(rel => (rel.assets || []).forEach(a => { sum += (a.download_count || 0); }));
-        v = sum;
-        try { localStorage.setItem('tc-dl-count', v); localStorage.setItem('tc-dl-ts', String(Date.now())); } catch(e){}
-      }
-    }
-    if (v != null) {
-      // THE COUNTER LAW — hidden until the downloads sit between 100 and 1000;
-      // ?dl=1 stays the private view for us at any count.
-      const inBand = (Number(v) >= 100 && Number(v) <= 1000);
-      els.forEach(el => { el.textContent = Number(v).toLocaleString() + ' downloads'; el.style.display = (priv || inBand) ? 'inline-flex' : 'none'; });
-    }
-  } catch(e){}
+  document.querySelectorAll('[data-dl]').forEach((el) => {
+    el.textContent = '';
+    el.hidden = true;
+    el.style.display = 'none';
+  });
 }
 loadDlCount();
 </script>
@@ -845,3 +825,4 @@ loadDlCount();
 <script src="/shared-header.js" defer></script>
 </body>
 </html>
+

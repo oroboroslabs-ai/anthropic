@@ -77,24 +77,13 @@ window.TC_SHOP = {
     setTimeout(() => { location.href = href; }, 90);
   }, { passive: false });
 
-  /* ---------- the download counter (any page with [data-dl]) ---------- */
-  (async function dlCount() {
-    const els = document.querySelectorAll('[data-dl]');
-    if (!els.length) return;
-    try {
-      let v = null, t = 0;
-      try { v = localStorage.getItem('tc-dl-count'); t = parseInt(localStorage.getItem('tc-dl-ts') || '0', 10); } catch (e) {}
-      if (!v || Date.now() - t > 1800000) {
-        const r = await fetch('https://api.github.com/repos/oroboroslabs-ai/totalcontrol-core-harness/releases/latest');
-        const d = await r.json();
-        const a = (d.assets || []).find(x => /TotalControl-Free-Core\.zip/i.test(x.name || ''));
-        if (a) {
-          v = a.download_count;
-          try { localStorage.setItem('tc-dl-count', v); localStorage.setItem('tc-dl-ts', String(Date.now())); } catch (e) {}
-        }
-      }
-      if (v != null) els.forEach(el => { el.textContent = Number(v).toLocaleString() + ' downloads'; el.style.display = 'inline-flex'; });
-    } catch (e) {}
+  /* ---------- download counter: never drawn on the public page ---------- */
+  (function dlCount() {
+    document.querySelectorAll('[data-dl]').forEach((el) => {
+      el.textContent = '';
+      el.hidden = true;
+      el.style.display = 'none';
+    });
   })();
 
   /* ---------- the cover slider (if present) ---------- */

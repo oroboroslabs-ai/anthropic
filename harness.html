@@ -392,14 +392,14 @@
         <!-- the harness, live -->
         <div class="preview">
             <div class="shotframe">
-                <img src="harness-hero.png" alt="The TotalControl harness — load the weight systems, run the loop, own your machine">
+                <img src="assets/screens/neutral-system.png" alt="The TotalControl harness — load the weight systems, run the loop, own your machine">
             </div>
             <div class="cap">the totalcontrol core harness — 127.0.0.1:8792/core · 1.95 mb · python 3.13</div>
         </div>
 
             <div class="preview" style="margin-top:26px">
                 <div class="shotframe">
-                    <img src="core-shot.png" alt="The static weight core panel — load the weight systems, hand the models their engine">
+                    <img src="assets/screens/neutral-system.png" alt="The static weight core panel — load the weight systems, hand the models their engine">
                 </div>
                 <div class="cap">the static weight core — ollama · huggingface · lm studio · the majors — the loop, models only</div>
             </div>
@@ -630,7 +630,7 @@
     </section>
             <div class="preview" style="margin-top:26px">
                 <div class="shotframe">
-                    <img src="hands-shot.png" alt="The TotalControl Core Hands panel — final testing, private build">
+                    <img src="assets/screens/neutral-agents.png" alt="The TotalControl Core Hands panel — final testing, private build">
                 </div>
                 <div class="cap">totalcontrol core hands — the panel in final testing · gateway 127.0.0.1 only · payments unlock at launch</div>
             </div>
@@ -691,22 +691,11 @@
   }
 })();
 async function loadDlCount(){
-  const els = document.querySelectorAll('[data-dl]');
-  if (!els.length) return;
-  try {
-    let v = null, t = 0;
-    try { v = localStorage.getItem('tc-dl-count'); t = parseInt(localStorage.getItem('tc-dl-ts') || '0', 10); } catch(e){}
-    if (!v || Date.now() - t > 1800000) {
-      const r = await fetch('https://api.github.com/repos/oroboroslabs-ai/totalcontrol-core-harness/releases/latest');
-      const d = await r.json();
-      const a = (d.assets || []).find(x => /TotalControl-Free-Core\.zip/i.test(x.name || ''));
-      if (a) {
-        v = a.download_count;
-        try { localStorage.setItem('tc-dl-count', v); localStorage.setItem('tc-dl-ts', String(Date.now())); } catch(e){}
-      }
-    }
-    if (v != null) els.forEach(el => { el.textContent = Number(v).toLocaleString() + ' downloads'; el.style.display = 'inline-flex'; });
-  } catch(e){}
+  document.querySelectorAll('[data-dl]').forEach((el) => {
+    el.textContent = '';
+    el.hidden = true;
+    el.style.display = 'none';
+  });
 }
 loadDlCount();
 </script>
