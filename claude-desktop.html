@@ -411,7 +411,8 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
   .shotframe img { width: 100% !important; height: auto !important; }
   .hero + .preview { max-width: 1200px; }
   .hero.center { position: relative; }
-  .free-ouroboros { position: absolute; top: 50%; right: 0; width: clamp(156px, 15.6vw, 234px); height: auto; transform: translateY(-50%); color: #FFFFFF; pointer-events: none; }
+  .free-ouroboros { position: absolute; top: 50%; right: 0; width: clamp(156px, 15.6vw, 234px); height: auto; transform: translateY(-50%); pointer-events: none; object-fit: contain; }
+  .light .free-ouroboros { opacity: .92; }
   @media (max-width: 1100px) { .free-ouroboros { position: static; display: block; margin: 0 auto 18px; width: 125px; transform: none; } }
   .release-note{margin:10px auto 0;max-width:620px;font-size:12px;line-height:1.7;color:var(--text-muted);letter-spacing:.01em}
   .release-note .rn-sep{color:var(--accent);opacity:.7;margin:0 4px}
@@ -438,7 +439,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
 <main>
     <div class="container">
         <div class="hero center">
-            <svg class="free-ouroboros" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="37" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-dasharray="209 24" transform="rotate(-118 50 50)"/></svg>
+            <img class="free-ouroboros" src="assets/oroboros-logo-reverse.png" width="1512" height="1512" alt="Oroboros / Anthropic" decoding="async">
             <span class="eyebrow">✦ OA CLAUDE AI DESKTOP · PRIVATE 1.5.5 · WINDOWS + LINUX · NO MODELS BUNDLED</span>
             <h1 class="harness-heading">Claude Desktop.<br>The whole machine. <span class="here-word">One window.</span></h1>
             <div class="intro">
