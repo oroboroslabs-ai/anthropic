@@ -24,6 +24,7 @@
     { label: 'JHANNA', href: 'jhanna.html', key: 'jhanna' },
     { label: 'VOICE', href: 'claude-communications/', key: 'voice' },
     { label: 'CHAT', href: 'chat-anthropic.html', key: 'chat' },
+    { label: 'CLAUDE DESKTOP', href: 'claude-desktop.html', key: 'desktop' },
     { label: 'MANUAL', href: 'operations.html', key: 'manual' },
     { label: 'SHOP', href: 'shop.html', key: 'shop' },
   { label: 'DOCKER SUBSTRATA ACCESS LAYER (DSAL)', href: 'dslc.html', key: 'dslc' }
