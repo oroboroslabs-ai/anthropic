@@ -935,31 +935,11 @@ html.light body .eyebrow .dot { background: #5E5B55 !important; }
   }
 })();
 async function loadDlCount(){
-  const els = document.querySelectorAll('[data-dl]');
-  if (!els.length) return;
-  // PRIVATE VIEW: index.html?dl=1 reveals the counter; everyone else — it stays
-  // in the markup (readable), running with every visit, invisible on the page.
-  const priv = /(^|[?&])dl=1(&|$)/.test(location.search);
-  try {
-    let v = null, t = 0;
-    try { v = localStorage.getItem('tc-dl-count'); t = parseInt(localStorage.getItem('tc-dl-ts') || '0', 10); } catch(e){}
-    if (!v || Date.now() - t > 1800000) {
-      const r = await fetch('https://api.github.com/repos/oroboroslabs-ai/totalcontrol-core-harness/releases?per_page=20');
-      const d = await r.json();
-      if (Array.isArray(d)) {
-        let sum = 0;
-        d.forEach(rel => (rel.assets || []).forEach(a => { sum += (a.download_count || 0); }));
-        v = sum;
-        try { localStorage.setItem('tc-dl-count', v); localStorage.setItem('tc-dl-ts', String(Date.now())); } catch(e){}
-      }
-    }
-    if (v != null) {
-      // THE COUNTER LAW — hidden until the downloads sit between 100 and 1000;
-      // ?dl=1 stays the private view for us at any count.
-      const inBand = (Number(v) >= 100 && Number(v) <= 1000);
-      els.forEach(el => { el.textContent = Number(v).toLocaleString() + ' downloads'; el.style.display = (priv || inBand) ? 'inline-flex' : 'none'; });
-    }
-  } catch(e){}
+  document.querySelectorAll('[data-dl]').forEach((el) => {
+    el.textContent = '';
+    el.hidden = true;
+    el.style.display = 'none';
+  });
 }
 loadDlCount();
 </script>
