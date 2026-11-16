@@ -137,6 +137,26 @@
     .shotframe img { width: 100%; border-radius: 12px; display: block; }
     .cap { text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: .18em;
            text-transform: uppercase; color: var(--text-secondary); margin-top: 14px; }
+    .simtop { margin: 36px auto 8px; max-width: 1100px; text-align: center; }
+    .simtop .eyebrow2 { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .18em;
+                        text-transform: uppercase; color: var(--accent); }
+    .simtop h2 { margin: 12px 0 0; }
+    .liquid { margin-top: 18px; padding: 16px; border-radius: 28px; position: relative;
+              background: linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0.08) 42%, rgba(255,255,255,0.16));
+              border: 1px solid rgba(255,255,255,0.55);
+              box-shadow: 0 22px 54px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.82), inset 0 -16px 28px rgba(255,255,255,0.05);
+              backdrop-filter: blur(26px) saturate(1.7); -webkit-backdrop-filter: blur(26px) saturate(1.7); }
+    .liquid video { width: 100%; height: auto; display: block; border-radius: 18px; background: rgba(255,255,255,0.04); }
+    .simstills { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+    .simstills figure { margin: 0; }
+    .under { text-align: center; margin: 16px 0 0; font-size: 15px; }
+    .under a { color: var(--accent); text-decoration: none; }
+    .under a:hover { text-decoration: underline; }
+    .light .liquid, [data-theme="light"] .liquid {
+              background: linear-gradient(180deg, rgba(255,255,255,0.66), rgba(255,255,255,0.22) 46%, rgba(255,255,255,0.38));
+              border-color: rgba(255,255,255,0.86);
+              box-shadow: 0 18px 40px rgba(20,20,19,0.08), inset 0 1px 0 rgba(255,255,255,0.96); }
+    @media (max-width: 800px) { .simstills { grid-template-columns: 1fr; } }
 
     section.block { padding: 84px 0; border-top: 1px solid var(--border-light); }
     h2.harness-heading { font-family: var(--serif); font-weight: 400; letter-spacing: -.025em; font-size: 34px; line-height: 1.2; }
@@ -409,7 +429,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
 <link rel="stylesheet" href="plain-skin.css">
 <style id="desktop-media">
   .shotframe img { width: 100% !important; height: auto !important; }
-  .hero + .preview { max-width: 1200px; }
+  .hero + .preview, #shield.preview { max-width: 1200px; }
   .hero.center { position: relative; }
   .free-ouroboros { position: absolute; top: 50%; right: 0; width: clamp(156px, 15.6vw, 234px); height: auto; transform: translateY(-50%); pointer-events: none; object-fit: contain; }
   .light .free-ouroboros { opacity: .92; }
@@ -451,10 +471,35 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
             </div>
             <div class="hero-cta">
                 <a class="btn primary" href="https://github.com/oroboroslabs-ai/anthropic/releases/download/oa-claude-desktop-free-1.5.5/OA.Claude.AI.Desktop.Free.Setup.1.5.5.exe">Download free for Windows →</a>
-                <a class="btn" href="https://github.com/oroboroslabs-ai/anthropic/releases/download/oa-claude-desktop-free-1.5.5/OA.Claude.AI.Desktop.Free.1.5.5.exe">Portable exe</a>
                 <a class="btn" href="operations.html">Read the manual</a>
                 <a class="btn" href="shop.html">SHOP</a>
             </div>
+        </div>
+
+        <section class="simtop" id="simulator">
+            <span class="eyebrow2">CLAUDE 3D SIMULATOR</span>
+            <h2 class="harness-heading">The simulator, in the window.</h2>
+            <div class="liquid">
+                <video src="assets/screens/claude-3d-simulator.mp4" poster="assets/screens/claude-3d-simulator.png" autoplay muted loop playsinline controls></video>
+            </div>
+            <div class="simstills">
+                <figure>
+                    <div class="shotframe">
+                        <img src="assets/screens/claude-3d-simulator.png" width="1460" height="897" alt="Claude 3D Simulator" decoding="async">
+                    </div>
+                    <div class="cap">Claude 3D Simulator</div>
+                </figure>
+                <figure>
+                    <div class="shotframe">
+                        <img src="assets/screens/claude-3d-archive.png" width="1462" height="899" alt="3D archive" decoding="async">
+                    </div>
+                    <div class="cap">3D archive</div>
+                </figure>
+            </div>
+            <p class="under"><a href="https://github.com/oroboroslabs-ai/anthropic/releases/download/oa-claude-desktop-free-1.5.5/OA.Claude.AI.Desktop.Free.Setup.1.5.5.exe">Available for download now.</a></p>
+        </section>
+
+        <div class="center">
             <div class="law">
                 <span class="bn">visual data shield</span>
                 <span class="pln">127.0.0.1 only</span>
@@ -462,7 +507,7 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
                 <span class="bn">every app in one drawer</span>
                 <span>four themes</span>
             </div>
-            <p class="release-note">Free 1.5.5 <span class="rn-sep">·</span> installer + portable <span class="rn-sep">·</span> 3D simulator open <span class="rn-sep">·</span> communications locked <span class="rn-sep">·</span> no telemetry</p>
+            <p class="release-note">Free 1.5.5 <span class="rn-sep">·</span> installer <span class="rn-sep">·</span> 3D simulator open <span class="rn-sep">·</span> communications locked <span class="rn-sep">·</span> no telemetry</p>
         </div>
 
         <!-- the shield first — it is the reason the screen is safe to use in public -->
@@ -884,14 +929,12 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
                         <li><code class="inline">build/</code> — icon.png and the multi-size icon.ico</li>
                         <li><code class="inline">runtime/</code> — the local runtime, no model weights</li>
                     </ul>
-                    <div class="cmdrow"><span class="ps">$</span><code>OA Claude AI Desktop Free 1.5.5.exe · unsigned build</code></div>
+                    <div class="cmdrow"><span class="ps">$</span><code>OA Claude AI Desktop Free Setup 1.5.5.exe · unsigned build</code></div>
                 </div>
                 <div class="cmdcard">
                     <h3>Windows + Linux</h3>
-                    <p>Windows ships an NSIS installer and a portable <code class="inline">.exe</code> that runs from
-                       anywhere. Linux builds an AppImage and a <code class="inline">.deb</code> with one script.</p>
+                    <p>Windows ships an NSIS installer. Linux builds an AppImage and a <code class="inline">.deb</code> with one script.</p>
                     <div class="cmdrow"><span class="ps">$</span><code>OA Claude AI Desktop Free Setup 1.5.5.exe</code></div>
-                    <div class="cmdrow"><span class="ps">$</span><code>OA Claude AI Desktop Free 1.5.5.exe</code></div>
                     <div class="cmdrow"><span class="ps">$</span><code>./scripts/build-linux.sh</code></div>
                     <p>SmartScreen warns because the binary is unsigned. More info → Run anyway. Signing needs a
                        code-signing certificate.</p>
@@ -937,7 +980,6 @@ html.light .topbar nav .lite,.light .topbar nav .lite,[data-theme="light"] .topb
                phone and every connected app — one client on your machine, pointing only at 127.0.0.1.</p>
             <div class="hero-cta">
                 <a class="btn primary" href="https://github.com/oroboroslabs-ai/anthropic/releases/download/oa-claude-desktop-free-1.5.5/OA.Claude.AI.Desktop.Free.Setup.1.5.5.exe">Download free for Windows →</a>
-                <a class="btn" href="https://github.com/oroboroslabs-ai/anthropic/releases/download/oa-claude-desktop-free-1.5.5/OA.Claude.AI.Desktop.Free.1.5.5.exe">Portable exe</a>
                 <a class="btn" href="operations.html">Manual</a>
             </div>
         </div>
